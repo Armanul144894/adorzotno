@@ -16,7 +16,7 @@ export default function Header({ cartCount = 3 }) {
       {/* Header */}
       <header className="bg-white shadow-md">
         {/* Top Bar */}
-        <div className="bg-teal-600 text-white text-sm">
+        <div className="bg-secondary text-white text-sm">
           <div className="container-fluid max-w-[1920px] mx-auto px-4 py-2 flex justify-between items-center">
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1">

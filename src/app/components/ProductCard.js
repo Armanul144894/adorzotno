@@ -48,7 +48,7 @@ export default function ProductCard({ product }) {
                         </div>
 
                         <button
-                            className="w-full bg-teal-600 text-white py-2 rounded-lg"
+                            className="w-full bg-primary text-white py-2 rounded-lg"
                         >
                             Add to Cart
                         </button>
