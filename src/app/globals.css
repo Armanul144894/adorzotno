@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
@@ -14,8 +16,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #f0f0f0;
+    --foreground: #000000;
   }
 }
 
@@ -23,4 +25,39 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
 }
+
+button {
+  cursor: pointer;
+}
+
+/* === Swiper Layout Fixes === */
+.swiper {
+  width: 100%;
+}
+
+.swiper-wrapper {
+  height: auto !important;
+  width: calc(100% * slides);
+}
+
+
+.swiper-slide {
+  height: auto !important;
+  display: flex;
+}
+
+
+/* Keep custom navigation buttons visible */
+.cat-prev.swiper-button-disabled,
+.cat-next.swiper-button-disabled {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+
+
+
+
+
