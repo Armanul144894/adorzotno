@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
@@ -31,7 +29,7 @@ export default function CategoryOffcanvas({ sidebarOpen, setSidebarOpen }) {
         <div className="flex flex-col h-full">
 
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b bg-teal-600 text-white">
+          <div className="flex items-center justify-between p-6 border-b bg-secondary text-white">
             <div className="flex items-center gap-3">
               <Menu size={24} />
               <div>
@@ -66,7 +64,7 @@ export default function CategoryOffcanvas({ sidebarOpen, setSidebarOpen }) {
                 >
                   <div className="flex items-center gap-3">
                     <span className="text-2xl">{category.icon}</span>
-                    <span className="text-sm font-medium text-gray-700 group-hover:text-teal-600">
+                    <span className="text-sm font-medium text-gray-700 group-hover:text-primary">
                       {category.name}
                     </span>
                   </div>

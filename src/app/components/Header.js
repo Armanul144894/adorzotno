@@ -5,6 +5,8 @@ import Link from "next/link";
 import CartOffcanvas from "./CartOffcanvas";
 import CategoryOffcanvas from "./CategoryOffcanvas";
 import SignInModal from "./SignInModal";
+import Image from "next/image";
+
 
 export default function Header({ cartCount = 3 }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,11 +23,11 @@ export default function Header({ cartCount = 3 }) {
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1">
                 <Phone size={14} />
-                <span className="hidden sm:inline">+1-800-MEDCARE</span>
+                <span className="hidden sm:inline">+1-800-ADORZOTNO</span>
               </span>
               <span className="hidden md:flex items-center gap-1">
                 <Mail size={14} />
-                support@medeasy.health
+                support@adorzotno.health
               </span>
             </div>
             <div className="flex items-center gap-4">
@@ -37,7 +39,7 @@ export default function Header({ cartCount = 3 }) {
         </div>
 
         {/* Main Header */}
-        <div className="container-fluid max-w-[1920px] mx-auto px-4 py-4">
+        <div className="container-fluid max-w-[1920px] mx-auto px-4 py-2">
           <div className="flex items-center justify-between gap-4">
             {/* Logo */}
             <div className="flex items-center gap-2">
@@ -48,7 +50,12 @@ export default function Header({ cartCount = 3 }) {
                 {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
               <Link href="/">
-                <h1 className="text-2xl font-bold text-teal-600">MedEasy</h1>
+              <Image
+                src="/images/AdorzotnoLogo.png"
+                alt="adorzotno Logo"
+                width={120}
+                height={60}
+              />
               </Link>
             </div>
 
@@ -74,7 +81,7 @@ export default function Header({ cartCount = 3 }) {
                 onClick={() => setSignInOpen(true)}
                 className="relative p-2 hover:bg-gray-100 rounded-full cursor-pointer"
               >
-               <ShoppingCart size={24} className="text-gray-600" />
+               <User size={24} className="text-gray-600" />
               </button>
 
               

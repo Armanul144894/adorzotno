@@ -10,7 +10,7 @@ export default function HeroBanner() {
             id: 1,
             title: 'Slide 1',
             image: 'https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fsliders%2FMedeasy-website_slider.png&w=3840&q=100',
-            bgColor: 'from-teal-500 via-teal-600 to-cyan-600'
+            bgColor: 'from-primary via-primary to-secondary'
         },
         {
             id: 2,
@@ -21,9 +21,15 @@ export default function HeroBanner() {
         {
             id: 3,
             title: 'Slide 3',
-            image: 'https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fsliders%2FMedEasy-26.jpg&w=3840&q=100',
+            image: 'https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fsliders%2FMedeasy-website_slider.png&w=3840&q=100',
             bgColor: 'from-purple-500 via-purple-600 to-pink-600'
-        }
+        },
+         {
+            id: 4,
+            title: 'Slide 4',
+            image: 'https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fsliders%2FMedeasy-website-slider-for-innsaei.png&w=3840&q=100',
+            bgColor: 'from-blue-500 via-blue-600 to-indigo-600'
+        },
     ];
 
     // Auto-advance slider

@@ -37,12 +37,12 @@ export default function CategoryProduct({ category, products }) {
     <div className="mb-10">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl md:text-2xl font-bold text-gray-800">{category}</h2>
+        <h2 className="text-xl md:text-2xl font-bold text-primary">{category}</h2>
         <Link href={`/category/${category.toLowerCase()
           .replace(/&/g, 'and')
           .replace(/[^a-z0-9]+/g, '-')
           .replace(/(^-|-$)/g, '')}`}>
-          <button className="flex items-center gap-2 text-emerald-600 hover:text-emerald-700 font-medium transition-colors text-sm md:text-base">
+          <button className="flex items-center gap-2 text-primary hover:text-primary transition-colors font-bold">
             View All
             <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
           </button>
@@ -96,12 +96,12 @@ export default function CategoryProduct({ category, products }) {
             },
             // Tablet - Medium (768px)
             768: {
-              slidesPerView: 2.5,
+              slidesPerView: 3,
               spaceBetween: 16,
             },
             // Tablet - Medium (840px)
             840: {
-              slidesPerView: 3,
+              slidesPerView: 3.5,
               spaceBetween: 16,
             },
             // Laptop - Small (1024px)
@@ -116,7 +116,7 @@ export default function CategoryProduct({ category, products }) {
             },
             // Desktop (1536px)
             1536: {
-              slidesPerView: 4.5,
+              slidesPerView: 5.5,
               spaceBetween: 24,
             },
           }}
@@ -150,7 +150,7 @@ export default function CategoryProduct({ category, products }) {
             key={index}
             onClick={() => swiperInstance?.slideTo(index * 2)}
             className={`h-2 rounded-full transition-all duration-300 ${Math.floor((swiperInstance?.activeIndex || 0) / 2) === index
-                ? 'w-8 bg-emerald-600'
+                ? 'w-8 bg-primary'
                 : 'w-2 bg-gray-300 hover:bg-gray-400'
               }`}
             aria-label={`Go to slide ${index + 1}`}

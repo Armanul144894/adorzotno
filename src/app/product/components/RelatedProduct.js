@@ -47,9 +47,16 @@ export default function RelatedProduct({ relatedProducts }) {
           observeParents
           watchOverflow
           breakpoints={{
+            380: { slidesPerView: 1.5 },
+            540: { slidesPerView: 2 },
             640: { slidesPerView: 2 },
             768: { slidesPerView: 3 },
-            1380: { slidesPerView: 5 },
+            1380: { slidesPerView: 4 },
+            // Desktop (1536px)
+            1536: {
+              slidesPerView: 5.5,
+              spaceBetween: 24,
+            },
           }}
           className="w-full max-w-full"
         >
@@ -74,32 +81,36 @@ export default function RelatedProduct({ relatedProducts }) {
                   )}
                 </div>
                 <div className="p-4">
-                  <h3 className="font-semibold text-gray-800 mb-2">
+                  <h3 className="font-semibold text-gray-800 mb-4">
                     {item?.name}
                   </h3>
-                  <div className="flex items-center gap-1 mb-2">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        size={14}
-                        className={`${i < Math.floor(item?.rating)
-                          ? "fill-yellow-400 text-yellow-400"
-                          : "text-gray-300"
-                          }`}
-                      />
-                    ))}
+                  <div className='flex flex-wrap justify-between items-center gap-5 w-full'>
+                    <div>
+                      <div className="flex items-center gap-1 mb-2">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            size={14}
+                            className={`${i < Math.floor(item?.rating)
+                              ? "fill-yellow-400 text-yellow-400"
+                              : "text-gray-300"
+                              }`}
+                          />
+                        ))}
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xl font-bold text-gray-800">
+                          ${item?.price}
+                        </span>
+                        <span className="text-sm text-gray-400 line-through">
+                          ${item?.originalPrice}
+                        </span>
+                      </div>
+                    </div>
+                    <button className=" bg-primary text-white py-2 px-4 rounded-lg hover:bg-secondary transition font-semibold">
+                      View
+                    </button>
                   </div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xl font-bold text-gray-800">
-                      ${item?.price}
-                    </span>
-                    <span className="text-sm text-gray-400 line-through">
-                      ${item?.originalPrice}
-                    </span>
-                  </div>
-                  <button className="w-full bg-teal-600 text-white py-2 rounded-lg hover:bg-teal-700 transition font-semibold">
-                    View Details
-                  </button>
                 </div>
               </Link>
             </SwiperSlide>

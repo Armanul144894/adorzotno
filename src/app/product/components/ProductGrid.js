@@ -45,8 +45,8 @@ export default function ProductGrid({ selectedProduct, selectedImage, setSelecte
                                 key={index}
                                 onClick={() => setSelectedImage(index)}
                                 className={`bg-white rounded-lg overflow-hidden border-2 transition-all ${selectedImage === index
-                                    ? "border-teal-600"
-                                    : "border-gray-200 hover:border-teal-300"
+                                    ? "border-secondary"
+                                    : "border-gray-200 hover:border-primary"
                                     }`}
                             >
 
@@ -66,7 +66,7 @@ export default function ProductGrid({ selectedProduct, selectedImage, setSelecte
                 <div>
                     <div className="bg-white rounded-lg shadow-md p-6">
                         {/* Category Badge */}
-                        <span className="inline-block bg-teal-100 text-teal-600 text-xs font-semibold px-3 py-1 rounded-full mb-3">
+                        <span className="inline-block bg-teal-100 text-primary text-xs font-semibold px-3 py-1 rounded-full mb-3">
                             {selectedProduct?.category}
                         </span>
 
@@ -96,7 +96,7 @@ export default function ProductGrid({ selectedProduct, selectedImage, setSelecte
 
                         {/* Price */}
                         <div className="flex items-center gap-3 mb-6">
-                            <span className="text-4xl font-bold text-teal-600">
+                            <span className="text-4xl font-bold text-primary">
                                 ${selectedProduct?.price}
                             </span>
                             <span className="text-xl text-gray-400 line-through">
@@ -155,7 +155,7 @@ export default function ProductGrid({ selectedProduct, selectedImage, setSelecte
                                 </div>
                                 <span className="text-gray-600">
                                     Total:{" "}
-                                    <span className="font-bold text-teal-600">
+                                    <span className="font-bold text-primary">
                                         ${(selectedProduct?.price * quantity).toFixed(2)}
                                     </span>
                                 </span>
@@ -164,11 +164,11 @@ export default function ProductGrid({ selectedProduct, selectedImage, setSelecte
 
                         {/* Action Buttons */}
                         <div className="flex gap-4 mb-6">
-                            <button className="flex-1 bg-teal-600 text-white py-3 rounded-lg font-semibold hover:bg-teal-700 transition flex items-center justify-center gap-2">
+                            <button className="flex-1 bg-primary text-white py-3 rounded-lg font-semibold hover:bg-secondary transition flex items-center justify-center gap-2">
                                 <ShoppingCart size={20} />
                                 Add to Cart
                             </button>
-                            <button className="p-3 border-2 border-teal-600 text-teal-600 rounded-lg hover:bg-teal-50 transition">
+                            <button className="p-3 border-2 border-primary text-primary rounded-lg hover:bg-teal-50 transition">
                                 <Heart size={24} />
                             </button>
                             <button className="p-3 border-2 border-gray-300 text-gray-600 rounded-lg hover:bg-gray-50 transition">
@@ -179,14 +179,14 @@ export default function ProductGrid({ selectedProduct, selectedImage, setSelecte
                         {/* Features */}
                         <div className="border-t pt-6 space-y-3">
                             <div className="flex items-center gap-3">
-                                <Truck className="text-teal-600" size={24} />
+                                <Truck className="text-primary" size={24} />
                                 <div>
                                     <p className="font-semibold text-gray-800">Free Delivery</p>
                                     <p className="text-sm text-gray-600">On orders over $50</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-3">
-                                <Shield className="text-teal-600" size={24} />
+                                <Shield className="text-primary" size={24} />
                                 <div>
                                     <p className="font-semibold text-gray-800">
                                         Secure Payment

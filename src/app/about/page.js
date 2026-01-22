@@ -11,7 +11,7 @@ export default function page() {
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-6">
           <Link href={"/"}>
           <button
-            className="flex items-center gap-1 hover:text-teal-600 cursor-pointer"
+            className="flex items-center gap-1 hover:text-primary cursor-pointer"
           >
             <Home size={16} />
             Home
@@ -60,7 +60,7 @@ export default function page() {
         <div className="grid md:grid-cols-3 gap-6 mb-8">
           <div className="bg-white rounded-lg shadow-md p-6 text-center">
             <div className="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Target className="text-teal-600" size={32} />
+              <Target className="text-primary" size={32} />
             </div>
             <h3 className="text-xl font-bold text-gray-800 mb-3">
               Our Mission
@@ -100,7 +100,7 @@ export default function page() {
           <div className="grid md:grid-cols-2 gap-6">
             <div className="flex gap-4">
               <div className="bg-teal-100 p-3 rounded-lg h-fit">
-                <Shield className="text-teal-600" size={24} />
+                <Shield className="text-primary" size={24} />
               </div>
               <div>
                 <h3 className="font-semibold text-gray-800 mb-2">

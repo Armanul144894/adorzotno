@@ -102,7 +102,7 @@ const CartOffcanvas = ({ isOpen, setIsOpen }) => {
       >
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b bg-teal-600 text-white">
+          <div className="flex items-center justify-between p-6 border-b bg-secondary text-white">
             <div className="flex items-center gap-3">
               <ShoppingBag size={24} />
               <div>
@@ -136,7 +136,7 @@ const CartOffcanvas = ({ isOpen, setIsOpen }) => {
                 </p>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="bg-teal-600 text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition"
+                  className="bg-secondary text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition"
                 >
                   Continue Shopping
                 </button>
@@ -168,13 +168,13 @@ const CartOffcanvas = ({ isOpen, setIsOpen }) => {
 
                       {/* Product Info */}
                       <div className="flex-1">
-                        <span className="text-xs text-teal-600 font-semibold">
+                        <span className="text-xs text-primary font-semibold">
                           {item.category}
                         </span>
                         <h3 className="font-semibold text-gray-800 text-sm mb-1">
                           {item.name}
                         </h3>
-                        <p className="text-teal-600 font-bold">
+                        <p className="text-primary font-bold">
                           ${item.price}
                         </p>
 
@@ -214,7 +214,7 @@ const CartOffcanvas = ({ isOpen, setIsOpen }) => {
             {cartItems.length > 0 && (
               <div className="mt-6 pt-6 border-t">
                 <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                  <Tag size={18} className="text-teal-600" />
+                  <Tag size={18} className="text-primary" />
                   Have a Coupon Code?
                 </h3>
                 {appliedCoupon ? (
@@ -245,7 +245,7 @@ const CartOffcanvas = ({ isOpen, setIsOpen }) => {
                     />
                     <button
                       onClick={applyCoupon}
-                      className="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition text-sm font-semibold"
+                      className="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition text-sm font-semibold"
                     >
                       Apply
                     </button>
@@ -297,7 +297,7 @@ const CartOffcanvas = ({ isOpen, setIsOpen }) => {
               {/* Total */}
               <div className="flex justify-between text-lg font-bold text-gray-800 mb-4 pt-4 border-t">
                 <span>Total:</span>
-                <span className="text-teal-600">
+                <span className="text-primary">
                   ${calculateTotal().toFixed(2)}
                 </span>
               </div>
@@ -305,7 +305,7 @@ const CartOffcanvas = ({ isOpen, setIsOpen }) => {
               {/* Checkout Buttons */}
               <div className="space-y-3">
                 <Link href="/checkout" onClick={handleCheckoutClick}>
-                  <button className="w-full mb-2 bg-teal-600 text-white py-3 rounded-lg hover:bg-teal-700 transition font-semibold flex items-center justify-center gap-2">
+                  <button className="w-full mb-2 bg-secondary text-white py-3 rounded-lg hover:bg-teal-700 transition font-semibold flex items-center justify-center gap-2">
                     Proceed to Checkout <ArrowRight size={18} />
                   </button>
                 </Link>

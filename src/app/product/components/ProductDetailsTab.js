@@ -12,8 +12,8 @@ export default function ProductDetailsTab({selectedProduct, activeTab, setActive
               <button
                 onClick={() => setActiveTab("description")}
                 className={`px-6 py-4 font-semibold transition ${activeTab === "description"
-                  ? "text-teal-600 border-b-2 border-teal-600"
-                  : "text-gray-600 hover:text-teal-600"
+                  ? "text-primary border-b-2 border-primary"
+                  : "text-gray-600 hover:text-primary"
                   }`}
               >
                 Description
@@ -21,8 +21,8 @@ export default function ProductDetailsTab({selectedProduct, activeTab, setActive
               <button
                 onClick={() => setActiveTab("dosage")}
                 className={`px-6 py-4 font-semibold transition ${activeTab === "dosage"
-                  ? "text-teal-600 border-b-2 border-teal-600"
-                  : "text-gray-600 hover:text-teal-600"
+                  ? "text-primary border-b-2 border-primary"
+                  : "text-gray-600 hover:text-primary"
                   }`}
               >
                 Dosage & Usage
@@ -30,8 +30,8 @@ export default function ProductDetailsTab({selectedProduct, activeTab, setActive
               <button
                 onClick={() => setActiveTab("warnings")}
                 className={`px-6 py-4 font-semibold transition ${activeTab === "warnings"
-                  ? "text-teal-600 border-b-2 border-teal-600"
-                  : "text-gray-600 hover:text-teal-600"
+                  ? "text-primary border-b-2 border-primary"
+                  : "text-gray-600 hover:text-primary"
                   }`}
               >
                 Warnings
@@ -39,8 +39,8 @@ export default function ProductDetailsTab({selectedProduct, activeTab, setActive
               <button
                 onClick={() => setActiveTab("reviews")}
                 className={`px-6 py-4 font-semibold transition ${activeTab === "reviews"
-                  ? "text-teal-600 border-b-2 border-teal-600"
-                  : "text-gray-600 hover:text-teal-600"
+                  ? "text-primary border-b-2 border-primary"
+                  : "text-gray-600 hover:text-primary"
                   }`}
               >
                 Reviews ({selectedProduct?.reviews})
@@ -64,7 +64,7 @@ export default function ProductDetailsTab({selectedProduct, activeTab, setActive
                 <ul className="space-y-2">
                   {selectedProduct?.features.map((feature, index) => (
                     <li key={index} className="flex items-start gap-2">
-                      <Check className="text-teal-600 mt-0.5" size={20} />
+                      <Check className="text-primary mt-0.5" size={20} />
                       <span className="text-gray-600">{feature}</span>
                     </li>
                   ))}

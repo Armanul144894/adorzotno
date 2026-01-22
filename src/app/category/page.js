@@ -14,7 +14,7 @@ export default function page() {
             <h2 className="text-2xl font-bold text-gray-800">
               Shop by Category
             </h2>
-            <button className="text-teal-600 font-semibold flex items-center gap-1 hover:gap-2 transition-all">
+            <button className="text-primary font-semibold flex items-center gap-1 hover:gap-2 transition-all">
               View All <ChevronRight size={20} />
             </button>
           </div>

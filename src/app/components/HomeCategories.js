@@ -31,7 +31,7 @@ export default function HomeCategories() {
                 </h2>
                 <Link
                     href="/category"
-                    className="text-teal-600 font-semibold flex items-center gap-1 hover:gap-2 transition-all"
+                    className="text-primary font-semibold flex items-center gap-1 hover:gap-2 transition-all"
                 >
                     View All <ChevronRight size={20} />
                 </Link>

@@ -1,4 +1,4 @@
-'use client';
+;
 import Link from 'next/link';
 import allCategories from '../../../data/category';
 
@@ -31,7 +31,7 @@ export default function SideBar() {
                             >
                                 <div className="flex items-center gap-3">
                                     <span className="text-2xl">{category.icon}</span>
-                                    <span className="text-gray-700 group-hover:text-teal-600 text-sm">
+                                    <span className="text-gray-700 group-hover:text-primary text-sm">
                                         {category.name}
                                     </span>
                                 </div>

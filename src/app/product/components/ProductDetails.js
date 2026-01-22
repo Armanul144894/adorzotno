@@ -81,7 +81,7 @@ const allProducts = products;
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-6">
           <Link href={"/"}>
-            <button className="flex items-center gap-1 hover:text-teal-600 cursor-pointer">
+            <button className="flex items-center gap-1 hover:text-primary cursor-pointer">
               <Home size={16} /> Home
             </button>
           </Link>
@@ -93,7 +93,7 @@ const allProducts = products;
               .replace(/[^a-z0-9]+/g, "-")
               .replace(/(^-|-$)/g, "")}`}
           >
-            <button className="hover:text-teal-600">{selectedProduct?.category}</button>
+            <button className="hover:text-primary">{selectedProduct?.category}</button>
           </Link>
           <ChevronRight size={16} />
           <span className="text-gray-800">{selectedProduct?.name}</span>

@@ -56,7 +56,7 @@ export default function ProductCategoryCard() {
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-6">
           <Link href="/">
             <button
-              className="flex items-center gap-1 hover:text-teal-600 cursor-pointer"
+              className="flex items-center gap-1 hover:text-primary cursor-pointer"
             >
               <Home size={16} />
               Home
@@ -69,7 +69,7 @@ export default function ProductCategoryCard() {
         </div>
 
         {/* Category Header */}
-        <div className="bg-gradient-to-r from-teal-500 to-cyan-600 rounded-lg p-8 mb-6 text-white">
+        <div className="bg-gradient-to-r from-secondary to-secondary rounded-lg p-8 mb-6 text-white">
           <div className="flex items-center gap-4">
             <div className="text-6xl">{selectedCategory?.icon}</div>
             <div>
