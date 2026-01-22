@@ -81,7 +81,7 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
           <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full overflow-hidden animate-fadeIn">
             <div className="flex flex-col md:flex-row">
               {/* Left Side - Branding */}
-              <div className="bg-gradient-to-br hidden md:block from-teal-500 to-cyan-600 p-8 md:w-2/5 text-white relative overflow-hidden">
+              <div className="bg-primary hidden md:block p-8 md:w-2/5 text-white relative overflow-hidden">
                 {/* Close Button - Mobile */}
                 <button
                   onClick={() => setSignInOpen(false)}
@@ -179,7 +179,7 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
                       {/* Verify OTP Button */}
                       <button
                         onClick={handleVerifyOTP}
-                        className="w-full bg-secondary text-white py-3 rounded-lg font-semibold hover:bg-teal-700 transition mb-4"
+                        className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-secondary transition mb-4"
                       >
                         Verify OTP
                       </button>
@@ -187,7 +187,7 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
                       {/* Resend OTP */}
                       <div className="text-center mb-4">
                         <p className="text-gray-600 text-sm mb-2">
-                          Didn't receive the code?
+                          Did nott receive the code?
                         </p>
                         <button
                           onClick={handleResendOTP}
@@ -215,7 +215,7 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
                           onClick={() => setLoginMethod("phone")}
                           className={`flex-1 py-2 px-4 rounded-lg font-semibold transition ${
                             loginMethod === "phone"
-                              ? "bg-secondary text-white"
+                              ? "bg-primary text-white"
                               : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                           }`}
                         >
@@ -226,7 +226,7 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
                           onClick={() => setLoginMethod("email")}
                           className={`flex-1 py-2 px-4 rounded-lg font-semibold transition ${
                             loginMethod === "email"
-                              ? "bg-secondary text-white"
+                              ? "bg-primary text-white"
                               : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                           }`}
                         >
@@ -323,7 +323,7 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
                       {/* Send OTP / Sign In Button */}
                       <button
                         onClick={handleSendOTP}
-                        className="w-full bg-secondary text-white py-3 rounded-lg font-semibold hover:bg-teal-700 transition mb-4"
+                        className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-secondary transition mb-4"
                       >
                         {loginMethod === "phone"
                           ? "Send OTP"
