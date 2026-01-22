@@ -10,7 +10,7 @@ export default function FeaturedDeals() {
   return (
     <div>
       {/* Featured Deals */}
-      <div className="mb-8">
+      <div className="p-5 md:p-10 bg-blue-200 mb-10 rounded">
         <h2 className="text-2xl font-bold text-gray-800 mb-4">
           Featured Deals
         </h2>

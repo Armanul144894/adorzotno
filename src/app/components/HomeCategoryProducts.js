@@ -18,8 +18,7 @@ export default function HomeCategoryProducts() {
 
 
   return (
-    <div className="min-h-screen ">
-      <div className="">
+     <div>
 
         {/* Category Sliders */}
         {Object.entries(productsByCategory).map(([category, products]) => (
@@ -30,8 +29,5 @@ export default function HomeCategoryProducts() {
           />
         ))}
       </div>
-
-      
-    </div>
   );
 }

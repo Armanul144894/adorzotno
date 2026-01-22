@@ -23,7 +23,7 @@ export default function HomeCategories() {
             .replace(/(^-|-$)/g, "");
 
     return (
-        <section className="w-full mb-10">
+        <section className="w-full p-5 md:p-10 bg-red-200 mb-10 rounded">
             {/* Header */}
             <div className="flex items-center justify-between mb-4">
                 <h2 className="text-2xl font-bold text-gray-800">
@@ -67,7 +67,7 @@ export default function HomeCategories() {
                     breakpoints={{
                         640: { slidesPerView: 3 },
                         768: { slidesPerView: 4 },
-                        1024: { slidesPerView: 6 },
+                        1224: { slidesPerView: 6 },
                     }}
                     className="!pb-4"
                 >

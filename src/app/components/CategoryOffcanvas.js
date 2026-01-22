@@ -29,7 +29,7 @@ export default function CategoryOffcanvas({ sidebarOpen, setSidebarOpen }) {
         <div className="flex flex-col h-full">
 
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b bg-secondary text-white">
+          <div className="flex items-center justify-between p-6 border-b bg-primary text-white">
             <div className="flex items-center gap-3">
               <Menu size={24} />
               <div>

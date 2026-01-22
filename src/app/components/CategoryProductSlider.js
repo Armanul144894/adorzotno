@@ -17,6 +17,41 @@ export default function CategoryProduct({ category, products }) {
   const [isEnd, setIsEnd] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
 
+  const categoryBgMap = {
+    "pain-relief": "bg-red-100",
+    "vitamins-and-supplements": "bg-green-100",
+    "cold-and-flu": "bg-blue-100",
+    "first-aid": "bg-emerald-100",
+    "personal-care": "bg-pink-100",
+    "baby-care": "bg-purple-100",
+    "diabetes-care": "bg-yellow-100",
+    "heart-health": "bg-rose-100",
+    "digestive-health": "bg-indigo-100",
+    "eye-care": "bg-sky-100",
+    "skin-care": "bg-fuchsia-100",
+    "hair-care": "bg-orange-100",
+    "oral-care": "bg-cyan-100",
+    "respiratory-care": "bg-teal-100",
+    "sexual-wellness": "bg-pink-200",
+    "women-s-health": "bg-rose-200",
+    "men-s-health": "bg-blue-200",
+    "mental-wellness": "bg-lime-100",
+    "medical-devices": "bg-orange-200",
+    "fitness-and-nutrition": "bg-green-200",
+    default: "bg-red-100",
+  };
+
+  const slugify = (text) =>
+    text
+      .toLowerCase()
+      .replace(/&/g, "and")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
+
+
+  const bgClass =
+    categoryBgMap[slugify(category)] ||
+    categoryBgMap.default;
 
   const handleSlideChange = (swiper) => {
     setIsBeginning(swiper.isBeginning);
@@ -40,7 +75,7 @@ export default function CategoryProduct({ category, products }) {
 
 
   return (
-    <div className="mb-10">
+    <div className={`p-5 mb-10 md:p-10 rounded-xl ${bgClass}`}>
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl md:text-2xl font-bold text-primary">{category}</h2>
@@ -64,8 +99,8 @@ export default function CategoryProduct({ category, products }) {
             onClick={handlePrev}
             disabled={isBeginning}
             className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg rounded-full p-2 md:p-3 transition-all duration-300 ${isBeginning
-                ? 'opacity-30 cursor-not-allowed'
-                : 'opacity-100 hover:bg-emerald-50 hover:shadow-xl active:scale-95'
+              ? 'opacity-30 cursor-not-allowed'
+              : 'opacity-100 hover:bg-emerald-50 hover:shadow-xl active:scale-95'
               }`}
             aria-label="Previous products"
           >
@@ -149,8 +184,8 @@ export default function CategoryProduct({ category, products }) {
             onClick={handleNext}
             disabled={isEnd}
             className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg rounded-full p-2 md:p-3 transition-all duration-300 ${isEnd
-                ? 'opacity-30 cursor-not-allowed'
-                : 'opacity-100 hover:bg-emerald-50 hover:shadow-xl active:scale-95'
+              ? 'opacity-30 cursor-not-allowed'
+              : 'opacity-100 hover:bg-emerald-50 hover:shadow-xl active:scale-95'
               }`}
             aria-label="Next products"
           >

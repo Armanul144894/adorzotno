@@ -20,7 +20,7 @@ export default function ProductCard({ product }) {
                         alt={product.name}
                         width={300}
                         height={300}
-                        className="w-full h-60 object-cover"
+                        className="w-full h-60 object-cover "
                     />
 
                     <div className="p-4">
