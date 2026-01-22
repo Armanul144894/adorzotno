@@ -22,7 +22,7 @@ export default function page() {
         </div>
 
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-teal-500 to-cyan-600 rounded-lg p-12 mb-8 text-white text-center">
+        <div className="bg-gradient-to-r from-secondary to-secondary rounded-lg p-12 mb-8 text-white text-center">
           <h1 className="text-5xl font-bold mb-4">About MedEasy</h1>
           <p className="text-xl text-teal-100 max-w-3xl mx-auto">
             Your trusted partner in healthcare, delivering quality medicines and

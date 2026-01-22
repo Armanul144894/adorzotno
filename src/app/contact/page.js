@@ -28,7 +28,7 @@ export default function page() {
         </div>
 
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-teal-500 to-cyan-600 rounded-lg p-12 mb-8 text-white text-center">
+        <div className="bg-gradient-to-r from-secondary to-secondary rounded-lg p-12 mb-8 text-white text-center">
           <h1 className="text-5xl font-bold mb-4">Get in Touch</h1>
           <p className="text-xl text-teal-100 max-w-3xl mx-auto">
             Have questions? We are here to help. Reach out to us anytime!
@@ -45,7 +45,7 @@ export default function page() {
             <p className="text-gray-600 mb-2">Mon-Fri: 9AM - 6PM</p>
             <Link
               href="tel:+18002633227"
-              className="text-primary font-semibold hover:text-teal-700"
+              className="text-primary font-semibold hover:text-secondary"
             >
               +1-800-ADORZOTNO
             </Link>
@@ -59,7 +59,7 @@ export default function page() {
             <p className="text-gray-600 mb-2">We will respond within 24 hours</p>
             <Link
               href="mailto:support@adorzotno.health"
-              className="text-primary font-semibold hover:text-teal-700"
+              className="text-primary font-semibold hover:text-secondary"
             >
               support@adorzotno.health
             </Link>
@@ -67,7 +67,7 @@ export default function page() {
 
           <div className="bg-white rounded-lg shadow-md p-6 text-center">
             <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Building2 className="text-purple-600" size={28} />
+              <Building2 className="text-secondary" size={28} />
             </div>
             <h3 className="text-lg font-bold text-gray-800 mb-2">Visit Us</h3>
             <p className="text-gray-600 mb-2">Our Main Office</p>
@@ -92,7 +92,7 @@ export default function page() {
                 </label>
                 <input
                   type="text"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                   placeholder="John"
                 />
               </div>
@@ -102,7 +102,7 @@ export default function page() {
                 </label>
                 <input
                   type="text"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                   placeholder="Doe"
                 />
               </div>
@@ -115,7 +115,7 @@ export default function page() {
                 </label>
                 <input
                   type="email"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                   placeholder="john@example.com"
                 />
               </div>
@@ -125,7 +125,7 @@ export default function page() {
                 </label>
                 <input
                   type="tel"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                   placeholder="+1 (555) 000-0000"
                 />
               </div>
@@ -137,7 +137,7 @@ export default function page() {
               </label>
               <input
                 type="text"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                 placeholder="How can we help you?"
               />
             </div>
@@ -148,14 +148,14 @@ export default function page() {
               </label>
               <textarea
                 rows="5"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                 placeholder="Tell us more about your inquiry..."
               ></textarea>
             </div>
 
             <button
               type="submit"
-              className="w-full md:w-auto bg-secondary text-white px-8 py-3 rounded-lg hover:bg-teal-700 transition font-semibold flex items-center justify-center gap-2"
+              className="w-full md:w-auto bg-primary text-white px-8 py-3 rounded-lg hover:bg-secondary transition font-semibold flex items-center justify-center gap-2"
             >
               <Send size={20} />
               Send Message

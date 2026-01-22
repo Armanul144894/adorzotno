@@ -31,8 +31,8 @@ export default function ProductDetails() {
   const [selectedImage, setSelectedImage] = useState(0);
   const [activeTab, setActiveTab] = useState("description");
 
-const allProducts = products;
-  
+  const allProducts = products;
+
 
   const selectedProduct = useMemo(() => {
     return allProducts.find(
@@ -51,17 +51,16 @@ const allProducts = products;
     .replace(/(^-|-$)/g, "");
 
 
-  const relatedProducts = useMemo(() => {
-    if (!category || !selectedProduct) return [];
-    return allProducts.filter(
+  const relatedProducts = allProducts.filter(
       (p) =>
+        p?.name !== selectedProduct?.name && 
         p?.category
           .toLowerCase()
           .replace(/&/g, "and")
           .replace(/[^a-z0-9]+/g, "-")
           .replace(/(^-|-$)/g, "") === category
     );
-  }, [category]);
+
 
 
   const incrementQuantity = () => {
@@ -78,39 +77,39 @@ const allProducts = products;
 
   return (
     <div className="">
-        {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-sm text-gray-600 mb-6">
-          <Link href={"/"}>
-            <button className="flex items-center gap-1 hover:text-primary cursor-pointer">
-              <Home size={16} /> Home
-            </button>
-          </Link>
-          <ChevronRight size={16} />
-          <Link
-            href={`/category/${selectedProduct?.category
-              .toLowerCase()
-              .replace(/&/g, "and")
-              .replace(/[^a-z0-9]+/g, "-")
-              .replace(/(^-|-$)/g, "")}`}
-          >
-            <button className="hover:text-primary">{selectedProduct?.category}</button>
-          </Link>
-          <ChevronRight size={16} />
-          <span className="text-gray-800">{selectedProduct?.name}</span>
-        </div>
-
-        <ProductGrid selectedProduct={selectedProduct} selectedImage={selectedImage} setSelectedImage={setSelectedImage} quantity={quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity}/>
-
-        {/* Product Details Tabs */}
-        <ProductDetailsTab
-          selectedProduct={selectedProduct}
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-        />
-
-        {/* Related Products */}
-        <RelatedProduct relatedProducts={relatedProducts}/>
-        
+      {/* Breadcrumb */}
+      <div className="flex items-center gap-2 text-sm text-gray-600 mb-6">
+        <Link href={"/"}>
+          <button className="flex items-center gap-1 hover:text-primary cursor-pointer">
+            <Home size={16} /> Home
+          </button>
+        </Link>
+        <ChevronRight size={16} />
+        <Link
+          href={`/category/${selectedProduct?.category
+            .toLowerCase()
+            .replace(/&/g, "and")
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/(^-|-$)/g, "")}`}
+        >
+          <button className="hover:text-primary">{selectedProduct?.category}</button>
+        </Link>
+        <ChevronRight size={16} />
+        <span className="text-gray-800">{selectedProduct?.name}</span>
       </div>
+
+      <ProductGrid selectedProduct={selectedProduct} selectedImage={selectedImage} setSelectedImage={setSelectedImage} quantity={quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} />
+
+      {/* Product Details Tabs */}
+      <ProductDetailsTab
+        selectedProduct={selectedProduct}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
+
+      {/* Related Products */}
+      <RelatedProduct relatedProducts={relatedProducts} />
+
+    </div>
   );
 }

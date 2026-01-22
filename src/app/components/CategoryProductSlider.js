@@ -15,11 +15,15 @@ export default function CategoryProduct({ category, products }) {
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
+  const [isLocked, setIsLocked] = useState(false);
+
 
   const handleSlideChange = (swiper) => {
     setIsBeginning(swiper.isBeginning);
     setIsEnd(swiper.isEnd);
+    setIsLocked(swiper.isLocked); // ✅ key line
   };
+
 
   const handlePrev = () => {
     if (swiperInstance) {
@@ -32,6 +36,8 @@ export default function CategoryProduct({ category, products }) {
       swiperInstance.slideNext();
     }
   };
+
+
 
   return (
     <div className="mb-10">
@@ -51,28 +57,36 @@ export default function CategoryProduct({ category, products }) {
       </div>
 
       <div className="relative">
+
         {/* Previous Button */}
-        <button
-          onClick={handlePrev}
-          disabled={isBeginning}
-          className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg rounded-full p-2 md:p-3 transition-all duration-300 ${isBeginning
-              ? 'opacity-30 cursor-not-allowed'
-              : 'opacity-100 hover:bg-emerald-50 hover:shadow-xl active:scale-95'
-            }`}
-          aria-label="Previous products"
-        >
-          <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-gray-700" />
-        </button>
+        {!isLocked && (
+          <button
+            onClick={handlePrev}
+            disabled={isBeginning}
+            className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg rounded-full p-2 md:p-3 transition-all duration-300 ${isBeginning
+                ? 'opacity-30 cursor-not-allowed'
+                : 'opacity-100 hover:bg-emerald-50 hover:shadow-xl active:scale-95'
+              }`}
+            aria-label="Previous products"
+          >
+            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-gray-700" />
+          </button>
+        )}
+
 
         {/* Swiper Container */}
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={16}
           slidesPerView={1}
-          onSwiper={setSwiperInstance}
+          onSwiper={(swiper) => {
+            setSwiperInstance(swiper);
+            setIsLocked(swiper.isLocked); // ✅ initial check
+          }}
           onSlideChange={handleSlideChange}
-          speed={1200}
           watchOverflow={true}
+          speed={1200}
+
           breakpoints={{
             // Mobile - Medium (375px)
             375: {
@@ -84,7 +98,7 @@ export default function CategoryProduct({ category, products }) {
               slidesPerView: 1.2,
               spaceBetween: 14,
             },
-             // Mobile - Large (480px)
+            // Mobile - Large (480px)
             480: {
               slidesPerView: 1.6,
               spaceBetween: 16,
@@ -130,17 +144,20 @@ export default function CategoryProduct({ category, products }) {
         </Swiper>
 
         {/* Next Button */}
-        <button
-          onClick={handleNext}
-          disabled={isEnd}
-          className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg rounded-full p-2 md:p-3 transition-all duration-300 ${isEnd
-              ? 'opacity-30 cursor-not-allowed'
-              : 'opacity-100 hover:bg-emerald-50 hover:shadow-xl active:scale-95'
-            }`}
-          aria-label="Next products"
-        >
-          <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-gray-700" />
-        </button>
+        {!isLocked && (
+          <button
+            onClick={handleNext}
+            disabled={isEnd}
+            className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg rounded-full p-2 md:p-3 transition-all duration-300 ${isEnd
+                ? 'opacity-30 cursor-not-allowed'
+                : 'opacity-100 hover:bg-emerald-50 hover:shadow-xl active:scale-95'
+              }`}
+            aria-label="Next products"
+          >
+            <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-gray-700" />
+          </button>
+        )}
+
       </div>
 
       {/* Mobile Navigation Dots */}
@@ -150,8 +167,8 @@ export default function CategoryProduct({ category, products }) {
             key={index}
             onClick={() => swiperInstance?.slideTo(index * 2)}
             className={`h-2 rounded-full transition-all duration-300 ${Math.floor((swiperInstance?.activeIndex || 0) / 2) === index
-                ? 'w-8 bg-primary'
-                : 'w-2 bg-gray-300 hover:bg-gray-400'
+              ? 'w-8 bg-primary'
+              : 'w-2 bg-gray-300 hover:bg-gray-400'
               }`}
             aria-label={`Go to slide ${index + 1}`}
           />

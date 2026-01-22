@@ -24,7 +24,7 @@ export default function FeaturedDeals() {
                 <div className="relative">
                   <Image
                     src={deal?.images[0]}
-                    alt={deal?.title}
+                    alt={deal?.name}
                     width={400}
                     height={300}
                     className="w-full h-72 object-contain"

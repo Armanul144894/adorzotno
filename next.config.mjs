@@ -3,7 +3,16 @@ const nextConfig = {
   reactStrictMode: true,
 
   images: {
-    domains: ['images.unsplash.com', 'medeasy.health'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'medeasy.health',
+      },
+    ],
   },
 };
 

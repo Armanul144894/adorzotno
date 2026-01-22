@@ -102,7 +102,7 @@ const CartOffcanvas = ({ isOpen, setIsOpen }) => {
       >
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b bg-secondary text-white">
+          <div className="flex items-center justify-between p-6 border-b bg-primary text-white">
             <div className="flex items-center gap-3">
               <ShoppingBag size={24} />
               <div>
@@ -114,7 +114,7 @@ const CartOffcanvas = ({ isOpen, setIsOpen }) => {
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="p-2 hover:bg-teal-700 rounded-lg transition"
+              className="p-2 hover:bg-primary rounded-lg transition"
             >
               <X size={24} />
             </button>
@@ -136,7 +136,7 @@ const CartOffcanvas = ({ isOpen, setIsOpen }) => {
                 </p>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="bg-secondary text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition"
+                  className="bg-secondary text-white px-6 py-3 rounded-lg hover:bg-primary transition"
                 >
                   Continue Shopping
                 </button>
@@ -220,10 +220,10 @@ const CartOffcanvas = ({ isOpen, setIsOpen }) => {
                 {appliedCoupon ? (
                   <div className="bg-green-50 border border-green-200 rounded-lg p-3 flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-semibold text-green-800">
+                      <p className="text-sm font-semibold text-primary">
                         {appliedCoupon.code} Applied!
                       </p>
-                      <p className="text-xs text-green-600">
+                      <p className="text-xs text-primary">
                         You saved {appliedCoupon.discount}%
                       </p>
                     </div>
@@ -241,11 +241,11 @@ const CartOffcanvas = ({ isOpen, setIsOpen }) => {
                       value={couponCode}
                       onChange={(e) => setCouponCode(e.target.value)}
                       placeholder="Enter code"
-                      className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 text-sm"
+                      className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     />
                     <button
                       onClick={applyCoupon}
-                      className="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition text-sm font-semibold"
+                      className="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-primary transition text-sm font-semibold"
                     >
                       Apply
                     </button>
@@ -269,7 +269,7 @@ const CartOffcanvas = ({ isOpen, setIsOpen }) => {
                   <span>${calculateSubtotal().toFixed(2)}</span>
                 </div>
                 {appliedCoupon && (
-                  <div className="flex justify-between text-sm text-green-600">
+                  <div className="flex justify-between text-sm text-primary">
                     <span>Discount ({appliedCoupon.discount}%):</span>
                     <span>-${calculateDiscount().toFixed(2)}</span>
                   </div>
@@ -278,7 +278,7 @@ const CartOffcanvas = ({ isOpen, setIsOpen }) => {
                   <span>Shipping:</span>
                   <span>
                     {getShippingCost() === 0 ? (
-                      <span className="text-green-600 font-semibold">
+                      <span className="text-primary font-semibold">
                         FREE
                       </span>
                     ) : (
@@ -305,7 +305,7 @@ const CartOffcanvas = ({ isOpen, setIsOpen }) => {
               {/* Checkout Buttons */}
               <div className="space-y-3">
                 <Link href="/checkout" onClick={handleCheckoutClick}>
-                  <button className="w-full mb-2 bg-secondary text-white py-3 rounded-lg hover:bg-teal-700 transition font-semibold flex items-center justify-center gap-2">
+                  <button className="w-full mb-2 bg-primary text-white py-3 rounded-lg hover:bg-secondary transition font-semibold flex items-center justify-center gap-2">
                     Proceed to Checkout <ArrowRight size={18} />
                   </button>
                 </Link>
