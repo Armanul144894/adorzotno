@@ -2,7 +2,7 @@ import { Mail, MapPin, Phone } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-export default function FooterDark() {
+export default function Footer() {
     return (
         <div>
             <footer className="bg-gray-800 text-white mt-8">
