@@ -2,7 +2,19 @@ import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 import allCategories from '../../../data/category'
-import Image from 'next/image'
+
+export const metadata = {
+  title: "All Categories | Adorzotno Limited",
+  description:
+    "Secure contact at Adorzotno Limited. Complete your order with safe payment options and fast delivery.",
+  keywords: [
+    "category",
+    "adorzotno",
+    "online pharmacy category",
+    "secure payment",
+    "medical products order",
+  ],
+};
 
 export default function page() {
     const categories = allCategories
