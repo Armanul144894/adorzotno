@@ -74,7 +74,7 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="border-t border-slate-200 mt-10 pt-6 text-center text-lg text-gray-700">
-          © 2026 <span className="font-medium text-slate-700">Adorzotno Limited</span>. All rights reserved. Design & Developed By <Link href={'/'}>Tech Cloud Ltd.</Link>
+          © 2026 <span className="font-medium text-slate-700">Adorzotno Limited</span>. All rights reserved. Design & Developed By <Link className="text-primary font-bold hover:text-secondary" href={'https://techcloudltd.com/'} target="_blank">Tech Cloud Ltd.</Link>
         </div>
       </div>
     </footer>
