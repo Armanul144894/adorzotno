@@ -10,6 +10,19 @@ import {
 import Link from "next/link";
 import React from "react";
 
+export const metadata = {
+  title: "Contact | Adorzotno Limited",
+  description:
+    "Secure contact at Adorzotno Limited. Complete your order with safe payment options and fast delivery.",
+  keywords: [
+    "contact",
+    "adorzotno",
+    "online pharmacy contact",
+    "secure payment",
+    "medical products order",
+  ],
+};
+
 export default function page() {
   return (
     <div>

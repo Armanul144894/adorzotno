@@ -2,6 +2,19 @@ import { Award, CheckCircle2, ChevronRight, Home, Shield, Target, Truck, Users }
 import Link from "next/link";
 import React from "react";
 
+export const metadata = {
+  title: "About Us | Adorzotno Limited",
+  description:
+    "Secure about us at Adorzotno Limited. Complete your order with safe payment options and fast delivery.",
+  keywords: [
+    "about us",
+    "adorzotno",
+    "online pharmacy about us",
+    "secure payment",
+    "medical products order",
+  ],
+};
+
 export default function page() {
   return (
     <div>
