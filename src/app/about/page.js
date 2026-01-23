@@ -36,7 +36,7 @@ export default function page() {
 
         {/* Hero Section */}
         <div className="bg-gradient-to-r from-secondary to-secondary rounded-lg p-12 mb-8 text-white text-center">
-          <h1 className="text-5xl font-bold mb-4">About MedEasy</h1>
+          <h1 className="text-5xl font-bold mb-4">About AdorZotno</h1>
           <p className="text-xl text-teal-100 max-w-3xl mx-auto">
             Your trusted partner in healthcare, delivering quality medicines and
             medical supplies to your doorstep since 2010
@@ -48,7 +48,7 @@ export default function page() {
           <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Story</h2>
           <div className="text-gray-600 space-y-4">
             <p>
-              MedEasy was founded in 2010 with a simple mission: to make
+              AdorZotno was founded in 2010 with a simple mission: to make
               healthcare accessible to everyone. What started as a small
               pharmacy has grown into one of the most trusted online healthcare
               platforms, serving millions of customers across the country.
@@ -108,7 +108,7 @@ export default function page() {
         {/* Why Choose Us */}
         <div className="bg-white rounded-lg shadow-md p-8 mb-8">
           <h2 className="text-3xl font-bold text-gray-800 mb-6">
-            Why Choose MedEasy?
+            Why Choose AdorZotno?
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="flex gap-4">
