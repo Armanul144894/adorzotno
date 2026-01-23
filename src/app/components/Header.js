@@ -18,7 +18,7 @@ export default function Header({ cartCount = 3 }) {
       {/* Header */}
       <header className="bg-white shadow-md">
         {/* Top Bar */}
-        <div className="bg-secondary text-white text-sm hidden md:block">
+        {/* <div className="bg-secondary text-white text-sm hidden md:block">
           <div className="container-fluid max-w-[1920px] mx-auto px-4 py-2 flex justify-between items-center">
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1">
@@ -36,7 +36,7 @@ export default function Header({ cartCount = 3 }) {
               </span>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Main Header */}
         <div className="container-fluid max-w-[1920px] mx-auto px-4 py-2">
@@ -53,7 +53,7 @@ export default function Header({ cartCount = 3 }) {
               <Image
                 src="/images/AdorzotnoLogo.png"
                 alt="adorzotno Logo"
-                width={120}
+                width={140}
                 height={60}
               />
               </Link>

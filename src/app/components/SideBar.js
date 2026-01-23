@@ -7,7 +7,7 @@ export default function SideBar() {
     const categories = allCategories;
 
     return (
-        <div className='lg:sticky top-28 rounded-2xl max-h-[85vh] overflow-x-auto hidden lg:block'>
+        <div className='lg:sticky top-24 rounded-2xl max-h-[90vh] overflow-x-auto hidden lg:block'>
             <aside
                 className={`-translate-x-full lg:translate-x-0 lg:relative inset-y-0 bg-white lg:bg-transparent z-40 w-64 lg:w-72 `}
             >

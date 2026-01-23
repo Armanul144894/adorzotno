@@ -9,26 +9,26 @@ export default function HeroBanner() {
         {
             id: 1,
             title: 'Slide 1',
-            image: 'https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fsliders%2FMedeasy-website_slider.png&w=3840&q=100',
-            bgColor: 'from-primary via-primary to-secondary'
+            image: '/images/banner/banner-3.jpg',
+            bgColor: 'from-primary via-primary to-primary'
         },
         {
             id: 2,
             title: 'Slide 2',
-            image: 'https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fsliders%2FMedeasy-website-slider-for-innsaei.png&w=3840&q=100',
-            bgColor: 'from-blue-500 via-blue-600 to-indigo-600'
+            image: '/images/banner/banner-2.jpg',
+            bgColor: 'from-primary via-primary to-primary'
         },
-        {
+         {
             id: 3,
             title: 'Slide 3',
-            image: 'https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fsliders%2FMedeasy-website_slider.png&w=3840&q=100',
-            bgColor: 'from-purple-500 via-purple-600 to-pink-600'
+            image: '/images/banner/banner-4.jpg',
+            bgColor: 'from-primary via-primary to-primary'
         },
          {
             id: 4,
             title: 'Slide 4',
-            image: 'https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fsliders%2FMedeasy-website-slider-for-innsaei.png&w=3840&q=100',
-            bgColor: 'from-blue-500 via-blue-600 to-indigo-600'
+            image: '/images/banner/banner-5.jpg',
+            bgColor: 'from-primary via-primary to-primary'
         },
     ];
 
@@ -50,7 +50,7 @@ export default function HeroBanner() {
     return (
         <div>
             {/* Hero Banner Slider */}
-            <div className="relative rounded-lg overflow-hidden mb-6 h-full min-h-[200px] md:min-h-[300px] xl:min-h-[400px]">
+            <div className="relative rounded-lg overflow-hidden mb-6 h-full min-h-[200px] md:min-h-[300px] xl:min-h-[450px]">
                 {heroSlides.map((slide, index) => (
                     <div
                         key={slide.id}
@@ -62,8 +62,8 @@ export default function HeroBanner() {
                                 <Image
                                     src={slide.image}
                                     alt={slide.title}
-                                    width={2000}
-                                    height={800}
+                                    width={2500}
+                                    height={400}
                                     className="w-full h-full"
                                 />
                             </div>
