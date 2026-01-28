@@ -32,7 +32,7 @@ export default function SideBar() {
                             >
                                 <div className="flex items-center gap-3">
                                     <div className='w-8 mx-auto'><span className="text-2xl">{category.icon}</span></div>
-                                    <span className="text-gray-700 group-hover:text-primary font-bold">
+                                    <span className="text-gray-700 group-hover:text-primary font-semibold">
                                         {category.name}
                                     </span>
                                 </div>

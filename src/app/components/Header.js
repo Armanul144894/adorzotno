@@ -50,12 +50,12 @@ export default function Header({ cartCount = 3 }) {
                 {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
               <Link href="/">
-              <Image
-                src="/images/AdorzotnoLogo.png"
-                alt="adorzotno Logo"
-                width={140}
-                height={60}
-              />
+                <Image
+                  src="/images/AdorzotnoLogo.png"
+                  alt="adorzotno Logo"
+                  width={140}
+                  height={60}
+                />
               </Link>
             </div>
 
@@ -65,10 +65,10 @@ export default function Header({ cartCount = 3 }) {
                 <input
                   type="text"
                   placeholder="Search for medicines, health products..."
-                  className="w-full px-4 py-2 pr-10 border border-blue-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
+                  className="w-full px-4 py-3 pr-10  bg-blue-50 border-blue-300 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
                 />
                 <Search
-                  className="absolute right-3 top-2.5 text-gray-400"
+                  className="absolute right-3 top-4 text-blue-400"
                   size={20}
                 />
               </div>
@@ -93,7 +93,7 @@ export default function Header({ cartCount = 3 }) {
                 onClick={() => setSignInOpen(true)}
                 className="relative p-2 hover:bg-gray-100 rounded-full cursor-pointer md:hidden"
               >
-               <Users size={24} className="text-gray-600" />
+                <Users size={24} className="text-gray-600" />
               </button>
 
               <div className="h-8 w-[3px] rounded bg-primary hidden md:block"></div>
@@ -104,7 +104,7 @@ export default function Header({ cartCount = 3 }) {
               >
                 <div className="flex items-center font-bold gap-2 text-white"><Users size={24} className="text-white" /> Sign In <ChevronDown /></div>
               </button>
-              
+
             </div>
           </div>
 
@@ -132,7 +132,7 @@ export default function Header({ cartCount = 3 }) {
           {/* Cart Offcanvas (RIGHT SIDE) */}
           <CartOffcanvas isOpen={isOpen} setIsOpen={setIsOpen} />
 
-          <SignInModal isSignInOpen={isSignInOpen} setSignInOpen={setSignInOpen}/>
+          <SignInModal isSignInOpen={isSignInOpen} setSignInOpen={setSignInOpen} />
         </div>
       </header>
     </div>
