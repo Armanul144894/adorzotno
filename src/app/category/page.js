@@ -30,7 +30,7 @@ export default function page() {
               View All <ChevronRight size={20} />
             </button>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
             {categories.map((cat, index) => (
               <Link
                 href={`/category/${cat.name
@@ -40,7 +40,7 @@ export default function page() {
                   .replace(/(^-|-$)/g, "")}`}
                 key={index}
               >
-                <div className="bg-white h-full rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group">
+                <div className="bg-white h-full rounded-lg shadow-sm overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group">
                   <div
                     className={`bg-teal-50 p-4 flex items-center justify-center h-32`}
                   >

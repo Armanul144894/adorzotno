@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Menu, X } from 'lucide-react'
+import { ChevronRight, Menu, X } from 'lucide-react'
 import allCategories from "../../../data/category";
 
 export default function CategoryOffcanvas({ sidebarOpen, setSidebarOpen }) {
@@ -60,17 +60,16 @@ export default function CategoryOffcanvas({ sidebarOpen, setSidebarOpen }) {
                   key={index}
                   href={`/category/${slug}`}
                   onClick={handleCategoryClick}
-                  className="flex items-center justify-between p-3 rounded-lg hover:bg-teal-50 transition group"
+                  className="flex items-center justify-between py-2 rounded-lg hover:bg-teal-50 transition group"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-2xl">{category.icon}</span>
-                    <span className="text-sm font-medium text-gray-700 group-hover:text-primary">
+                    <div className='w-8 mx-auto'><span className="text-2xl">{category.icon}</span></div>
+                    <span className="text-gray-700 group-hover:text-primary font-bold">
                       {category.name}
                     </span>
                   </div>
-
-                  <span className="text-xs bg-gray-100 px-2 py-1 rounded text-gray-500">
-                    {category.count}
+                  <span className="text-xs px-2 py-1 rounded">
+                    <ChevronRight />
                   </span>
                 </Link>
               );

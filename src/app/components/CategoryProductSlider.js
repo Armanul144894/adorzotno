@@ -75,7 +75,7 @@ export default function CategoryProduct({ category, products }) {
 
 
   return (
-    <div className={`p-5 mb-10 md:p-10 rounded-xl ${bgClass}`}>
+    <div className={`p-5 mb-8 md:p-6 rounded-xl ${bgClass}`}>
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl md:text-2xl font-bold text-primary">{category}</h2>
@@ -112,7 +112,7 @@ export default function CategoryProduct({ category, products }) {
         {/* Swiper Container */}
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
-          spaceBetween={16}
+          spaceBetween={14}
           slidesPerView={1}
           onSwiper={(swiper) => {
             setSwiperInstance(swiper);
@@ -126,12 +126,12 @@ export default function CategoryProduct({ category, products }) {
             // Mobile - Medium (375px)
             375: {
               slidesPerView: 1,
-              spaceBetween: 12,
+              spaceBetween: 16,
             },
             // Mobile - Large (425px)
             425: {
               slidesPerView: 1.2,
-              spaceBetween: 14,
+              spaceBetween: 16,
             },
             // Mobile - Large (480px)
             480: {
@@ -156,17 +156,17 @@ export default function CategoryProduct({ category, products }) {
             // Laptop - Small (1024px)
             1024: {
               slidesPerView: 2.5,
-              spaceBetween: 18,
+              spaceBetween: 16,
             },
             // Laptop - Medium (1280px)
             1280: {
               slidesPerView: 4,
-              spaceBetween: 20,
+              spaceBetween: 16,
             },
             // Desktop (1536px)
             1536: {
               slidesPerView: 5.5,
-              spaceBetween: 24,
+              spaceBetween: 16,
             },
           }}
           className="!pb-4"

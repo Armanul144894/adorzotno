@@ -55,7 +55,7 @@ export default function page() {
             </p>
             <p>
               We understand that health is wealth, and accessing quality
-              medicines shouldn't be complicated. That's why we've built a
+              medicines should not be complicated. That is why we have built a
               platform that combines convenience, affordability, and reliability
               to bring healthcare right to your fingertips.
             </p>

@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased relative bg-[#f0f8ff]`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased relative bg-blue-50`}
       >
         <Header />
         <div className="container-fluid max-w-[1920] mx-auto px-4 py-6 relative">

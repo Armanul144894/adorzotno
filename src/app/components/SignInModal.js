@@ -24,7 +24,7 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
 
   const handleOtpChange = (index, value) => {
     if (value.length > 1) return;
-    
+
     const newOtp = [...otp];
     newOtp[index] = value;
     setOtp(newOtp);
@@ -93,7 +93,14 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
                 {/* Logo and Tagline */}
                 <div className="mb-8">
                   <div className="flex items-center gap-2 mb-4">
-                    <div className="text-4xl">💊</div>
+                    <div className="">
+                      <Image
+                        src="/images/logo.png"
+                        alt="adorzotno Logo"
+                        width={60}
+                        height={40}
+                      />
+                    </div>
                     <h1 className="text-3xl font-bold">AdorZotno</h1>
                   </div>
                   <p className="text-teal-100 text-lg">
@@ -139,15 +146,15 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
                       {otpSent && loginMethod === "phone"
                         ? "Verify OTP"
                         : isSignUp
-                        ? "Create Account"
-                        : "PLEASE LOG IN"}
+                          ? "Create Account"
+                          : "PLEASE LOG IN"}
                     </h2>
                     <p className="text-gray-600">
                       {otpSent && loginMethod === "phone"
                         ? `Enter the 6-digit code sent to +88${phoneNumber}`
                         : isSignUp
-                        ? "Sign up to get started"
-                        : "Welcome back! Please enter your details"}
+                          ? "Sign up to get started"
+                          : "Welcome back! Please enter your details"}
                     </p>
                   </div>
 
@@ -213,22 +220,20 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
                       <div className="flex gap-2 mb-6">
                         <button
                           onClick={() => setLoginMethod("phone")}
-                          className={`flex-1 py-2 px-4 rounded-lg font-semibold transition ${
-                            loginMethod === "phone"
+                          className={`flex-1 py-2 px-4 rounded-lg font-semibold transition ${loginMethod === "phone"
                               ? "bg-primary text-white"
                               : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                          }`}
+                            }`}
                         >
                           <Phone size={18} className="inline mr-2" />
                           Phone
                         </button>
                         <button
                           onClick={() => setLoginMethod("email")}
-                          className={`flex-1 py-2 px-4 rounded-lg font-semibold transition ${
-                            loginMethod === "email"
+                          className={`flex-1 py-2 px-4 rounded-lg font-semibold transition ${loginMethod === "email"
                               ? "bg-primary text-white"
                               : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                          }`}
+                            }`}
                         >
                           <Mail size={18} className="inline mr-2" />
                           Email
@@ -328,8 +333,8 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
                         {loginMethod === "phone"
                           ? "Send OTP"
                           : isSignUp
-                          ? "Sign Up"
-                          : "Sign In"}
+                            ? "Sign Up"
+                            : "Sign In"}
                       </button>
 
                       {/* Forgot Password */}

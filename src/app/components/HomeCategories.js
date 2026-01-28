@@ -77,7 +77,7 @@ export default function HomeCategories() {
                                 href={`/category/${slugify(cat.name)}`}
                                 className="w-full"
                             >
-                                <div className="w-full h-full bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow cursor-pointer group">
+                                <div className="w-full h-full bg-white rounded-lg shadow-sm hover:shadow-xl transition-shadow cursor-pointer group">
                                     <div
                                         className={`bg-teal-50 rounded-lg p-4 flex items-center justify-center h-32`}
                                     >
