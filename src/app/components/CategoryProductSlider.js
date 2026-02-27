@@ -18,27 +18,27 @@ export default function CategoryProduct({ category, products }) {
   const [isLocked, setIsLocked] = useState(false);
 
   const categoryBgMap = {
-    "pain-relief": "bg-red-100",
-    "vitamins-and-supplements": "bg-green-100",
-    "cold-and-flu": "bg-blue-100",
-    "first-aid": "bg-emerald-100",
-    "personal-care": "bg-pink-100",
-    "baby-care": "bg-purple-100",
-    "diabetes-care": "bg-yellow-100",
-    "heart-health": "bg-rose-100",
-    "digestive-health": "bg-indigo-100",
-    "eye-care": "bg-sky-100",
-    "skin-care": "bg-fuchsia-100",
-    "hair-care": "bg-orange-100",
-    "oral-care": "bg-cyan-100",
-    "respiratory-care": "bg-teal-100",
-    "sexual-wellness": "bg-pink-200",
-    "women-s-health": "bg-rose-200",
-    "men-s-health": "bg-blue-200",
-    "mental-wellness": "bg-lime-100",
-    "medical-devices": "bg-orange-200",
-    "fitness-and-nutrition": "bg-green-200",
-    default: "bg-red-100",
+    "pain-relief": "bg-red-300",
+    "vitamins-and-supplements": "bg-green-300",
+    "cold-and-flu": "bg-blue-300",
+    "first-aid": "bg-emerald-300",
+    "personal-care": "bg-pink-300",
+    "baby-care": "bg-purple-300",
+    "diabetes-care": "bg-yellow-300",
+    "heart-health": "bg-rose-300",
+    "digestive-health": "bg-indigo-300",
+    "eye-care": "bg-sky-300",
+    "skin-care": "bg-fuchsia-300",
+    "hair-care": "bg-orange-300",
+    "oral-care": "bg-cyan-300",
+    "respiratory-care": "bg-teal-300",
+    "sexual-wellness": "bg-pink-300",
+    "women-s-health": "bg-rose-300",
+    "men-s-health": "bg-blue-300",
+    "mental-wellness": "bg-lime-300",
+    "medical-devices": "bg-orange-300",
+    "fitness-and-nutrition": "bg-green-300",
+    default: "bg-red-300",
   };
 
   const slugify = (text) =>
@@ -78,12 +78,12 @@ export default function CategoryProduct({ category, products }) {
     <div className={`p-5 mb-8 md:p-6 rounded-xl ${bgClass}`}>
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl md:text-2xl font-bold text-primary">{category}</h2>
+        <h2 className="text-xl md:text-2xl font-bold text-white">{category}</h2>
         <Link href={`/category/${category.toLowerCase()
           .replace(/&/g, 'and')
           .replace(/[^a-z0-9]+/g, '-')
           .replace(/(^-|-$)/g, '')}`}>
-          <button className="flex items-center gap-2 text-primary hover:text-primary transition-colors font-bold">
+          <button className="flex items-center gap-2 text-white hover:text-primary transition-colors font-bold">
             View All
             <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
           </button>
@@ -165,7 +165,7 @@ export default function CategoryProduct({ category, products }) {
             },
             // Desktop (1536px)
             1536: {
-              slidesPerView: 5.5,
+              slidesPerView: 6,
               spaceBetween: 16,
             },
           }}

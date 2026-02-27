@@ -6,12 +6,17 @@ import CartOffcanvas from "./CartOffcanvas";
 import CategoryOffcanvas from "./CategoryOffcanvas";
 import SignInModal from "./SignInModal";
 import Image from "next/image";
+import LiveChatWidget from "./LiveChatWidget";
+import HeaderSearch from "./HeaderSearch";
 
 
 export default function Header({ cartCount = 3 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSignInOpen, setSignInOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
+  
+  const [chatExpanded, setChatExpanded] = useState(false);
 
   return (
     <div className="sticky top-0 w-full z-50">
@@ -60,18 +65,8 @@ export default function Header({ cartCount = 3 }) {
             </div>
 
             {/* Search Bar */}
-            <div className="hidden md:flex flex-1 max-w-2xl">
-              <div className="relative w-full">
-                <input
-                  type="text"
-                  placeholder="Search for medicines, health products..."
-                  className="w-full px-4 py-3 pr-10  bg-blue-50 border-blue-300 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
-                />
-                <Search
-                  className="absolute right-3 top-4 text-blue-400"
-                  size={20}
-                />
-              </div>
+            <div className="hidden md:flex w-2/3 justify-center">
+              <HeaderSearch/>
             </div>
 
             {/* Actions */}
@@ -109,18 +104,8 @@ export default function Header({ cartCount = 3 }) {
           </div>
 
           {/* Mobile Search */}
-          <div className="md:hidden mt-3">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search medicines..."
-                className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-              />
-              <Search
-                className="absolute right-3 top-2.5 text-gray-400"
-                size={20}
-              />
-            </div>
+          <div className="block md:hidden">
+            <HeaderSearch/>
           </div>
 
           {/* Sidebar - Categories (LEFT SIDE) */}
@@ -133,6 +118,8 @@ export default function Header({ cartCount = 3 }) {
           <CartOffcanvas isOpen={isOpen} setIsOpen={setIsOpen} />
 
           <SignInModal isSignInOpen={isSignInOpen} setSignInOpen={setSignInOpen} />
+
+          <LiveChatWidget chatOpen={chatOpen} setChatOpen={setChatOpen} chatExpanded={chatExpanded}/>
         </div>
       </header>
     </div>

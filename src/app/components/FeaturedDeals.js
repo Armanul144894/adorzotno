@@ -6,7 +6,7 @@ import products from '../../../data/data';
 
 export default function FeaturedDeals() {
 
-  const featuredDeals =  products.slice(0, 10);
+  const featuredDeals =  products.slice(0, 12);
   return (
     <div>
       {/* Featured Deals */}
@@ -14,7 +14,7 @@ export default function FeaturedDeals() {
         <h2 className="text-2xl font-bold text-gray-800 mb-4">
           Featured Deals
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-4">
           {featuredDeals.map((deal) => (
             <Link key={deal.id} href={`/product/${deal.name.toLowerCase()
               .replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}>

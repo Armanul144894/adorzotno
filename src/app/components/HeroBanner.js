@@ -9,25 +9,25 @@ export default function HeroBanner() {
         {
             id: 1,
             title: 'Slide 1',
-            image: '/images/banner/banner-3.jpg',
+            image: '/images/banner/banner11.jpg',
             bgColor: 'from-primary via-primary to-primary'
         },
         {
             id: 2,
             title: 'Slide 2',
-            image: '/images/banner/banner-2.jpg',
+            image: '/images/banner/banner22.jpg',
             bgColor: 'from-primary via-primary to-primary'
         },
          {
             id: 3,
             title: 'Slide 3',
-            image: '/images/banner/banner-4.jpg',
+            image: '/images/banner/banner33.jpg',
             bgColor: 'from-primary via-primary to-primary'
         },
          {
             id: 4,
             title: 'Slide 4',
-            image: '/images/banner/banner-5.jpg',
+            image: '/images/banner/banner-1.jpg',
             bgColor: 'from-primary via-primary to-primary'
         },
     ];
@@ -50,7 +50,7 @@ export default function HeroBanner() {
     return (
         <div>
             {/* Hero Banner Slider */}
-            <div className="relative rounded-lg overflow-hidden mb-6 h-full min-h-[200px] md:min-h-[300px] xl:min-h-[450px]">
+            <div className="relative rounded-lg overflow-hidden mb-6 h-full min-h-[200px] md:min-h-[300px] xl:min-h-[500px]">
                 {heroSlides.map((slide, index) => (
                     <div
                         key={slide.id}
