@@ -36,7 +36,7 @@ export default function BrandProductsPage() {
   const brands = {
     'pfizer': {
       name: 'Pfizer',
-      logo: 'https://logos-world.net/wp-content/uploads/2020/11/Pfizer-Logo.png',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Pfizer_logo.svg/250px-Pfizer_logo.svg.png',
       banner: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=400&fit=crop',
       description: 'Pfizer Inc. is an American multinational pharmaceutical and biotechnology corporation headquartered in Manhattan, New York City. The company was established in 1849 and is one of the world\'s largest pharmaceutical companies.',
       founded: '1849',

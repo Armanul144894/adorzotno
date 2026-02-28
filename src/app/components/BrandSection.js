@@ -16,207 +16,98 @@ export default function BrandSection() {
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
 
-  const brands = [
+const brands = [
   {
     id: 1,
-    name: 'Pfizer',
-    slug: 'pfizer',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Pfizer_logo.svg/2560px-Pfizer_logo.svg.png',
-    products: 145,
-    description: 'Leading pharmaceutical company',
-    bgColor: 'bg-blue-50',
-    hoverColor: 'hover:bg-blue-100'
+    name: "Pfizer",
+    slug: "pfizer",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Pfizer_logo.svg/250px-Pfizer_logo.svg.png",
   },
   {
     id: 2,
-    name: 'Johnson & Johnson',
-    slug: 'johnson-johnson',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Johnson_and_Johnson_Logo.svg/2560px-Johnson_and_Johnson_Logo.svg.png',
-    products: 238,
-    description: 'Healthcare innovation leader',
-    bgColor: 'bg-red-50',
-    hoverColor: 'hover:bg-red-100'
+    name: "Johnson & Johnson",
+    slug: "johnson-johnson",
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-7B24ITY89Biek0SSz9BuPZD0iKSTi8SNDQ&s",
   },
   {
     id: 3,
-    name: 'Bayer',
-    slug: 'bayer',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Bayer_Logo.svg/2560px-Bayer_Logo.svg.png',
-    products: 152,
-    description: 'Science for a better life',
-    bgColor: 'bg-green-50',
-    hoverColor: 'hover:bg-green-100'
+    name: "Bayer",
+    slug: "bayer",
+    logo: "https://e7.pngegg.com/pngimages/979/373/png-clipart-leverkusen-bayer-cropscience-agriculture-business-pharma-company-text-thumbnail.png",
   },
   {
     id: 4,
-    name: 'GlaxoSmithKline',
-    slug: 'glaxosmithkline',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/GSK_logo_2014.svg/2560px-GSK_logo_2014.svg.png',
-    products: 187,
-    description: 'Global healthcare company',
-    bgColor: 'bg-orange-50',
-    hoverColor: 'hover:bg-orange-100'
+    name: "GlaxoSmithKline",
+    slug: "glaxosmithkline",
+    logo: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/GSK_logo_2014.svg/250px-GSK_logo_2014.svg.png",
   },
   {
     id: 5,
-    name: 'Abbott',
-    slug: 'abbott',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Abbott_Laboratories_logo.svg/2560px-Abbott_Laboratories_logo.svg.png',
-    products: 198,
-    description: 'Life-changing technologies',
-    bgColor: 'bg-purple-50',
-    hoverColor: 'hover:bg-purple-100'
+    name: "Abbott",
+    slug: "abbott",
+    logo: "https://www.abbott.com.sg/etc.clientlibs/abbott-platform/clientlibs/clientlib-site/resources/images/abbott-logo.png",
   },
   {
     id: 6,
-    name: 'Novartis',
-    slug: 'novartis',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Novartis-Logo.svg/2560px-Novartis-Logo.svg.png',
-    products: 134,
-    description: 'Reimagining medicine',
-    bgColor: 'bg-cyan-50',
-    hoverColor: 'hover:bg-cyan-100'
+    name: "Novartis",
+    slug: "novartis",
+    logo: "https://www.tbsnews.net/sites/default/files/styles/amp_metadata_content_image_min_696px_wide/public/images/2024/12/05/m.png",
   },
   {
     id: 7,
-    name: 'Roche',
-    slug: 'roche',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Hoffmann-La_Roche_logo.svg/2560px-Hoffmann-La_Roche_logo.svg.png',
-    products: 176,
-    description: 'Pioneering healthcare',
-    bgColor: 'bg-pink-50',
-    hoverColor: 'hover:bg-pink-100'
+    name: "Roche",
+    slug: "roche",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Hoffmann-La_Roche_logo.svg/512px-Hoffmann-La_Roche_logo.png",
   },
   {
     id: 8,
-    name: 'Merck',
-    slug: 'merck',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Merck_%26_Co.svg/2560px-Merck_%26_Co.svg.png',
-    products: 143,
-    description: 'Inventing for life',
-    bgColor: 'bg-indigo-50',
-    hoverColor: 'hover:bg-indigo-100'
+    name: "Merck",
+    slug: "merck",
+    logo: "https://www.merck.com/wp-content/uploads/sites/124/2022/03/Merck.png",
   },
   {
     id: 9,
-    name: 'Sanofi',
-    slug: 'sanofi',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Sanofi.svg/2560px-Sanofi.svg.png',
-    products: 162,
-    description: 'Healthcare solutions',
-    bgColor: 'bg-teal-50',
-    hoverColor: 'hover:bg-teal-100'
+    name: "Sanofi",
+    slug: "sanofi",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/7/79/Sanofi_logo.svg",
   },
   {
     id: 10,
-    name: 'AstraZeneca',
-    slug: 'astrazeneca',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/AstraZeneca_logo.svg/2560px-AstraZeneca_logo.svg.png',
-    products: 129,
-    description: 'Science-led biopharmaceutical',
-    bgColor: 'bg-yellow-50',
-    hoverColor: 'hover:bg-yellow-100'
+    name: "AstraZeneca",
+    slug: "astrazeneca",
+    logo: "https://mms.businesswire.com/media/20240206590080/en/484259/5/Logo.jpg?download=1",
   },
   {
     id: 11,
-    name: 'Eli Lilly',
-    slug: 'eli-lilly',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Eli_Lilly_and_Company.svg/2560px-Eli_Lilly_and_Company.svg.png',
-    products: 118,
-    description: 'Medicines that matter',
-    bgColor: 'bg-red-50',
-    hoverColor: 'hover:bg-red-100'
+    name: "Eli Lilly",
+    slug: "eli-lilly",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Eli_Lilly_and_Company.svg/512px-Eli_Lilly_and_Company.png",
   },
   {
     id: 12,
-    name: 'Bristol Myers Squibb',
-    slug: 'bristol-myers-squibb',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Bristol_Myers_Squibb_Logo.svg/2560px-Bristol_Myers_Squibb_Logo.svg.png',
-    products: 156,
-    description: 'Transforming patients lives',
-    bgColor: 'bg-blue-50',
-    hoverColor: 'hover:bg-blue-100'
+    name: "Bristol Myers Squibb",
+    slug: "bristol-myers-squibb",
+    logo: "https://6a3d28ac.delivery.rocketcdn.me/wp-content/uploads/2025/03/Bristol-Myers-Squibb.png",
   },
   {
     id: 13,
-    name: 'Boehringer Ingelheim',
-    slug: 'boehringer-ingelheim',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Boehringer_Ingelheim_Logo.svg/2560px-Boehringer_Ingelheim_Logo.svg.png',
-    products: 142,
-    description: 'Value through innovation',
-    bgColor: 'bg-green-50',
-    hoverColor: 'hover:bg-green-100'
+    name: "Boehringer Ingelheim",
+    slug: "boehringer-ingelheim",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Boehringer_Ingelheim_Logo.svg/960px-Boehringer_Ingelheim_Logo.svg.png",
   },
   {
     id: 14,
-    name: 'Takeda',
-    slug: 'takeda',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Takeda_Pharmaceutical_Company_logo.svg/2560px-Takeda_Pharmaceutical_Company_logo.svg.png',
-    products: 134,
-    description: 'Better health, brighter future',
-    bgColor: 'bg-purple-50',
-    hoverColor: 'hover:bg-purple-100'
+    name: "Takeda",
+    slug: "takeda",
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHE4NuqbvBg1BuzLdPemq1PSVjNocSSEARZA&s",
   },
   {
     id: 15,
-    name: 'Amgen',
-    slug: 'amgen',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Amgen.svg/2560px-Amgen.svg.png',
-    products: 98,
-    description: 'Serving patients',
-    bgColor: 'bg-cyan-50',
-    hoverColor: 'hover:bg-cyan-100'
+    name: "Amgen",
+    slug: "amgen",
+    logo: "https://amgen.wd1.myworkdayjobs.com/wday/cxs/amgen/Careers/sidebarimage/ff565065af860119e1b725ed27020a01",
   },
-  {
-    id: 16,
-    name: 'Teva Pharmaceutical',
-    slug: 'teva-pharmaceutical',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Teva_Pharmaceutical_Industries_logo.svg/2560px-Teva_Pharmaceutical_Industries_logo.svg.png',
-    products: 167,
-    description: 'Generic medicines leader',
-    bgColor: 'bg-blue-50',
-    hoverColor: 'hover:bg-blue-100'
-  },
-  {
-    id: 17,
-    name: 'Gilead Sciences',
-    slug: 'gilead-sciences',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Gilead_Sciences_logo.svg/2560px-Gilead_Sciences_logo.svg.png',
-    products: 89,
-    description: 'Biopharmaceutical company',
-    bgColor: 'bg-green-50',
-    hoverColor: 'hover:bg-green-100'
-  },
-  {
-    id: 18,
-    name: 'Biogen',
-    slug: 'biogen',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Biogen_logo.svg/2560px-Biogen_logo.svg.png',
-    products: 76,
-    description: 'Neuroscience focused',
-    bgColor: 'bg-purple-50',
-    hoverColor: 'hover:bg-purple-100'
-  },
-  {
-    id: 19,
-    name: 'Moderna',
-    slug: 'moderna',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Moderna_logo.svg/2560px-Moderna_logo.svg.png',
-    products: 45,
-    description: 'mRNA therapeutics',
-    bgColor: 'bg-red-50',
-    hoverColor: 'hover:bg-red-100'
-  },
-  {
-    id: 20,
-    name: 'Regeneron',
-    slug: 'regeneron',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Regeneron_Pharmaceuticals_logo.svg/2560px-Regeneron_Pharmaceuticals_logo.svg.png',
-    products: 63,
-    description: 'Biotechnology company',
-    bgColor: 'bg-cyan-50',
-    hoverColor: 'hover:bg-cyan-100'
-  }
+  
 ];
 
 
