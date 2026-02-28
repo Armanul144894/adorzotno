@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 import products from '../../../data/data';
+import { ChevronRight, Zap } from 'lucide-react';
 
 export default function FeaturedDeals() {
 
@@ -10,10 +11,21 @@ export default function FeaturedDeals() {
   return (
     <div>
       {/* Featured Deals */}
-      <div className="p-5 md:p-10 bg-blue-200 mb-10 rounded">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">
-          Featured Deals
-        </h2>
+      <div className="mb-10 rounded">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-3">
+            <div className="bg-gradient-to-r from-orange-500 to-red-500 p-2 rounded-lg">
+              <Zap className="text-white" size={28} />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-gray-800">Featured Deals</h2>
+              <p className="text-sm text-gray-600">Best deals of the day - Do not miss out!</p>
+            </div>
+          </div>
+          <button className="text-teal-600 font-semibold flex items-center gap-1 hover:gap-2 transition-all">
+            View All <ChevronRight size={20} />
+          </button>
+        </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-4">
           {featuredDeals.map((deal) => (
             <Link key={deal.id} href={`/product/${deal.name.toLowerCase()
@@ -51,7 +63,7 @@ export default function FeaturedDeals() {
                       </span>
                     </div>
                     <button className="bg-secondary text-white px-4 text-sm py-2 rounded-lg hover:bg-teal-700 transition font-semibold">
-                      Buy Now
+                      + Add
                     </button>
                   </div>
                 </div>

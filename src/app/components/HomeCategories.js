@@ -21,13 +21,13 @@ export default function HomeCategories() {
       .replace(/(^-|-$)/g, "");
 
   return (
-    <section className="w-full p-5 md:p-10 bg-red-200 mb-10 rounded">
+    <section className="w-full p-5 md:p-8 bg-gradient-to-r from-red-500 to-orange-500 mb-10 rounded">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-bold text-gray-800">Shop by Category</h2>
+        <h2 className="text-2xl font-bold text-white">Shop by Category</h2>
         <Link
           href="/category"
-          className="text-primary font-semibold flex items-center gap-1 hover:gap-2 transition-all"
+          className="text-white font-semibold flex items-center gap-1 hover:gap-2 transition-all"
         >
           View All <ChevronRight size={20} />
         </Link>
@@ -64,6 +64,7 @@ export default function HomeCategories() {
             640: { slidesPerView: 3 },
             768: { slidesPerView: 4 },
             1224: { slidesPerView: 6 },
+            1400: { slidesPerView: 7 },
           }}
           className="!pb-4"
         >
@@ -72,7 +73,7 @@ export default function HomeCategories() {
               <Link href={`/category/${slugify(cat.name)}`} className="w-full">
                 <div className="w-full h-full bg-white rounded-lg shadow-sm hover:shadow-xl transition-shadow cursor-pointer group">
                   <div
-                    className={`bg-teal-50 rounded-lg p-4 flex items-center justify-center h-32`}
+                    className={`bg-teal-100 rounded-lg p-4 flex items-center justify-center h-32`}
                   >
                     <div className="text-6xl ">{cat?.icon}</div>
                   </div>
