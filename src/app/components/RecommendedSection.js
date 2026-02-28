@@ -58,7 +58,7 @@ export default function RecommendedSection () {
                   <span className="text-sm text-gray-400 line-through">${product.originalPrice}</span>
                 </div>
                 <button
-                  className="w-full bg-teal-600 text-white py-2 rounded-lg hover:bg-teal-700 transition font-semibold"
+                  className="w-full bg-primary text-white py-2 rounded-lg hover:bg-teal-700 transition font-semibold"
                 >
                   Add to Cart
                 </button>

@@ -21,7 +21,7 @@ export default function HomeCategories() {
       .replace(/(^-|-$)/g, "");
 
   return (
-    <section className="w-full p-5 md:p-8 bg-gradient-to-r from-red-500 to-orange-500 mb-10 rounded">
+    <section className="w-full p-5 md:p-8 bg-gradient-to-r from-blue-300 to-blue-300 mb-10 rounded">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-2xl font-bold text-white">Shop by Category</h2>

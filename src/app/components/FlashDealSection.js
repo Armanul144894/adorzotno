@@ -184,7 +184,7 @@ export default function FlashDealSection() {
                     ${deal.originalPrice}
                   </span>
                 </div>
-                <button className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-2 rounded-lg font-semibold hover:from-orange-600 hover:to-red-600 transition">
+                <button className="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:from-orange-600 hover:to-red-600 transition">
                   Grab Deal Now
                 </button>
               </div>

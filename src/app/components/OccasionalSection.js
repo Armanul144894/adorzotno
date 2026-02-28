@@ -36,38 +36,37 @@ export default function OccasionalSection() {
   return (
     <div className="mb-8">
       {occasions.map((occasion) => (
-        
-          <div key={occasion.id} className="mb-8">
-            <div className="bg-gradient-to-r from-red-500 to-orange-500 rounded-t-lg p-4 text-white">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="text-4xl">{occasion.icon}</div>
-                  <div>
-                    <h2 className="text-2xl font-bold">{occasion.title}</h2>
-                    <p className="text-sm text-white/90">
-                      Special occasion picks just for you
-                    </p>
-                  </div>
+        <div key={occasion.id} className="mb-8">
+          <div className="bg-gradient-to-r from-red-500 to-orange-500 rounded-t-lg p-4 text-white">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="text-4xl">{occasion.icon}</div>
+                <div>
+                  <h2 className="text-2xl font-bold">{occasion.title}</h2>
+                  <p className="text-sm text-white/90">
+                    Special occasion picks just for you
+                  </p>
                 </div>
-                <button className="bg-white text-red-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">
-                  Shop Collection
-                </button>
               </div>
+              <button className="bg-white text-red-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">
+                Shop Collection
+              </button>
             </div>
-            <div className="bg-white rounded-b-lg shadow-md p-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-6">
-                {occasion.products.map((product) => (
-                    <Link
-          key={product.id}
-          href={`/product/${product.name
-            .toLowerCase()
-            .replace(/&/g, "and")
-            .replace(/[^a-z0-9]+/g, "-")
-            .replace(/(^-|-$)/g, "")}`}
-        >
+          </div>
+          <div className="bg-white rounded-b-lg shadow-md p-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-6">
+              {occasion.products.map((product) => (
+                <Link
+                  key={product.id}
+                  href={`/product/${product.name
+                    .toLowerCase()
+                    .replace(/&/g, "and")
+                    .replace(/[^a-z0-9]+/g, "-")
+                    .replace(/(^-|-$)/g, "")}`}
+                >
                   <div
-                    key={product.id}
-                    className="border border-red-200 rounded-lg overflow-hidden hover:shadow-lg transition"
+                   
+                    className="border h-full border-red-200 rounded-lg overflow-hidden hover:shadow-lg transition"
                   >
                     <div className="relative">
                       <Image
@@ -99,17 +98,16 @@ export default function OccasionalSection() {
                           ${product.originalPrice}
                         </span>
                       </div>
-                      <button className="w-full bg-gradient-to-r from-red-500 to-orange-500 text-white py-2 rounded-lg hover:from-red-600 hover:to-pink-600 transition font-semibold">
+                      <button className="w-full bg-primary text-white py-2 rounded-lg hover:from-red-600 hover:to-pink-600 transition font-semibold">
                         Add to Cart
                       </button>
                     </div>
                   </div>
-                  
-        </Link>
-                ))}
-              </div>
+                </Link>
+              ))}
             </div>
           </div>
+        </div>
       ))}
     </div>
   );

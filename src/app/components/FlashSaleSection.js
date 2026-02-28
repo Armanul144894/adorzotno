@@ -103,7 +103,7 @@ export default function FlashSaleSection() {
                   ></div>
                 </div>
                 <p className="text-xs text-gray-500 mb-2">Sold: 70%</p>
-                <button className="w-full bg-red-500 text-white py-2 rounded-lg text-sm font-semibold hover:bg-red-600 transition">
+                <button className="w-full bg-primary text-white py-2 rounded-lg text-sm font-semibold hover:bg-red-600 transition">
                   Buy Now
                 </button>
               </div>
