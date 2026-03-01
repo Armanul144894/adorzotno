@@ -32,7 +32,7 @@ export default function FlashSaleSection() {
 
   return (
     <div className="mb-8">
-      <div className="bg-gradient-to-r from-red-500 to-orange-500 rounded-t-lg p-4 text-white">
+      <div className="bg-gradient-to-r from-primary to-blue-500 rounded-t-lg p-4 text-white">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Zap className="text-yellow-300" size={32} />
@@ -72,7 +72,7 @@ export default function FlashSaleSection() {
                 .replace(/[^a-z0-9]+/g, "-")
                 .replace(/(^-|-$)/g, "")}`}
             >
-              <div className="border border-gray-200 rounded-lg p-3 hover:shadow-lg transition group">
+              <div className="border h-full border-gray-200 rounded-lg p-3 hover:shadow-lg transition group">
                 <div className="relative mb-3">
                   <Image
                     height={200}

@@ -5,7 +5,7 @@ import React from 'react'
 
 export default function ProductCard({ product }) {
     return (
-        <div className="bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden group flex-shrink-0 w-64">
+        <div className="bg-white h-full rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden group flex-shrink-0 ">
             <Link key={product.id} href={`/product/${product.name.toLowerCase()
                 .replace(/&/g, 'and')
                 .replace(/[^a-z0-9]+/g, '-')

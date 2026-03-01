@@ -37,7 +37,7 @@ export default function OccasionalSection() {
     <div className="mb-8">
       {occasions.map((occasion) => (
         <div key={occasion.id} className="mb-8">
-          <div className="bg-gradient-to-r from-red-500 to-orange-500 rounded-t-lg p-4 text-white">
+          <div className="bg-gradient-to-r from-primary to-blue-500 rounded-t-lg p-4 text-white">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="text-4xl">{occasion.icon}</div>
@@ -64,10 +64,7 @@ export default function OccasionalSection() {
                     .replace(/[^a-z0-9]+/g, "-")
                     .replace(/(^-|-$)/g, "")}`}
                 >
-                  <div
-                   
-                    className="border h-full border-red-200 rounded-lg overflow-hidden hover:shadow-lg transition"
-                  >
+                  <div className="border h-full border-red-200 rounded-lg overflow-hidden hover:shadow-lg transition">
                     <div className="relative">
                       <Image
                         height={200}

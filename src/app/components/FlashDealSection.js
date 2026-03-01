@@ -131,7 +131,7 @@ export default function FlashDealSection() {
     <div className="mb-8">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
-          <div className="bg-gradient-to-r from-orange-500 to-red-500 p-2 rounded-lg">
+          <div className="bg-gradient-to-r from-primary to-blue-500 p-2 rounded-lg">
             <Zap className="text-white" size={28} />
           </div>
           <div>
@@ -164,7 +164,7 @@ export default function FlashDealSection() {
                   alt={deal.name}
                   className="w-full h-48 object-cover"
                 />
-                <span className="absolute top-3 right-3 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                <span className="absolute top-3 right-3 bg-gradient-to-r from-primary to-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
                   {deal.discount}
                 </span>
                 <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-orange-600 flex items-center gap-1">

@@ -1,25 +1,28 @@
-
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react'
-import products from '../../../data/data';
-import { ChevronRight, Zap } from 'lucide-react';
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import products from "../../../data/data";
+import { ChevronRight, Zap } from "lucide-react";
+import ProductCard from "./ProductCard";
 
 export default function FeaturedDeals() {
-
-  const featuredDeals =  products.slice(0, 12);
+  const featuredDeals = products.slice(0, 12);
   return (
     <div>
       {/* Featured Deals */}
       <div className="mb-10 rounded">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
-            <div className="bg-gradient-to-r from-orange-500 to-red-500 p-2 rounded-lg">
+            <div className="bg-gradient-to-r from-primary to-blue-500 p-2 rounded-lg">
               <Zap className="text-white" size={28} />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-gray-800">Featured Deals</h2>
-              <p className="text-sm text-gray-600">Best deals of the day - Do not miss out!</p>
+              <h2 className="text-2xl font-bold text-gray-800">
+                Featured Deals
+              </h2>
+              <p className="text-sm text-gray-600">
+                Best deals of the day - Do not miss out!
+              </p>
             </div>
           </div>
           <button className="text-teal-600 font-semibold flex items-center gap-1 hover:gap-2 transition-all">
@@ -28,52 +31,11 @@ export default function FeaturedDeals() {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-4">
           {featuredDeals.map((deal) => (
-            <Link key={deal.id} href={`/product/${deal.name.toLowerCase()
-              .replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}>
-              <div
-                className="bg-white h-full rounded-lg shadow overflow-hidden hover:shadow-xl transition-shadow relative"
-              >
-                <div className="relative">
-                  <Image
-                    src={deal?.images[0]}
-                    alt={deal?.name}
-                    width={400}
-                    height={300}
-                    className="w-full h-64 object-contain"
-                  />
-                  {
-                    deal?.discount &&  (
-                      <span className="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                    {deal?.discount}
-                  </span>
-                    )
-                  }
-                </div>
-                <div className="p-4">
-                  <h3 className="text font-bold text-gray-800 mb-4">
-                    {deal?.name}
-                  </h3>
-                  <div className="flex flex-wrap items-center justify-between gap-3">
-                    <div>
-                      <span className="text-xl font-bold text-primary">
-                        ${deal?.price}
-                      </span>
-                      <span className="text-gray-400 line-through ml-2">
-                        ${deal?.originalPrice}
-                      </span>
-                    </div>
-                    <button className="bg-secondary text-white px-4 text-sm py-2 rounded-lg hover:bg-teal-700 transition font-semibold">
-                      + Add
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-            </Link>
-
+            
+              <ProductCard key={deal.id} product={deal}/>
           ))}
         </div>
       </div>
     </div>
-  )
+  );
 }

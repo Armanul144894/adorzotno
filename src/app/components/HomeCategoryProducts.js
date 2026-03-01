@@ -49,7 +49,7 @@ export default function HomeCategoryProducts() {
       title: "Special Offers",
       subtitle: "Limited time deals",
       link: "/offers",
-      bgColor: "from-orange-500 to-red-500",
+      bgColor: "from-primary to-blue-500",
     },
   ];
 
@@ -71,12 +71,12 @@ export default function HomeCategoryProducts() {
       // Get two banners for the pair
       const banner1 = banners[bannerIndex % banners.length];
       const banner2 = banners[(bannerIndex + 1) % banners.length];
-      
+
       categoriesWithBanners.push({
         type: "banner-pair",
-        banners: [banner1, banner2]
+        banners: [banner1, banner2],
       });
-      
+
       bannerIndex += 2; // Move to next pair
     }
   });
@@ -98,8 +98,9 @@ export default function HomeCategoryProducts() {
             <div key={`banner-pair-${index}`} className="mb-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 {/* First Banner */}
-                
-                <Link  href={item.banners[0].link}
+
+                <Link
+                  href={item.banners[0].link}
                   className="block relative rounded-xl overflow-hidden group"
                 >
                   <div className="relative rounded h-48 md:h-64 lg:h-72">
@@ -111,13 +112,16 @@ export default function HomeCategoryProducts() {
                       priority={false}
                     />
                     {/* Optional: Gradient Overlay */}
-                    <div className={`absolute inset-0 bg-gradient-to-r ${item.banners[0].bgColor} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}></div>
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-r ${item.banners[0].bgColor} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
+                    ></div>
                   </div>
                 </Link>
 
                 {/* Second Banner */}
-                
-                 <Link href={item.banners[1].link}
+
+                <Link
+                  href={item.banners[1].link}
                   className="block relative rounded-xl overflow-hidden group"
                 >
                   <div className="relative rounded h-48 md:h-64 lg:h-72">
@@ -129,7 +133,9 @@ export default function HomeCategoryProducts() {
                       priority={false}
                     />
                     {/* Optional: Gradient Overlay */}
-                    <div className={`absolute inset-0 bg-gradient-to-r ${item.banners[1].bgColor} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}></div>
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-r ${item.banners[1].bgColor} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
+                    ></div>
                   </div>
                 </Link>
               </div>

@@ -1,4 +1,13 @@
-import { Award, CheckCircle2, ChevronRight, Home, Shield, Target, Truck, Users } from "lucide-react";
+import {
+  Award,
+  CheckCircle2,
+  ChevronRight,
+  Home,
+  Shield,
+  Target,
+  Truck,
+  Users,
+} from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -23,19 +32,17 @@ export default function page() {
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-6">
           <Link href={"/"}>
-          <button
-            className="flex items-center gap-1 hover:text-primary cursor-pointer"
-          >
-            <Home size={16} />
-            Home
-          </button>
+            <button className="flex items-center gap-1 hover:text-primary cursor-pointer">
+              <Home size={16} />
+              Home
+            </button>
           </Link>
           <ChevronRight size={16} />
           <span className="text-gray-800 font-semibold">About Us</span>
         </div>
 
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-secondary to-secondary rounded-lg p-12 mb-8 text-white text-center">
+        <div className="bg-gradient-to-r from-primary to-blue-500 rounded-lg p-12 mb-8 text-white text-center">
           <h1 className="text-5xl font-bold mb-4">About AdorZotno</h1>
           <p className="text-xl text-teal-100 max-w-3xl mx-auto">
             Your trusted partner in healthcare, delivering quality medicines and

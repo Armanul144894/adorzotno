@@ -65,7 +65,7 @@ export default function Header({ cartCount = 3 }) {
             </div>
 
             {/* Search Bar */}
-            <div className="hidden md:flex w-2/3 justify-center">
+            <div className="hidden md:flex md:w-1/2 xl:w-2/3 justify-center">
               <HeaderSearch/>
             </div>
 
@@ -104,7 +104,7 @@ export default function Header({ cartCount = 3 }) {
           </div>
 
           {/* Mobile Search */}
-          <div className="block md:hidden">
+          <div className="block md:hidden pt-2">
             <HeaderSearch/>
           </div>
 
