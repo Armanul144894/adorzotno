@@ -54,7 +54,7 @@ export default function OccasionalSection() {
             </div>
           </div>
           <div className="bg-white rounded-b-lg shadow-md p-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-4">
               {occasion.products.map((product) => (
                 <Link
                   key={product.id}
