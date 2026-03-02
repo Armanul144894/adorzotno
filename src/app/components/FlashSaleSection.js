@@ -8,7 +8,7 @@ import { useCart } from "./CartContext";
 
 export default function FlashSaleSection() {
   const { addToCart, getItemQuantity, updateQuantity, removeItem } = useCart();
-
+  const [hoveredId, setHoveredId] = useState(null);
   const [timeLeft, setTimeLeft] = useState({ hours: 2, minutes: 45, seconds: 30 });
 
   useEffect(() => {
@@ -56,52 +56,51 @@ export default function FlashSaleSection() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-4">
           {flashSaleProducts.map((product) => {
             const quantity = getItemQuantity(product.id);
+            const isHovered = hoveredId === product.id;
             return (
-              <div key={product.id} className="border h-full border-gray-200 rounded-lg p-3 hover:shadow-lg transition group">
+              <div key={product.id} className="border h-full border-gray-200 rounded-lg p-3 hover:shadow-lg transition">
                 <Link href={`/product/${product.name.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`}>
                   <div className="relative mb-3">
-                    <Image
-                      height={200}
-                      width={200}
-                      src={product.images[0]}
-                      alt={product.name}
-                      className="w-full h-32 object-cover rounded"
-                    />
+                    <Image height={200} width={200} src={product.images[0]} alt={product.name} className="w-full h-32 object-cover rounded" />
                     <span className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse">
                       {product.discount}
                     </span>
                   </div>
-                  <h3 className="text-sm font-semibold text-gray-800 mb-1 line-clamp-2">{product.name}</h3>
-                  <div className="flex items-center gap-1 mb-2">
+                  <h3 className="text-sm font-semibold text-gray-800 mb-2 line-clamp-2">{product.name}</h3>
+                  
+                </Link>
+                  <div className="flex justify-between flex-wrap items-center gap-2 mb-3">
+                    <div className="flex items-center gap-1 ">
                     <span className="text-lg font-bold text-red-600">${product.price}</span>
                     <span className="text-xs text-gray-400 line-through">${product.originalPrice}</span>
+                  </div>
+                  <div className="flex justify-end ">
+                  {quantity > 0 ? (
+                    <div className="flex items-center gap-1 bg-primary rounded-lg overflow-hidden">
+                      <button onClick={() => quantity === 1 ? removeItem(product.id) : updateQuantity(product.id, quantity - 1)}
+                        className="text-white px-3 py-1.5 hover:bg-white/20 transition font-bold text-lg leading-none">−</button>
+                      <span className="text-white font-semibold text-sm min-w-[20px] text-center">{quantity}</span>
+                      <button onClick={() => updateQuantity(product.id, quantity + 1)}
+                        className="text-white px-3 py-1.5 hover:bg-white/20 transition font-bold text-lg leading-none">+</button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => addToCart(product)}
+                      onMouseEnter={() => setHoveredId(product.id)}
+                      onMouseLeave={() => setHoveredId(null)}
+                      className={`flex items-center bg-primary text-white rounded-lg font-semibold transition-all duration-300 overflow-hidden px-4 py-1.5 gap-2}`}
+                    >
+                      <span className="text-xl leading-none font-bold">+</span>
+                    </button>
+                  )}
+                </div>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
                     <div className="bg-red-500 h-2 rounded-full" style={{ width: "70%" }} />
                   </div>
                   <p className="text-xs text-gray-500 mb-2">Sold: 70%</p>
-                </Link>
 
-                {quantity > 0 ? (
-                  <div className="flex items-center justify-center gap-1 bg-primary rounded-lg overflow-hidden">
-                    <button
-                      onClick={() => quantity === 1 ? removeItem(product.id) : updateQuantity(product.id, quantity - 1)}
-                      className="text-white px-3 py-2 hover:bg-white/20 transition font-bold text-lg"
-                    >−</button>
-                    <span className="text-white font-semibold text-sm min-w-[20px] text-center">{quantity}</span>
-                    <button
-                      onClick={() => updateQuantity(product.id, quantity + 1)}
-                      className="text-white px-3 py-2 hover:bg-white/20 transition font-bold text-lg"
-                    >+</button>
-                  </div>
-                ) : (
-                  <button
-                    onClick={() => addToCart(product)}
-                    className="w-full bg-primary text-white py-2 rounded-lg text-sm font-semibold hover:bg-red-600 transition"
-                  >
-                    Buy Now
-                  </button>
-                )}
+                
               </div>
             );
           })}
