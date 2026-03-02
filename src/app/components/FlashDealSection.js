@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useCart } from "./CartContext";
+import ProductCard from "./ProductCard";
 
 const flashDeals = [
   { id: 101, name: "Multivitamin Bundle Pack", price: 24.99, originalPrice: 39.99, image: "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400&h=300&fit=crop", discount: "38% OFF", dealEnds: "2 hours left", images: ["https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400&h=300&fit=crop"] },
@@ -46,48 +47,8 @@ export default function FlashDealSection() {
         {flashDeals.map((deal) => {
           const quantity = getItemQuantity(deal.id);
           return (
-            <div key={deal.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition border-2 border-orange-200">
-              <Link href={`/product/${deal.name.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`}>
-                <div className="relative">
-                  <Image height={200} width={400} src={deal.image} alt={deal.name} className="w-full h-48 object-cover" />
-                  <span className="absolute top-3 right-3 bg-gradient-to-r from-primary to-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                    {deal.discount}
-                  </span>
-                  <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-orange-600 flex items-center gap-1">
-                    <Clock size={14} /> {deal.dealEnds}
-                  </div>
-                </div>
-                <div className="p-4">
-                  <h3 className="font-semibold text-gray-800 mb-2">{deal.name}</h3>
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-2xl font-bold text-orange-600">${deal.price}</span>
-                    <span className="text-sm text-gray-400 line-through">${deal.originalPrice}</span>
-                  </div>
-                </div>
-              </Link>
-
-              <div className="px-4 pb-4">
-                {quantity > 0 ? (
-                  <div className="flex items-center justify-center gap-1 bg-primary rounded-lg overflow-hidden">
-                    <button
-                      onClick={() => quantity === 1 ? removeItem(deal.id) : updateQuantity(deal.id, quantity - 1)}
-                      className="text-white px-3 py-2 hover:bg-white/20 transition font-bold text-lg"
-                    >−</button>
-                    <span className="text-white font-semibold text-sm min-w-[20px] text-center">{quantity}</span>
-                    <button
-                      onClick={() => updateQuantity(deal.id, quantity + 1)}
-                      className="text-white px-3 py-2 hover:bg-white/20 transition font-bold text-lg"
-                    >+</button>
-                  </div>
-                ) : (
-                  <button
-                    onClick={() => addToCart(deal)}
-                    className="w-full bg-primary text-white py-2 rounded-lg font-semibold transition"
-                  >
-                    Grab Deal Now
-                  </button>
-                )}
-              </div>
+            <div key={deal.id} >
+              <ProductCard product={deal}/>
             </div>
           );
         })}
