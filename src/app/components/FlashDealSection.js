@@ -18,6 +18,8 @@ const flashDeals = [
   { id: 110, name: "First Aid Emergency Kit", price: 34.99, originalPrice: 54.99, image: "https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=400&h=300&fit=crop", discount: "36% OFF", dealEnds: "5 hours left", images: ["https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=400&h=300&fit=crop"] },
   { id: 111, name: "Pain Relief Value Pack", price: 19.99, originalPrice: 32.99, image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop", discount: "39% OFF", dealEnds: "4 hours left", images: ["https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop"] },
   { id: 112, name: "Multivitamin Bundle Pack", price: 24.99, originalPrice: 39.99, image: "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400&h=300&fit=crop", discount: "38% OFF", dealEnds: "2 hours left", images: ["https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400&h=300&fit=crop"] },
+  { id: 113, name: "Pain Relief Value Pack", price: 19.99, originalPrice: 32.99, image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop", discount: "39% OFF", dealEnds: "4 hours left", images: ["https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop"] },
+  { id: 114, name: "Multivitamin Bundle Pack", price: 24.99, originalPrice: 39.99, image: "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400&h=300&fit=crop", discount: "38% OFF", dealEnds: "2 hours left", images: ["https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400&h=300&fit=crop"] },
 ];
 
 export default function FlashDealSection() {
@@ -31,7 +33,7 @@ export default function FlashDealSection() {
             <Zap className="text-white" size={28} />
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-gray-800">Flash Deals</h2>
+            <h2 className="text-2xl font-bold text-primary">Flash Deals</h2>
             <p className="text-sm text-gray-600">Best deals of the day - Do not miss out!</p>
           </div>
         </div>
@@ -40,7 +42,7 @@ export default function FlashDealSection() {
         </button>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-7 gap-4">
         {flashDeals.map((deal) => {
           const quantity = getItemQuantity(deal.id);
           return (

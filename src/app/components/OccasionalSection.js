@@ -13,13 +13,13 @@ export default function OccasionalSection() {
       id: 201,
       title: "Winter Care Essentials",
       icon: "❄️",
-      products: products.slice(0, 6).map(p => ({ ...p, occasion: "Winter" })),
+      products: products.slice(0, 7).map(p => ({ ...p, occasion: "Winter" })),
     },
     {
       id: 202,
       title: "New Year Health Goals",
       icon: "🎉",
-      products: products.slice(4, 10).map(p => ({ ...p, occasion: "New Year" })),
+      products: products.slice(4, 11).map(p => ({ ...p, occasion: "New Year" })),
     },
   ];
 
@@ -43,7 +43,7 @@ export default function OccasionalSection() {
           </div>
 
           <div className="bg-white rounded-b-lg shadow-md p-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-7 gap-4">
               {occasion.products.map((product) => {
                 const quantity = getItemQuantity(product.id);
                 return (
@@ -60,7 +60,7 @@ export default function OccasionalSection() {
                       </div>
                       <div className="p-4">
                         <span className="text-xs text-red-600 font-semibold">{product.category}</span>
-                        <h3 className="font-semibold text-gray-800 mt-1 mb-2">{product.name}</h3>
+                        <h3 className="text-sm font-semibold text-gray-800 mb-2 line-clamp-2">{product.name}</h3>
                         <div className="flex items-center gap-2 mb-3">
                           <span className="text-xl font-bold text-gray-800">${product.price}</span>
                           <span className="text-sm text-gray-400 line-through">${product.originalPrice}</span>

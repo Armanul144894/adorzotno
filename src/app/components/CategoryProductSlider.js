@@ -17,29 +17,7 @@ export default function CategoryProduct({ category, products }) {
   const [isEnd, setIsEnd] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
 
-  const categoryBgMap = {
-    "pain-relief": "bg-blue-300",
-    "vitamins-and-supplements": "bg-blue-300",
-    "cold-and-flu": "bg-blue-300",
-    "first-aid": "bg-blue-300",
-    "personal-care": "bg-blue-300",
-    "baby-care": "bg-blue-300",
-    "diabetes-care": "bg-blue-300",
-    "heart-health": "bg-blue-300",
-    "digestive-health": "bg-blue-300",
-    "eye-care": "bg-blue-300",
-    "skin-care": "bg-blue-300",
-    "hair-care": "bg-blue-300",
-    "oral-care": "bg-blue-300",
-    "respiratory-care": "bg-blue-300",
-    "sexual-wellness": "bg-blue-300",
-    "women-s-health": "bg-blue-300",
-    "men-s-health": "bg-blue-300",
-    "mental-wellness": "bg-blue-300",
-    "medical-devices": "bg-blue-300",
-    "fitness-and-nutrition": "bg-blue-300",
-    default: "bg-blue-300",
-  };
+
 
   const slugify = (text) =>
     text
@@ -48,10 +26,6 @@ export default function CategoryProduct({ category, products }) {
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/(^-|-$)/g, "");
 
-
-  const bgClass =
-    categoryBgMap[slugify(category)] ||
-    categoryBgMap.default;
 
   const handleSlideChange = (swiper) => {
     setIsBeginning(swiper.isBeginning);
@@ -75,15 +49,15 @@ export default function CategoryProduct({ category, products }) {
 
 
   return (
-    <div className={`p-5 mb-8 md:p-6 rounded-xl ${bgClass}`}>
+    <div className={`mb-8`}>
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl md:text-2xl font-bold text-white">{category}</h2>
+        <h2 className="text-xl md:text-2xl font-bold text-primary">{category}</h2>
         <Link href={`/category/${category.toLowerCase()
           .replace(/&/g, 'and')
           .replace(/[^a-z0-9]+/g, '-')
           .replace(/(^-|-$)/g, '')}`}>
-          <button className="flex items-center gap-2 text-white hover:text-primary transition-colors font-bold">
+          <button className="flex items-center gap-2 text-primary hover:text-primary transition-colors font-bold">
             View All
             <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
           </button>
@@ -160,12 +134,12 @@ export default function CategoryProduct({ category, products }) {
             },
             // Laptop - Medium (1280px)
             1280: {
-              slidesPerView: 4,
+              slidesPerView: 5,
               spaceBetween: 16,
             },
             // Desktop (1536px)
             1536: {
-              slidesPerView: 6,
+              slidesPerView: 7,
               spaceBetween: 16,
             },
           }}

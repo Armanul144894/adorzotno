@@ -23,7 +23,7 @@ export default function FlashSaleSection() {
     return () => clearInterval(timer);
   }, []);
 
-  const flashSaleProducts = products.slice(30, 36);
+  const flashSaleProducts = products.slice(30, 44);
 
   return (
     <div className="mb-8">
@@ -32,7 +32,7 @@ export default function FlashSaleSection() {
           <div className="flex items-center gap-3">
             <Zap className="text-yellow-300" size={32} />
             <div>
-              <h2 className="text-2xl font-bold">⚡ Flash Sale</h2>
+              <h2 className="text-2xl font-bold">Flash Sale</h2>
               <p className="text-sm text-white/90">Limited time offers - Hurry up!</p>
             </div>
           </div>
@@ -53,7 +53,7 @@ export default function FlashSaleSection() {
       </div>
 
       <div className="bg-white rounded-b-lg shadow-md p-6">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-7 gap-4">
           {flashSaleProducts.map((product) => {
             const quantity = getItemQuantity(product.id);
             const isHovered = hoveredId === product.id;

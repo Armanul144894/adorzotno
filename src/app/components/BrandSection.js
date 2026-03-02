@@ -133,7 +133,7 @@ const brands = [
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-1">
+          <h2 className="text-2xl font-bold text-primary">
             Shop by Brand
           </h2>
           <p className="text-sm md:text-base text-gray-600">

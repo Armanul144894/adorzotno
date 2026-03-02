@@ -286,7 +286,7 @@ export default function BrandPage() {
   }, {});
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-scree">
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-primary to-primary/80 text-white py-16">
         <div className="container mx-auto px-4">
@@ -346,7 +346,7 @@ export default function BrandPage() {
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto py-8">
         {/* Toolbar */}
         <div className="bg-white rounded-xl shadow-md p-4 mb-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
@@ -508,7 +508,7 @@ export default function BrandPage() {
           <div className="space-y-4">
             {sortedBrands.map((brand) => (
               <Link key={brand.id} href={`/brand/${brand.slug}`}>
-                <div className="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-primary/20 p-6">
+                <div className="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-primary/20 p-6 mb-3">
                   <div className="flex gap-6">
                     {/* Logo */}
                     <div className={`${brand.bgColor} ${brand.hoverColor} rounded-xl p-6 flex items-center justify-center w-48 flex-shrink-0`}>

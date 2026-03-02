@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Zap } from "lucide-react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -21,20 +21,26 @@ export default function HomeCategories() {
       .replace(/(^-|-$)/g, "");
 
   return (
-    <section className="w-full p-5 md:p-8 bg-gradient-to-r from-blue-300 to-blue-300 mb-10 rounded">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-bold text-white">Shop by Category</h2>
-        <Link
-          href="/category"
-          className="text-white font-semibold flex items-center gap-1 hover:gap-2 transition-all"
-        >
-          View All <ChevronRight size={20} />
-        </Link>
+    <section className="w-full mb-8">
+      <div className="bg-gradient-to-r from-primary to-blue-500 rounded-t-lg p-4 text-white">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Zap className="text-yellow-300" size={32} />
+            <div>
+              <h2 className="text-2xl font-bold">Shop by Category</h2>
+            </div>
+          </div>
+          <Link
+            href="/category"
+            className="text-white font-semibold flex items-center gap-1 hover:gap-2 transition-all"
+          >
+            View All <ChevronRight size={20} />
+          </Link>
+        </div>
       </div>
 
       {/* Slider Wrapper (IMPORTANT) */}
-      <div className="relative w-full max-w-full overflow-hidden">
+      <div className="relative bg-white rounded-b-lg shadow-md p-6 w-full max-w-full overflow-hidden">
         {/* Navigation buttons */}
         <button
           className="cat-prev absolute left-0 top-1/2 z-10 -translate-y-1/2 bg-white shadow-md rounded-full w-9 h-9 flex items-center justify-center hover:bg-gray-100"
@@ -71,7 +77,7 @@ export default function HomeCategories() {
           {categories.map((cat, index) => (
             <SwiperSlide key={index} className="h-auto">
               <Link href={`/category/${slugify(cat.name)}`} className="w-full">
-                <div className="w-full h-full bg-white rounded-lg shadow-sm hover:shadow-xl transition-shadow cursor-pointer group">
+                <div className="w-full h-full bg-white border border-red-100 rounded-lg shadow-sm hover:shadow-xl transition-shadow cursor-pointer group">
                   <div
                     className={`bg-teal-100 rounded-lg p-4 flex items-center justify-center h-32`}
                   >
