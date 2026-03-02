@@ -1,9 +1,12 @@
+// app/layout.jsx
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import Header from "./components/Header";
 import SideBar from "./components/SideBar";
 import Footer from "./components/Footer";
+import CartOffcanvas from "./components/CartOffcanvas";
+import { CartProvider } from "./components/CartContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,21 +37,24 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased relative bg-blue-50`}
       >
-        <Header />
-        <div className="container-fluid max-w-[1920] mx-auto px-4 py-6 relative">
-          <div className="flex lg:gap-6 items-start">
+        <CartProvider>
+          <Header />
+          <CartOffcanvas />
+          <div className="container-fluid max-w-[1920] mx-auto px-4 py-6 relative">
+            <div className="flex lg:gap-6 items-start">
 
-            {/* Sidebar - LEFT SIDE ON DESKTOP */}
-            <SideBar />
+              {/* Sidebar - LEFT SIDE ON DESKTOP */}
+              <SideBar />
 
-            {/* Main Content */}
-            <main className="flex-1 min-w-0 relative overflow-x-hidden">
-              {children}
-            </main>
+              {/* Main Content */}
+              <main className="flex-1 min-w-0 relative overflow-x-hidden">
+                {children}
+              </main>
 
+            </div>
           </div>
-        </div>
-        <Footer />
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

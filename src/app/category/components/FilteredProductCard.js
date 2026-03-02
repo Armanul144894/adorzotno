@@ -2,6 +2,7 @@ import { Star } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import ProductCard from './ProductCard'
 
 export default function FilteredProductCard({ filteredProducts }) {
   return (
@@ -14,60 +15,7 @@ export default function FilteredProductCard({ filteredProducts }) {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
           {filteredProducts?.map((product) => (
 
-            <Link key={product?.id} href={`/product/${product?.name.toLowerCase()
-              .replace(/&/g, 'and')
-              .replace(/[^a-z0-9]+/g, '-')
-              .replace(/(^-|-$)/g, '')}`}>
-              <div
-
-                className="bg-white h-full rounded-lg shadow-md overflow-hidden"
-              >
-
-                <Image
-                  src={product?.images[0]}
-                  alt={product?.name}
-                  width={300}
-                  height={200}
-                  className="w-full h-64 object-cover"
-                />
-
-                <div className="p-4">
-                  <h3 className="font-semibold mb-3">{product.name}</h3>
-
-                  <div className='flex flex-wrap justify-between items-center gap-3'>
-                    <div>
-                      <div className="flex gap-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            size={14}
-                            className={
-                              i < Math.floor(product.rating)
-                                ? "fill-yellow-400 text-yellow-400"
-                                : "text-gray-300"
-                            }
-                          />
-                        ))}
-                      </div>
-                      <div className="flex gap-2">
-                        <span className="font-bold">${product.price}</span>
-                        <span className="line-through text-gray-400">
-                          ${product.originalPrice}
-                        </span>
-                      </div>
-                    </div>
-
-
-                    <button
-                      className=" bg-primary text-white py-2 px-4 rounded-lg"
-                    >
-                      + Add
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-            </Link>
+            <ProductCard key={product.id} product={product}/>
 
           ))}
         </div>

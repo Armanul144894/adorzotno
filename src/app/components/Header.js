@@ -1,49 +1,26 @@
 "use client";
-import { ChevronDown, Mail, Menu, Phone, Search, ShoppingCart, User, User2, Users, X } from "lucide-react";
+import { ChevronDown, Menu, ShoppingCart, Users, X } from "lucide-react";
 import React, { useState } from "react";
 import Link from "next/link";
-import CartOffcanvas from "./CartOffcanvas";
 import CategoryOffcanvas from "./CategoryOffcanvas";
 import SignInModal from "./SignInModal";
 import Image from "next/image";
 import LiveChatWidget from "./LiveChatWidget";
 import HeaderSearch from "./HeaderSearch";
+import { useCart } from "./CartContext";
 
+export default function Header() {
+  const { cartItems, setIsCartOpen } = useCart();
+  const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
-export default function Header({ cartCount = 3 }) {
-  const [isOpen, setIsOpen] = useState(false);
   const [isSignInOpen, setSignInOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
-  
   const [chatExpanded, setChatExpanded] = useState(false);
 
   return (
     <div className="sticky top-0 w-full z-50">
-      {/* Header */}
       <header className="bg-blue-50 shadow-md">
-        {/* Top Bar */}
-        {/* <div className="bg-secondary text-white text-sm hidden md:block">
-          <div className="container-fluid max-w-[1920px] mx-auto px-4 py-2 flex justify-between items-center">
-            <div className="flex items-center gap-4">
-              <span className="flex items-center gap-1">
-                <Phone size={14} />
-                <span className="hidden sm:inline">+1-800-ADORZOTNO</span>
-              </span>
-              <span className="hidden md:flex items-center gap-1">
-                <Mail size={14} />
-                support@adorzotno.health
-              </span>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="hidden sm:inline">
-                Free shipping on orders over $50
-              </span>
-            </div>
-          </div>
-        </div> */}
-
-        {/* Main Header */}
         <div className="container-fluid max-w-[1920px] mx-auto px-4 py-2">
           <div className="flex items-center justify-between gap-4">
             {/* Logo */}
@@ -66,14 +43,14 @@ export default function Header({ cartCount = 3 }) {
 
             {/* Search Bar */}
             <div className="hidden md:flex md:w-1/2 xl:w-2/3 justify-center">
-              <HeaderSearch/>
+              <HeaderSearch />
             </div>
 
             {/* Actions */}
             <div className="flex items-center gap-4">
-              {/* Demo Button */}
+              {/* Cart Button — now opens via CartContext */}
               <button
-                onClick={() => setIsOpen(true)}
+                onClick={() => setIsCartOpen(true)}
                 className="relative p-2 hover:bg-gray-100 rounded-full cursor-pointer"
               >
                 <ShoppingCart size={24} className="text-gray-600" />
@@ -83,7 +60,9 @@ export default function Header({ cartCount = 3 }) {
                   </span>
                 )}
               </button>
+
               <div className="h-6 w-[2px] rounded bg-primary md:hidden"></div>
+
               <button
                 onClick={() => setSignInOpen(true)}
                 className="relative p-2 hover:bg-gray-100 rounded-full cursor-pointer md:hidden"
@@ -97,29 +76,30 @@ export default function Header({ cartCount = 3 }) {
                 onClick={() => setSignInOpen(true)}
                 className="relative bg-primary p-3 rounded cursor-pointer hidden md:block"
               >
-                <div className="flex items-center font-bold gap-2 text-white"><Users size={24} className="text-white" /> Sign In <ChevronDown /></div>
+                <div className="flex items-center font-bold gap-2 text-white">
+                  <Users size={24} className="text-white" /> Sign In <ChevronDown />
+                </div>
               </button>
-
             </div>
           </div>
 
           {/* Mobile Search */}
           <div className="block md:hidden pt-2">
-            <HeaderSearch/>
+            <HeaderSearch />
           </div>
 
-          {/* Sidebar - Categories (LEFT SIDE) */}
           <CategoryOffcanvas
             sidebarOpen={sidebarOpen}
             setSidebarOpen={setSidebarOpen}
           />
 
-          {/* Cart Offcanvas (RIGHT SIDE) */}
-          <CartOffcanvas isOpen={isOpen} setIsOpen={setIsOpen} />
-
           <SignInModal isSignInOpen={isSignInOpen} setSignInOpen={setSignInOpen} />
 
-          <LiveChatWidget chatOpen={chatOpen} setChatOpen={setChatOpen} chatExpanded={chatExpanded}/>
+          <LiveChatWidget
+            chatOpen={chatOpen}
+            setChatOpen={setChatOpen}
+            chatExpanded={chatExpanded}
+          />
         </div>
       </header>
     </div>
