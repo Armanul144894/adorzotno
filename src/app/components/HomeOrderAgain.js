@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, RotateCcw, Star } from "lucide-react";
@@ -12,6 +12,34 @@ import { useCart } from "./CartContext";
 import products from "../../../data/data";
 
 const previousOrders = products.slice(30, 44);
+
+// ── Skeleton Card ─────────────────────────────────────────────────────────────
+function SkeletonCard() {
+  return (
+    <div className="bg-white border border-gray-100 rounded-2xl shadow-sm flex flex-col overflow-hidden h-full animate-pulse">
+      {/* Image placeholder */}
+      <div className="h-40 bg-gray-200" />
+      {/* Info placeholder */}
+      <div className="p-3 flex flex-col gap-2">
+        <div className="h-2.5 bg-gray-200 rounded w-1/3" />
+        <div className="h-3.5 bg-gray-200 rounded w-4/5" />
+        <div className="h-3.5 bg-gray-200 rounded w-3/5" />
+        <div className="h-2.5 bg-gray-200 rounded w-1/4 mt-1" />
+        {/* Stars */}
+        <div className="flex gap-1 mt-0.5">
+          {[...Array(5)].map((_, i) => (
+            <div key={i} className="w-3 h-3 bg-gray-200 rounded-full" />
+          ))}
+        </div>
+        {/* Price + button row */}
+        <div className="flex items-center justify-between mt-2">
+          <div className="h-5 bg-gray-200 rounded w-16" />
+          <div className="w-9 h-9 bg-gray-200 rounded-lg" />
+        </div>
+      </div>
+    </div>
+  );
+}
 
 // ── ProductCard ───────────────────────────────────────────────────────────────
 function ProductCard({ product }) {
@@ -35,7 +63,7 @@ function ProductCard({ product }) {
     <div className="bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col overflow-hidden h-full">
       <Link href={`/product/${product.name.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`} className="flex flex-col flex-1">
         {/* Image */}
-        <div className="relative h-48 bg-gray-50 overflow-hidden">
+        <div className="relative h-40 bg-gray-50 overflow-hidden">
           <Image
             src={product.images[0]}
             alt={product.name}
@@ -96,13 +124,22 @@ function ProductCard({ product }) {
 
 // ── HomeOrderAgain ────────────────────────────────────────────────────────────
 export default function HomeOrderAgain() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate data fetch — replace with your real fetch/async logic
+    const timer = setTimeout(() => setLoading(false), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const skeletonCount = 7;
   return (
     <section className="w-full mb-8">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <div className="bg-primary/10 p-2 rounded-lg">
-            <RotateCcw className="text-primary" size={20} />
+            <RotateCcw className="text-primary" size={30} />
           </div>
           <div>
             <h2 className="text-2xl font-bold text-primary">Order Again</h2>
@@ -110,7 +147,7 @@ export default function HomeOrderAgain() {
           </div>
         </div>
         <Link
-          href="#"
+          href="/orders"
           className="text-primary font-semibold flex items-center gap-1 hover:gap-2 transition-all text-sm border border-primary/30 px-3 py-1.5 rounded-full hover:bg-primary/5"
         >
           View Orders <ChevronRight size={16} />
@@ -119,40 +156,52 @@ export default function HomeOrderAgain() {
 
       {/* Slider — px-5 gives room for the nav buttons, no overflow-hidden here */}
       <div className="relative">
-        <button
-          className="order-again-prev absolute left-0 top-1/2 z-10 -translate-y-1/2 bg-white shadow-md rounded-full w-9 h-9 flex items-center justify-center hover:bg-gray-100 transition-colors"
-          aria-label="Previous"
-        >
-          <ChevronLeft size={18} />
-        </button>
-        <button
-          className="order-again-next absolute right-0 top-1/2 z-10 -translate-y-1/2 bg-white shadow-md rounded-full w-9 h-9 flex items-center justify-center hover:bg-gray-100 transition-colors"
-          aria-label="Next"
-        >
-          <ChevronRight size={18} />
-        </button>
+        {!loading && (
+          <>
+            <button
+              className="order-again-prev absolute left-0 top-1/2 z-10 -translate-y-1/2 bg-white shadow-md rounded-full w-9 h-9 flex items-center justify-center hover:bg-gray-100 transition-colors"
+              aria-label="Previous"
+            >
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              className="order-again-next absolute right-0 top-1/2 z-10 -translate-y-1/2 bg-white shadow-md rounded-full w-9 h-9 flex items-center justify-center hover:bg-gray-100 transition-colors"
+              aria-label="Next"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </>
+        )}
 
-        <Swiper
-          modules={[Navigation]}
-          navigation={{ prevEl: ".order-again-prev", nextEl: ".order-again-next" }}
-          spaceBetween={12}
-          slidesPerView={2}
-          observer
-          observeParents
-          watchOverflow
-          breakpoints={{
-            640: { slidesPerView: 3 },
-            768: { slidesPerView: 4 },
-            1224: { slidesPerView: 5 },
-            1400: { slidesPerView: 7 },
-          }}
-        >
-          {previousOrders.map((product) => (
-            <SwiperSlide key={product.id} className="h-auto">
-              <ProductCard product={product} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        {loading ? (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-3">
+            {[...Array(skeletonCount)].map((_, i) => (
+              <SkeletonCard key={i} />
+            ))}
+          </div>
+        ) : (
+          <Swiper
+            modules={[Navigation]}
+            navigation={{ prevEl: ".order-again-prev", nextEl: ".order-again-next" }}
+            spaceBetween={12}
+            slidesPerView={2}
+            observer
+            observeParents
+            watchOverflow
+            breakpoints={{
+              640: { slidesPerView: 3 },
+              768: { slidesPerView: 4 },
+              1224: { slidesPerView: 5 },
+              1400: { slidesPerView: 7 },
+            }}
+          >
+            {previousOrders.map((product) => (
+              <SwiperSlide key={product.id} className="h-auto">
+                <ProductCard product={product} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
       </div>
     </section>
   );

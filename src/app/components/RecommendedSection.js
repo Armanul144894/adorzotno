@@ -6,7 +6,7 @@ import ProductCard from "./ProductCard";
 import Link from "next/link";
 
 export default function RecommendedSection() {
-  const recommendedProducts = products.slice(4, 16);
+  const recommendedProducts = products.slice(2, 16);
 
   return (
     <div className="mb-8">
@@ -31,7 +31,7 @@ export default function RecommendedSection() {
           View all <ChevronRight size={16} />
         </Link>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-7 gap-4">
         {recommendedProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
