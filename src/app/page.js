@@ -11,6 +11,7 @@ import FAQSection from './components/FAQSection'
 import BrandSection from './components/BrandSection'
 import RecommendedSection from './components/RecommendedSection'
 import OccasionalSection from './components/OccasionalSection'
+import HomeOrderAgain from './components/HomeOrderAgain'
 
 export default function page() {
   return (
@@ -24,10 +25,10 @@ export default function page() {
         {/* Features */}
         <HomeFeatures />
 
-        <FlashSaleSection/>
-
         {/* Categories Section */}
         <HomeCategories />
+
+        <HomeOrderAgain/>
 
         <FlashDealSection/>
 

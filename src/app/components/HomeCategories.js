@@ -2,106 +2,135 @@
 
 import React from "react";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight, Zap } from "lucide-react";
-
+import Image from "next/image";
+import { ChevronLeft, ChevronRight, Flame, Zap } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-
 import "swiper/css";
 import "swiper/css/navigation";
 import allCategories from "../../../data/category";
 
-export default function HomeCategories() {
-  const categories = allCategories;
-  const slugify = (name) =>
-    name
-      .toLowerCase()
-      .replace(/&/g, "and")
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "");
+// ── slugify ──────────────────────────────────────────────────────────────────
+const slugify = (name) =>
+  name
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
 
+// ── CategoryCard ─────────────────────────────────────────────────────────────
+function CategoryCard({ cat }) {
+  return (
+    <Link
+      href={`/category/${slugify(cat.name)}`}
+      className="group relative block rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 h-40"
+    >
+      {/* Background image */}
+      <Image
+        src={cat.image}
+        alt={cat.name}
+        fill
+        sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 16vw"
+        className="object-cover group-hover:scale-110 transition-transform duration-500"
+      />
+
+      {/* Dark gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/40 to-black/20" />
+
+      {/* Color overlay — uses cat.color (e.g. "from-teal-600 to-teal-300") */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-t ${
+          cat.color ?? "from-teal-600 to-teal-300"
+        } opacity-55 group-hover:opacity-70 transition-opacity duration-300`}
+      />
+
+      {/* Label */}
+      <div className="absolute inset-0 flex flex-col items-center justify-end pb-4 text-white text-center px-2">
+        <span className="text-3xl drop-shadow-lg leading-none">
+          {cat.emoji ?? cat.icon}
+        </span>
+        <span className="text-sm font-bold mt-1.5 drop-shadow tracking-wide leading-tight">
+          {cat.name}
+        </span>
+        {/* Hover pill — slides up */}
+        <span className="mt-2 text-[10px] font-semibold bg-white/20 backdrop-blur-sm px-3 py-0.5 rounded-full opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+          Shop →
+        </span>
+      </div>
+    </Link>
+  );
+}
+
+// ── HomeCategories ────────────────────────────────────────────────────────────
+export default function HomeCategories() {
   return (
     <section className="w-full mb-8">
-      <div className="bg-gradient-to-r from-primary to-blue-500 rounded-t-lg p-4 text-white">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Zap className="text-yellow-300" size={32} />
-            <div>
-              <h2 className="text-2xl font-bold">Shop by Category</h2>
-            </div>
+      {/* Header */}
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2">
+          <div className="bg-gradient-to-r from-primary to-blue-500 p-2 rounded-lg">
+            <Flame className="text-white" size={24} />
           </div>
-          <Link
-            href="/category"
-            className="text-white font-semibold flex items-center gap-1 hover:gap-2 transition-all"
-          >
-            View All <ChevronRight size={20} />
-          </Link>
+          <div>
+            <h2 className="text-2xl font-bold text-primary">
+              Shop by Category
+            </h2>
+            <p className="text-sm text-gray-600">Find what you need fast</p>
+          </div>
         </div>
+        <Link
+          href="/category"
+          className="text-primary font-semibold flex items-center gap-1 hover:gap-2 transition-all text-sm border border-primary/30 px-3 py-1.5 rounded-full hover:bg-primary/5"
+        >
+          View All <ChevronRight size={16} />
+        </Link>
       </div>
 
-      {/* Slider Wrapper (IMPORTANT) */}
-      <div className="relative bg-white rounded-b-lg shadow-md p-6 w-full max-w-full overflow-hidden">
-        {/* Navigation buttons */}
+      {/* Slider */}
+      <div className="relative w-full max-w-full overflow-hidden">
         <button
-          className="cat-prev absolute left-0 top-1/2 z-10 -translate-y-1/2 bg-white shadow-md rounded-full w-9 h-9 flex items-center justify-center hover:bg-gray-100"
+          className="cat-prev absolute left-0 top-1/2 z-10 -translate-y-1/2 bg-white shadow-md rounded-full w-9 h-9 flex items-center justify-center hover:bg-gray-100 transition-colors"
           aria-label="Previous"
         >
           <ChevronLeft size={18} />
         </button>
-
         <button
-          className="cat-next absolute right-0 top-1/2 z-10 -translate-y-1/2 bg-white shadow-md rounded-full w-9 h-9 flex items-center justify-center hover:bg-gray-100"
+          className="cat-next absolute right-0 top-1/2 z-10 -translate-y-1/2 bg-white shadow-md rounded-full w-9 h-9 flex items-center justify-center hover:bg-gray-100 transition-colors"
           aria-label="Next"
         >
           <ChevronRight size={18} />
         </button>
+
         <Swiper
           modules={[Navigation]}
-          navigation={{
-            prevEl: ".cat-prev",
-            nextEl: ".cat-next",
-          }}
-          spaceBetween={16}
+          navigation={{ prevEl: ".cat-prev", nextEl: ".cat-next" }}
+          spaceBetween={12}
           slidesPerView={2}
           observer
           observeParents
-          watchOverflow={true}
+          watchOverflow
           breakpoints={{
             640: { slidesPerView: 3 },
-            768: { slidesPerView: 4 },
+            768: { slidesPerView: 5 },
             1224: { slidesPerView: 6 },
-            1400: { slidesPerView: 7 },
+            1320: { slidesPerView: 7 },
+            1500: { slidesPerView: 8 },
           }}
-          className="!pb-4"
+          className="!pb-2"
         >
-          {categories.map((cat, index) => (
-            <SwiperSlide key={index} className="h-auto">
-              <Link href={`/category/${slugify(cat.name)}`} className="w-full">
-                <div className="w-full h-full bg-white border border-red-100 rounded-lg shadow-sm hover:shadow-xl transition-shadow cursor-pointer group">
-                  <div
-                    className={`bg-teal-100 rounded-lg p-4 flex items-center justify-center h-32`}
-                  >
-                    <div className="text-6xl ">{cat?.icon}</div>
-                  </div>
-                  <div className="p-3 text-center">
-                    <h3 className="text-sm font-semibold text-gray-800">
-                      {cat.name}
-                    </h3>
-                  </div>
-                </div>
-              </Link>
+          {allCategories.map((cat, index) => (
+            <SwiperSlide key={index}>
+              <CategoryCard cat={cat} />
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
 
-      {/* Styles */}
       <style jsx global>{`
         .swiper-slide {
           display: flex;
           height: auto;
         }
-
         .swiper-slide > * {
           width: 100%;
         }

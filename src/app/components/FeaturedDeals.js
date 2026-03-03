@@ -25,14 +25,16 @@ export default function FeaturedDeals() {
               </p>
             </div>
           </div>
-          <button className="text-teal-600 font-semibold flex items-center gap-1 hover:gap-2 transition-all">
-            View All <ChevronRight size={20} />
-          </button>
+          <Link
+            href="#"
+            className="text-primary font-semibold flex items-center gap-1 hover:gap-2 transition-all text-sm border border-primary/30 px-3 py-1.5 rounded-full hover:bg-primary/5"
+          >
+            View Orders <ChevronRight size={16} />
+          </Link>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-7 gap-4">
           {featuredDeals.map((deal) => (
-            
-              <ProductCard key={deal.id} product={deal}/>
+            <ProductCard key={deal.id} product={deal} />
           ))}
         </div>
       </div>

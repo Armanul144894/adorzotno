@@ -1,23 +1,20 @@
-
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
-import React, { useState } from 'react';
-import ProductCard from './ProductCard';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useState } from "react";
+import ProductCard from "./ProductCard";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import Link from 'next/link';
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import Link from "next/link";
 
 export default function CategoryProduct({ category, products }) {
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
-
-
 
   const slugify = (text) =>
     text
@@ -26,13 +23,11 @@ export default function CategoryProduct({ category, products }) {
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/(^-|-$)/g, "");
 
-
   const handleSlideChange = (swiper) => {
     setIsBeginning(swiper.isBeginning);
     setIsEnd(swiper.isEnd);
     setIsLocked(swiper.isLocked); // ✅ key line
   };
-
 
   const handlePrev = () => {
     if (swiperInstance) {
@@ -46,42 +41,42 @@ export default function CategoryProduct({ category, products }) {
     }
   };
 
-
-
   return (
     <div className={`mb-8`}>
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl md:text-2xl font-bold text-primary">{category}</h2>
-        <Link href={`/category/${category.toLowerCase()
-          .replace(/&/g, 'and')
-          .replace(/[^a-z0-9]+/g, '-')
-          .replace(/(^-|-$)/g, '')}`}>
-          <button className="flex items-center gap-2 text-primary hover:text-primary transition-colors font-bold">
-            View All
-            <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
-          </button>
+        <h2 className="text-xl md:text-2xl font-bold text-primary">
+          {category}
+        </h2>
+        <Link
+          href={`/category/${category
+            .toLowerCase()
+            .replace(/&/g, "and")
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/(^-|-$)/g, "")}`}
+        >
+          <div className="text-primary font-semibold flex items-center gap-1 hover:gap-2 transition-all text-sm border border-primary/30 px-3 py-1.5 rounded-full hover:bg-primary/5">
+            View all <ChevronRight size={16} />
+          </div>
         </Link>
-
       </div>
 
       <div className="relative">
-
         {/* Previous Button */}
         {!isLocked && (
           <button
             onClick={handlePrev}
             disabled={isBeginning}
-            className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg rounded-full p-2 md:p-3 transition-all duration-300 ${isBeginning
-              ? 'opacity-30 cursor-not-allowed'
-              : 'opacity-100 hover:bg-emerald-50 hover:shadow-xl active:scale-95'
-              }`}
+            className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg rounded-full p-2 md:p-3 transition-all duration-300 ${
+              isBeginning
+                ? "opacity-30 cursor-not-allowed"
+                : "opacity-100 hover:bg-emerald-50 hover:shadow-xl active:scale-95"
+            }`}
             aria-label="Previous products"
           >
             <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-gray-700" />
           </button>
         )}
-
 
         {/* Swiper Container */}
         <Swiper
@@ -95,7 +90,6 @@ export default function CategoryProduct({ category, products }) {
           onSlideChange={handleSlideChange}
           watchOverflow={true}
           speed={1200}
-
           breakpoints={{
             // Mobile - Medium (375px)
             375: {
@@ -157,33 +151,35 @@ export default function CategoryProduct({ category, products }) {
           <button
             onClick={handleNext}
             disabled={isEnd}
-            className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg rounded-full p-2 md:p-3 transition-all duration-300 ${isEnd
-              ? 'opacity-30 cursor-not-allowed'
-              : 'opacity-100 hover:bg-emerald-50 hover:shadow-xl active:scale-95'
-              }`}
+            className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg rounded-full p-2 md:p-3 transition-all duration-300 ${
+              isEnd
+                ? "opacity-30 cursor-not-allowed"
+                : "opacity-100 hover:bg-emerald-50 hover:shadow-xl active:scale-95"
+            }`}
             aria-label="Next products"
           >
             <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-gray-700" />
           </button>
         )}
-
       </div>
 
       {/* Mobile Navigation Dots */}
       <div className="flex md:hidden justify-center gap-2 mt-4">
-        {Array.from({ length: Math.ceil(products.length / 2) }).map((_, index) => (
-          <button
-            key={index}
-            onClick={() => swiperInstance?.slideTo(index * 2)}
-            className={`h-2 rounded-full transition-all duration-300 ${Math.floor((swiperInstance?.activeIndex || 0) / 2) === index
-              ? 'w-8 bg-primary'
-              : 'w-2 bg-gray-300 hover:bg-gray-400'
+        {Array.from({ length: Math.ceil(products.length / 2) }).map(
+          (_, index) => (
+            <button
+              key={index}
+              onClick={() => swiperInstance?.slideTo(index * 2)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                Math.floor((swiperInstance?.activeIndex || 0) / 2) === index
+                  ? "w-8 bg-primary"
+                  : "w-2 bg-gray-300 hover:bg-gray-400"
               }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ),
+        )}
       </div>
-
 
       {/* Styles */}
       <style jsx global>{`
@@ -191,7 +187,7 @@ export default function CategoryProduct({ category, products }) {
           display: flex;
           height: auto;
         }
-        
+
         .swiper-slide > * {
           width: 100%;
         }

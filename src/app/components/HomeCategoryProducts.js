@@ -15,11 +15,11 @@ export default function HomeCategoryProducts() {
   }, {});
 
   const banners = [
-    { id: 1, image: "/images/banner/banner22.jpg", title: "Summer Health Sale", link: "/deals" },
-    { id: 2, image: "/images/banner/banner222.jpg", title: "Wellness Essentials", link: "/wellness" },
-    { id: 3, image: "/images/banner/banner33.jpg", title: "Free Home Delivery", link: "/shipping" },
-    { id: 4, image: "/images/banner/banner444.jpg", title: "Special Offers", link: "/offers" },
-    { id: 5, image: "/images/banner/banner44.jpg", title: "New Arrivals", link: "/new" },
+    { id: 1, image: "/images/banner/banner22.jpg", title: "Summer Health Sale", link: "#" },
+    { id: 2, image: "/images/banner/banner222.jpg", title: "Wellness Essentials", link: "#" },
+    { id: 3, image: "/images/banner/banner33.jpg", title: "Free Home Delivery", link: "#" },
+    { id: 4, image: "/images/banner/banner444.jpg", title: "Special Offers", link: "#" },
+    { id: 5, image: "/images/banner/banner11.jpg", title: "New Arrivals", link: "#" },
   ];
 
   const categoriesWithBanners = [];
