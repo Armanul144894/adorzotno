@@ -62,7 +62,7 @@ export default function HomeCategoryProducts() {
         width={0}
         height={0}
         sizes={sizes}
-        className="w-full h-full transition-transform duration-500 group-hover:scale-105"
+        className="w-full h-full object-fill transition-transform duration-500 group-hover:scale-105"
       />
     </Link>
   );
@@ -90,10 +90,12 @@ export default function HomeCategoryProducts() {
         // Layout B: small + small + wide  (like Image 2)
         if (item.type === "banner-b") {
           return (
-            <div key={`banner-b-${index}`} className="mb-8 grid gap-3" style={{ gridTemplateColumns: '1fr 1fr 2fr' }}>
-              <BannerImg banner={item.b1} sizes="25vw" />
-              <BannerImg banner={item.b2} sizes="25vw" />
+            <div key={`banner-b-${index}`} className="mb-8 grid gap-3" style={{ gridTemplateColumns: '2fr 1fr' }}>
               <BannerImg banner={item.b3} sizes="50vw" />
+              <div className="flex flex-col gap-3">
+                <BannerImg banner={item.b1} sizes="25vw" />
+                <BannerImg banner={item.b2} sizes="25vw" />
+              </div>
             </div>
           );
         }
