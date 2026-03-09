@@ -272,7 +272,7 @@ export default function BrandProductsPage() {
           <div className="flex-1">
             {/* Toolbar */}
             <div className="bg-white rounded-lg shadow-md p-4 mb-6">
-              <div className="flex items-center justify-between gap-4">
+              <div className="flex flex-wrap items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
                   <h2 className="text-lg font-bold text-gray-800">
                     {sortedProducts.length} Products
@@ -364,7 +364,7 @@ export default function BrandProductsPage() {
               <div
                 className={
                   viewMode === 'grid'
-                    ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'
+                    ? 'grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'
                     : 'space-y-4'
                 }
               >

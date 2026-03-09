@@ -23,14 +23,14 @@ export default function HomeCategoryProducts() {
   ];
 
   const categoriesWithBanners = [];
-  const categoryEntries = Object.entries(productsByCategory);
+  const categoryEntries = Object.entries(productsByCategory).slice(0,8);
   let bannerIndex = 0;
   let layoutToggle = 0;
 
   categoryEntries.forEach(([category, prods], index) => {
     categoriesWithBanners.push({ type: "category", category, products: prods });
 
-    if ((index + 1) % 4 === 0 && index !== categoryEntries.length - 1) {
+    if ((index + 1) % 3 === 0 && index !== categoryEntries.length - 1) {
       if (layoutToggle % 2 === 0) {
         // Layout A: 2 small stacked left + 1 large right
         categoriesWithBanners.push({
