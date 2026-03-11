@@ -82,7 +82,7 @@ export default function CategoryProduct({ category, products }) {
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={14}
-          slidesPerView={1}
+          slidesPerView={2}
           onSwiper={(swiper) => {
             setSwiperInstance(swiper);
             setIsLocked(swiper.isLocked); // ✅ initial check
@@ -93,22 +93,22 @@ export default function CategoryProduct({ category, products }) {
           breakpoints={{
             // Mobile - Medium (375px)
             375: {
-              slidesPerView: 1,
+              slidesPerView: 2,
               spaceBetween: 16,
             },
             // Mobile - Large (425px)
             425: {
-              slidesPerView: 1.2,
+              slidesPerView: 2,
               spaceBetween: 16,
             },
             // Mobile - Large (480px)
             480: {
-              slidesPerView: 1.6,
+              slidesPerView: 2.2,
               spaceBetween: 16,
             },
             // Tablet - Medium (560px)
             560: {
-              slidesPerView: 2,
+              slidesPerView: 2.4,
               spaceBetween: 16,
             },
             // Tablet - Medium (768px)

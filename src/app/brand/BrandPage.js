@@ -349,7 +349,7 @@ export default function BrandPage() {
       <div className="container mx-auto py-8">
         {/* Toolbar */}
         <div className="bg-white rounded-xl shadow-md p-4 mb-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex flex-wrap flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-4 w-full md:w-auto">
               <span className="text-gray-700 font-semibold">
                 {sortedBrands.length} Brands
@@ -424,7 +424,7 @@ export default function BrandPage() {
 
         {/* Grid View */}
         {viewMode === 'grid' && sortedBrands.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-4">
             {sortedBrands.map((brand) => (
               <Link key={brand.id} href={`/brand/${brand.slug}`}>
                 <div className={`group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer border-2 border-transparent hover:border-primary/20 h-full flex flex-col`}>
