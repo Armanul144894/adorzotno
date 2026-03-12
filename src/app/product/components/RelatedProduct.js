@@ -41,21 +41,21 @@ export default function RelatedProduct({ relatedProducts }) {
             nextEl: ".cat-next",
           }}
           spaceBetween={16}
-          slidesPerView={1}
+          slidesPerView={2}
           speed={2000}
           observer
           observeParents
           watchOverflow
           breakpoints={{
-            380: { slidesPerView: 1.5 },
-            540: { slidesPerView: 2 },
-            640: { slidesPerView: 2 },
-            768: { slidesPerView: 3 },
-            1380: { slidesPerView: 4 },
+            380: { slidesPerView: 2 },
+            540: { slidesPerView: 2.5 },
+            640: { slidesPerView: 3 },
+            768: { slidesPerView: 4 },
+            1380: { slidesPerView: 5 },
             // Desktop (1536px)
             1536: {
-              slidesPerView: 5.5,
-              spaceBetween: 24,
+              slidesPerView: 7.5,
+              spaceBetween: 10,
             },
           }}
           className="w-full max-w-full"
