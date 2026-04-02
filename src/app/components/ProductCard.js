@@ -35,7 +35,7 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <div className="bg-white h-full rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden group flex-shrink-0">
+    <div className="bg-white h-full rounded-lg hover:shadow-lg transition-shadow duration-300 overflow-hidden group flex-shrink-0">
       <Link
         href={`/product/${product.name
           .toLowerCase()
@@ -52,10 +52,10 @@ export default function ProductCard({ product }) {
               sizes="(max-width: 640px) 50vw, 25vw"
               className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
-          </div>
+          </div> 
 
           <div className="p-4">
-            <h3 className="text-sm font-semibold text-gray-800 mb-2 line-clamp-2">
+            <h3 className="text-sm font-semibold text-gray-800 mb-2 line-clamp-2 h-10">
               {product.name}
             </h3>
 

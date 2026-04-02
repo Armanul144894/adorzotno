@@ -54,12 +54,14 @@ function CategoryCard({ cat }) {
         } opacity-55 group-hover:opacity-70 transition-opacity duration-300`}
       />
       <div className="absolute inset-0 flex flex-col items-center justify-end pb-4 text-white text-center px-2">
-        <span className="text-3xl drop-shadow-lg leading-none">
-          {cat.emoji ?? cat.icon}
-        </span>
-        <span className="text-sm font-bold mt-1.5 drop-shadow tracking-wide leading-tight">
-          {cat.name}
-        </span>
+        <div className="-mb-8 group-hover:mb-0 transition-all duration-300 flex flex-col items-center">
+          <span className="text-3xl drop-shadow-lg leading-none">
+            {cat.emoji ?? cat.icon}
+          </span>
+          <span className="text-sm font-bold mt-1.5 drop-shadow tracking-wide leading-tight">
+            {cat.name}
+          </span>
+        </div>
         <span className="mt-2 text-[10px] font-semibold bg-white/20 backdrop-blur-sm px-3 py-0.5 rounded-full opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
           Shop →
         </span>
@@ -89,7 +91,9 @@ export default function HomeCategories() {
             <Flame className="text-white" size={24} />
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-primary">Shop by Category</h2>
+            <h2 className="text-2xl font-bold text-primary">
+              Shop by Category
+            </h2>
             <p className="text-sm text-gray-600">Find what you need fast</p>
           </div>
         </div>

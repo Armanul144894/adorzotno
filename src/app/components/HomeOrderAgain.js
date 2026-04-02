@@ -60,7 +60,7 @@ function ProductCard({ product }) {
   };
 
   return (
-    <div className="bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col overflow-hidden h-full">
+    <div className="bg-white rounded-xl hover:shadow-lg transition-all duration-300 group flex flex-col overflow-hidden h-full">
       <Link href={`/product/${product.name.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`} className="flex flex-col flex-1">
         {/* Image */}
         <div className="relative h-40 bg-gray-50 overflow-hidden">
@@ -84,7 +84,7 @@ function ProductCard({ product }) {
         {/* Info */}
         <div className="p-3 flex flex-col flex-1 gap-1">
           <p className="text-[10px] text-gray-400 font-medium uppercase tracking-wide">{product.brand}</p>
-          <h3 className="text-sm font-semibold text-gray-800 leading-tight line-clamp-2">{product.name}</h3>
+          <h3 className="text-sm font-semibold text-gray-800 leading-tight line-clamp-2 h-10">{product.name}</h3>
           <p className="text-[10px] text-gray-400">{product.quantity}</p>
 
           <div className="flex gap-1 mt-0.5">

@@ -8,11 +8,11 @@ export default function SideBar() {
     const categories = allCategories;
 
     return (
-        <div className='lg:sticky top-24 rounded-2xl max-h-[90vh] overflow-x-auto hidden lg:block'>
+        <div className='lg:sticky top-24 rounded-2xl max-h-[90vh] overflow-x-auto hidden lg:block [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-gray-300'>
             <aside
                 className={`-translate-x-full lg:translate-x-0 lg:relative inset-y-0 lg:bg-transparent z-40 w-60 `}
             >
-                <div className="bg-gray-50 rounded-lg shadow-md p-4 lg:sticky lg:top-24">
+                <div className="bg-white rounded-lg shadow-md p-4 lg:sticky lg:top-24">
                     
                     <h2 className="text-xl font-semibold text-gray-800 mb-4">Categories</h2>
                     <div className="space-y-2">

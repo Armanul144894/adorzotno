@@ -16,7 +16,7 @@ export default function HeaderSearch() {
           <div className="relative">
             <button
               onClick={() => setOpen(!open)}
-              className="flex items-center gap-1 px-4 py-4 bg-blue-50 border-2 border-red-500 rounded-l-lg text-sm font-medium"
+              className="flex items-center gap-1 px-4 py-4 bg-blue-50 border-2 border-red-600 rounded-l-lg text-sm font-medium"
             >
               {selectedCategory}
               <ChevronDown size={16} />
