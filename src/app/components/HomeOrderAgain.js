@@ -196,7 +196,7 @@ export default function HomeOrderAgain() {
             }}
           >
             {previousOrders.map((product) => (
-              <SwiperSlide key={product.id} className="h-auto">
+              <SwiperSlide key={product.id} className="h-auto py-4">
                 <ProductCard product={product} />
               </SwiperSlide>
             ))}
