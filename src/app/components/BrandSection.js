@@ -211,12 +211,12 @@ const brands = [
               spaceBetween: 24,
             },
           }}
-          className="!pb-2"
+          className="!pb-6"
         >
           {brands.map((brand) => (
             <SwiperSlide key={brand.id}>
               <Link href={`/brand/${brand.slug}`}>
-                <div className={`group cursor-pointer bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden h-full border-2 border-transparent hover:border-primary/20`}>
+                <div className={`group cursor-pointer bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden h-full border-2 border-transparent hover:border-primary/20`}>
                   {/* Logo Container */}
                   <div className={`${brand.bgColor} ${brand.hoverColor} p-6 flex items-center justify-center transition-all duration-300 relative overflow-hidden`}>
                     {/* Background Pattern */}

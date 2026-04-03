@@ -1,5 +1,5 @@
-import { Award, Clock, Shield, Truck } from 'lucide-react'
-import React from 'react'
+import { Award, Clock, Shield, Truck } from "lucide-react";
+import React from "react";
 
 export default function HomeFeatures() {
   const features = [
@@ -27,15 +27,16 @@ export default function HomeFeatures() {
       title: "Quality Products",
       desc: "Certified & tested",
     },
-  ]
+  ];
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
       {features.map((f, i) => (
-        <div key={i} className="bg-white p-4 rounded-lg shadow-sm flex items-center gap-3">
-          <div className={`${f.bg} p-3 rounded-full`}>
-            {f.icon}
-          </div>
+        <div
+          key={i}
+          className="bg-white p-4 rounded-lg shadow-sm border border-blue-100 flex items-center gap-3"
+        >
+          <div className={`${f.bg} p-3 rounded-full`}>{f.icon}</div>
           <div>
             <h3 className="font-semibold text-primary">{f.title}</h3>
             <p className="text-xs text-gray-400">{f.desc}</p>
@@ -43,5 +44,5 @@ export default function HomeFeatures() {
         </div>
       ))}
     </div>
-  )
+  );
 }

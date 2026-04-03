@@ -16,7 +16,7 @@ export default function HeaderSearch() {
           <div className="relative">
             <button
               onClick={() => setOpen(!open)}
-              className="flex items-center gap-1 px-4 py-4 bg-blue-50 border-2 border-red-600 rounded-l-lg text-sm font-medium"
+              className="flex items-center gap-1 px-4 py-4 shadow-sm bg-blue-50 border-2 border-red-600/40 rounded-l-lg text-sm font-medium"
             >
               {selectedCategory}
               <ChevronDown size={16} />
@@ -44,7 +44,7 @@ export default function HeaderSearch() {
           <input
             type="text"
             placeholder="Search for products..."
-            className="w-full px-4 py-3 bg-blue-100 border-2 border-x border-l-0  border-primary focus:outline-none"
+            className="w-full px-4 py-3 shadow-sm bg-blue-100 border-2 border-x border-l-0  border-primary/40 focus:outline-none"
           />
 
           {/* Search Button */}
