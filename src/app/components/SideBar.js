@@ -26,11 +26,11 @@ export default function SideBar() {
                   .replace(/(^-|-$)/g, "")}`}
                 className="w-full cursor-pointer flex items-center justify-between py-1 pl-5 pr-3 hover:bg-gradient-to-r hover:from-blue-100 hover:to-blue-50 transition-colors group"
               >
-                <div className="flex items-center gap-3">
-                  <div className="w-8 mx-auto">
-                    <span className="text-md">{category.icon}</span>
+                <div className="flex items-center gap-1">
+                  <div className="w-6 h-6 mx-auto">
+                    <span className="text-md w-6 h-6 flex items-center justify-center">{category.icon}</span>
                   </div>
-                  <span className="text-gray-700 group-hover:text-primary text-sm ">
+                  <span className="text-gray-700 group-hover:text-primary text-sm">
                     {category.name}
                   </span>
                 </div>
