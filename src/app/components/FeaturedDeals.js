@@ -32,7 +32,7 @@ export default function FeaturedDeals() {
             View Orders <ChevronRight size={16} />
           </Link>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-7 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-8 gap-4">
           {featuredDeals.map((deal) => (
             <ProductCard key={deal.id} product={deal} />
           ))}

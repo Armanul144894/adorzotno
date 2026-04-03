@@ -48,20 +48,36 @@ function ProductCard({ product }) {
   const inCart = quantity > 0;
 
   const discount = Math.round(
-    ((product.originalPrice - product.price) / product.originalPrice) * 100
+    ((product.originalPrice - product.price) / product.originalPrice) * 100,
   );
 
-  const handleAdd = (e) => { e.preventDefault(); e.stopPropagation(); addToCart(product); };
-  const handleIncrease = (e) => { e.preventDefault(); e.stopPropagation(); updateQuantity(product.id, quantity + 1); };
+  const handleAdd = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart(product);
+  };
+  const handleIncrease = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    updateQuantity(product.id, quantity + 1);
+  };
   const handleDecrease = (e) => {
-    e.preventDefault(); e.stopPropagation();
+    e.preventDefault();
+    e.stopPropagation();
     if (quantity === 1) removeItem(product.id);
     else updateQuantity(product.id, quantity - 1);
   };
 
   return (
-    <div className="bg-white rounded-xl hover:shadow-lg transition-all duration-300 group flex flex-col overflow-hidden h-full">
-      <Link href={`/product/${product.name.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`} className="flex flex-col flex-1">
+    <div className="bg-white border border-gray-100 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col overflow-hidden h-full">
+      <Link
+        href={`/product/${product.name
+          .toLowerCase()
+          .replace(/&/g, "and")
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/(^-|-$)/g, "")}`}
+        className="flex flex-col flex-1"
+      >
         {/* Image */}
         <div className="relative h-40 bg-gray-50 overflow-hidden">
           <Image
@@ -83,36 +99,62 @@ function ProductCard({ product }) {
 
         {/* Info */}
         <div className="p-3 flex flex-col flex-1 gap-1">
-          <p className="text-[10px] text-gray-400 font-medium uppercase tracking-wide">{product.brand}</p>
-          <h3 className="text-sm font-semibold text-gray-800 leading-tight line-clamp-2 h-10">{product.name}</h3>
+          <p className="text-[10px] text-gray-400 font-medium uppercase tracking-wide">
+            {product.brand}
+          </p>
+          <h3 className="text-sm font-semibold text-gray-800 leading-tight line-clamp-2 h-10">
+            {product.name}
+          </h3>
           <p className="text-[10px] text-gray-400">{product.quantity}</p>
 
           <div className="flex gap-1 mt-0.5">
             {[...Array(5)].map((_, i) => (
-              <Star key={i} size={11}
-                className={i < Math.floor(product.rating) ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}
+              <Star
+                key={i}
+                size={11}
+                className={
+                  i < Math.floor(product.rating)
+                    ? "fill-yellow-400 text-yellow-400"
+                    : "text-gray-300"
+                }
               />
             ))}
           </div>
 
           <div className="flex items-center justify-between mt-2">
             <div className="flex items-center gap-1.5">
-              <span className="text-base font-bold text-primary">${product.price.toFixed(2)}</span>
-              <span className="text-xs text-gray-400 line-through">${product.originalPrice.toFixed(2)}</span>
+              <span className="text-base font-bold text-primary">
+                ${product.price.toFixed(2)}
+              </span>
+              <span className="text-xs text-gray-400 line-through">
+                ${product.originalPrice.toFixed(2)}
+              </span>
             </div>
 
             {inCart ? (
               <div className="flex items-center gap-1 bg-primary rounded-lg overflow-hidden">
-                <button onClick={handleDecrease} className="text-white px-2.5 py-1.5 hover:bg-white/20 transition-colors font-bold text-base leading-none">−</button>
-                <span className="text-white font-semibold text-sm min-w-[18px] text-center">{quantity}</span>
-                <button onClick={handleIncrease} className="text-white px-2.5 py-1.5 hover:bg-white/20 transition-colors font-bold text-base leading-none">+</button>
+                <button
+                  onClick={handleDecrease}
+                  className="text-white px-2.5 py-1.5 hover:bg-white/20 transition-colors font-bold text-base leading-none"
+                >
+                  −
+                </button>
+                <span className="text-white font-semibold text-sm min-w-[18px] text-center">
+                  {quantity}
+                </span>
+                <button
+                  onClick={handleIncrease}
+                  className="text-white px-2.5 py-1.5 hover:bg-white/20 transition-colors font-bold text-base leading-none"
+                >
+                  +
+                </button>
               </div>
             ) : (
               <button
                 onClick={handleAdd}
-                className="w-9 h-9 flex items-center justify-center bg-primary text-white rounded-lg font-bold text-xl hover:bg-primary/90 transition-colors"
+                className={`flex items-center gap-1 bg-[#1e7aac25] hover:bg-primary text-primary hover:text-white border border-primary rounded-lg font-semibold transition-all duration-300 overflow-hidden px-4 py-2 w-10 h-10 justify-center`}
               >
-                +
+                <span className="text-2xl leading-none font-medium">+</span>
               </button>
             )}
           </div>
@@ -174,7 +216,7 @@ export default function HomeOrderAgain() {
         )}
 
         {loading ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 2xl:grid-cols-8 gap-3">
             {[...Array(skeletonCount)].map((_, i) => (
               <SkeletonCard key={i} />
             ))}
@@ -182,7 +224,10 @@ export default function HomeOrderAgain() {
         ) : (
           <Swiper
             modules={[Navigation]}
-            navigation={{ prevEl: ".order-again-prev", nextEl: ".order-again-next" }}
+            navigation={{
+              prevEl: ".order-again-prev",
+              nextEl: ".order-again-next",
+            }}
             spaceBetween={12}
             slidesPerView={2}
             observer
@@ -192,7 +237,7 @@ export default function HomeOrderAgain() {
               640: { slidesPerView: 3 },
               768: { slidesPerView: 4 },
               1224: { slidesPerView: 5 },
-              1400: { slidesPerView: 7 },
+              1400: { slidesPerView: 8 },
             }}
           >
             {previousOrders.map((product) => (

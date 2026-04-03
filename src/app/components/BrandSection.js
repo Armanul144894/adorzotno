@@ -207,8 +207,8 @@ const brands = [
               spaceBetween: 20,
             },
             1536: {
-              slidesPerView: 7,
-              spaceBetween: 24,
+              slidesPerView: 8,
+              spaceBetween: 20,
             },
           }}
           className="!pb-6"

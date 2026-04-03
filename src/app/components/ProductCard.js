@@ -35,7 +35,7 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <div className="bg-white h-full rounded-lg hover:shadow-lg transition-shadow duration-300 overflow-hidden group flex-shrink-0">
+    <div className="bg-white h-full border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden group flex-shrink-0">
       <Link
         href={`/product/${product.name
           .toLowerCase()
@@ -52,20 +52,20 @@ export default function ProductCard({ product }) {
               sizes="(max-width: 640px) 50vw, 25vw"
               className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
-          </div> 
+          </div>
 
           <div className="p-4">
             <h3 className="text-sm font-semibold text-gray-800 mb-2 line-clamp-2 h-10">
               {product.name}
             </h3>
 
-            <div className="flex flex-wrap justify-between items-center gap-3">
-              <div>
+            <div className="flex flex-wrap justify-between items-end gap-3">
+              <div className="space-y-1">
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      size={14}
+                      size={16}
                       className={
                         i < Math.floor(product.rating)
                           ? "fill-yellow-400 text-yellow-400"
@@ -74,11 +74,11 @@ export default function ProductCard({ product }) {
                     />
                   ))}
                 </div>
-                <div className="flex gap-2">
-                  <span className="font-bold">${product.price}</span>
+                <div className="flex flex-col">
                   <span className="line-through text-gray-400">
                     ${product.originalPrice}
                   </span>
+                  <span className="font-bold">${product.price}</span>
                 </div>
               </div>
 
@@ -112,14 +112,9 @@ export default function ProductCard({ product }) {
                   {/* Collapsed: just the + icon */}
                   <button
                     onClick={handleAdd}
-                    className={`
-                                            flex items-center gap-1 bg-primary text-white rounded-lg font-semibold
-                                            transition-all duration-300 overflow-hidden
-                                             px-4 py-2 w-10 h-10 justify-center
-                                            }
-                                        `}
+                    className={`flex items-center gap-1 bg-[#1e7aac25] hover:bg-primary text-primary hover:text-white border border-primary rounded-lg font-semibold transition-all duration-300 overflow-hidden px-4 py-2 w-10 h-10 justify-center`}
                   >
-                    <span className="text-xl leading-none font-bold">+</span>
+                    <span className="text-2xl leading-none font-medium">+</span>
                   </button>
                 </div>
               )}

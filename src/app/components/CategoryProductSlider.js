@@ -133,7 +133,7 @@ export default function CategoryProduct({ category, products }) {
             },
             // Desktop (1536px)
             1536: {
-              slidesPerView: 7,
+              slidesPerView: 8,
               spaceBetween: 16,
             },
           }}

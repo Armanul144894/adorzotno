@@ -1,8 +1,8 @@
-'use client';
-import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react'
+"use client";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 
@@ -10,8 +10,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 export default function RelatedProduct({ relatedProducts }) {
-
-
   return (
     <div className="w-full py-12">
       <h2 className="text-2xl font-bold text-gray-800 mb-6">
@@ -29,9 +27,9 @@ export default function RelatedProduct({ relatedProducts }) {
         </button>
 
         <button
-          className="cat-next absolute right-0 top-1/2 z-10 -translate-y-1/2 bg-white shadow-md rounded-full w-9 h-9 flex items-center justify-center hover:bg-gray-100"
+          className="cat-next absolute right-0 top-1/2 z-10 -translate-y-1/2 bg-blue-50 shadow-md rounded-full w-9 h-9 flex items-center justify-center hover:bg-blue-100"
           aria-label="Next"
-        >
+        > 
           <ChevronRight size={18} />
         </button>
         <Swiper
@@ -40,7 +38,7 @@ export default function RelatedProduct({ relatedProducts }) {
             prevEl: ".cat-prev",
             nextEl: ".cat-next",
           }}
-          spaceBetween={16}
+          spaceBetween={14}
           slidesPerView={2}
           speed={2000}
           observer
@@ -61,11 +59,17 @@ export default function RelatedProduct({ relatedProducts }) {
           className="w-full max-w-full"
         >
           {relatedProducts?.map((item) => (
-            <SwiperSlide key={item?.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer">
-              <Link href={`/product/${item?.name.toLowerCase()
-                .replace(/&/g, 'and')
-                .replace(/[^a-z0-9]+/g, '-')
-                .replace(/(^-|-$)/g, '')}`}>
+            <SwiperSlide
+              key={item?.id}
+              className="bg-white border border-gray-50 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow cursor-pointer my-6"
+            >
+              <Link
+                href={`/product/${item?.name
+                  .toLowerCase()
+                  .replace(/&/g, "and")
+                  .replace(/[^a-z0-9]+/g, "-")
+                  .replace(/(^-|-$)/g, "")}`}
+              >
                 <div className="relative">
                   <Image
                     src={item?.images[0]}
@@ -84,17 +88,18 @@ export default function RelatedProduct({ relatedProducts }) {
                   <h3 className="font-semibold text-gray-800 mb-4">
                     {item?.name}
                   </h3>
-                  <div className='flex flex-wrap justify-between items-center gap-5 w-full'>
+                  <div className="flex flex-wrap justify-between items-center gap-5 w-full">
                     <div>
                       <div className="flex items-center gap-1 mb-2">
                         {[...Array(5)].map((_, i) => (
                           <Star
                             key={i}
                             size={14}
-                            className={`${i < Math.floor(item?.rating)
-                              ? "fill-yellow-400 text-yellow-400"
-                              : "text-gray-300"
-                              }`}
+                            className={`${
+                              i < Math.floor(item?.rating)
+                                ? "fill-yellow-400 text-yellow-400"
+                                : "text-gray-300"
+                            }`}
                           />
                         ))}
                       </div>
@@ -116,7 +121,7 @@ export default function RelatedProduct({ relatedProducts }) {
             </SwiperSlide>
           ))}
         </Swiper>
-      </div >
-    </div >
+      </div>
+    </div>
   );
-};
+}
