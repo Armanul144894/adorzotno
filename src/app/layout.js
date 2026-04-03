@@ -40,13 +40,13 @@ export default function RootLayout({ children }) {
         <CartProvider>
           <Header />
           <CartOffcanvas />
-          <div className="container-fluid max-w-[1920] mx-auto py-2 relative">
+          <div className="container-fluid max-w-[1920] mx-auto relative">
             <div className="flex lg:gap-0 items-start">
               {/* Sidebar - LEFT SIDE ON DESKTOP */}
               <SideBar />
 
               {/* Main Content */}
-              <main className="flex-1 min-w-0 relative overflow-x-hidden px-4 py-4">
+              <main className="flex-1 min-w-0 relative overflow-x-hidden px-4 py-6 border-l border-blue-50">
                 {children}
               </main>
             </div>
