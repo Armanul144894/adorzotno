@@ -12,19 +12,13 @@ export default function FeaturedDeals() {
       {/* Featured Deals */}
       <div className="mb-10 rounded">
         <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-3">
-            <div className="bg-gradient-to-r from-primary to-blue-500 p-2 rounded-lg">
-              <Zap className="text-white" size={28} />
-            </div>
-            <div>
-              <h2 className="text-2xl font-bold text-primary">
-                Featured Deals
-              </h2>
-              <p className="text-sm text-gray-600">
-                Best deals of the day - Do not miss out!
-              </p>
-            </div>
+          <div className="flex items-center gap-2">
+            <h2 className="text-xl md:text-2xl font-semibold">
+              Featured Deals
+            </h2>
+            <Zap className="text-orange-500" size={24} />
           </div>
+
           <Link
             href="#"
             className="text-primary font-semibold flex items-center gap-1 hover:gap-2 transition-all text-sm border border-primary/30 px-3 py-1.5 rounded-full hover:bg-primary/5"

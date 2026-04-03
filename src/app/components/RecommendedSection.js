@@ -11,19 +11,13 @@ export default function RecommendedSection() {
   return (
     <div className="mb-8">
       <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-3">
-          <div className="bg-gradient-to-r from-teal-500 to-cyan-500 p-2 rounded-lg">
-            <TrendingUp className="text-white" size={28} />
-          </div>
-          <div>
-            <h2 className="text-2xl font-bold text-gray-800">
-              Recommended For You
-            </h2>
-            <p className="text-sm text-gray-600">
-              Personalized picks based on your interests
-            </p>
-          </div>
+        <div className="flex items-center gap-2">
+          <h2 className="text-xl md:text-2xl font-semibold">
+            Recommended For You
+          </h2>
+          <TrendingUp className="text-teal-500" size={24} />
         </div>
+
         <Link
           href="#"
           className="text-primary font-semibold flex items-center gap-1 hover:gap-2 transition-all text-sm border border-primary/30 px-3 py-1.5 rounded-full hover:bg-primary/5"

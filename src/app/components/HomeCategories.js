@@ -87,15 +87,10 @@ export default function HomeCategories() {
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <div className="bg-gradient-to-r from-primary to-blue-500 p-2 rounded-lg">
-            <Flame className="text-white" size={24} />
-          </div>
-          <div>
-            <h2 className="text-2xl font-bold text-primary">
-              Shop by Category
-            </h2>
-            <p className="text-sm text-gray-600">Find what you need fast</p>
-          </div>
+          <h2 className="text-xl md:text-2xl font-semibold">
+            Shop by Category
+          </h2>
+          <Flame className="text-orange-500" size={24} />
         </div>
         <Link
           href="/category"

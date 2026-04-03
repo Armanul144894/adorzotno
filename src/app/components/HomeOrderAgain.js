@@ -180,14 +180,12 @@ export default function HomeOrderAgain() {
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <div className="bg-primary/10 p-2 rounded-lg">
-            <RotateCcw className="text-primary" size={30} />
-          </div>
-          <div>
-            <h2 className="text-2xl font-bold text-primary">Order Again</h2>
-            <p className="text-xs text-gray-400">Pick up where you left off</p>
-          </div>
+          <h2 className="text-xl md:text-2xl font-semibold">
+           Order Again
+          </h2>
+          <RotateCcw className="text-primary" size={24} />
         </div>
+
         <Link
           href="/orders"
           className="text-primary font-semibold flex items-center gap-1 hover:gap-2 transition-all text-sm border border-primary/30 px-3 py-1.5 rounded-full hover:bg-primary/5"

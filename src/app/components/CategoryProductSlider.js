@@ -1,4 +1,4 @@
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Flame } from "lucide-react";
 import React, { useState } from "react";
 import ProductCard from "./ProductCard";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -45,9 +45,11 @@ export default function CategoryProduct({ category, products }) {
     <div className={`mb-8`}>
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl md:text-2xl font-bold text-primary">
-          {category}
-        </h2>
+        <div className="flex items-center gap-2">
+          <h2 className="text-xl md:text-2xl font-semibold">
+            {category}
+          </h2>
+        </div>
         <Link
           href={`/category/${category
             .toLowerCase()

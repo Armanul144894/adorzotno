@@ -12,10 +12,7 @@ import "swiper/css/navigation";
 export default function RelatedProduct({ relatedProducts }) {
   return (
     <div className="w-full py-12">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">
-        Related Products
-      </h2>
-
+      <h2 className="text-xl md:text-2xl font-semibold">Related Products 🧊</h2>
       {/* Slider Wrapper (IMPORTANT) */}
       <div className="relative w-full max-w-full overflow-hidden">
         {/* Navigation buttons */}
@@ -29,7 +26,7 @@ export default function RelatedProduct({ relatedProducts }) {
         <button
           className="cat-next absolute right-0 top-1/2 z-10 -translate-y-1/2 bg-blue-50 shadow-md rounded-full w-9 h-9 flex items-center justify-center hover:bg-blue-100"
           aria-label="Next"
-        > 
+        >
           <ChevronRight size={18} />
         </button>
         <Swiper

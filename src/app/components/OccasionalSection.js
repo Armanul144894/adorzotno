@@ -125,7 +125,7 @@ export default function OccasionalSection() {
                       ) : (
                         <button
                           onClick={() => addToCart(product)}
-                          className="w-full bg-primary text-white py-2 rounded-lg hover:opacity-90 transition font-semibold"
+                          className="w-full bg-[#1e7aac15] hover:bg-primary text-primary hover:text-white border border-primary/40 py-2 rounded-lg hover:opacity-90 transition font-semibold"
                         >
                           Add to Cart
                         </button>
