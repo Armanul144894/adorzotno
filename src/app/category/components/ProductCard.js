@@ -45,14 +45,14 @@ export default function ProductCard({ product }) {
       >
         <div className="bg-white h-full rounded-lg overflow-hidden">
           <div className="relative h-48 bg-gray-50 overflow-hidden">
-                      <Image
-                        src={product.images[0]}
-                        alt={product.name}
-                        fill
-                        sizes="(max-width: 640px) 50vw, 25vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
+            <Image
+              src={product.images[0]}
+              alt={product.name}
+              fill
+              sizes="(max-width: 640px) 50vw, 25vw"
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+          </div>
 
           <div className="p-4">
             <h3 className="text-sm font-semibold text-gray-800 mb-2 line-clamp-2">
@@ -112,14 +112,9 @@ export default function ProductCard({ product }) {
                   {/* Collapsed: just the + icon */}
                   <button
                     onClick={handleAdd}
-                    className={`
-                                            flex items-center gap-1 bg-primary text-white rounded-lg font-semibold
-                                            transition-all duration-300 overflow-hidden
-                                             px-4 py-2 w-10 h-10 justify-center
-                                            }
-                                        `}
+                    className={`flex items-center gap-1 bg-[#1e7aac25] hover:bg-primary text-primary hover:text-white border border-primary rounded-lg font-semibold transition-all duration-300 overflow-hidden px-4 py-2 w-10 h-10 justify-center`}
                   >
-                    <span className="text-xl leading-none font-bold">+</span>
+                    <span className="text-2xl leading-none font-medium">+</span>
                   </button>
                 </div>
               )}

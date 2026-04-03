@@ -33,19 +33,19 @@ const flashDeals = [
       "https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=400&h=300&fit=crop",
     ],
   },
-  {
-    id: 103,
-    name: "Immunity Booster Combo",
-    price: 29.99,
-    originalPrice: 44.99,
-    image:
-      "https://images.unsplash.com/photo-1550572017-4845a78b5f2f?w=400&h=300&fit=crop",
-    discount: "33% OFF",
-    dealEnds: "3 hours left",
-    images: [
-      "https://images.unsplash.com/photo-1550572017-4845a78b5f2f?w=400&h=300&fit=crop",
-    ],
-  },
+  // {
+  //   id: 103,
+  //   name: "Immunity Booster Combo",
+  //   price: 29.99,
+  //   originalPrice: 44.99,
+  //   image:
+  //     "https://images.unsplash.com/photo-1550572017-4845a78b5f2f?w=400&h=300&fit=crop",
+  //   discount: "33% OFF",
+  //   dealEnds: "3 hours left",
+  //   images: [
+  //     "https://images.unsplash.com/photo-1550572017-4845a78b5f2f?w=400&h=300&fit=crop",
+  //   ],
+  // },
   {
     id: 104,
     name: "Pain Relief Value Pack",
