@@ -8,7 +8,7 @@ export default function FilteredProductCard({ filteredProducts }) {
   return (
     <div>
       {filteredProducts?.length === 0 ? (
-        <div className="text-center py-12 bg-white rounded-lg shadow-md py-3">
+        <div className="text-center py-16 text-gray-500">
           No products found.
         </div>
       ) : (
