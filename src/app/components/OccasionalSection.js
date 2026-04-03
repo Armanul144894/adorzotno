@@ -29,31 +29,28 @@ export default function OccasionalSection() {
     <div className="mb-8">
       {occasions.map((occasion) => (
         <div key={occasion.id} className="mb-8">
-          <div className="bg-gradient-to-r from-primary to-blue-500 rounded-t-lg p-4 text-white">
+          <div className="bg-gradient-to-r from-primary/20 to-blue-50 rounded-t-lg px-4 py-2">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="text-4xl">{occasion.icon}</div>
+              <div className="flex items-center gap-1">
                 <div>
                   <h2 className="text-2xl font-bold">{occasion.title}</h2>
-                  <p className="text-sm text-white/90">
-                    Special occasion picks just for you
-                  </p>
                 </div>
+                <div className="text-xl">{occasion.icon}</div>
               </div>
-              <button className="bg-white text-red-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">
+              <button className="bg-white text-primary px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">
                 Shop Collection
               </button>
             </div>
           </div>
 
           <div className="bg-white rounded-b-lg shadow-md p-6">
-            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-8 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-8 gap-3">
               {occasion.products.map((product) => {
                 const quantity = getItemQuantity(product.id);
                 return (
                   <div
                     key={product.id}
-                    className="border h-full border-red-200 rounded-lg overflow-hidden hover:shadow-lg transition"
+                    className="border h-full border-blue-100 rounded-lg overflow-hidden hover:shadow-lg transition"
                   >
                     <Link
                       href={`/product/${product.name
@@ -72,9 +69,11 @@ export default function OccasionalSection() {
                             className="object-cover group-hover:scale-105 transition-transform duration-500"
                           />
                         </div>
-                        <span className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
-                          {product.discount}
-                        </span>
+                        {product.discount && (
+                          <span className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+                            {product.discount}
+                          </span>
+                        )}
                         <div className="absolute top-2 left-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-semibold text-red-600">
                           {occasion.icon} {product.occasion}
                         </div>

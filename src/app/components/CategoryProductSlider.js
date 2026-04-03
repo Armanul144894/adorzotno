@@ -46,9 +46,7 @@ export default function CategoryProduct({ category, products }) {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
-          <h2 className="text-xl md:text-2xl font-semibold">
-            {category}
-          </h2>
+          <h2 className="text-xl md:text-2xl font-semibold">{category}</h2>
         </div>
         <Link
           href={`/category/${category
@@ -96,47 +94,47 @@ export default function CategoryProduct({ category, products }) {
             // Mobile - Medium (375px)
             375: {
               slidesPerView: 2,
-              spaceBetween: 16,
+              spaceBetween: 12,
             },
             // Mobile - Large (425px)
             425: {
               slidesPerView: 2,
-              spaceBetween: 16,
+              spaceBetween: 12,
             },
             // Mobile - Large (480px)
             480: {
               slidesPerView: 2.2,
-              spaceBetween: 16,
+              spaceBetween: 12,
             },
             // Tablet - Medium (560px)
             560: {
               slidesPerView: 2.4,
-              spaceBetween: 16,
+              spaceBetween: 12,
             },
             // Tablet - Medium (768px)
             768: {
               slidesPerView: 3,
-              spaceBetween: 16,
+              spaceBetween: 12,
             },
             // Tablet - Medium (840px)
             840: {
               slidesPerView: 3.5,
-              spaceBetween: 16,
+              spaceBetween: 12,
             },
             // Laptop - Small (1024px)
             1024: {
               slidesPerView: 2.5,
-              spaceBetween: 16,
+              spaceBetween: 12,
             },
             // Laptop - Medium (1280px)
             1280: {
               slidesPerView: 5,
-              spaceBetween: 16,
+              spaceBetween: 12,
             },
             // Desktop (1536px)
             1536: {
               slidesPerView: 8,
-              spaceBetween: 16,
+              spaceBetween: 12,
             },
           }}
           className="!pb-4"

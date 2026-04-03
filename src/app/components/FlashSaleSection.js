@@ -53,7 +53,7 @@ export default function FlashSaleSection() {
       </div>
 
       <div className="bg-white rounded-b-lg shadow-md p-6">
-        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-8 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-8 gap-3">
           {flashSaleProducts.map((product) => {
             const quantity = getItemQuantity(product.id);
             const isHovered = hoveredId === product.id;
