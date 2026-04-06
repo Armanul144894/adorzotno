@@ -1,10 +1,9 @@
-import React from 'react'
-import Link from 'next/link'
-import { ChevronRight, Menu, X } from 'lucide-react'
-import allCategories from "../../data/category";
+import React from "react";
+import Link from "next/link";
+import { ChevronRight, Menu, X } from "lucide-react";
+import allCategories from "../../public/data/category";
 
 export default function CategoryOffcanvas({ sidebarOpen, setSidebarOpen }) {
-
   const categories = allCategories;
 
   const handleCategoryClick = () => {
@@ -27,7 +26,6 @@ export default function CategoryOffcanvas({ sidebarOpen, setSidebarOpen }) {
         ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
         <div className="flex flex-col h-full">
-
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b bg-primary text-white">
             <div className="flex items-center gap-3">
@@ -63,7 +61,9 @@ export default function CategoryOffcanvas({ sidebarOpen, setSidebarOpen }) {
                   className="flex items-center justify-between py-2 rounded-lg hover:bg-teal-50 transition group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className='w-8 mx-auto'><span className="text-2xl">{category.icon}</span></div>
+                    <div className="w-8 mx-auto">
+                      <span className="text-2xl">{category.icon}</span>
+                    </div>
                     <span className="text-gray-700 group-hover:text-primary font-bold">
                       {category.name}
                     </span>

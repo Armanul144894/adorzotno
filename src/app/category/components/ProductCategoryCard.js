@@ -4,8 +4,8 @@ import { ChevronRight, Heart, Home, Star } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useMemo } from "react";
-import products from "../../../../data/data";
-import allCategories from "../../../../data/category";
+import products from "../../../../public/data/data";
+import allCategories from "../../../../public/data/category";
 import FilteredProductCard from "./FilteredProductCard";
 
 export default function ProductCategoryCard() {

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import products from "../../data/data";
+import products from "../../public/data/data";
 import { ChevronRight, Zap } from "lucide-react";
 import ProductCard from "./ProductCard";
 

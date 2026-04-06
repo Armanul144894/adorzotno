@@ -1,7 +1,7 @@
 import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
-import allCategories from '../../../data/category'
+import allCategories from '../../../public/data/category'
 
 export const metadata = {
   title: "All Categories | Adorzotno Limited",

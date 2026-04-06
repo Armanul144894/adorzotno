@@ -20,7 +20,7 @@ import {
   Package
 } from 'lucide-react';
 import ProductCard from './ProductCard';
-import products from '../../../data/data';
+import products from '../../../public/data/data';
 
 export default function BrandProductsPage() {
   const params = useParams();

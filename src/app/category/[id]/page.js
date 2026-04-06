@@ -1,7 +1,7 @@
 import React from 'react'
 import ProductCategoryCard from '../components/ProductCategoryCard';
-import allCategories from '../../../../data/category';
-import products from '../../../../data/data';
+import allCategories from '../../../../public/data/category';
+import products from '../../../../public/data/data';
 
 // ✅ Metadata generation function (export this)
 export async function generateMetadata({ params }) {

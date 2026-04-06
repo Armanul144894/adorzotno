@@ -1,6 +1,6 @@
 import React from 'react'
 import ProductDetails from '../components/ProductDetails'
-import products from '../../../../data/data';
+import products from '../../../../public/data/data';
 
 
 // ✅ Metadata generation function (export this)

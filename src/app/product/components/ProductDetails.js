@@ -15,7 +15,7 @@ import {
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useMemo, useState } from "react";
-import products from "../../../../data/data";
+import products from "../../../../public/data/data";
 import RelatedProduct from "./RelatedProduct";
 import ProductDetailsTab from "./ProductDetailsTab";
 import ProductGrid from "./ProductGrid";
