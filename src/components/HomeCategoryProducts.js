@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import products from "../../../data/data";
+import products from "../../data/data";
 import CategoryProduct from "./CategoryProductSlider";
 import Image from "next/image";
 import Link from "next/link";

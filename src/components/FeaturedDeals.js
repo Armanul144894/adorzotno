@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import products from "../../../data/data";
+import products from "../../data/data";
 import { ChevronRight, Zap } from "lucide-react";
 import ProductCard from "./ProductCard";
 
@@ -23,7 +23,7 @@ export default function FeaturedDeals() {
             href="#"
             className="text-primary font-semibold flex items-center gap-1 hover:gap-2 transition-all text-sm border border-primary/30 px-3 py-1.5 rounded-full hover:bg-primary/5"
           >
-            View Orders <ChevronRight size={16} />
+            View all <ChevronRight size={16} />
           </Link>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-8 gap-3">

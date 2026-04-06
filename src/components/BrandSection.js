@@ -57,7 +57,7 @@ const brands = [
     id: 7,
     name: "Roche",
     slug: "roche",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Hoffmann-La_Roche_logo.svg/512px-Hoffmann-La_Roche_logo.png",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Hoffmann-La_Roche_logo.svg/512px-Hoffmann-La_Roche_logo.svg.png",
   },
   {
     id: 8,

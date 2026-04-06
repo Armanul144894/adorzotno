@@ -9,7 +9,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { useCart } from "./CartContext";
-import products from "../../../data/data";
+import products from "../../data/data";
 
 const previousOrders = products.slice(30, 44);
 

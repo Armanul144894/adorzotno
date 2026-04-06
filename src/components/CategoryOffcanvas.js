@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { ChevronRight, Menu, X } from 'lucide-react'
-import allCategories from "../../../data/category";
+import allCategories from "../../data/category";
 
 export default function CategoryOffcanvas({ sidebarOpen, setSidebarOpen }) {
 

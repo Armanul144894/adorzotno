@@ -2,7 +2,7 @@
 import { Timer, Zap } from "lucide-react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import products from "../../../data/data";
+import products from "../../data/data";
 import Link from "next/link";
 import { useCart } from "./CartContext";
 

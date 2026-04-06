@@ -2,11 +2,11 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-import Header from "./components/Header";
-import SideBar from "./components/SideBar";
-import Footer from "./components/Footer";
-import CartOffcanvas from "./components/CartOffcanvas";
-import { CartProvider } from "./components/CartContext";
+import Header from "../components/Header";
+import SideBar from "../components/SideBar";
+import Footer from "../components/Footer";
+import CartOffcanvas from "../components/CartOffcanvas";
+import { CartProvider } from "../components/CartContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

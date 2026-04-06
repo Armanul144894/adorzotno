@@ -1,7 +1,7 @@
 import { ChevronRight, Heart, Star, TrendingUp } from "lucide-react";
 import Image from "next/image";
 import React from "react";
-import products from "../../../data/data";
+import products from "../../data/data";
 import ProductCard from "./ProductCard";
 import Link from "next/link";
 

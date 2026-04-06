@@ -1,274 +1,274 @@
-'use client';
-import React, { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { 
-  Search, 
-  Grid3x3, 
-  List, 
-  TrendingUp, 
+"use client";
+import React, { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  Search,
+  Grid3x3,
+  List,
+  TrendingUp,
   Filter,
   ChevronDown,
   Package,
   Star,
-  ArrowUpDown
-} from 'lucide-react';
+  ArrowUpDown,
+} from "lucide-react";
 
 export default function BrandPage() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'list'
-  const [sortBy, setSortBy] = useState('name-asc');
-  const [filterBy, setFilterBy] = useState('all'); // 'all', 'popular', 'az'
+  const [searchQuery, setSearchQuery] = useState("");
+  const [viewMode, setViewMode] = useState("grid"); // 'grid' or 'list'
+  const [sortBy, setSortBy] = useState("name-asc");
+  const [filterBy, setFilterBy] = useState("all"); // 'all', 'popular', 'az'
 
   const brands = [
     {
       id: 1,
-      name: 'Pfizer',
-      slug: 'pfizer',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Pfizer_logo.svg/250px-Pfizer_logo.svg.png',
+      name: "Pfizer",
+      slug: "pfizer",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Pfizer_logo.svg/250px-Pfizer_logo.svg.png",
       products: 145,
-      description: 'Leading pharmaceutical company',
+      description: "Leading pharmaceutical company",
       rating: 4.8,
       totalReviews: 12847,
-      bgColor: 'bg-blue-50',
-      hoverColor: 'hover:bg-blue-100',
-      founded: '1849',
-      country: 'USA',
-      specialties: ['Vaccines', 'Oncology', 'Cardiology']
+      bgColor: "bg-blue-50",
+      hoverColor: "hover:bg-blue-100",
+      founded: "1849",
+      country: "USA",
+      specialties: ["Vaccines", "Oncology", "Cardiology"],
     },
     {
       id: 2,
-      name: 'Johnson & Johnson',
-      slug: 'johnson-johnson',
-      logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-7B24ITY89Biek0SSz9BuPZD0iKSTi8SNDQ&s',
+      name: "Johnson & Johnson",
+      slug: "johnson-johnson",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-7B24ITY89Biek0SSz9BuPZD0iKSTi8SNDQ&s",
       products: 238,
-      description: 'Healthcare innovation leader',
+      description: "Healthcare innovation leader",
       rating: 4.7,
       totalReviews: 18934,
-      bgColor: 'bg-red-50',
-      hoverColor: 'hover:bg-red-100',
-      founded: '1886',
-      country: 'USA',
-      specialties: ['Consumer Health', 'Medical Devices', 'Pharmaceuticals']
+      bgColor: "bg-red-50",
+      hoverColor: "hover:bg-red-100",
+      founded: "1886",
+      country: "USA",
+      specialties: ["Consumer Health", "Medical Devices", "Pharmaceuticals"],
     },
     {
       id: 3,
-      name: 'Bayer',
-      slug: 'bayer',
-      logo: 'https://e7.pngegg.com/pngimages/979/373/png-clipart-leverkusen-bayer-cropscience-agriculture-business-pharma-company-text-thumbnail.png',
+      name: "Bayer",
+      slug: "bayer",
+      logo: "https://e7.pngegg.com/pngimages/979/373/png-clipart-leverkusen-bayer-cropscience-agriculture-business-pharma-company-text-thumbnail.png",
       products: 152,
-      description: 'Science for a better life',
+      description: "Science for a better life",
       rating: 4.6,
       totalReviews: 9876,
-      bgColor: 'bg-green-50',
-      hoverColor: 'hover:bg-green-100',
-      founded: '1863',
-      country: 'Germany',
-      specialties: ['Pain Relief', 'Cardiology', 'Women\'s Health']
+      bgColor: "bg-green-50",
+      hoverColor: "hover:bg-green-100",
+      founded: "1863",
+      country: "Germany",
+      specialties: ["Pain Relief", "Cardiology", "Women's Health"],
     },
     {
       id: 4,
-      name: 'GlaxoSmithKline',
-      slug: 'glaxosmithkline',
-      logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/GSK_logo_2014.svg/250px-GSK_logo_2014.svg.png',
+      name: "GlaxoSmithKline",
+      slug: "glaxosmithkline",
+      logo: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/GSK_logo_2014.svg/250px-GSK_logo_2014.svg.png",
       products: 187,
-      description: 'Global healthcare company',
+      description: "Global healthcare company",
       rating: 4.7,
       totalReviews: 11234,
-      bgColor: 'bg-orange-50',
-      hoverColor: 'hover:bg-orange-100',
-      founded: '2000',
-      country: 'UK',
-      specialties: ['Vaccines', 'Respiratory', 'HIV']
+      bgColor: "bg-orange-50",
+      hoverColor: "hover:bg-orange-100",
+      founded: "2000",
+      country: "UK",
+      specialties: ["Vaccines", "Respiratory", "HIV"],
     },
     {
       id: 5,
-      name: 'Abbott',
-      slug: 'abbott',
-      logo: 'https://www.abbott.com.sg/etc.clientlibs/abbott-platform/clientlibs/clientlib-site/resources/images/abbott-logo.png',
+      name: "Abbott",
+      slug: "abbott",
+      logo: "https://www.abbott.com.sg/etc.clientlibs/abbott-platform/clientlibs/clientlib-site/resources/images/abbott-logo.png",
       products: 198,
-      description: 'Life-changing technologies',
+      description: "Life-changing technologies",
       rating: 4.8,
       totalReviews: 13567,
-      bgColor: 'bg-purple-50',
-      hoverColor: 'hover:bg-purple-100',
-      founded: '1888',
-      country: 'USA',
-      specialties: ['Nutrition', 'Diagnostics', 'Medical Devices']
+      bgColor: "bg-purple-50",
+      hoverColor: "hover:bg-purple-100",
+      founded: "1888",
+      country: "USA",
+      specialties: ["Nutrition", "Diagnostics", "Medical Devices"],
     },
     {
       id: 6,
-      name: 'Novartis',
-      slug: 'novartis',
-      logo: 'https://www.tbsnews.net/sites/default/files/styles/amp_metadata_content_image_min_696px_wide/public/images/2024/12/05/m.png',
+      name: "Novartis",
+      slug: "novartis",
+      logo: "https://www.tbsnews.net/sites/default/files/styles/amp_metadata_content_image_min_696px_wide/public/images/2024/12/05/m.png",
       products: 134,
-      description: 'Reimagining medicine',
+      description: "Reimagining medicine",
       rating: 4.7,
       totalReviews: 10456,
-      bgColor: 'bg-cyan-50',
-      hoverColor: 'hover:bg-cyan-100',
-      founded: '1996',
-      country: 'Switzerland',
-      specialties: ['Oncology', 'Immunology', 'Neuroscience']
+      bgColor: "bg-cyan-50",
+      hoverColor: "hover:bg-cyan-100",
+      founded: "1996",
+      country: "Switzerland",
+      specialties: ["Oncology", "Immunology", "Neuroscience"],
     },
     {
       id: 7,
-      name: 'Roche',
-      slug: 'roche',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Hoffmann-La_Roche_logo.svg/512px-Hoffmann-La_Roche_logo.png',
+      name: "Roche",
+      slug: "roche",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Hoffmann-La_Roche_logo.svg/512px-Hoffmann-La_Roche_logo.png",
       products: 176,
-      description: 'Pioneering healthcare',
+      description: "Pioneering healthcare",
       rating: 4.9,
       totalReviews: 15678,
-      bgColor: 'bg-pink-50',
-      hoverColor: 'hover:bg-pink-100',
-      founded: '1896',
-      country: 'Switzerland',
-      specialties: ['Oncology', 'Immunology', 'Diagnostics']
+      bgColor: "bg-pink-50",
+      hoverColor: "hover:bg-pink-100",
+      founded: "1896",
+      country: "Switzerland",
+      specialties: ["Oncology", "Immunology", "Diagnostics"],
     },
     {
       id: 8,
-      name: 'Merck',
-      slug: 'merck',
-      logo: 'https://www.merck.com/wp-content/uploads/sites/124/2022/03/Merck.png',
+      name: "Merck",
+      slug: "merck",
+      logo: "https://www.merck.com/wp-content/uploads/sites/124/2022/03/Merck.png",
       products: 143,
-      description: 'Inventing for life',
+      description: "Inventing for life",
       rating: 4.6,
       totalReviews: 8923,
-      bgColor: 'bg-indigo-50',
-      hoverColor: 'hover:bg-indigo-100',
-      founded: '1891',
-      country: 'USA',
-      specialties: ['Vaccines', 'Oncology', 'Diabetes']
+      bgColor: "bg-indigo-50",
+      hoverColor: "hover:bg-indigo-100",
+      founded: "1891",
+      country: "USA",
+      specialties: ["Vaccines", "Oncology", "Diabetes"],
     },
     {
       id: 9,
-      name: 'Sanofi',
-      slug: 'sanofi',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/7/79/Sanofi_logo.svg',
+      name: "Sanofi",
+      slug: "sanofi",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/7/79/Sanofi_logo.svg",
       products: 162,
-      description: 'Healthcare solutions',
+      description: "Healthcare solutions",
       rating: 4.7,
       totalReviews: 11890,
-      bgColor: 'bg-teal-50',
-      hoverColor: 'hover:bg-teal-100',
-      founded: '1973',
-      country: 'France',
-      specialties: ['Diabetes', 'Cardiovascular', 'Vaccines']
+      bgColor: "bg-teal-50",
+      hoverColor: "hover:bg-teal-100",
+      founded: "1973",
+      country: "France",
+      specialties: ["Diabetes", "Cardiovascular", "Vaccines"],
     },
     {
       id: 10,
-      name: 'AstraZeneca',
-      slug: 'astrazeneca',
-      logo: 'https://mms.businesswire.com/media/20240206590080/en/484259/5/Logo.jpg?download=1',
+      name: "AstraZeneca",
+      slug: "astrazeneca",
+      logo: "https://mms.businesswire.com/media/20240206590080/en/484259/5/Logo.jpg?download=1",
       products: 129,
-      description: 'Science-led biopharmaceutical',
+      description: "Science-led biopharmaceutical",
       rating: 4.8,
       totalReviews: 14234,
-      bgColor: 'bg-yellow-50',
-      hoverColor: 'hover:bg-yellow-100',
-      founded: '1999',
-      country: 'UK',
-      specialties: ['Oncology', 'Cardiovascular', 'Respiratory']
+      bgColor: "bg-yellow-50",
+      hoverColor: "hover:bg-yellow-100",
+      founded: "1999",
+      country: "UK",
+      specialties: ["Oncology", "Cardiovascular", "Respiratory"],
     },
     {
       id: 11,
-      name: 'Eli Lilly',
-      slug: 'eli-lilly',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Eli_Lilly_and_Company.svg/2560px-Eli_Lilly_and_Company.svg.png',
+      name: "Eli Lilly",
+      slug: "eli-lilly",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Eli_Lilly_and_Company.svg/2560px-Eli_Lilly_and_Company.svg.png",
       products: 118,
-      description: 'Medicines that matter',
+      description: "Medicines that matter",
       rating: 4.7,
       totalReviews: 9567,
-      bgColor: 'bg-red-50',
-      hoverColor: 'hover:bg-red-100',
-      founded: '1876',
-      country: 'USA',
-      specialties: ['Diabetes', 'Oncology', 'Immunology']
+      bgColor: "bg-red-50",
+      hoverColor: "hover:bg-red-100",
+      founded: "1876",
+      country: "USA",
+      specialties: ["Diabetes", "Oncology", "Immunology"],
     },
     {
       id: 12,
-      name: 'Bristol Myers Squibb',
-      slug: 'bristol-myers-squibb',
-      logo: 'https://6a3d28ac.delivery.rocketcdn.me/wp-content/uploads/2025/03/Bristol-Myers-Squibb.png',
+      name: "Bristol Myers Squibb",
+      slug: "bristol-myers-squibb",
+      logo: "https://6a3d28ac.delivery.rocketcdn.me/wp-content/uploads/2025/03/Bristol-Myers-Squibb.png",
       products: 156,
-      description: 'Transforming patients lives',
+      description: "Transforming patients lives",
       rating: 4.6,
       totalReviews: 10234,
-      bgColor: 'bg-blue-50',
-      hoverColor: 'hover:bg-blue-100',
-      founded: '1887',
-      country: 'USA',
-      specialties: ['Oncology', 'Immunology', 'Cardiovascular']
+      bgColor: "bg-blue-50",
+      hoverColor: "hover:bg-blue-100",
+      founded: "1887",
+      country: "USA",
+      specialties: ["Oncology", "Immunology", "Cardiovascular"],
     },
     {
       id: 13,
-      name: 'Boehringer Ingelheim',
-      slug: 'boehringer-ingelheim',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Boehringer_Ingelheim_Logo.svg/960px-Boehringer_Ingelheim_Logo.svg.png',
+      name: "Boehringer Ingelheim",
+      slug: "boehringer-ingelheim",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Boehringer_Ingelheim_Logo.svg/960px-Boehringer_Ingelheim_Logo.svg.png",
       products: 142,
-      description: 'Value through innovation',
+      description: "Value through innovation",
       rating: 4.7,
       totalReviews: 8765,
-      bgColor: 'bg-green-50',
-      hoverColor: 'hover:bg-green-100',
-      founded: '1885',
-      country: 'Germany',
-      specialties: ['Respiratory', 'Cardiology', 'Oncology']
+      bgColor: "bg-green-50",
+      hoverColor: "hover:bg-green-100",
+      founded: "1885",
+      country: "Germany",
+      specialties: ["Respiratory", "Cardiology", "Oncology"],
     },
     {
       id: 14,
-      name: 'Takeda',
-      slug: 'takeda',
-      logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHE4NuqbvBg1BuzLdPemq1PSVjNocSSEARZA&s',
+      name: "Takeda",
+      slug: "takeda",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHE4NuqbvBg1BuzLdPemq1PSVjNocSSEARZA&s",
       products: 134,
-      description: 'Better health, brighter future',
+      description: "Better health, brighter future",
       rating: 4.8,
       totalReviews: 11234,
-      bgColor: 'bg-purple-50',
-      hoverColor: 'hover:bg-purple-100',
-      founded: '1781',
-      country: 'Japan',
-      specialties: ['Oncology', 'Gastroenterology', 'Neuroscience']
+      bgColor: "bg-purple-50",
+      hoverColor: "hover:bg-purple-100",
+      founded: "1781",
+      country: "Japan",
+      specialties: ["Oncology", "Gastroenterology", "Neuroscience"],
     },
     {
       id: 15,
-      name: 'Amgen',
-      slug: 'amgen',
-      logo: 'https://amgen.wd1.myworkdayjobs.com/wday/cxs/amgen/Careers/sidebarimage/ff565065af860119e1b725ed27020a01',
+      name: "Amgen",
+      slug: "amgen",
+      logo: "https://amgen.wd1.myworkdayjobs.com/wday/cxs/amgen/Careers/sidebarimage/ff565065af860119e1b725ed27020a01",
       products: 98,
-      description: 'Serving patients',
+      description: "Serving patients",
       rating: 4.6,
       totalReviews: 7890,
-      bgColor: 'bg-cyan-50',
-      hoverColor: 'hover:bg-cyan-100',
-      founded: '1980',
-      country: 'USA',
-      specialties: ['Oncology', 'Cardiovascular', 'Inflammation']
+      bgColor: "bg-cyan-50",
+      hoverColor: "hover:bg-cyan-100",
+      founded: "1980",
+      country: "USA",
+      specialties: ["Oncology", "Cardiovascular", "Inflammation"],
     },
-    
   ];
 
   // Filter brands based on search query
-  const filteredBrands = brands.filter(brand =>
-    brand.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    brand.description.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredBrands = brands.filter(
+    (brand) =>
+      brand.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      brand.description.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   // Sort brands
   const sortedBrands = [...filteredBrands].sort((a, b) => {
     switch (sortBy) {
-      case 'name-asc':
+      case "name-asc":
         return a.name.localeCompare(b.name);
-      case 'name-desc':
+      case "name-desc":
         return b.name.localeCompare(a.name);
-      case 'products-high':
+      case "products-high":
         return b.products - a.products;
-      case 'products-low':
+      case "products-low":
         return a.products - b.products;
-      case 'rating-high':
+      case "rating-high":
         return b.rating - a.rating;
-      case 'popular':
+      case "popular":
         return b.totalReviews - a.totalReviews;
       default:
         return 0;
@@ -295,12 +295,16 @@ export default function BrandPage() {
               Shop by Brand
             </h1>
             <p className="text-lg md:text-xl text-white/90 mb-8">
-              Discover trusted pharmaceutical brands and healthcare products from leading companies worldwide
+              Discover trusted pharmaceutical brands and healthcare products
+              from leading companies worldwide
             </p>
-            
+
             {/* Search Bar */}
             <div className="relative max-w-2xl mx-auto">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={24} />
+              <Search
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                size={24}
+              />
               <input
                 type="text"
                 value={searchQuery}
@@ -331,14 +335,15 @@ export default function BrandPage() {
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-primary mb-1">
-                {(brands.reduce((sum, b) => sum + b.rating, 0) / brands.length).toFixed(1)}★
+                {(
+                  brands.reduce((sum, b) => sum + b.rating, 0) / brands.length
+                ).toFixed(1)}
+                ★
               </div>
               <div className="text-sm text-gray-600">Average Rating</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary mb-1">
-                100%
-              </div>
+              <div className="text-3xl font-bold text-primary mb-1">100%</div>
               <div className="text-sm text-gray-600">Verified Brands</div>
             </div>
           </div>
@@ -356,7 +361,7 @@ export default function BrandPage() {
               </span>
               {searchQuery && (
                 <span className="text-sm text-gray-500">
-                  searching for "{searchQuery}"
+                  searching for &quot;{searchQuery}&quot;
                 </span>
               )}
             </div>
@@ -379,21 +384,21 @@ export default function BrandPage() {
               {/* View Mode Toggle */}
               <div className="flex gap-2">
                 <button
-                  onClick={() => setViewMode('grid')}
+                  onClick={() => setViewMode("grid")}
                   className={`p-2 rounded-lg transition-colors ${
-                    viewMode === 'grid'
-                      ? 'bg-primary text-white'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    viewMode === "grid"
+                      ? "bg-primary text-white"
+                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                   }`}
                 >
                   <Grid3x3 size={20} />
                 </button>
                 <button
-                  onClick={() => setViewMode('list')}
+                  onClick={() => setViewMode("list")}
                   className={`p-2 rounded-lg transition-colors ${
-                    viewMode === 'list'
-                      ? 'bg-primary text-white'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    viewMode === "list"
+                      ? "bg-primary text-white"
+                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                   }`}
                 >
                   <List size={20} />
@@ -414,7 +419,7 @@ export default function BrandPage() {
               Try adjusting your search query
             </p>
             <button
-              onClick={() => setSearchQuery('')}
+              onClick={() => setSearchQuery("")}
               className="px-6 py-2 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90"
             >
               Clear Search
@@ -423,13 +428,17 @@ export default function BrandPage() {
         )}
 
         {/* Grid View */}
-        {viewMode === 'grid' && sortedBrands.length > 0 && (
+        {viewMode === "grid" && sortedBrands.length > 0 && (
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-4">
             {sortedBrands.map((brand) => (
               <Link key={brand.id} href={`/brand/${brand.slug}`}>
-                <div className={`group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer border-2 border-transparent hover:border-primary/20 h-full flex flex-col`}>
+                <div
+                  className={`group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer border-2 border-transparent hover:border-primary/20 h-full flex flex-col`}
+                >
                   {/* Logo Container */}
-                  <div className={`${brand.bgColor} ${brand.hoverColor} p-8 flex items-center justify-center transition-all duration-300 relative`}>
+                  <div
+                    className={`${brand.bgColor} ${brand.hoverColor} p-8 flex items-center justify-center transition-all duration-300 relative`}
+                  >
                     <div className="relative w-full h-32 flex items-center justify-center">
                       <Image
                         src={brand.logo}
@@ -440,7 +449,7 @@ export default function BrandPage() {
                         unoptimized
                       />
                     </div>
-                    
+
                     {/* Product Count Badge */}
                     <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold text-primary shadow-md">
                       {brand.products}+ Products
@@ -459,8 +468,13 @@ export default function BrandPage() {
                     {/* Rating */}
                     <div className="flex items-center gap-2 mb-4">
                       <div className="flex items-center gap-1">
-                        <Star className="fill-yellow-400 text-yellow-400" size={18} />
-                        <span className="font-bold text-gray-800">{brand.rating}</span>
+                        <Star
+                          className="fill-yellow-400 text-yellow-400"
+                          size={18}
+                        />
+                        <span className="font-bold text-gray-800">
+                          {brand.rating}
+                        </span>
                       </div>
                       <span className="text-sm text-gray-500">
                         ({brand.totalReviews.toLocaleString()} reviews)
@@ -504,14 +518,16 @@ export default function BrandPage() {
         )}
 
         {/* List View */}
-        {viewMode === 'list' && sortedBrands.length > 0 && (
+        {viewMode === "list" && sortedBrands.length > 0 && (
           <div className="space-y-4">
             {sortedBrands.map((brand) => (
               <Link key={brand.id} href={`/brand/${brand.slug}`}>
                 <div className="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-primary/20 p-6 mb-3">
                   <div className="flex gap-6">
                     {/* Logo */}
-                    <div className={`${brand.bgColor} ${brand.hoverColor} rounded-xl p-6 flex items-center justify-center w-48 flex-shrink-0`}>
+                    <div
+                      className={`${brand.bgColor} ${brand.hoverColor} rounded-xl p-6 flex items-center justify-center w-48 flex-shrink-0`}
+                    >
                       <Image
                         src={brand.logo}
                         alt={brand.name}
@@ -529,7 +545,9 @@ export default function BrandPage() {
                           <h3 className="text-2xl font-bold text-gray-800 mb-1 group-hover:text-primary transition-colors">
                             {brand.name}
                           </h3>
-                          <p className="text-gray-600 mb-2">{brand.description}</p>
+                          <p className="text-gray-600 mb-2">
+                            {brand.description}
+                          </p>
                         </div>
                         <div className="text-right">
                           <div className="text-2xl font-bold text-primary mb-1">
@@ -549,13 +567,15 @@ export default function BrandPage() {
                                 size={18}
                                 className={`${
                                   i < Math.floor(brand.rating)
-                                    ? 'fill-yellow-400 text-yellow-400'
-                                    : 'text-gray-300'
+                                    ? "fill-yellow-400 text-yellow-400"
+                                    : "text-gray-300"
                                 }`}
                               />
                             ))}
                           </div>
-                          <span className="font-bold text-gray-800">{brand.rating}</span>
+                          <span className="font-bold text-gray-800">
+                            {brand.rating}
+                          </span>
                         </div>
                         <span className="text-gray-500">
                           {brand.totalReviews.toLocaleString()} reviews

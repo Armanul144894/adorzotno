@@ -3,7 +3,7 @@ import { Star, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import { useCart } from "../../components/CartContext";
+import { useCart } from "../../../components/CartContext";
 
 export default function ProductCard({ product }) {
   const { addToCart, getItemQuantity, updateQuantity, removeItem } = useCart();
