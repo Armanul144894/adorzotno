@@ -1,5 +1,5 @@
 import Link from "next/link";
-import allCategories from "../../public/data/category";
+import allCategories from "../../../public/data/category";
 import { ArrowRight, ChevronRight } from "lucide-react";
 
 export default function SideBar() {
