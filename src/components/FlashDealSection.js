@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useCart } from "./CartContext";
-import ProductCard from "./ProductCard";
+import ProductCard from "./cards/ProductCard";
 
 const flashDeals = [
   {

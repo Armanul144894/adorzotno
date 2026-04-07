@@ -1,6 +1,6 @@
 import { ArrowRight, ChevronLeft, ChevronRight, Flame } from "lucide-react";
 import React, { useState } from "react";
-import ProductCard from "./ProductCard";
+import ProductCard from "./cards/ProductCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 

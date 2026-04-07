@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import products from "../../public/data/data";
 import { ChevronRight, Zap } from "lucide-react";
-import ProductCard from "./ProductCard";
+import ProductCard from "./cards/ProductCard";
 
 export default function FeaturedDeals() {
   const featuredDeals = products.slice(0, 14);

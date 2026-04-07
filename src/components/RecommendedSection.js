@@ -2,7 +2,7 @@ import { ChevronRight, Heart, Star, TrendingUp } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import products from "../../public/data/data";
-import ProductCard from "./ProductCard";
+import ProductCard from "./cards/ProductCard";
 import Link from "next/link";
 
 export default function RecommendedSection() {

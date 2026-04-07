@@ -2,7 +2,7 @@ import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import ProductCard from "./ProductCard";
+import ProductCard from "../../../components/cards/ProductCard";
 
 export default function FilteredProductCard({ filteredProducts }) {
   return (

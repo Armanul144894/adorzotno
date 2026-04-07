@@ -19,7 +19,7 @@ import {
   Shield,
   Package
 } from 'lucide-react';
-import ProductCard from './ProductCard';
+import ProductCard from "../../components/cards/ProductCard";
 import products from '../../../public/data/data';
 
 export default function BrandProductsPage() {
