@@ -3,7 +3,7 @@ import { ChevronRight, Clock, Zap } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { useCart } from "./CartContext";
+import { useCart } from "../context/CartContext";
 import ProductCard from "./cards/ProductCard";
 
 const flashDeals = [

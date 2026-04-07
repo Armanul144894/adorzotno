@@ -6,7 +6,7 @@ import Header from "../components/layout/Header";
 import SideBar from "../components/layout/SideBar";
 import Footer from "../components/layout/Footer";
 import CartOffcanvas from "../components/layout/CartOffcanvas";
-import { CartProvider } from "../components/CartContext";
+import { CartProvider } from "../context/CartContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

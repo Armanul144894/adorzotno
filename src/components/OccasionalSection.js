@@ -3,7 +3,7 @@ import React from "react";
 import products from "../../public/data/data";
 import Image from "next/image";
 import Link from "next/link";
-import { useCart } from "./CartContext";
+import { useCart } from "../context/CartContext";
 
 export default function OccasionalSection() {
   const { addToCart, getItemQuantity, updateQuantity, removeItem } = useCart();

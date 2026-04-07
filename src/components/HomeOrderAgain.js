@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import { useCart } from "./CartContext";
+import { useCart } from "../context/CartContext";
 import products from "../../public/data/data";
 
 const previousOrders = products.slice(30, 44);

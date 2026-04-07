@@ -7,7 +7,7 @@ import SignInModal from "./SignInModal";
 import Image from "next/image";
 import LiveChatWidget from "./LiveChatWidget";
 import HeaderSearch from "./HeaderSearch";
-import { useCart } from "../CartContext";
+import { useCart } from "../../context/CartContext";
 
 export default function Header() {
   const { cartItems, setIsCartOpen } = useCart();

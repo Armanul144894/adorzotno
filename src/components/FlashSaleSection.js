@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import products from "../../public/data/data";
 import Link from "next/link";
-import { useCart } from "./CartContext";
+import { useCart } from "../context/CartContext";
 
 export default function FlashSaleSection() {
   const { addToCart, getItemQuantity, updateQuantity, removeItem } = useCart();
