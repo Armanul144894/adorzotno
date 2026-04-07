@@ -7,7 +7,7 @@ export default function HomeFeatures() {
       icon: <Truck className="text-primary" size={24} />,
       bg: "bg-primary/10",
       title: "Free Shipping",
-      desc: "On orders over $50",
+      desc: "On orders over ৳50",
     },
     {
       icon: <Shield className="text-blue-600" size={24} />,

@@ -97,13 +97,13 @@ export default function ProductGrid({ selectedProduct, selectedImage, setSelecte
                         {/* Price */}
                         <div className="flex items-center gap-3 mb-6">
                             <span className="text-4xl font-bold text-primary">
-                                ${selectedProduct?.price}
+                                ৳{selectedProduct?.price}
                             </span>
                             <span className="text-xl text-gray-400 line-through">
-                                ${selectedProduct?.originalPrice}
+                                ৳{selectedProduct?.originalPrice}
                             </span>
                             <span className="bg-red-100 text-red-600 text-sm font-semibold px-3 py-1 rounded">
-                                Save ${(selectedProduct?.originalPrice - selectedProduct?.price).toFixed(2)}
+                                Save ৳{(selectedProduct?.originalPrice - selectedProduct?.price).toFixed(2)}
                             </span>
                         </div>
 
@@ -156,7 +156,7 @@ export default function ProductGrid({ selectedProduct, selectedImage, setSelecte
                                 <span className="text-gray-600">
                                     Total:{" "}
                                     <span className="font-bold text-primary">
-                                        ${(selectedProduct?.price * quantity).toFixed(2)}
+                                        ৳{(selectedProduct?.price * quantity).toFixed(2)}
                                     </span>
                                 </span>
                             </div>
@@ -182,7 +182,7 @@ export default function ProductGrid({ selectedProduct, selectedImage, setSelecte
                                 <Truck className="text-primary" size={24} />
                                 <div>
                                     <p className="font-semibold text-gray-800">Free Delivery</p>
-                                    <p className="text-sm text-gray-600">On orders over $50</p>
+                                    <p className="text-sm text-gray-600">On orders over ৳50</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-3">

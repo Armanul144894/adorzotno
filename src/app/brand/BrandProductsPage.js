@@ -249,8 +249,8 @@ export default function BrandProductsPage() {
                     className="w-full"
                   />
                   <div className="flex justify-between text-sm text-gray-600">
-                    <span>${priceRange[0]}</span>
-                    <span>${priceRange[1]}</span>
+                    <span>৳{priceRange[0]}</span>
+                    <span>৳{priceRange[1]}</span>
                   </div>
                 </div>
               </div>
@@ -415,10 +415,10 @@ export default function BrandProductsPage() {
                             <div>
                               <div className="flex items-center gap-2 mb-2">
                                 <span className="text-2xl font-bold text-gray-800">
-                                  ${product.price}
+                                  ৳{product.price}
                                 </span>
                                 <span className="text-sm text-gray-400 line-through">
-                                  ${product.originalPrice}
+                                  ৳{product.originalPrice}
                                 </span>
                                 <span className="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded">
                                   {product.discount}% OFF
@@ -488,8 +488,8 @@ export default function BrandProductsPage() {
                     className="w-full"
                   />
                   <div className="flex justify-between text-sm text-gray-600">
-                    <span>${priceRange[0]}</span>
-                    <span>${priceRange[1]}</span>
+                    <span>৳{priceRange[0]}</span>
+                    <span>৳{priceRange[1]}</span>
                   </div>
                 </div>
               </div>

@@ -71,8 +71,8 @@ export default function FlashSaleSection() {
                 </Link>
                   <div className="flex justify-between flex-wrap items-center gap-2 mb-3">
                     <div className="flex items-center gap-1 ">
-                    <span className="text-lg font-bold text-red-600">${product.price}</span>
-                    <span className="text-xs text-gray-400 line-through">${product.originalPrice}</span>
+                    <span className="text-lg font-bold text-red-600">৳{product.price}</span>
+                    <span className="text-xs text-gray-400 line-through">৳{product.originalPrice}</span>
                   </div>
                   <div className="flex justify-end ">
                   {quantity > 0 ? (

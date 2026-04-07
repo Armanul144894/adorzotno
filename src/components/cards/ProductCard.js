@@ -76,9 +76,9 @@ export default function ProductCard({ product }) {
                 </div>
                 <div className="flex flex-col">
                   <span className="line-through text-gray-400">
-                    ${product.originalPrice}
+                    ৳{product.originalPrice}
                   </span>
-                  <span className="font-bold">${product.price}</span>
+                  <span className="font-bold">৳{product.price}</span>
                 </div>
               </div>
 

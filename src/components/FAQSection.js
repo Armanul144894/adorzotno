@@ -19,7 +19,7 @@ export default function FAQSection() {
     {
       question: "Do you offer free shipping?",
       answer:
-        "Yes! We offer free shipping on all orders above $50. For orders below $50, a shipping fee of $5.99 applies.",
+        "Yes! We offer free shipping on all orders above ৳50. For orders below ৳50, a shipping fee of ৳5.99 applies.",
     },
     {
       question: "Can I return a product?",

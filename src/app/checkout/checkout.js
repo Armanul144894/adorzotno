@@ -552,7 +552,7 @@ export default function Checkout() {
                                             <p className="text-gray-600 text-sm">Quantity: {item.quantity}</p>
                                         </div>
                                         <div className="text-right">
-                                            <p className="font-bold text-gray-800">${(item.price * item.quantity).toFixed(2)}</p>
+                                            <p className="font-bold text-gray-800">৳{(item.price * item.quantity).toFixed(2)}</p>
                                         </div>
                                     </div>
                                 ))}

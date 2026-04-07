@@ -87,10 +87,10 @@ export default function OccasionalSection() {
                         </h3>
                         <div className="flex items-center gap-2 mb-3">
                           <span className="text-xl font-bold text-gray-800">
-                            ${product.price}
+                            ৳{product.price}
                           </span>
                           <span className="text-sm text-gray-400 line-through">
-                            ${product.originalPrice}
+                            ৳{product.originalPrice}
                           </span>
                         </div>
                       </div>

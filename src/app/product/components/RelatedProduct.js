@@ -102,10 +102,10 @@ export default function RelatedProduct({ relatedProducts }) {
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-xl font-bold text-gray-800">
-                          ${item?.price}
+                          ৳{item?.price}
                         </span>
                         <span className="text-sm text-gray-400 line-through">
-                          ${item?.originalPrice}
+                          ৳{item?.originalPrice}
                         </span>
                       </div>
                     </div>

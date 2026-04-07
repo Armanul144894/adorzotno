@@ -124,10 +124,10 @@ function ProductCard({ product }) {
           <div className="flex items-center justify-between mt-2">
             <div className="flex items-center gap-1.5">
               <span className="text-base font-bold text-primary">
-                ${product.price.toFixed(2)}
+                ৳{product.price.toFixed(2)}
               </span>
               <span className="text-xs text-gray-400 line-through">
-                ${product.originalPrice.toFixed(2)}
+                ৳{product.originalPrice.toFixed(2)}
               </span>
             </div>
 

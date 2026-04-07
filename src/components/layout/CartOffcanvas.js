@@ -134,7 +134,7 @@ const CartOffcanvas = () => {
                         <h3 className="font-semibold text-gray-800 text-sm mb-1">
                           {item.name}
                         </h3>
-                        <p className="text-primary font-bold">${item.price}</p>
+                        <p className="text-primary font-bold">৳{item.price}</p>
                         <div className="flex items-center gap-2 mt-2">
                           <button
                             onClick={() =>
@@ -156,7 +156,7 @@ const CartOffcanvas = () => {
                             <Plus size={16} />
                           </button>
                           <span className="ml-auto text-sm text-gray-600">
-                            = ${(item.price * item.quantity).toFixed(2)}
+                            = ৳{(item.price * item.quantity).toFixed(2)}
                           </span>
                         </div>
                       </div>
@@ -221,12 +221,12 @@ const CartOffcanvas = () => {
               <div className="space-y-2 mb-4">
                 <div className="flex justify-between text-sm text-gray-600">
                   <span>Subtotal:</span>
-                  <span>${calculateSubtotal().toFixed(2)}</span>
+                  <span>৳{calculateSubtotal().toFixed(2)}</span>
                 </div>
                 {appliedCoupon && (
                   <div className="flex justify-between text-sm text-primary">
                     <span>Discount ({appliedCoupon.discount}%):</span>
-                    <span>-${calculateDiscount().toFixed(2)}</span>
+                    <span>-৳{calculateDiscount().toFixed(2)}</span>
                   </div>
                 )}
                 <div className="flex justify-between text-sm text-gray-600">
@@ -235,13 +235,13 @@ const CartOffcanvas = () => {
                     {getShippingCost() === 0 ? (
                       <span className="text-primary font-semibold">FREE</span>
                     ) : (
-                      `$${getShippingCost().toFixed(2)}`
+                      `৳${getShippingCost().toFixed(2)}`
                     )}
                   </span>
                 </div>
                 {calculateSubtotal() < 50 && (
                   <p className="text-xs text-orange-600">
-                    Add ${(50 - calculateSubtotal()).toFixed(2)} more for free
+                    Add ৳{(50 - calculateSubtotal()).toFixed(2)} more for free
                     shipping!
                   </p>
                 )}
@@ -250,7 +250,7 @@ const CartOffcanvas = () => {
               <div className="flex justify-between text-lg font-bold text-gray-800 mb-4 pt-4 border-t">
                 <span>Total:</span>
                 <span className="text-primary">
-                  ${calculateTotal().toFixed(2)}
+                  ৳{calculateTotal().toFixed(2)}
                 </span>
               </div>
 
