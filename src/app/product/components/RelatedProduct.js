@@ -82,21 +82,22 @@ export default function RelatedProduct({ relatedProducts }) {
                   )}
                 </div>
                 <div className="p-4">
-                  <h3 className="font-semibold text-gray-800 mb-4">
-                    {item?.name}
-                  </h3>
-                  <div className="flex flex-wrap justify-between items-center gap-5 w-full">
+                  <div className="flex items-start justify-start h-10 mb-4">
+                    <h3 className="font-semibold text-gray-800 line-clamp-2">
+                      {item?.name}
+                    </h3>
+                  </div>
+                  <div className="flex flex-col gap-3 w-full">
                     <div>
                       <div className="flex items-center gap-1 mb-2">
                         {[...Array(5)].map((_, i) => (
                           <Star
                             key={i}
                             size={14}
-                            className={`${
-                              i < Math.floor(item?.rating)
-                                ? "fill-yellow-400 text-yellow-400"
-                                : "text-gray-300"
-                            }`}
+                            className={`${i < Math.floor(item?.rating)
+                              ? "fill-yellow-400 text-yellow-400"
+                              : "text-gray-300"
+                              }`}
                           />
                         ))}
                       </div>
@@ -109,9 +110,11 @@ export default function RelatedProduct({ relatedProducts }) {
                         </span>
                       </div>
                     </div>
-                    <button className=" bg-primary text-white py-2 px-4 rounded-lg hover:bg-secondary transition font-semibold">
-                      View
-                    </button>
+                    <div className="">
+                      <button className="bg-primary text-white py-2 px-4 rounded-lg hover:bg-secondary transition font-semibold">
+                        View
+                      </button>
+                    </div>
                   </div>
                 </div>
               </Link>
