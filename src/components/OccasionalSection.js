@@ -82,9 +82,11 @@ export default function OccasionalSection() {
                         <span className="text-xs text-red-600 font-semibold">
                           {product.category}
                         </span>
-                        <h3 className="text-sm font-semibold text-gray-800 mb-2 line-clamp-2">
-                          {product.name}
-                        </h3>
+                        <div className="md:h-12 h-20">
+                          <h3 className="text-sm font-semibold text-gray-800 mb-2 line-clamp-2">
+                            {product.name}
+                          </h3>
+                        </div>
                         <div className="flex items-center gap-2 mb-3">
                           <span className="text-xl font-bold text-gray-800">
                             ৳{product.price}
