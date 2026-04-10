@@ -92,7 +92,13 @@ export default function ProductCard({ product }) {
                   >
                     -
                   </button>
-                  <span className="text-white font-semibold text-sm md:min-w-[15px] min-w-2 text-center">
+                  <span
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }}
+                    className="text-white font-semibold text-sm md:min-w-[15px] min-w-2 text-center"
+                  >
                     {quantity}
                   </span>
                   <button
