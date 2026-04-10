@@ -1,16 +1,32 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Search, ChevronDown } from "lucide-react";
 
 export default function HeaderSearch() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [open, setOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const categories = ["All", "Medicine", "Healthcare", "Lab Test", "Beauty"];
 
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, []);
+
   return (
     <>
-      <div className="flex flex-1 max-w-2xl">
+      <div className="flex flex-1 max-w-2xl" ref={dropdownRef}>
         <div className="flex w-full relative">
           {/* Category Dropdown */}
           <div className="relative">
