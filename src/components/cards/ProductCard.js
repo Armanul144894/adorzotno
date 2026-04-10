@@ -59,21 +59,21 @@ export default function ProductCard({ product }) {
               {product.name}
             </h3>
 
-            <div className="flex flex-wrap justify-between items-end gap-3">
+            <div className="flex mb-1">
+              {[...Array(5)].map((_, i) => (
+                <Star
+                  key={i}
+                  size={16}
+                  className={
+                    i < Math.floor(product.rating)
+                      ? "fill-yellow-400 text-yellow-400"
+                      : "text-gray-300"
+                  }
+                />
+              ))}
+            </div>
+            <div className="flex justify-between items-end">
               <div className="space-y-1">
-                <div className="flex gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      size={16}
-                      className={
-                        i < Math.floor(product.rating)
-                          ? "fill-yellow-400 text-yellow-400"
-                          : "text-gray-300"
-                      }
-                    />
-                  ))}
-                </div>
                 <div className="flex flex-col">
                   <span className="line-through text-gray-400">
                     ৳{product.originalPrice}
@@ -85,19 +85,19 @@ export default function ProductCard({ product }) {
               {/* Add to Cart Button / Quantity Controls */}
               {inCart ? (
                 /* Already in cart: always show quantity controls */
-                <div className="flex items-center gap-1 bg-primary rounded-lg overflow-hidden">
+                <div className="flex gap-1 items-center justify-center bg-primary rounded-lg overflow-hidden">
                   <button
                     onClick={handleDecrease}
-                    className="text-white px-3 py-2 hover:bg-white/20 transition-colors font-bold text-lg leading-none"
+                    className="text-white md:px-3 px-2 py-2 hover:bg-white/20 transition-colors font-bold text-lg leading-none"
                   >
                     -
                   </button>
-                  <span className="text-white font-semibold text-sm min-w-[20px] text-center">
+                  <span className="text-white font-semibold text-sm md:min-w-[15px] min-w-2 text-center">
                     {quantity}
                   </span>
                   <button
                     onClick={handleIncrease}
-                    className="text-white px-3 py-2 hover:bg-white/20 transition-colors font-bold text-lg leading-none"
+                    className="text-white md:px-3 px-2 py-2 hover:bg-white/20 transition-colors font-bold text-lg leading-none"
                   >
                     +
                   </button>
