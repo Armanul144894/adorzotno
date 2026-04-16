@@ -1,9 +1,9 @@
 "use client"
 import React, { useState } from "react";
-import "./globals.css";
-import Header from "../components/layout/Header";
-import SideBar from "../components/layout/SideBar";
-import Footer from "../components/layout/Footer";
+import "../../app/globals.css";
+import Header from "./Header";
+import SideBar from "./SideBar";
+import Footer from "./Footer";
 
 export default function MainLayout({ children }) {
 

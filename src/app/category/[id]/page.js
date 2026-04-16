@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductCategoryCard from '../components/ProductCategoryCard';
+import ProductCategoryCard from '../../../components/category/ProductCategoryCard';
 import allCategories from '../../../../public/data/category';
 import products from '../../../../public/data/data';
 

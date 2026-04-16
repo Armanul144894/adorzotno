@@ -122,7 +122,7 @@ export default function Checkout() {
                     <div className="flex items-center justify-center">
                         <div className="flex items-center">
                             {/* Step 1 */}
-                            <div className="flex items-center">
+                            <div className="flex items-center flex-col sm:flex-row gap-2">
                                 <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${currentStep >= 1 ? 'bg-primary text-white' : 'bg-gray-200 text-gray-500'
                                     }`}>
                                     {currentStep > 1 ? <Check size={20} /> : '1'}
@@ -135,7 +135,7 @@ export default function Checkout() {
                             <div className={`w-16 h-1 mx-2 ${currentStep >= 2 ? 'bg-primary' : 'bg-gray-200'}`}></div>
 
                             {/* Step 2 */}
-                            <div className="flex items-center">
+                            <div className="flex items-center flex-col sm:flex-row gap-2">
                                 <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${currentStep >= 2 ? 'bg-primary text-white' : 'bg-gray-200 text-gray-500'
                                     }`}>
                                     {currentStep > 2 ? <Check size={20} /> : '2'}
@@ -148,7 +148,7 @@ export default function Checkout() {
                             <div className={`w-16 h-1 mx-2 ${currentStep >= 3 ? 'bg-primary' : 'bg-gray-200'}`}></div>
 
                             {/* Step 3 */}
-                            <div className="flex items-center">
+                            <div className="flex items-center flex-col sm:flex-row gap-2">
                                 <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${currentStep >= 3 ? 'bg-primary text-white' : 'bg-gray-200 text-gray-500'
                                     }`}>
                                     {currentStep > 3 ? <Check size={20} /> : '3'}
@@ -158,7 +158,9 @@ export default function Checkout() {
                                 </span>
                             </div>
                         </div>
+
                     </div>
+
                 </div>
                 {/* Step 1: Shipping Information */}
                 {currentStep === 1 && (
@@ -481,7 +483,7 @@ export default function Checkout() {
                 {currentStep === 3 && (
                     <div className="space-y-6">
                         {/* Shipping Address Review */}
-                        <div className="bg-white rounded-lg shadow-md p-6">
+                        <div className="bg-white rounded-lg shadow-sm border p-6">
                             <div className="flex items-center justify-between mb-4">
                                 <h3 className="text-xl font-bold text-gray-800">Shipping Address</h3>
                                 <button
@@ -502,7 +504,7 @@ export default function Checkout() {
                         </div>
 
                         {/* Payment Method Review */}
-                        <div className="bg-white rounded-lg shadow-md p-6">
+                        <div className="bg-white rounded-lg shadow-sm border p-6">
                             <div className="flex items-center justify-between mb-4">
                                 <h3 className="text-xl font-bold text-gray-800">Payment Method</h3>
                                 <button
@@ -535,7 +537,7 @@ export default function Checkout() {
                         </div>
 
                         {/* Order Items Review */}
-                        <div className="bg-white rounded-lg shadow-md p-6">
+                        <div className="bg-white rounded-lg shadow-sm border p-6">
                             <h3 className="text-xl font-bold text-gray-800 mb-4">Order Items</h3>
                             <div className="space-y-4">
                                 {cartItems.map((item) => (
@@ -563,7 +565,7 @@ export default function Checkout() {
                         <div className="flex gap-4">
                             <button
                                 onClick={() => setCurrentStep(2)}
-                                className="flex-1 border-2 border-gray-300 text-gray-700 py-4 rounded-lg font-semibold hover:bg-gray-50 transition"
+                                className="flex-1 border shadow-sm border-gray-300 text-gray-700 py-4 rounded-lg font-semibold hover:bg-gray-50 transition"
                             >
                                 Back to Payment
                             </button>

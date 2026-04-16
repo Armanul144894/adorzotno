@@ -1,5 +1,5 @@
 import React from 'react'
-import BrandProductsPage from '../BrandProductsPage'
+import BrandProductsPage from '../../../components/brand/BrandProductsPage'
 
 export default function page() {
   return (

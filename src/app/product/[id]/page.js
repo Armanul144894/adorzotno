@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductDetails from '../components/ProductDetails'
+import ProductDetails from '../../../components/product/ProductDetails'
 import products from '../../../../public/data/data';
 
 
