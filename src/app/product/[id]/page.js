@@ -1,11 +1,12 @@
 import React from 'react'
 import ProductDetails from '../../../components/product/ProductDetails'
 import products from '../../../../public/data/data';
+import flashDeals from '../../../../public/data/flashDeals';
 
 
 // ✅ Metadata generation function (export this)
 export async function generateMetadata({ params }) {
-  const {id} = await params;
+  const { id } = await params;
   const slug = id
     .toLowerCase()
     .replace(/&/g, "and")
@@ -13,6 +14,13 @@ export async function generateMetadata({ params }) {
     .replace(/(^-|-$)/g, "");
 
   const product = products.find(
+    (p) =>
+      p.name
+        .toLowerCase()
+        .replace(/&/g, "and")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "") === slug
+  ) || flashDeals.find(
     (p) =>
       p.name
         .toLowerCase()
@@ -37,7 +45,7 @@ export async function generateMetadata({ params }) {
 export default function page() {
   return (
     <div>
-      <ProductDetails/>
+      <ProductDetails />
     </div>
   )
 }

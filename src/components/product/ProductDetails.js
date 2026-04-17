@@ -16,9 +16,12 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useMemo, useState } from "react";
 import products from "../../../public/data/data";
+import flashDeals from "../../../public/data/flashDeals";
 import RelatedProduct from "./RelatedProduct";
 import ProductDetailsTab from "./ProductDetailsTab";
 import ProductGrid from "./ProductGrid";
+
+const allProducts = [...products, ...flashDeals];
 
 export default function ProductDetails() {
   const { id } = useParams(); // ✅ correct param
@@ -30,9 +33,6 @@ export default function ProductDetails() {
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
   const [activeTab, setActiveTab] = useState("description");
-
-  const allProducts = products;
-
 
   const selectedProduct = useMemo(() => {
     return allProducts.find(

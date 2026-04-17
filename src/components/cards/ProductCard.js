@@ -35,7 +35,7 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <div className="bg-white h-full border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden group flex-shrink-0">
+    <div className="relative bg-white h-full border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden group flex-shrink-0">
       <Link
         href={`/product/${product.name
           .toLowerCase()
@@ -43,6 +43,13 @@ export default function ProductCard({ product }) {
           .replace(/[^a-z0-9]+/g, "-")
           .replace(/(^-|-$)/g, "")}`}
       >
+        {product.discount && (
+          <span className="absolute top-0 left-2 bg-red-500 text-white text-xs font-bold p-1.5 leading-tight [clip-path:polygon(0%_0%,100%_0%,100%_100%,87.5%_90%,75%_100%,62.5%_90%,50%_100%,37.5%_90%,25%_100%,12.5%_90%,0%_100%)] z-10">
+            {product.discount.split(" ")[0]} <br />
+            {product.discount.split(" ")[1]}
+          </span>
+        )}
+
         <div className="bg-white h-full rounded-lg overflow-hidden">
           <div className="relative h-48 bg-gray-50 overflow-hidden">
             <Image
