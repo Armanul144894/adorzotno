@@ -7,6 +7,7 @@ import SideBar from "../components/layout/SideBar";
 import Footer from "../components/layout/Footer";
 import CartOffcanvas from "../components/layout/CartOffcanvas";
 import { CartProvider } from "../context/CartContext";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,6 +49,7 @@ export default function RootLayout({ children }) {
               {/* Main Content */}
               <main className="flex-1 min-w-0 relative overflow-x-hidden px-4 py-6 border-l border-blue-50">
                 {children}
+                <ScrollToTop />
               </main>
             </div>
           </div>

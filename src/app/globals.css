@@ -7,6 +7,7 @@
   --foreground: #171717;
 
   --color-primary: 30 122 172;   /* sky-500 */
+  --color-primary-dark: 22 101 140; /* sky-700 */
   --color-secondary: 227 69 90; /* indigo-500 */
 
 }
