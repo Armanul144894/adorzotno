@@ -49,9 +49,8 @@ function CategoryCard({ cat }) {
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/40 to-black/20" />
       <div
-        className={`absolute inset-0 bg-gradient-to-t ${
-          cat.color ?? "from-teal-600 to-teal-300"
-        } opacity-55 group-hover:opacity-70 transition-opacity duration-300`}
+        className={`absolute inset-0 bg-gradient-to-t ${cat.color ?? "from-teal-600 to-teal-300"
+          } opacity-55 group-hover:opacity-70 transition-opacity duration-300`}
       />
       <div className="absolute inset-0 flex flex-col items-center justify-end pb-4 text-white text-center px-2">
         <div className="-mb-8 group-hover:mb-0 transition-all duration-300 flex flex-col items-center">
@@ -88,7 +87,7 @@ export default function HomeCategories() {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <h2 className="text-xl md:text-2xl font-semibold">
-            Shop by Category
+            Popular Categories
           </h2>
           <Flame className="text-orange-500" size={24} />
         </div>

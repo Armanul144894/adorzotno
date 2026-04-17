@@ -24,7 +24,7 @@ export default function page() {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-2xl font-bold text-gray-800">
-              Shop by Category
+              All Categories
             </h2>
             <button className="text-primary font-semibold flex items-center gap-1 hover:gap-2 transition-all">
               View All <ChevronRight size={20} />
