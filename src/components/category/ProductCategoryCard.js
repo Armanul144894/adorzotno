@@ -32,7 +32,7 @@ export default function ProductCategoryCard() {
           .replace(/[^a-z0-9]+/g, "-")
           .replace(/(^-|-$)/g, "") === slug,
     );
-  }, [slug]);
+  }, [categories, slug]);
 
   const filteredProducts = useMemo(() => {
     return allProducts.filter(
@@ -43,7 +43,7 @@ export default function ProductCategoryCard() {
           .replace(/[^a-z0-9]+/g, "-")
           .replace(/(^-|-$)/g, "") === slug,
     );
-  }, [slug]);
+  }, [allProducts, slug]);
 
   /* ================= UI ================= */
 

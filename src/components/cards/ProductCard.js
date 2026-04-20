@@ -51,7 +51,7 @@ export default function ProductCard({ product }) {
         )}
 
         <div className="bg-white h-full rounded-lg overflow-hidden">
-          <div className="relative h-48 bg-gray-50 overflow-hidden">
+          <div className="relative h-40 bg-gray-50 overflow-hidden">
             <Image
               src={product.images[0]}
               alt={product.name}
