@@ -1,8 +1,8 @@
 "use client";
 import { ChevronRight, Zap } from "lucide-react";
 import Link from "next/link";
-import ProductCard from "./cards/ProductCard";
-import flashDeals from "../../public/data/flashDeals";
+import ProductCard from "../../cards/ProductCard";
+import flashDeals from "../../../../public/data/flashDeals";
 
 export default function FlashDealSection() {
   return (

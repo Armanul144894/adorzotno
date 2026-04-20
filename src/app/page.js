@@ -1,17 +1,17 @@
 import React from 'react'
-import HeroBanner from '../components/HeroBanner'
-import HomeFeatures from '../components/HomeFeatures'
-import HomeCategories from '../components/HomeCategories'
-import FeaturedDeals from '../components/FeaturedDeals'
-import HomeCategoryProducts from '../components/HomeCategoryProducts'
-import Newsletter from '../components/Newsletter'
-import FlashSaleSection from '../components/FlashSaleSection'
-import FlashDealSection from '../components/FlashDealSection'
-import FAQSection from '../components/FAQSection'
-import BrandSection from '../components/BrandSection'
-import RecommendedSection from '../components/RecommendedSection'
-import OccasionalSection from '../components/OccasionalSection'
-import HomeOrderAgain from '../components/HomeOrderAgain'
+import HeroBanner from "../components/modules/home/HeroBanner";
+import HomeFeatures from "../components/modules/home/HomeFeatures";
+import HomeCategories from "../components/modules/home/HomeCategories";
+import FeaturedDeals from "../components/modules/home/FeaturedDeals";
+import HomeCategoryProducts from "../components/modules/home/HomeCategoryProducts";
+import Newsletter from "../components/modules/shared/Newsletter";
+import FlashSaleSection from "../components/modules/home/FlashSaleSection";
+import FlashDealSection from "../components/modules/home/FlashDealSection";
+import FAQSection from "../components/modules/shared/FAQSection";
+import BrandSection from "../components/modules/shared/BrandSection";
+import RecommendedSection from "../components/modules/home/RecommendedSection";
+import OccasionalSection from "../components/modules/home/OccasionalSection";
+import HomeOrderAgain from "../components/modules/home/HomeOrderAgain";
 
 export default function page() {
   return (

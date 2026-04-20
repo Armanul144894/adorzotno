@@ -1,7 +1,7 @@
 ﻿"use client";
 import React from "react";
-import products from "../../public/data/data";
-import ProductCard from "./cards/ProductCard";
+import products from "../../../../public/data/data";
+import ProductCard from "../../cards/ProductCard";
 
 export default function OccasionalSection() {
   const occasions = [
