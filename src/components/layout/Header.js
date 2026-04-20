@@ -1,5 +1,5 @@
 "use client";
-import { ChevronDown, Menu, ShoppingCart, Users, X } from "lucide-react";
+import { ChevronDown, MapPin, Menu, ShoppingCart, Users, X } from "lucide-react";
 import React, { useState } from "react";
 import Link from "next/link";
 import CategoryOffcanvas from "./CategoryOffcanvas";
@@ -8,6 +8,7 @@ import Image from "next/image";
 import LiveChatWidget from "./LiveChatWidget";
 import HeaderSearch from "./HeaderSearch";
 import { useCart } from "../../context/CartContext";
+import DeliveryLocation from "../DeliveryLocation";
 
 export default function Header() {
   const { cartItems, setIsCartOpen } = useCart();
@@ -24,7 +25,7 @@ export default function Header() {
         <div className="container-fluid max-w-[1920px] mx-auto px-4 py-2">
           <div className="flex items-center justify-between gap-4">
             {/* Logo */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 w-60">
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
                 className="lg:hidden p-2 hover:bg-gray-100 rounded"
@@ -41,8 +42,18 @@ export default function Header() {
               </Link>
             </div>
 
+            <div className="max-sm:hidden">
+              {/* location selector */}
+              {/* <button className="mt-2 text-sm text-gray-600 hover:text-gray-800 transition-colors flex items-center gap-1">
+                <span className="text-gray-500">
+                  <MapPin size={16} /> Delivery Location
+                </span>
+              </button> */}
+              <DeliveryLocation />
+            </div>
+
             {/* Search Bar */}
-            <div className="hidden md:flex md:w-1/2 xl:w-2/3 justify-center">
+            <div className="hidden md:flex md:w-1/2 xl:w-3/5 justify-center">
               <HeaderSearch />
             </div>
 
@@ -77,10 +88,14 @@ export default function Header() {
                 className="relative bg-primary p-3 rounded cursor-pointer hidden md:block"
               >
                 <div className="flex items-center font-bold gap-2 text-white">
-                  <Users size={24} className="text-white" /> Sign In <ChevronDown />
+                  <Users size={24} className="text-white flex-1" /> Sign In <ChevronDown />
                 </div>
               </button>
             </div>
+          </div>
+
+          <div className="sm:hidden">
+                <DeliveryLocation></DeliveryLocation>
           </div>
 
           {/* Mobile Search */}
