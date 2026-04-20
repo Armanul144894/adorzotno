@@ -164,7 +164,7 @@ export default function ProductGrid({ selectedProduct, selectedImage, setSelecte
 
                         {/* Action Buttons */}
                         <div className="flex gap-4 mb-6">
-                            <button className="flex-1 bg-primary text-white py-3 rounded-lg font-semibold hover:bg-secondary transition flex items-center justify-center gap-2">
+                            <button className="max-sm:flex-1 bg-primary text-white sm:px-10 py-3 rounded-lg font-semibold hover:bg-secondary transition flex items-center justify-center gap-2">
                                 <ShoppingCart size={20} />
                                 Add to Cart
                             </button>
@@ -200,13 +200,13 @@ export default function ProductGrid({ selectedProduct, selectedImage, setSelecte
 
                         {/* Product Meta */}
                         <div className="border-t mt-6 pt-6 space-y-2 text-sm">
-                            <div className="flex justify-between">
+                            <div className="flex gap-2">
                                 <span className="text-gray-600">SKU:</span>
                                 <span className="font-semibold text-gray-800">
                                     {selectedProduct?.sku}
                                 </span>
                             </div>
-                            <div className="flex justify-between">
+                            <div className="flex gap-2">
                                 <span className="text-gray-600">Manufacturer:</span>
                                 <span className="font-semibold text-gray-800">
                                     {selectedProduct?.manufacturer}

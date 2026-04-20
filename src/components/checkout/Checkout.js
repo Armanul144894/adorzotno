@@ -18,8 +18,7 @@ export default function Checkout() {
         address: '',
         city: '',
         state: '',
-        zipCode: '',
-        country: 'United States'
+        zipCode: ''
     });
 
     const [paymentInfo, setPaymentInfo] = useState({
@@ -285,22 +284,6 @@ export default function Checkout() {
                                 </div>
                             </div>
 
-                            <div className="mb-6">
-                                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                                    Country *
-                                </label>
-                                <select
-                                    value={shippingInfo.country}
-                                    onChange={(e) => setShippingInfo({ ...shippingInfo, country: e.target.value })}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary"
-                                >
-                                    <option>United States</option>
-                                    <option>Canada</option>
-                                    <option>United Kingdom</option>
-                                    <option>Australia</option>
-                                </select>
-                            </div>
-
                             <button
                                 type="submit"
                                 className="w-full bg-primary text-white py-4 rounded-lg font-semibold hover:bg-secondary transition flex items-center justify-center gap-2"
@@ -497,7 +480,6 @@ export default function Checkout() {
                                 <p className="font-semibold text-gray-800">{shippingInfo.firstName} {shippingInfo.lastName}</p>
                                 <p>{shippingInfo.address}</p>
                                 <p>{shippingInfo.city}, {shippingInfo.state} {shippingInfo.zipCode}</p>
-                                <p>{shippingInfo.country}</p>
                                 <p className="mt-2">{shippingInfo.email}</p>
                                 <p>{shippingInfo.phone}</p>
                             </div>
