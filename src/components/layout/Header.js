@@ -1,5 +1,5 @@
 "use client";
-import { ChevronDown, MapPin, Menu, ShoppingCart, Users, X } from "lucide-react";
+import { ChevronDown, MapPin, Menu, ShoppingCart, User, Users, X } from "lucide-react";
 import React, { useState } from "react";
 import Link from "next/link";
 import CategoryOffcanvas from "./CategoryOffcanvas";
@@ -42,13 +42,8 @@ export default function Header() {
               </Link>
             </div>
 
+            {/* location selector */}
             <div className="max-sm:hidden">
-              {/* location selector */}
-              {/* <button className="mt-2 text-sm text-gray-600 hover:text-gray-800 transition-colors flex items-center gap-1">
-                <span className="text-gray-500">
-                  <MapPin size={16} /> Delivery Location
-                </span>
-              </button> */}
               <DeliveryLocation />
             </div>
 
@@ -58,7 +53,7 @@ export default function Header() {
             </div>
 
             {/* Actions */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 sm:gap-4">
               {/* Cart Button — now opens via CartContext */}
               <button
                 onClick={() => setIsCartOpen(true)}
@@ -78,7 +73,7 @@ export default function Header() {
                 onClick={() => setSignInOpen(true)}
                 className="relative p-2 hover:bg-gray-100 rounded-full cursor-pointer md:hidden"
               >
-                <Users size={24} className="text-gray-600" />
+                <User size={24} className="text-gray-600" />
               </button>
 
               <div className="h-8 w-[3px] rounded bg-primary hidden md:block"></div>
@@ -87,15 +82,15 @@ export default function Header() {
                 onClick={() => setSignInOpen(true)}
                 className="relative bg-primary p-3 rounded cursor-pointer hidden md:block"
               >
-                <div className="flex items-center font-bold gap-2 text-white">
-                  <Users size={24} className="text-white flex-1" /> Sign In <ChevronDown />
+                <div className="flex items-center font-bold gap-1 px-2 text-white">
+                  <User size={24} className="text-white flex-1" /> Sign In
                 </div>
               </button>
             </div>
           </div>
 
           <div className="sm:hidden">
-                <DeliveryLocation></DeliveryLocation>
+            <DeliveryLocation></DeliveryLocation>
           </div>
 
           {/* Mobile Search */}
