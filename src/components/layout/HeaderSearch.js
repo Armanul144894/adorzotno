@@ -4,7 +4,7 @@ import { Search } from "lucide-react";
 export default function HeaderSearch() {
   return (
     <>
-      <div className="flex flex-1 max-w-2xl">
+      <div className="flex flex-1 max-w-4xl">
         <div className="flex w-full relative">
           {/* Search Input */}
           <input
