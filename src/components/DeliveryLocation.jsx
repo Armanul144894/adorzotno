@@ -5,16 +5,24 @@ import { Check, ChevronDown, MapPin } from "lucide-react";
 
 export default function DeliveryLocation() {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedLocation, setSelectedLocation] = useState("Dhaka");
+    const [selectedLocation, setSelectedLocation] = useState("Dhanmondi");
 
     const locations = [
-        { name: "Dhaka", region: "Capital" },
-        { name: "Chittagong", region: "Port City" },
-        { name: "Sylhet", region: "North East" },
-        { name: "Khulna", region: "South West" },
-        { name: "Rajshahi", region: "North" },
-        { name: "Barisal", region: "South" },
-        { name: "Mymensingh", region: "Central" },
+        { name: "Dhanmondi", region: "Central Dhaka" },
+        { name: "Gulshan", region: "North Dhaka" },
+        { name: "Banani", region: "North Dhaka" },
+        { name: "Uttara", region: "Airport Zone" },
+        { name: "Mirpur", region: "West Dhaka" },
+        { name: "Mohammadpur", region: "West Central" },
+        { name: "Bashundhara", region: "East Dhaka" },
+        { name: "Badda", region: "North East Dhaka" },
+        { name: "Rampura", region: "East Central" },
+        { name: "Shantinagar", region: "Central Dhaka" },
+        { name: "Malibagh", region: "Central Dhaka" },
+        { name: "Khilgaon", region: "South East Dhaka" },
+        { name: "Shyamoli", region: "West Dhaka" },
+        { name: "Farmgate", region: "Central Dhaka" },
+        { name: "Old Dhaka", region: "Historic Zone" },
     ];
 
     const handleLocationSelect = (locationName) => {

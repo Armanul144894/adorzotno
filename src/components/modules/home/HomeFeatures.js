@@ -10,8 +10,8 @@ export default function HomeFeatures() {
       desc: "On orders over ৳50",
     },
     {
-      icon: <Shield className="text-blue-600" size={24} />,
-      bg: "bg-blue-100",
+      icon: <Shield className="text-green-600" size={24} />,
+      bg: "bg-green-100",
       title: "Secure Payment",
       desc: "100% protected",
     },

@@ -176,43 +176,47 @@ export default function ProductGrid({ selectedProduct, selectedImage, setSelecte
                             </button>
                         </div>
 
-                        {/* Features */}
-                        <div className="border-t pt-6 space-y-3">
-                            <div className="flex items-center gap-3">
-                                <Truck className="text-primary" size={24} />
-                                <div>
-                                    <p className="font-semibold text-gray-800">Free Delivery</p>
-                                    <p className="text-sm text-gray-600">On orders over ৳50</p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-t">
+                            {/* Product Meta */}
+                            <div className="pt-6 space-y-2 text-sm">
+                                <div className="flex gap-2">
+                                    <span className="text-gray-600">SKU:</span>
+                                    <span className="font-semibold text-gray-800">
+                                        {selectedProduct?.sku}
+                                    </span>
+                                </div>
+                                <div className="flex gap-2">
+                                    <span className="text-gray-600">Manufacturer:</span>
+                                    <span className="font-semibold text-gray-800">
+                                        {selectedProduct?.manufacturer}
+                                    </span>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-3">
-                                <Shield className="text-primary" size={24} />
-                                <div>
-                                    <p className="font-semibold text-gray-800">
-                                        Secure Payment
-                                    </p>
-                                    <p className="text-sm text-gray-600">
-                                        100% secure transactions
-                                    </p>
+                            {/* Features */}
+                            <div className="pt-6 space-y-3">
+                                <div className="flex items-center gap-3">
+                                    <Truck className="text-primary" size={24} />
+                                    <div>
+                                        <p className="font-semibold text-gray-800">Free Delivery</p>
+                                        <p className="text-sm text-gray-600">On orders over ৳50</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <Shield className="text-primary" size={24} />
+                                    <div>
+                                        <p className="font-semibold text-gray-800">
+                                            Secure Payment
+                                        </p>
+                                        <p className="text-sm text-gray-600">
+                                            100% secure transactions
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Product Meta */}
-                        <div className="border-t mt-6 pt-6 space-y-2 text-sm">
-                            <div className="flex gap-2">
-                                <span className="text-gray-600">SKU:</span>
-                                <span className="font-semibold text-gray-800">
-                                    {selectedProduct?.sku}
-                                </span>
-                            </div>
-                            <div className="flex gap-2">
-                                <span className="text-gray-600">Manufacturer:</span>
-                                <span className="font-semibold text-gray-800">
-                                    {selectedProduct?.manufacturer}
-                                </span>
-                            </div>
-                        </div>
+
+
                     </div>
                 </div>
             </div>
