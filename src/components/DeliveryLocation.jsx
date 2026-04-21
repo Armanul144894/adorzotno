@@ -35,23 +35,26 @@ export default function DeliveryLocation() {
             {/* Desktop trigger: fixed-width compact selector for the main header row */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="hidden sm:flex h-12 w-[220px] xl:w-[236px] shrink-0 items-center gap-3 rounded-lg border border-blue-100 bg-white/95 px-3 shadow-sm transition-all duration-200 hover:border-primary/20 hover:bg-blue-50/70"
+                className="group relative hidden h-[58px] w-[220px] shrink-0 overflow-hidden rounded-xl border border-primary/15 bg-white shadow-sm sm:flex"
             >
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <MapPin className="h-4 w-4" />
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/8 via-transparent to-secondary/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="relative flex w-full items-center gap-3 rounded-[14px] bg-white px-4 py-2.5">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                        <MapPin className="h-5 w-5" />
+                    </div>
+                    <div className="min-w-0 flex-1 text-left leading-tight">
+                        <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">
+                            Delivery To
+                        </p>
+                        <p className="truncate whitespace-nowrap text-sm font-bold text-slate-800">
+                            {selectedLocation}
+                        </p>
+                    </div>
+                    <ChevronDown
+                        className={`h-4 w-4 shrink-0 text-slate-400 transition-all duration-300 group-hover:text-primary ${isOpen ? "rotate-180" : ""
+                            }`}
+                    />
                 </div>
-                <div className="min-w-0 flex-1 text-left">
-                    <p className="text-[11px] font-medium tracking-[0.16em] text-slate-400">
-                        Delivery to
-                    </p>
-                    <p className="truncate whitespace-nowrap text-sm font-semibold text-slate-800">
-                        {selectedLocation}
-                    </p>
-                </div>
-                <ChevronDown
-                    className={`h-4 w-4 shrink-0 text-slate-500 transition-transform duration-200 ${isOpen ? "rotate-180" : ""
-                        }`}
-                />
             </button>
 
             {/* Mobile trigger: full-width version that sits comfortably above mobile search */}

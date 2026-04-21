@@ -186,9 +186,15 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
                       {/* Verify OTP Button */}
                       <button
                         onClick={handleVerifyOTP}
-                        className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-secondary transition mb-4"
+                        className="group mb-4 flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-primary via-primary to-secondary px-5 py-2.5 font-semibold text-white transition-all duration-300 hover:shadow-[0_14px_30px_rgba(14,165,233,0.10)]"
                       >
-                        Verify OTP
+                        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/18 ring-1 ring-white/25">
+                          <Lock size={18} />
+                        </span>
+                        <span>Verify OTP</span>
+                        <span className="text-lg transition-transform duration-300 group-hover:translate-x-0.5">
+                          →
+                        </span>
                       </button>
 
                       {/* Resend OTP */}
@@ -221,8 +227,8 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
                         <button
                           onClick={() => setLoginMethod("phone")}
                           className={`flex-1 py-2 px-4 rounded-lg font-semibold transition ${loginMethod === "phone"
-                              ? "bg-primary text-white"
-                              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                            ? "bg-primary text-white"
+                            : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                             }`}
                         >
                           <Phone size={18} className="inline mr-2" />
@@ -231,8 +237,8 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
                         <button
                           onClick={() => setLoginMethod("email")}
                           className={`flex-1 py-2 px-4 rounded-lg font-semibold transition ${loginMethod === "email"
-                              ? "bg-primary text-white"
-                              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                            ? "bg-primary text-white"
+                            : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                             }`}
                         >
                           <Mail size={18} className="inline mr-2" />
@@ -328,13 +334,25 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
                       {/* Send OTP / Sign In Button */}
                       <button
                         onClick={handleSendOTP}
-                        className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-secondary transition mb-4"
+                        className="group mb-4 flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-primary via-primary to-secondary px-5 py-2.5 font-semibold text-white transition-all duration-300 hover:shadow-[0_14px_30px_rgba(14,165,233,0.10)]"
                       >
-                        {loginMethod === "phone"
-                          ? "Send OTP"
-                          : isSignUp
-                            ? "Sign Up"
-                            : "Sign In"}
+                        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/18 ring-1 ring-white/25">
+                          {loginMethod === "phone" ? (
+                            <Phone size={18} />
+                          ) : (
+                            <Lock size={18} />
+                          )}
+                        </span>
+                        <span>
+                          {loginMethod === "phone"
+                            ? "Send OTP"
+                            : isSignUp
+                              ? "Sign Up"
+                              : "Sign In"}
+                        </span>
+                        <span className="text-lg transition-transform duration-300 group-hover:translate-x-0.5">
+                          →
+                        </span>
                       </button>
 
                       {/* Forgot Password */}

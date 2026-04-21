@@ -80,10 +80,24 @@ export default function Header() {
 
               <button
                 onClick={() => setSignInOpen(true)}
-                className="relative bg-primary p-3 rounded cursor-pointer hidden md:block"
+                className="group relative hidden overflow-hidden rounded-xl md:block"
               >
-                <div className="flex items-center font-bold gap-1 px-2 text-white">
-                  <User size={24} className="text-white flex-1" /> Sign In
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/8 via-transparent to-secondary/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="relative flex items-center gap-3 rounded-[14px] p-2.5 font-semibold text-slate-800">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-secondary text-white shadow-sm">
+                    <User size={20} />
+                  </span>
+                  <span className="flex flex-col items-start leading-tight">
+                    <span className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">
+                      Account
+                    </span>
+                    <span className="text-sm font-bold text-slate-800">
+                      Sign In
+                    </span>
+                  </span>
+                  <span className="text-lg text-slate-400 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-primary">
+                    →
+                  </span>
                 </div>
               </button>
             </div>
