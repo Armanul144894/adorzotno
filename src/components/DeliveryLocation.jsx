@@ -69,7 +69,7 @@ export default function DeliveryLocation() {
             </button>
 
             {isOpen && (
-                <div className="absolute left-0 top-full z-50 mt-2 w-full min-w-[260px] overflow-hidden rounded-lg border border-blue-100 bg-white shadow-[0_20px_50px_rgba(15,23,42,0.12)] sm:w-[280px]">
+                <div className="absolute left-0 top-full z-50 mt-2 w-full min-w-[260px] overflow-hidden rounded-lg border border-blue-100 bg-white shadow-[0_20px_50px_rgba(15,23,42,0.12)] sm:w-[320px]">
                     {/* Shared dropdown panel for both desktop and mobile triggers */}
                     <div className="border-b border-blue-100 bg-gradient-to-r from-blue-50 via-white to-blue-50 px-4 py-3">
                         <p className="text-sm font-semibold text-slate-900">Select delivery area</p>
