@@ -52,6 +52,14 @@ const nextConfig = {
         protocol: "https",
         hostname: "amgen.wd1.myworkdayjobs.com",
       },
+      {
+        protocol: "https",
+        hostname: "png.pngtree.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.rawpixel.com",
+      },
     ],
   },
 };
