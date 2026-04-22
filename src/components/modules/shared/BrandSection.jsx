@@ -16,99 +16,99 @@ export default function BrandSection() {
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
 
-const brands = [
-  {
-    id: 1,
-    name: "Pfizer",
-    slug: "pfizer",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Pfizer_logo.svg/250px-Pfizer_logo.svg.png",
-  },
-  {
-    id: 2,
-    name: "Johnson & Johnson",
-    slug: "johnson-johnson",
-    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-7B24ITY89Biek0SSz9BuPZD0iKSTi8SNDQ&s",
-  },
-  {
-    id: 3,
-    name: "Bayer",
-    slug: "bayer",
-    logo: "https://e7.pngegg.com/pngimages/979/373/png-clipart-leverkusen-bayer-cropscience-agriculture-business-pharma-company-text-thumbnail.png",
-  },
-  {
-    id: 4,
-    name: "GlaxoSmithKline",
-    slug: "glaxosmithkline",
-    logo: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/GSK_logo_2014.svg/250px-GSK_logo_2014.svg.png",
-  },
-  {
-    id: 5,
-    name: "Abbott",
-    slug: "abbott",
-    logo: "https://www.abbott.com.sg/etc.clientlibs/abbott-platform/clientlibs/clientlib-site/resources/images/abbott-logo.png",
-  },
-  {
-    id: 6,
-    name: "Novartis",
-    slug: "novartis",
-    logo: "https://www.tbsnews.net/sites/default/files/styles/amp_metadata_content_image_min_696px_wide/public/images/2024/12/05/m.png",
-  },
-  {
-    id: 7,
-    name: "Roche",
-    slug: "roche",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Hoffmann-La_Roche_logo.svg/512px-Hoffmann-La_Roche_logo.svg.png",
-  },
-  {
-    id: 8,
-    name: "Merck",
-    slug: "merck",
-    logo: "https://www.merck.com/wp-content/uploads/sites/124/2022/03/Merck.png",
-  },
-  {
-    id: 9,
-    name: "Sanofi",
-    slug: "sanofi",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/7/79/Sanofi_logo.svg",
-  },
-  {
-    id: 10,
-    name: "AstraZeneca",
-    slug: "astrazeneca",
-    logo: "https://mms.businesswire.com/media/20240206590080/en/484259/5/Logo.jpg?download=1",
-  },
-  {
-    id: 11,
-    name: "Eli Lilly",
-    slug: "eli-lilly",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Eli_Lilly_and_Company.svg/512px-Eli_Lilly_and_Company.png",
-  },
-  {
-    id: 12,
-    name: "Bristol Myers Squibb",
-    slug: "bristol-myers-squibb",
-    logo: "https://6a3d28ac.delivery.rocketcdn.me/wp-content/uploads/2025/03/Bristol-Myers-Squibb.png",
-  },
-  {
-    id: 13,
-    name: "Boehringer Ingelheim",
-    slug: "boehringer-ingelheim",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Boehringer_Ingelheim_Logo.svg/960px-Boehringer_Ingelheim_Logo.svg.png",
-  },
-  {
-    id: 14,
-    name: "Takeda",
-    slug: "takeda",
-    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHE4NuqbvBg1BuzLdPemq1PSVjNocSSEARZA&s",
-  },
-  {
-    id: 15,
-    name: "Amgen",
-    slug: "amgen",
-    logo: "https://amgen.wd1.myworkdayjobs.com/wday/cxs/amgen/Careers/sidebarimage/ff565065af860119e1b725ed27020a01",
-  },
-  
-];
+  const brands = [
+    {
+      id: 1,
+      name: "Pfizer",
+      slug: "pfizer",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Pfizer_logo.svg/250px-Pfizer_logo.svg.png",
+    },
+    {
+      id: 2,
+      name: "Johnson & Johnson",
+      slug: "johnson-johnson",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-7B24ITY89Biek0SSz9BuPZD0iKSTi8SNDQ&s",
+    },
+    {
+      id: 3,
+      name: "Bayer",
+      slug: "bayer",
+      logo: "https://e7.pngegg.com/pngimages/979/373/png-clipart-leverkusen-bayer-cropscience-agriculture-business-pharma-company-text-thumbnail.png",
+    },
+    {
+      id: 4,
+      name: "GlaxoSmithKline",
+      slug: "glaxosmithkline",
+      logo: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/GSK_logo_2014.svg/250px-GSK_logo_2014.svg.png",
+    },
+    {
+      id: 5,
+      name: "Abbott",
+      slug: "abbott",
+      logo: "https://www.abbott.com.sg/etc.clientlibs/abbott-platform/clientlibs/clientlib-site/resources/images/abbott-logo.png",
+    },
+    {
+      id: 6,
+      name: "Novartis",
+      slug: "novartis",
+      logo: "https://www.tbsnews.net/sites/default/files/styles/amp_metadata_content_image_min_696px_wide/public/images/2024/12/05/m.png",
+    },
+    {
+      id: 7,
+      name: "Roche",
+      slug: "roche",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Hoffmann-La_Roche_logo.svg/512px-Hoffmann-La_Roche_logo.svg.png",
+    },
+    {
+      id: 8,
+      name: "Merck",
+      slug: "merck",
+      logo: "https://www.merck.com/wp-content/uploads/sites/124/2022/03/Merck.png",
+    },
+    {
+      id: 9,
+      name: "Sanofi",
+      slug: "sanofi",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/7/79/Sanofi_logo.svg",
+    },
+    {
+      id: 10,
+      name: "AstraZeneca",
+      slug: "astrazeneca",
+      logo: "https://mms.businesswire.com/media/20240206590080/en/484259/5/Logo.jpg?download=1",
+    },
+    {
+      id: 11,
+      name: "Eli Lilly",
+      slug: "eli-lilly",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Eli_Lilly_and_Company.svg/512px-Eli_Lilly_and_Company.png",
+    },
+    {
+      id: 12,
+      name: "Bristol Myers Squibb",
+      slug: "bristol-myers-squibb",
+      logo: "https://6a3d28ac.delivery.rocketcdn.me/wp-content/uploads/2025/03/Bristol-Myers-Squibb.png",
+    },
+    {
+      id: 13,
+      name: "Boehringer Ingelheim",
+      slug: "boehringer-ingelheim",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Boehringer_Ingelheim_Logo.svg/960px-Boehringer_Ingelheim_Logo.svg.png",
+    },
+    {
+      id: 14,
+      name: "Takeda",
+      slug: "takeda",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHE4NuqbvBg1BuzLdPemq1PSVjNocSSEARZA&s",
+    },
+    {
+      id: 15,
+      name: "Amgen",
+      slug: "amgen",
+      logo: "https://amgen.wd1.myworkdayjobs.com/wday/cxs/amgen/Careers/sidebarimage/ff565065af860119e1b725ed27020a01",
+    },
+
+  ];
 
 
   const handleSlideChange = (swiper) => {
@@ -143,9 +143,9 @@ const brands = [
         <Link href="/brand">
           <button className="hidden md:flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-semibold text-sm md:text-base group">
             View All Brands
-            <ChevronRight 
-              size={20} 
-              className="group-hover:translate-x-1 transition-transform" 
+            <ChevronRight
+              size={20}
+              className="group-hover:translate-x-1 transition-transform"
             />
           </button>
         </Link>
@@ -157,11 +157,10 @@ const brands = [
         <button
           onClick={handlePrev}
           disabled={isBeginning}
-          className={`hidden md:block absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 bg-white shadow-xl rounded-full p-3 transition-all duration-300 ${
-            isBeginning
-              ? 'opacity-30 cursor-not-allowed'
-              : 'opacity-100 hover:bg-primary hover:text-white hover:shadow-2xl active:scale-95'
-          }`}
+          className={`hidden md:block absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 bg-white shadow-xl rounded-full p-3 transition-all duration-300 ${isBeginning
+            ? 'opacity-30 cursor-not-allowed'
+            : 'opacity-100 hover:bg-primary hover:text-white hover:shadow-2xl active:scale-95'
+            }`}
           aria-label="Previous brands"
         >
           <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
@@ -207,7 +206,7 @@ const brands = [
               spaceBetween: 20,
             },
             1536: {
-              slidesPerView: 8,
+              slidesPerView: 7,
               spaceBetween: 20,
             },
           }}
@@ -226,7 +225,7 @@ const brands = [
                         backgroundSize: '20px 20px'
                       }}></div>
                     </div>
-                    
+
                     {/* Logo */}
                     <div className="relative w-full h-20 md:h-24 flex items-center justify-center">
                       <Image
@@ -271,11 +270,10 @@ const brands = [
         <button
           onClick={handleNext}
           disabled={isEnd}
-          className={`hidden md:block absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 bg-white shadow-xl rounded-full p-3 transition-all duration-300 ${
-            isEnd
-              ? 'opacity-30 cursor-not-allowed'
-              : 'opacity-100 hover:bg-primary hover:text-white hover:shadow-2xl active:scale-95'
-          }`}
+          className={`hidden md:block absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 bg-white shadow-xl rounded-full p-3 transition-all duration-300 ${isEnd
+            ? 'opacity-30 cursor-not-allowed'
+            : 'opacity-100 hover:bg-primary hover:text-white hover:shadow-2xl active:scale-95'
+            }`}
           aria-label="Next brands"
         >
           <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
@@ -287,9 +285,9 @@ const brands = [
         <Link href="/brand">
           <button className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-semibold text-sm group">
             View All Brands
-            <ChevronRight 
-              size={18} 
-              className="group-hover:translate-x-1 transition-transform" 
+            <ChevronRight
+              size={18}
+              className="group-hover:translate-x-1 transition-transform"
             />
           </button>
         </Link>

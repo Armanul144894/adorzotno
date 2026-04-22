@@ -9,13 +9,13 @@ export default function OccasionalSection() {
       id: 201,
       title: "Winter Care Essentials",
       icon: "❄️",
-      products: products.slice(0, 7).map((p) => ({ ...p, occasion: "Winter" })),
+      products: products.slice(0, 6).map((p) => ({ ...p, occasion: "Winter" })),
     },
     {
       id: 202,
       title: "New Year Health Goals",
       icon: "🎉",
-      products: products.slice(4, 11).map((p) => ({ ...p, occasion: "New Year" })),
+      products: products.slice(4, 10).map((p) => ({ ...p, occasion: "New Year" })),
     },
   ];
 
@@ -38,7 +38,7 @@ export default function OccasionalSection() {
           </div>
 
           <div className="bg-white rounded-b-lg shadow-md p-6">
-            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-8 gap-3">
+            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-6 gap-3">
               {occasion.products.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}

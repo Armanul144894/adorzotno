@@ -10,7 +10,7 @@ export default function HeaderSearch() {
           <input
             type="text"
             placeholder="Search for products..."
-            className="w-full px-4 py-3 shadow-sm bg-blue-100 border-2 border-primary/40 rounded-l-lg focus:outline-none"
+            className="w-full px-4 py-3.5 shadow-sm bg-blue-50 border border-primary/40 rounded-l-lg focus:outline-none"
           />
 
           {/* Search Button */}

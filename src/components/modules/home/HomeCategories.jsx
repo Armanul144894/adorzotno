@@ -54,9 +54,9 @@ function CategoryCard({ cat }) {
       />
       <div className="absolute inset-0 flex flex-col items-center justify-end pb-4 text-white text-center px-2">
         <div className="-mb-8 group-hover:mb-0 transition-all duration-300 flex flex-col items-center">
-          <span className="text-3xl drop-shadow-lg leading-none">
+          {/* <span className="text-3xl drop-shadow-lg leading-none">
             {cat.emoji ?? cat.icon}
-          </span>
+          </span> */}
           <span className="text-sm font-bold mt-1.5 drop-shadow tracking-wide leading-tight">
             {cat.name}
           </span>
@@ -119,7 +119,7 @@ export default function HomeCategories() {
         )}
 
         {loading ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 gap-3">
             {[...Array(skeletonCount)].map((_, i) => (
               <SkeletonCard key={i} />
             ))}
@@ -135,10 +135,10 @@ export default function HomeCategories() {
             watchOverflow
             breakpoints={{
               640: { slidesPerView: 3 },
-              768: { slidesPerView: 5 },
-              1224: { slidesPerView: 6 },
-              1320: { slidesPerView: 7 },
-              1500: { slidesPerView: 8 },
+              768: { slidesPerView: 4 },
+              1224: { slidesPerView: 5 },
+              1320: { slidesPerView: 6 },
+              1500: { slidesPerView: 7 },
             }}
             className="!pb-2"
           >

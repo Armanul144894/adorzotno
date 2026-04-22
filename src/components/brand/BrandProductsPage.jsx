@@ -215,7 +215,7 @@ export default function BrandProductsPage() {
           <div
             className={
               viewMode === 'grid'
-                ? 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-8 gap-3'
+                ? 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3'
                 : 'space-y-3'
             }
           >
@@ -287,4 +287,3 @@ export default function BrandProductsPage() {
     </div>
   );
 }
-

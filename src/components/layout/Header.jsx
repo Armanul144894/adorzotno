@@ -22,7 +22,7 @@ export default function Header() {
   return (
     <div className="sticky top-0 w-full z-50">
       <header className="bg-blue-50 shadow-md">
-        <div className="container-fluid max-w-[1920px] mx-auto px-4 py-2">
+        <div className="container mx-auto px-4 py-2">
           <div className="flex items-center justify-between gap-4">
             {/* Logo */}
             <div className="flex items-center gap-2 w-60">
@@ -48,7 +48,7 @@ export default function Header() {
             </div>
 
             {/* Search Bar */}
-            <div className="hidden md:flex md:w-1/2 xl:w-3/5 justify-center">
+            <div className="hidden md:flex md:w-1/2 xl:w-3/6 justify-center">
               <HeaderSearch />
             </div>
 

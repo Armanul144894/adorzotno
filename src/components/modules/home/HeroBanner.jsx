@@ -17,7 +17,7 @@ export default function HeroBanner() {
             setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
         }, 5000);
         return () => clearInterval(timer);
-    }, []);
+    }, [heroSlides.length]);
 
     const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
@@ -37,7 +37,7 @@ export default function HeroBanner() {
                         width={0}
                         height={0}
                         sizes="100vw"
-                        className="w-full h-auto"
+                        className="w-full h-auto max-h-[400px] object-cover"
                         priority={index === 0}
                     />
                 </div>

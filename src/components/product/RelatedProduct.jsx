@@ -48,7 +48,7 @@ export default function RelatedProduct({ relatedProducts }) {
             768: { slidesPerView: 4 },
             1380: { slidesPerView: 5 },
             1536: {
-              slidesPerView: 7.5,
+              slidesPerView: 6,
               spaceBetween: 10,
             },
           }}

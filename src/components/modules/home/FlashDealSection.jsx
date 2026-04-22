@@ -21,7 +21,7 @@ export default function FlashDealSection() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-8 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-6 gap-3">
         {flashDeals.map((deal) => (
           <div key={deal.id}>
             <ProductCard product={deal} />
