@@ -34,7 +34,7 @@ export default function ProductCard2({ product }) {
   };
 
   return (
-    <div className="relative h-full flex-shrink-0 overflow-hidden border border-transparent bg-white transition-all hover:border-primary/20 hover:shadow-md">
+    <div className="group relative h-full flex-shrink-0 overflow-hidden border border-transparent bg-white transition-all hover:border-primary/20 hover:shadow-md">
       <Link
         href={`/product/${product.name
           .toLowerCase()
@@ -43,7 +43,7 @@ export default function ProductCard2({ product }) {
           .replace(/(^-|-$)/g, "")}`}
       >
         {product.discount && (
-          <span className="absolute top-0 left-2 bg-red-500 text-white text-xs font-bold p-1.5 leading-tight [clip-path:polygon(0%_0%,100%_0%,100%_100%,87.5%_90%,75%_100%,62.5%_90%,50%_100%,37.5%_90%,25%_100%,12.5%_90%,0%_100%)] z-10">
+          <span className="absolute top-0 left-2 bg-red-600 text-white text-xs font-bold p-1.5 leading-tight [clip-path:polygon(0%_0%,100%_0%,100%_100%,87.5%_90%,75%_100%,62.5%_90%,50%_100%,37.5%_90%,25%_100%,12.5%_90%,0%_100%)] z-10">
             {product.discount.split(" ")[0]} <br />
             {product.discount.split(" ")[1]}
           </span>
@@ -103,7 +103,7 @@ export default function ProductCard2({ product }) {
               ) : (
                 <button
                   onClick={handleAdd}
-                  className="flex h-10 w-full items-center justify-center gap-2 rounded-lg border border-primary/20 bg-white px-4 font-semibold text-primary transition-all duration-100 hover:bg-primary hover:text-white text-sm sm:text-base whitespace-nowrap"
+                  className="flex h-10 w-full items-center justify-center gap-2 rounded-lg border border-primary/20 bg-white px-4 font-semibold text-primary transition-all duration-100 group-hover:bg-primary group-hover:text-white text-sm sm:text-base whitespace-nowrap"
                 >
                   <ShoppingCart size={18} />
                   <span>Add to Cart</span>

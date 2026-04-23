@@ -45,7 +45,7 @@ export default function HomeOrderAgain() {
 
   const skeletonCount = 7;
   return (
-    <section className="w-full mb-8">
+    <section className="group/category w-full mb-8">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <h2 className="text-xl md:text-2xl font-semibold">Order Again</h2>
@@ -64,16 +64,16 @@ export default function HomeOrderAgain() {
         {!loading && (
           <>
             <button
-              className="order-again-prev absolute left-0 top-1/2 z-10 -translate-y-1/2 bg-white shadow-md rounded-full w-9 h-9 flex items-center justify-center hover:bg-gray-100 transition-colors"
+              className="order-again-prev absolute -left-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-xl bg-primary/85 text-white shadow-md opacity-0 transition-all duration-300 group-hover/category:translate-x-0 group-hover/category:opacity-100 md:-translate-x-3"
               aria-label="Previous"
             >
-              <ChevronLeft size={18} />
+              <ChevronLeft size={18} strokeWidth={3} />
             </button>
             <button
-              className="order-again-next absolute right-0 top-1/2 z-10 -translate-y-1/2 bg-white shadow-md rounded-full w-9 h-9 flex items-center justify-center hover:bg-gray-100 transition-colors"
+              className="order-again-next absolute -right-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-xl bg-primary/85 text-white shadow-md opacity-0 transition-all duration-300 group-hover/category:translate-x-0 group-hover/category:opacity-100 md:translate-x-3"
               aria-label="Next"
             >
-              <ChevronRight size={18} />
+              <ChevronRight size={18} strokeWidth={3} />
             </button>
           </>
         )}
