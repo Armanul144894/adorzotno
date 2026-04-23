@@ -43,11 +43,11 @@ export default function HeroBanner() {
                 </div>
             ))}
 
-            <button onClick={prevSlide} className="absolute cursor-pointer left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg z-20 transition">
+            <button onClick={prevSlide} className="absolute cursor-pointer left-2 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white p-2 rounded-xl shadow-lg z-20 transition">
                 <ChevronLeft size={24} className="text-gray-800" />
             </button>
 
-            <button onClick={nextSlide} className="absolute cursor-pointer right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg z-20 transition">
+            <button onClick={nextSlide} className="absolute cursor-pointer right-2 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white p-2 rounded-xl shadow-lg z-20 transition">
                 <ChevronRight size={24} className="text-gray-800" />
             </button>
 

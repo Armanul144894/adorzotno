@@ -16,17 +16,10 @@ export default function CategoryProduct({ category, products }) {
   const [isEnd, setIsEnd] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
 
-  const slugify = (text) =>
-    text
-      .toLowerCase()
-      .replace(/&/g, "and")
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "");
-
   const handleSlideChange = (swiper) => {
     setIsBeginning(swiper.isBeginning);
     setIsEnd(swiper.isEnd);
-    setIsLocked(swiper.isLocked); // ✅ key line
+    setIsLocked(swiper.isLocked);
   };
 
   const handlePrev = () => {
@@ -42,7 +35,7 @@ export default function CategoryProduct({ category, products }) {
   };
 
   return (
-    <div className={`mb-8`}>
+    <div className={`group/category mb-8`}>
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
@@ -67,14 +60,13 @@ export default function CategoryProduct({ category, products }) {
           <button
             onClick={handlePrev}
             disabled={isBeginning}
-            className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg rounded-full p-2 md:p-3 transition-all duration-300 ${
-              isBeginning
-                ? "opacity-30 cursor-not-allowed"
-                : "opacity-100 hover:bg-emerald-50 hover:shadow-xl active:scale-95"
-            }`}
+            className={`absolute -left-2 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-xl bg-primary/85 text-white shadow-md transition-all duration-300 ${isBeginning
+                ? "cursor-not-allowed opacity-0 md:-translate-x-3"
+                : "opacity-0 md:-translate-x-3 group-hover/category:translate-x-0 group-hover/category:opacity-100"
+              }`}
             aria-label="Previous products"
           >
-            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-gray-700" />
+            <ChevronLeft size={18} strokeWidth={3} />
           </button>
         )}
 
@@ -151,14 +143,13 @@ export default function CategoryProduct({ category, products }) {
           <button
             onClick={handleNext}
             disabled={isEnd}
-            className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg rounded-full p-2 md:p-3 transition-all duration-300 ${
-              isEnd
-                ? "opacity-30 cursor-not-allowed"
-                : "opacity-100 hover:bg-emerald-50 hover:shadow-xl active:scale-95"
-            }`}
+            className={`absolute -right-2 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-xl bg-primary/85 text-white shadow-md transition-all duration-300 ${isEnd
+                ? "cursor-not-allowed opacity-0 md:translate-x-3"
+                : "opacity-0 md:translate-x-3 group-hover/category:translate-x-0 group-hover/category:opacity-100"
+              }`}
             aria-label="Next products"
           >
-            <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-gray-700" />
+            <ChevronRight size={18} strokeWidth={3} />
           </button>
         )}
       </div>
@@ -170,11 +161,10 @@ export default function CategoryProduct({ category, products }) {
             <button
               key={index}
               onClick={() => swiperInstance?.slideTo(index * 2)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                Math.floor((swiperInstance?.activeIndex || 0) / 2) === index
+              className={`h-2 rounded-full transition-all duration-300 ${Math.floor((swiperInstance?.activeIndex || 0) / 2) === index
                   ? "w-8 bg-primary"
                   : "w-2 bg-gray-300 hover:bg-gray-400"
-              }`}
+                }`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ),
