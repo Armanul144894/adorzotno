@@ -9,7 +9,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import products from "../../../../public/data/data";
 import ProductCard from "../../cards/ProductCard";
-import ProductCard2 from "@/components/cards/ProductCard2";
 
 const previousOrders = products.slice(30, 44);
 
@@ -106,7 +105,7 @@ export default function HomeOrderAgain() {
           >
             {previousOrders.map((product) => (
               <SwiperSlide key={product.id} className="h-auto py-4">
-                <ProductCard2 product={product} />
+                <ProductCard product={product} />
               </SwiperSlide>
             ))}
           </Swiper>

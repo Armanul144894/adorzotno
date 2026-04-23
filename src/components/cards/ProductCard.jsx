@@ -1,13 +1,12 @@
 ﻿"use client";
-import { Star, ShoppingCart, RotateCcw } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import { useCart } from "../../context/CartContext";
 
-export default function ProductCard({ product }) {
+export default function ProductCard2({ product }) {
   const { addToCart, getItemQuantity, updateQuantity, removeItem } = useCart();
-  const [isHovered, setIsHovered] = useState(false);
 
   const quantity = getItemQuantity(product.id);
   const inCart = quantity > 0;
@@ -35,7 +34,7 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <div className="relative bg-white h-full border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden group flex-shrink-0">
+    <div className="relative h-full flex-shrink-0 overflow-hidden border border-transparent bg-white transition-all hover:border-primary/20 hover:shadow-md">
       <Link
         href={`/product/${product.name
           .toLowerCase()
@@ -50,86 +49,65 @@ export default function ProductCard({ product }) {
           </span>
         )}
 
-        <div className="bg-white h-full rounded-lg overflow-hidden">
+        <div className="bg-white h-full overflow-hidden">
           <div className="relative h-40 bg-gray-50 overflow-hidden">
             <Image
               src={product.images[0]}
               alt={product.name}
               fill
               sizes="(max-width: 640px) 50vw, 25vw"
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
+              className="object-cover"
             />
           </div>
 
-          <div className="p-4">
+          <div className="p-3 text-center">
             <h3 className="text-sm font-semibold text-gray-800 mb-2 line-clamp-2 h-10">
               {product.name}
             </h3>
-
-            <div className="flex mb-1">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  size={16}
-                  className={
-                    i < Math.floor(product.rating)
-                      ? "fill-yellow-400 text-yellow-400"
-                      : "text-gray-300"
-                  }
-                />
-              ))}
+            <div className="flex items-center gap-1 justify-center">
+              <span className="line-through text-gray-400">
+                ৳{product.originalPrice}
+              </span>
+              <span className="font-bold">৳{product.price}</span>
             </div>
-            <div className="flex justify-between items-end">
-              <div className="space-y-1">
-                <div className="flex flex-col">
-                  <span className="line-through text-gray-400">
-                    ৳{product.originalPrice}
-                  </span>
-                  <span className="font-bold">৳{product.price}</span>
-                </div>
-              </div>
+
+            <div className="mt-3">
 
               {/* Add to Cart Button / Quantity Controls */}
               {inCart ? (
-                /* Already in cart: always show quantity controls */
-                <div className="flex gap-1 items-center justify-center bg-primary rounded-lg overflow-hidden">
+                <div
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }}
+                  className="flex w-full items-center overflow-hidden rounded-xl border border-primary/15 bg-primary/5 p-1"
+                >
                   <button
                     onClick={handleDecrease}
-                    className="text-white md:px-3 px-2 py-2 hover:bg-white/20 transition-colors font-bold text-lg leading-none"
+                    className="flex h-8 w-8  items-center justify-center rounded-lg bg-white text-xl font-bold leading-none text-primary shadow-sm transition-all duration-300 hover:bg-primary hover:text-white"
                   >
                     -
                   </button>
-                  <span
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                    }}
-                    className="text-white font-semibold text-sm md:min-w-[15px] min-w-2 text-center"
-                  >
-                    {quantity}
-                  </span>
+                  <div className="flex min-w-0 flex-1 items-center justify-center px-3 text-primary">
+                    <span className="text-base font-bold">
+                      {quantity}
+                    </span>
+                  </div>
                   <button
                     onClick={handleIncrease}
-                    className="text-white md:px-3 px-2 py-2 hover:bg-white/20 transition-colors font-bold text-lg leading-none"
+                    className="flex h-8 w-8  items-center justify-center rounded-lg bg-primary text-xl font-bold leading-none text-white shadow-sm transition-all duration-300 hover:bg-secondary"
                   >
                     +
                   </button>
                 </div>
               ) : (
-                /* Not in cart: show + button, expand on hover */
-                <div
-                  className="relative"
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
+                <button
+                  onClick={handleAdd}
+                  className="flex h-10 w-full items-center justify-center gap-2 rounded-lg border border-primary/20 bg-white px-4 font-semibold text-primary transition-all duration-100 hover:bg-primary hover:text-white text-sm sm:text-base whitespace-nowrap"
                 >
-                  {/* Collapsed: just the + icon */}
-                  <button
-                    onClick={handleAdd}
-                    className={`flex items-center gap-1 bg-[#1e7aac25] hover:bg-primary text-primary hover:text-white border border-primary rounded-lg font-semibold transition-all duration-300 overflow-hidden px-4 py-2 w-10 h-10 justify-center`}
-                  >
-                    <span className="text-2xl leading-none font-medium">+</span>
-                  </button>
-                </div>
+                  <ShoppingCart size={18} />
+                  <span>Add to Cart</span>
+                </button>
               )}
             </div>
           </div>
