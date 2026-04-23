@@ -159,6 +159,14 @@ const allCategories = [
     color: "from-green-500 to-lime-400",
     image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&q=80",
   },
+  {
+    id: 21,
+    name: "Fitness & Nutrition",
+    icon: "🥗",
+    count: 5,
+    color: "from-green-500 to-lime-400",
+    image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&q=80",
+  },
 ];
 
 export default allCategories;

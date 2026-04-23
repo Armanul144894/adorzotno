@@ -15,7 +15,11 @@ export default function HeaderCategoryMenu({ isOpen, onClose, categories }) {
   if (!isOpen) return null;
 
   const featuredCategories = categories.slice(0, 3);
-  const categoryColumns = [categories.slice(0, 10), categories.slice(10, 20)];
+  const midpoint = Math.ceil(categories.length / 2);
+  const categoryColumns = [
+    categories.slice(0, midpoint),
+    categories.slice(midpoint),
+  ];
 
   return (
     <div className="absolute left-0 top-full z-50 mt-1 hidden w-[min(92vw,760px)] max-w-[760px] overflow-hidden border border-slate-200 bg-white shadow-[0_24px_80px_rgba(15,23,42,0.16)] lg:block">
