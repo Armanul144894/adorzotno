@@ -44,10 +44,10 @@ export default function RootLayout({ children }) {
           <div className="container mx-auto relative">
             <div className="flex lg:gap-0 items-start">
               {/* Sidebar - LEFT SIDE ON DESKTOP */}
-              <SideBar />
+              {/* <SideBar /> */}
 
               {/* Main Content */}
-              <main className="flex-1 min-w-0 relative overflow-x-hidden px-4 py-6 border-l border-blue-50">
+              <main className="flex-1 min-w-0 relative overflow-x-hidden px-4 py-6 border-blue-50">
                 {children}
                 <ScrollToTop />
               </main>

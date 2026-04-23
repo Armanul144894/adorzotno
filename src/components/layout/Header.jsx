@@ -24,14 +24,26 @@ export default function Header() {
       <header className="bg-white shadow-md">
         <div className="container mx-auto px-4 py-1">
           <div className="flex items-center justify-between gap-4">
-            {/* Logo */}
+
+
             <div className="flex items-center gap-2 w-60">
+              {/* category menu button */}
+              <button
+                onClick={() => { }}
+                className="max-lg:hidden p-4 rounded-lg text-primary hover:bg-primary/5 transition-colors duration-300"
+              >
+                {sidebarOpen ? <X size={24} /> : <Menu size={24} strokeWidth={2.5} />}
+              </button>
+
+              {/* mobile menu button */}
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
                 className="lg:hidden p-2 hover:bg-gray-100 rounded"
               >
                 {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
+
+              {/* Logo */}
               <Link href="/">
                 <Image
                   src="/images/AdorzotnoLogo.png"

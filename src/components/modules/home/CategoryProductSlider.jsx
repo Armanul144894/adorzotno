@@ -62,7 +62,7 @@ export default function CategoryProduct({ category, products }) {
             disabled={isBeginning}
             className={`absolute -left-2 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-xl bg-primary/85 text-white shadow-md transition-all duration-300 ${isBeginning
                 ? "cursor-not-allowed opacity-0 md:-translate-x-3"
-                : "opacity-0 md:-translate-x-3 group-hover/category:translate-x-0 group-hover/category:opacity-100"
+                : "opacity-0 md:translate-x-3 group-hover/category:translate-x-0 group-hover/category:opacity-100"
               }`}
             aria-label="Previous products"
           >
@@ -145,7 +145,7 @@ export default function CategoryProduct({ category, products }) {
             disabled={isEnd}
             className={`absolute -right-2 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-xl bg-primary/85 text-white shadow-md transition-all duration-300 ${isEnd
                 ? "cursor-not-allowed opacity-0 md:translate-x-3"
-                : "opacity-0 md:translate-x-3 group-hover/category:translate-x-0 group-hover/category:opacity-100"
+                : "opacity-0 md:-translate-x-3 group-hover/category:translate-x-0 group-hover/category:opacity-100"
               }`}
             aria-label="Next products"
           >

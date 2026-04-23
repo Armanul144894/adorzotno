@@ -23,7 +23,7 @@ export default function page() {
         <HeroBanner />
 
         {/* Features */}
-        <HomeFeatures />
+        {/* <HomeFeatures /> */}
 
         {/* Categories Section */}
         <HomeCategories />

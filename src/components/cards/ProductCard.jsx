@@ -50,7 +50,7 @@ export default function ProductCard2({ product }) {
         )}
 
         <div className="bg-white h-full overflow-hidden">
-          <div className="relative h-40 bg-gray-50 overflow-hidden">
+          <div className="relative h-40 lg:h-44 bg-gray-50 overflow-hidden">
             <Image
               src={product.images[0]}
               alt={product.name}
