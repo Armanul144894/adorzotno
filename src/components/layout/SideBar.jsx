@@ -6,7 +6,7 @@ export default function SideBar() {
   const categories = allCategories;
 
   return (
-    <div className="lg:sticky top-24 rounded-2xl max-h-[90vh] overflow-x-auto hidden lg:block [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-gray-300">
+    <div className="lg:sticky top-20 rounded-2xl max-h-[90vh] overflow-x-auto hidden lg:block [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-gray-300">
       <aside
         className={`-translate-x-full lg:translate-x-0 lg:relative inset-y-0 lg:bg-transparent z-40 w-64 `}
       >
