@@ -1,14 +1,16 @@
 "use client";
-import { ChevronDown, MapPin, Menu, ShoppingCart, User, Users, X } from "lucide-react";
-import React, { useState } from "react";
+import { Menu, ShoppingCart, User, X } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import CategoryOffcanvas from "./CategoryOffcanvas";
+import HeaderCategoryMenu from "./HeaderCategoryMenu";
 import SignInModal from "./SignInModal";
 import Image from "next/image";
 import LiveChatWidget from "./LiveChatWidget";
 import HeaderSearch from "./HeaderSearch";
 import { useCart } from "../../context/CartContext";
 import DeliveryLocation from "../DeliveryLocation";
+import allCategories from "../../../public/data/category";
 
 export default function Header() {
   const { cartItems, setIsCartOpen } = useCart();
@@ -16,23 +18,51 @@ export default function Header() {
 
   const [isSignInOpen, setSignInOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [categoryMenuOpen, setCategoryMenuOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   const [chatExpanded, setChatExpanded] = useState(false);
+  const categoryMenuRef = useRef(null);
+
+  useEffect(() => {
+    const handlePointerDown = (event) => {
+      if (
+        categoryMenuRef.current &&
+        !categoryMenuRef.current.contains(event.target)
+      ) {
+        setCategoryMenuOpen(false);
+      }
+    };
+
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setCategoryMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
 
   return (
     <div className="sticky top-0 w-full z-50">
       <header className="bg-white shadow-md">
         <div className="container mx-auto px-4 py-1">
           <div className="flex items-center justify-between gap-4">
-
-
-            <div className="flex items-center gap-2 w-60">
+            <div
+              ref={categoryMenuRef}
+              className="relative flex items-center gap-2 w-60"
+            >
               {/* category menu button */}
               <button
-                onClick={() => { }}
-                className="max-lg:hidden p-4 rounded-lg text-primary hover:bg-primary/5 transition-colors duration-300"
+                onClick={() => setCategoryMenuOpen((open) => !open)}
+                className="max-lg:hidden p-3 border border-slate-200 rounded-lg text-primary hover:bg-primary/5 transition-colors duration-300"
               >
-                {sidebarOpen ? <X size={24} /> : <Menu size={24} strokeWidth={2.5} />}
+                {categoryMenuOpen ? <X size={24} /> : <Menu size={24} strokeWidth={2.5} />}
               </button>
 
               {/* mobile menu button */}
@@ -52,6 +82,11 @@ export default function Header() {
                   height={60}
                 />
               </Link>
+              <HeaderCategoryMenu
+                isOpen={categoryMenuOpen}
+                onClose={() => setCategoryMenuOpen(false)}
+                categories={allCategories}
+              />
             </div>
 
             {/* location selector */}
@@ -69,7 +104,7 @@ export default function Header() {
               {/* Cart Button — now opens via CartContext */}
               <button
                 onClick={() => setIsCartOpen(true)}
-                className="relative p-2 hover:bg-gray-100 rounded-full cursor-pointer"
+                className="relative p-2.5 hover:bg-primary/5 transition-colors duration-300 rounded-lg cursor-pointer"
               >
                 <ShoppingCart size={24} className="text-gray-600" />
                 {cartCount > 0 && (
@@ -83,7 +118,7 @@ export default function Header() {
 
               <button
                 onClick={() => setSignInOpen(true)}
-                className="relative p-2 hover:bg-gray-100 rounded-full cursor-pointer md:hidden"
+                className="relative p-2.5 hover:bg-primary/5 transition-colors duration-300 rounded-lg cursor-pointer md:hidden"
               >
                 <User size={24} className="text-gray-600" />
               </button>
