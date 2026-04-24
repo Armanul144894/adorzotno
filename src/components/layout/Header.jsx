@@ -55,12 +55,12 @@ export default function Header() {
           <div className="flex items-center justify-between gap-4">
             <div
               ref={categoryMenuRef}
-              className="relative flex items-center gap-2 w-60"
+              className="relative flex items-center justify-between gap-2 w-60"
             >
               {/* category menu button */}
               <button
                 onClick={() => setCategoryMenuOpen((open) => !open)}
-                className="max-lg:hidden p-3 border border-slate-200 rounded-lg text-primary hover:bg-primary/5 transition-colors duration-300"
+                className="max-lg:hidden p-3 rounded-lg text-primary hover:bg-primary/5 transition-colors duration-300"
               >
                 {categoryMenuOpen ? <X size={24} /> : <Menu size={24} strokeWidth={2.5} />}
               </button>
@@ -78,10 +78,12 @@ export default function Header() {
                 <Image
                   src="/images/AdorzotnoLogo.png"
                   alt="adorzotno Logo"
-                  width={140}
+                  width={150}
                   height={60}
                 />
               </Link>
+              <div></div>
+
               <HeaderCategoryMenu
                 isOpen={categoryMenuOpen}
                 onClose={() => setCategoryMenuOpen(false)}
