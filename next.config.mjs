@@ -60,6 +60,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "images.rawpixel.com",
       },
+      {
+        protocol: "https",
+        hostname: "images.ctfassets.net",
+      },
     ],
   },
 };

@@ -1,44 +1,46 @@
-"use client"
+import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
-
-// ── slugify ──────────────────────────────────────────────────────────────────
-const slugify = (name) =>
-    name
+const slugify = (text) =>
+    text
         .toLowerCase()
         .replace(/&/g, "and")
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/(^-|-$)/g, "");
 
-
-export default function CategoryCard({ cat }) {
+export default function CategoryCard({ category }) {
     return (
-        <div>
-            <Link
-                href={`/category/${slugify(cat.name)}`}
-                className="group relative block rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 h-40"
-            >
-                <Image
-                    src={cat.image}
-                    alt={cat.name}
-                    fill
-                    sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 16vw"
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/40 to-black/20" />
-                <div className="absolute inset-0 flex flex-col items-center justify-end pb-4 text-white text-center px-2">
-                    <div className="-mb-8 group-hover:mb-0 transition-all duration-300 flex flex-col items-center">
-                        <span className="text-sm font-bold mt-1.5 drop-shadow tracking-wide leading-tight">
-                            {cat.name}
-                        </span>
+        <Link
+            href={`/category/${slugify(category.name)}`}
+            className="group flex flex-col items-center rounded-lg bg-transparent p-2 sm:p-3 text-center transition-transform duration-300"
+        >
+            <div className="flex w-full items-center justify-center">
+                <div className="relative w-28 sm:w-32 aspect-square">
+                    <div className={`absolute inset-0 rounded-full bg-gradient-to-r from-primary/15 to-primary/5 shadow-sm ring-1 ring-slate-100`} />
+                    <div className="absolute inset-0 z-10 flex items-center justify-center">
+                        <div className="relative h-[120%] w-[120%]">
+                            <Image
+                                src={category.image}
+                                alt={category.name}
+                                fill
+                                sizes="112px"
+                                className="object-contain transition-transform duration-300 group-hover:scale-110"
+                            />
+                        </div>
                     </div>
-                    <span className="mt-2 text-[10px] font-semibold bg-white/20 backdrop-blur-sm px-3 py-0.5 rounded-full opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                        Shop →
-                    </span>
                 </div>
-            </Link>
-        </div>
-    )
+            </div>
+
+            <div className="flex items-center justify-center gap-3 px-4 pt-1 sm:p-2">
+                <p className="line-clamp-2 text-xs sm:text-base font-medium text-slate-700">
+                    {category.name}
+                </p>
+
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-transparent text-slate-500 transition-all duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-white">
+                    <ArrowUpRight size={18} />
+                </span>
+            </div>
+        </Link>
+    );
 }

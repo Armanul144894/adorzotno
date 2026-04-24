@@ -28,11 +28,11 @@
     name: "Pain Relief Value Pack",
     price: 19.99,
     originalPrice: 32.99,
-    image: "https://png.pngtree.com/png-clipart/20240825/original/pngtree-pills-of-different-colours-lay-on-table-png-image_15848561.png",
+    image: "https://png.pngtree.com/png-vector/20240518/ourmid/pngtree-pharmacy-concept-with-medicines-png-image_12484673.png",
     discount: "39% OFF",
     dealEnds: "4 hours left",
     images: [
-      "https://png.pngtree.com/png-clipart/20240825/original/pngtree-pills-of-different-colours-lay-on-table-png-image_15848561.png",
+      "https://png.pngtree.com/png-vector/20240518/ourmid/pngtree-pharmacy-concept-with-medicines-png-image_12484673.png",
     ],
   },
   {
@@ -40,11 +40,11 @@
     name: "Pain Relief Value Pack",
     price: 19.99,
     originalPrice: 32.99,
-    image: "https://png.pngtree.com/png-clipart/20240825/original/pngtree-pills-of-different-colours-lay-on-table-png-image_15848561.png",
+    image: "https://png.pngtree.com/png-vector/20240518/ourmid/pngtree-pharmacy-concept-with-medicines-png-image_12484673.png",
     discount: "39% OFF",
     dealEnds: "4 hours left",
     images: [
-      "https://png.pngtree.com/png-clipart/20240825/original/pngtree-pills-of-different-colours-lay-on-table-png-image_15848561.png",
+      "https://png.pngtree.com/png-vector/20240518/ourmid/pngtree-pharmacy-concept-with-medicines-png-image_12484673.png",
     ],
   },
   {
@@ -64,11 +64,11 @@
     name: "Pain Relief Value Pack",
     price: 19.99,
     originalPrice: 32.99,
-    image: "https://png.pngtree.com/png-clipart/20240825/original/pngtree-pills-of-different-colours-lay-on-table-png-image_15848561.png",
+    image: "https://png.pngtree.com/png-vector/20240518/ourmid/pngtree-pharmacy-concept-with-medicines-png-image_12484673.png",
     discount: "39% OFF",
     dealEnds: "4 hours left",
     images: [
-      "https://png.pngtree.com/png-clipart/20240825/original/pngtree-pills-of-different-colours-lay-on-table-png-image_15848561.png",
+      "https://png.pngtree.com/png-vector/20240518/ourmid/pngtree-pharmacy-concept-with-medicines-png-image_12484673.png",
     ],
   },
   {
@@ -76,11 +76,11 @@
     name: "Pain Relief Value Pack",
     price: 19.99,
     originalPrice: 32.99,
-    image: "https://png.pngtree.com/png-clipart/20240825/original/pngtree-pills-of-different-colours-lay-on-table-png-image_15848561.png",
+    image: "https://png.pngtree.com/png-vector/20240518/ourmid/pngtree-pharmacy-concept-with-medicines-png-image_12484673.png",
     discount: "39% OFF",
     dealEnds: "4 hours left",
     images: [
-      "https://png.pngtree.com/png-clipart/20240825/original/pngtree-pills-of-different-colours-lay-on-table-png-image_15848561.png",
+      "https://png.pngtree.com/png-vector/20240518/ourmid/pngtree-pharmacy-concept-with-medicines-png-image_12484673.png",
     ],
   },
   {
@@ -88,11 +88,11 @@
     name: "Pain Relief Value Pack",
     price: 19.99,
     originalPrice: 32.99,
-    image: "https://png.pngtree.com/png-clipart/20240825/original/pngtree-pills-of-different-colours-lay-on-table-png-image_15848561.png",
+    image: "https://png.pngtree.com/png-vector/20240518/ourmid/pngtree-pharmacy-concept-with-medicines-png-image_12484673.png",
     discount: "39% OFF",
     dealEnds: "4 hours left",
     images: [
-      "https://png.pngtree.com/png-clipart/20240825/original/pngtree-pills-of-different-colours-lay-on-table-png-image_15848561.png",
+      "https://png.pngtree.com/png-vector/20240518/ourmid/pngtree-pharmacy-concept-with-medicines-png-image_12484673.png",
     ],
   },
   {
@@ -112,11 +112,11 @@
     name: "Pain Relief Value Pack",
     price: 19.99,
     originalPrice: 32.99,
-    image: "https://png.pngtree.com/png-clipart/20240825/original/pngtree-pills-of-different-colours-lay-on-table-png-image_15848561.png",
+    image: "https://png.pngtree.com/png-vector/20240518/ourmid/pngtree-pharmacy-concept-with-medicines-png-image_12484673.png",
     discount: "39% OFF",
     dealEnds: "4 hours left",
     images: [
-      "https://png.pngtree.com/png-clipart/20240825/original/pngtree-pills-of-different-colours-lay-on-table-png-image_15848561.png",
+      "https://png.pngtree.com/png-vector/20240518/ourmid/pngtree-pharmacy-concept-with-medicines-png-image_12484673.png",
     ],
   },
   {
@@ -136,11 +136,11 @@
     name: "Pain Relief Value Pack",
     price: 19.99,
     originalPrice: 32.99,
-    image: "https://png.pngtree.com/png-clipart/20240825/original/pngtree-pills-of-different-colours-lay-on-table-png-image_15848561.png",
+    image: "https://png.pngtree.com/png-vector/20240518/ourmid/pngtree-pharmacy-concept-with-medicines-png-image_12484673.png",
     discount: "39% OFF",
     dealEnds: "4 hours left",
     images: [
-      "https://png.pngtree.com/png-clipart/20240825/original/pngtree-pills-of-different-colours-lay-on-table-png-image_15848561.png",
+      "https://png.pngtree.com/png-vector/20240518/ourmid/pngtree-pharmacy-concept-with-medicines-png-image_12484673.png",
     ],
   },
   {

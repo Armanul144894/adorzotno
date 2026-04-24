@@ -12,7 +12,7 @@ export default function RecommendedSection() {
     <div className="mb-8">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <h2 className="text-xl md:text-2xl font-semibold">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">
             Recommended For You
           </h2>
           <TrendingUp className="text-teal-500" size={24} />

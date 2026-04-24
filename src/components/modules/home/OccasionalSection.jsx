@@ -27,7 +27,7 @@ export default function OccasionalSection() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-1">
                 <div>
-                  <h2 className="text-2xl font-bold">{occasion.title}</h2>
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold">{occasion.title}</h2>
                 </div>
                 <div className="text-xl">{occasion.icon}</div>
               </div>

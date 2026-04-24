@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight, Grid2x2 } from "lucide-react";
+import { ArrowUpRight, ChevronRight, Grid2x2 } from "lucide-react";
 
 const slugify = (text) =>
   text
@@ -99,9 +99,7 @@ export default function HeaderCategoryMenu({ isOpen, onClose, categories }) {
                     className="object-cover transition-transform duration-500 group-hover/card:scale-105"
                   />
                   <div
-                    className={`absolute inset-0 bg-gradient-to-br ${
-                      category.color || "from-primary to-secondary"
-                    } opacity-65`}
+                    className={`absolute inset-0 bg-gradient-to-br from-primary/30 to-primary/10 opacity-65`}
                   />
                 </div>
                 <div className="mt-3 flex items-center justify-between gap-3">
@@ -114,7 +112,7 @@ export default function HeaderCategoryMenu({ isOpen, onClose, categories }) {
                     </p>
                   </div>
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition-all duration-300 group-hover/card:border-primary group-hover/card:bg-primary group-hover/card:text-white">
-                    <Grid2x2 size={16} />
+                    <ArrowUpRight size={18} />
                   </span>
                 </div>
               </Link>

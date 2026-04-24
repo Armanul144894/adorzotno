@@ -48,7 +48,7 @@ export default function HomeOrderAgain() {
     <section className="group/category w-full mb-8">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <h2 className="text-xl md:text-2xl font-semibold">Order Again</h2>
+          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">Order Again</h2>
           <RotateCcw className="text-primary" size={24} />
         </div>
 

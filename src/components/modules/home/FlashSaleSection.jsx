@@ -32,7 +32,7 @@ export default function FlashSaleSection() {
           <div className="flex items-center gap-3">
             <Zap className="text-yellow-300" size={32} />
             <div>
-              <h2 className="text-2xl font-bold">Flash Sale</h2>
+              <h2 className="text-lg sm:text-xl md:text-2xl font-bold">Flash Sale</h2>
               <p className="text-sm text-white/90">Limited time offers - Hurry up!</p>
             </div>
           </div>

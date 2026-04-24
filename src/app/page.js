@@ -1,7 +1,6 @@
 import React from 'react'
 import HeroBanner from "../components/modules/home/HeroBanner";
 import HomeFeatures from "../components/modules/home/HomeFeatures";
-import HomeCategories from "../components/modules/home/HomeCategories";
 import FeaturedDeals from "../components/modules/home/FeaturedDeals";
 import HomeCategoryProducts from "../components/modules/home/HomeCategoryProducts";
 import Newsletter from "../components/modules/shared/Newsletter";
@@ -12,46 +11,47 @@ import BrandSection from "../components/modules/shared/BrandSection";
 import RecommendedSection from "../components/modules/home/RecommendedSection";
 import OccasionalSection from "../components/modules/home/OccasionalSection";
 import HomeOrderAgain from "../components/modules/home/HomeOrderAgain";
+import HomePopularCategories from '@/components/modules/home/HomePopularCategories';
 
 export default function page() {
   return (
     <div>
       <div className="min-h-screen">
-      {/* Main Content */}
-      <main className="">
-        {/* Hero Banner */}
-        <HeroBanner />
+        {/* Main Content */}
+        <main className="">
+          {/* Hero Banner */}
+          <HeroBanner />
 
-        {/* Features */}
-        {/* <HomeFeatures /> */}
+          {/* Features */}
+          {/* <HomeFeatures /> */}
 
-        {/* Categories Section */}
-        <HomeCategories />
+          {/* Categories Section */}
+          <HomePopularCategories />
 
-        <HomeOrderAgain/>
+          <HomeOrderAgain />
 
-        <FlashDealSection/>
+          <FlashDealSection />
 
-        <RecommendedSection/>
+          <RecommendedSection />
 
-        <HomeCategoryProducts/>
+          <HomeCategoryProducts />
 
-        
-        {/* Featured Deals */}
-        <FeaturedDeals />
 
-        <OccasionalSection/>
+          {/* Featured Deals */}
+          <FeaturedDeals />
 
-        <BrandSection/>
-    
-        {/* Faq Section */}
-        <FAQSection/>
+          <OccasionalSection />
 
-        {/* Newsletter Section */}
-        <Newsletter />
-    
-      </main >
-    </div >
+          <BrandSection />
+
+          {/* Faq Section */}
+          <FAQSection />
+
+          {/* Newsletter Section */}
+          <Newsletter />
+
+        </main >
+      </div >
     </div>
   )
 }

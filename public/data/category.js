@@ -1,11 +1,21 @@
+import first_aid_image from "../images/category/vecteezy_first-aid-box-transparent-background_53573554.png";
+import personal_care_image from "../images/category/vecteezy_wellness-and-relaxation-accessories-including-natural-spa_60421560.png";
+import pain_relief_image from "../images/category/vecteezy_first-aid-medicine-box-with-medical-equipment_51866791.png";
+import Vitamins_Supplements_image from "../images/category/Vitamins&Supplements.webp";
+import cold_flu from "../images/category/25_VicksWorld_Mobile.png";
+import baby_product from "../images/category/baby_product.png";
+import Diabate_Care from "../images/category/Diabate_Care.png";
+import heart_heath from "../images/category/heart_heath.png";
+
 const allCategories = [
   {
     id: 1,
     name: "Pain Relief",
     icon: "💊",
     count: 12,
-    color: "from-red-600 to-orange-400",
-    image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&q=80",
+    color: "from-sky-200 to-sky-50",
+    image: pain_relief_image,
+    // image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&q=80",
   },
   {
     id: 2,
@@ -13,7 +23,8 @@ const allCategories = [
     icon: "🔬",
     count: 10,
     color: "from-yellow-500 to-lime-400",
-    image: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=400&q=80",
+    image: Vitamins_Supplements_image,
+    // image: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=400&q=80",
   },
   {
     id: 3,
@@ -21,7 +32,8 @@ const allCategories = [
     icon: "🤒",
     count: 8,
     color: "from-blue-500 to-cyan-400",
-    image: "https://images.unsplash.com/photo-1515703407324-5f753afd8be8?w=400&q=80",
+    image: cold_flu,
+    // image: "https://images.unsplash.com/photo-1515703407324-5f753afd8be8?w=400&q=80",
   },
   {
     id: 4,
@@ -29,7 +41,8 @@ const allCategories = [
     icon: "⚕️",
     count: 6,
     color: "from-rose-600 to-red-400",
-    image: "https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=400&q=80",
+    image: first_aid_image,
+    // image: "https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=400&q=80",
   },
   {
     id: 5,
@@ -37,7 +50,8 @@ const allCategories = [
     icon: "🧴",
     count: 7,
     color: "from-purple-500 to-pink-400",
-    image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80",
+    image: personal_care_image,
+    // image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80",
   },
   {
     id: 6,
@@ -45,7 +59,8 @@ const allCategories = [
     icon: "🍼",
     count: 6,
     color: "from-sky-400 to-blue-300",
-    image: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80",
+    image: baby_product,
+    // image: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80",
   },
   {
     id: 7,
@@ -53,7 +68,8 @@ const allCategories = [
     icon: "💉",
     count: 5,
     color: "from-teal-600 to-emerald-400",
-    image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=400&q=80",
+    image: Diabate_Care,
+    // image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=400&q=80",
   },
   {
     id: 8,
@@ -61,7 +77,8 @@ const allCategories = [
     icon: "❤️",
     count: 5,
     color: "from-red-500 to-rose-400",
-    image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=400&q=80",
+    image: heart_heath,
+    // image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=400&q=80",
   },
   {
     id: 9,
