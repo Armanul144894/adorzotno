@@ -15,7 +15,7 @@ export default function CategoryOffcanvas({ sidebarOpen, setSidebarOpen }) {
       {/* Overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40"
+          className="fixed inset-0 bg-black/50 z-50"
           onClick={() => setSidebarOpen(false)}
         />
       )}

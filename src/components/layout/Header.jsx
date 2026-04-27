@@ -168,11 +168,11 @@ export default function Header() {
 
           <SignInModal isSignInOpen={isSignInOpen} setSignInOpen={setSignInOpen} />
 
-          <LiveChatWidget
+          {/* <LiveChatWidget
             chatOpen={chatOpen}
             setChatOpen={setChatOpen}
             chatExpanded={chatExpanded}
-          />
+          /> */}
         </div>
       </header>
     </div>

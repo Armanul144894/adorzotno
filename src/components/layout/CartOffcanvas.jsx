@@ -57,7 +57,7 @@ const CartOffcanvas = () => {
       {/* Overlay */}
       {isCartOpen && (
         <div
-          className="fixed inset-0 bg-black/40 z-40 transition-opacity"
+          className="fixed inset-0 bg-black/40 z-50 transition-opacity"
           onClick={() => setIsCartOpen(false)}
         />
       )}

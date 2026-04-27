@@ -1,26 +1,41 @@
 "use client"
+
 import React, { useState } from "react";
 import "../../app/globals.css";
 import Header from "./Header";
 import SideBar from "./SideBar";
 import Footer from "./Footer";
+import CartOffcanvas from "./CartOffcanvas";
+import ScrollToTop from "../ScrollToTop";
+import StickyCartButton from "../StickyCartButton";
+import LiveChatWidget from "./LiveChatWidget";
 
 export default function MainLayout({ children }) {
+  const [chatOpen, setChatOpen] = useState(false);
+  const [chatExpanded, setChatExpanded] = useState(false);
 
   return (
-    <div className="relative bg-[#f0f8ff]">
-      <Header/>
-      <div className="container-fluid max-w-[1920] mx-auto px-4 py-6 relative">
-        <div className="flex lg:gap-6 items-start">
-
+    <div>
+      <Header />
+      <CartOffcanvas />
+      <div className="container mx-auto relative">
+        <div className="flex lg:gap-0 items-start">
           {/* Sidebar - LEFT SIDE ON DESKTOP */}
-          <SideBar />
+          {/* <SideBar /> */}
 
           {/* Main Content */}
-          <main className="flex-1 min-w-0 relative overflow-x-hidden">
+          <main className="flex-1 min-w-0 relative overflow-x-hidden px-4 py-6 border-blue-50">
             {children}
-          </main>
 
+            <ScrollToTop />
+            <StickyCartButton />
+            <LiveChatWidget
+              chatOpen={chatOpen}
+              setChatOpen={setChatOpen}
+              chatExpanded={chatExpanded}
+            />
+
+          </main>
         </div>
       </div>
       <Footer />
