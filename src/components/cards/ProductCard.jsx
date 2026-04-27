@@ -34,7 +34,7 @@ export default function ProductCard2({ product }) {
   };
 
   return (
-    <div className="group relative h-full flex-shrink-0 overflow-hidden border border-transparent bg-white transition-all hover:border-primary/20 hover:shadow-md">
+    <div className="group relative h-full flex-shrink-0 overflow-hidden border border-slate-200 rounded-lg bg-white transition-all hover:border-primary/20 hover:shadow-md">
       <Link
         href={`/product/${product.name
           .toLowerCase()

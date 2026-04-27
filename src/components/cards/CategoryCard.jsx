@@ -17,7 +17,7 @@ export default function CategoryCard({ category }) {
         >
             <div className="flex w-full items-center justify-center">
                 <div className="relative w-28 sm:w-32 aspect-square">
-                    <div className={`absolute inset-0 rounded-full bg-gradient-to-r from-primary/15 to-primary/5 shadow-sm ring-1 ring-slate-100`} />
+                    <div className={`absolute inset-0 rounded-full bg-gradient-to-r from-slate-200 to-white shadow-sm ring-1 ring-slate-100`} />
                     <div className="absolute inset-0 z-10 flex items-center justify-center">
                         <div className="relative h-[120%] w-[120%]">
                             <Image
@@ -37,9 +37,6 @@ export default function CategoryCard({ category }) {
                     {category.name}
                 </p>
 
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-transparent text-slate-500 transition-all duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-white">
-                    <ArrowUpRight size={18} />
-                </span>
             </div>
         </Link>
     );

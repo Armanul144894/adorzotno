@@ -7,7 +7,7 @@ export default function HomePopularCategories() {
     const popularCategories = allCategories.slice(0, 8);
 
     return (
-        <section className="mb-10 bg-gray-50/30 p-4 sm:p-5 border border-gray-200/20">
+        <section className="mb-10 bg-white p-4 sm:p-5 border border-slate-200 rounded-lg">
             <div className="mb-5 flex justify-between gap-4 lg:items-end lg:justify-between">
                 <div className="flex items-center gap-2">
                     <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">
