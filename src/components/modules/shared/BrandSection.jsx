@@ -238,10 +238,6 @@ export default function BrandSection() {
                       />
                     </div>
 
-                    {/* Badge */}
-                    <div className="absolute top-2 right-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-semibold text-primary shadow-sm">
-                      {brand.products}+
-                    </div>
                   </div>
 
                   {/* Brand Info */}
@@ -249,13 +245,6 @@ export default function BrandSection() {
                     <h3 className="font-bold text-gray-800 text-sm md:text-base mb-1 group-hover:text-primary transition-colors line-clamp-1">
                       {brand.name}
                     </h3>
-                    <p className="text-xs text-gray-500 mb-2 line-clamp-1">
-                      {brand.description}
-                    </p>
-                    <div className="flex items-center justify-center gap-1 text-xs text-gray-600">
-                      <span className="font-semibold text-primary">{brand.products}</span>
-                      <span>Products</span>
-                    </div>
                   </div>
 
                   {/* Hover Border Animation */}
