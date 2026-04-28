@@ -6,11 +6,11 @@ import React, { useEffect, useState } from 'react'
 export default function HeroBanner() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const heroSlides = [
-        { id: 1, title: 'Slide 1', image: '/images/banner/banner111.png' },
-        { id: 2, title: 'Slide 2', image: '/images/banner/banner222.png' },
-        { id: 3, title: 'Slide 3', image: '/images/banner/banner333.png' },
-        { id: 4, title: 'Slide 4', image: '/images/banner/banner444.png' },
-        { id: 5, title: 'Slide 5', image: '/images/banner/banner555.png' },
+        { id: 1, title: 'Slide 1', image: '/images/banner/banner1.png' },
+        { id: 2, title: 'Slide 2', image: '/images/banner/banner2.png' },
+        { id: 3, title: 'Slide 3', image: '/images/banner/banner3.png' },
+        { id: 4, title: 'Slide 4', image: '/images/banner/banner4.png' },
+        { id: 5, title: 'Slide 5', image: '/images/banner/banner5.png' },
     ];
 
     useEffect(() => {
@@ -42,12 +42,12 @@ export default function HeroBanner() {
                 </div>
             ))}
 
-            <button onClick={prevSlide} className="absolute cursor-pointer left-2 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white p-2 rounded-xl shadow-lg z-20 transition">
-                <ChevronLeft size={24} className="text-gray-800" />
+            <button onClick={prevSlide} className="absolute cursor-pointer left-1 sm:left-2 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white p-0.5 sm:p-2 rounded-xl shadow-lg z-20 transition">
+                <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6 text-gray-800" />
             </button>
 
-            <button onClick={nextSlide} className="absolute cursor-pointer right-2 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white p-2 rounded-xl shadow-lg z-20 transition">
-                <ChevronRight size={24} className="text-gray-800" />
+            <button onClick={nextSlide} className="absolute cursor-pointer right-1 sm:right-2 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white p-0.5 sm:p-2 rounded-xl shadow-lg z-20 transition">
+                <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6 text-gray-800" />
             </button>
 
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
