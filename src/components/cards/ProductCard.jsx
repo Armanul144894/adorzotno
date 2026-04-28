@@ -75,7 +75,7 @@ export default function ProductCard({ product }) {
                 </span>
                 <span>
                   <span className="text-xs text-gray-500">
-                    <span className="text-sm md:text-base 2xl:text-lg text-orange-400">★★★★★</span> {product.rating} (5)
+                    <span className="text-sm md:text-base 2xl:text-lg text-orange-400">★★★★★</span> {product.rating} <span className="max-sm:hidden">(5)</span>
                   </span>
                 </span>
               </div>

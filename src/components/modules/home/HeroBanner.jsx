@@ -9,7 +9,7 @@ export default function HeroBanner() {
         { id: 1, title: 'Slide 1', image: '/images/banner/banner11.jpg' },
         { id: 2, title: 'Slide 2', image: '/images/banner/banner22.jpg' },
         { id: 3, title: 'Slide 3', image: '/images/banner/banner33.jpg' },
-        { id: 4, title: 'Slide 4', image: '/images/banner/banner111.jpg' },
+        { id: 4, title: 'Slide 4', image: '/images/banner/banner444.jpg' },
     ];
 
     useEffect(() => {
@@ -27,15 +27,13 @@ export default function HeroBanner() {
             {heroSlides.map((slide, index) => (
                 <div
                     key={slide.id}
-                    className={`transition-opacity duration-1000 ${
-                        index === currentSlide ? 'opacity-100 relative' : 'opacity-0 absolute inset-0'
-                    }`}
+                    className={`transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100 relative' : 'opacity-0 absolute inset-0'}`}
                 >
                     <Image
                         src={slide.image}
                         alt={slide.title}
-                        width={0}
-                        height={0}
+                        width={1500}
+                        height={500}
                         sizes="100vw"
                         className="w-full h-auto max-h-[500px] object-cover"
                         priority={index === 0}
@@ -56,9 +54,8 @@ export default function HeroBanner() {
                     <button
                         key={index}
                         onClick={() => setCurrentSlide(index)}
-                        className={`h-2 cursor-pointer rounded-full transition-all duration-300 ${
-                            index === currentSlide ? 'bg-white w-8' : 'bg-white/50 w-2'
-                        }`}
+                        className={`h-2 cursor-pointer rounded-full transition-all duration-300 ${index === currentSlide ? 'bg-white w-8' : 'bg-white/50 w-2'
+                            }`}
                     />
                 ))}
             </div>

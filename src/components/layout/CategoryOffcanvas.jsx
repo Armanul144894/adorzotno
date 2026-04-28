@@ -45,7 +45,7 @@ export default function CategoryOffcanvas({ sidebarOpen, setSidebarOpen }) {
           </div>
 
           {/* Category List */}
-          <div className="flex-1 overflow-y-auto p-6 space-y-2">
+          <div className="flex-1 overflow-y-auto py-6 space-y-2">
             {categories?.map((category, index) => {
               const slug = category.name
                 .toLowerCase()
@@ -58,11 +58,11 @@ export default function CategoryOffcanvas({ sidebarOpen, setSidebarOpen }) {
                   key={index}
                   href={`/category/${slug}`}
                   onClick={handleCategoryClick}
-                  className="flex items-center justify-between py-2 rounded-lg hover:bg-teal-50 transition group"
+                  className="flex items-center justify-between px-6 py-2 rounded-lg hover:bg-sky-50 transition group"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-8 mx-auto">
-                      <span className="text-2xl">{category.icon}</span>
+                      <span className="text-xl">{category.icon}</span>
                     </div>
                     <span className="text-gray-700 group-hover:text-primary font-bold">
                       {category.name}

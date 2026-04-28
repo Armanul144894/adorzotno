@@ -51,7 +51,7 @@ export default function Header() {
   return (
     <div className="sticky top-0 w-full z-50">
       <header className="bg-white shadow-md">
-        <div className="container mx-auto px-4 py-1">
+        <div className="container mx-auto px-4 py-1.5 sm:py-1">
           <div className="flex items-center justify-between gap-4">
             <div
               ref={categoryMenuRef}
@@ -74,11 +74,20 @@ export default function Header() {
               </button>
 
               {/* Logo */}
-              <Link href="/">
+              <Link href="/" className="hidden sm:block">
                 <Image
                   src="/images/AdorzotnoLogo.png"
                   alt="adorzotno Logo"
                   width={150}
+                  height={60}
+                />
+              </Link>
+
+              <Link href="/" className="sm:hidden">
+                <Image
+                  src="/images/AdorzotnoLogo.png"
+                  alt="adorzotno Logo"
+                  width={120}
                   height={60}
                 />
               </Link>
