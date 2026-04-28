@@ -67,7 +67,7 @@ export default function FAQSection() {
         <p className="text-gray-600">Got questions? We have got answers!</p>
       </div>
       <div className="mx-auto">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-4">
           {faqs.map((faq, index) => (
             <div key={index}>
               <div className="bg-white rounded-lg shadow-sm border overflow-hidden">

@@ -6,10 +6,11 @@ import React, { useEffect, useState } from 'react'
 export default function HeroBanner() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const heroSlides = [
-        { id: 1, title: 'Slide 1', image: '/images/banner/banner11.jpg' },
-        { id: 2, title: 'Slide 2', image: '/images/banner/banner22.jpg' },
-        { id: 3, title: 'Slide 3', image: '/images/banner/banner33.jpg' },
-        { id: 4, title: 'Slide 4', image: '/images/banner/banner444.jpg' },
+        { id: 1, title: 'Slide 1', image: '/images/banner/banner111.png' },
+        { id: 2, title: 'Slide 2', image: '/images/banner/banner222.png' },
+        { id: 3, title: 'Slide 3', image: '/images/banner/banner333.png' },
+        { id: 4, title: 'Slide 4', image: '/images/banner/banner444.png' },
+        { id: 5, title: 'Slide 5', image: '/images/banner/banner555.png' },
     ];
 
     useEffect(() => {
