@@ -5,7 +5,7 @@ import Link from "next/link";
 import React from "react";
 import { useCart } from "../../context/CartContext";
 
-export default function ProductCard2({ product }) {
+export default function ProductCard({ product }) {
   const { addToCart, getItemQuantity, updateQuantity, removeItem } = useCart();
 
   const quantity = getItemQuantity(product.id);
@@ -34,7 +34,7 @@ export default function ProductCard2({ product }) {
   };
 
   return (
-    <div className="group relative h-full flex-shrink-0 overflow-hidden border border-slate-200 rounded-lg bg-white transition-all hover:border-primary/20 hover:shadow-md">
+    <div className="relative h-full flex-shrink-0 overflow-hidden border border-slate-200 rounded-lg bg-white transition-all hover:border-primary/20 hover:shadow-md">
       <Link
         href={`/product/${product.name
           .toLowerCase()
@@ -56,63 +56,85 @@ export default function ProductCard2({ product }) {
               alt={product.name}
               fill
               sizes="(max-width: 640px) 50vw, 25vw"
-              className="object-cover"
+              className="object-cover transform transition-transform duration-300 group-hover:scale-105"
             />
           </div>
 
-          <div className="p-3 text-center">
+          <div className="p-3">
             <h3 className="text-sm font-semibold text-gray-800 mb-2 line-clamp-2 h-10">
               {product.name}
             </h3>
-            <div className="flex items-center gap-1 justify-center">
-              <span className="line-through text-gray-400">
-                ৳{product.originalPrice}
-              </span>
-              <span className="font-bold">৳{product.price}</span>
-            </div>
 
-            <div className="mt-3">
+            <div className="flex items-end justify-between">
 
-              {/* Add to Cart Button / Quantity Controls */}
-              {inCart ? (
-                <div
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                  }}
-                  className="flex w-full items-center overflow-hidden rounded-xl border border-primary/15 bg-primary/5 p-1"
-                >
-                  <button
-                    onClick={handleDecrease}
-                    className="flex h-8 w-8  items-center justify-center rounded-lg bg-white text-xl font-bold leading-none text-primary shadow-sm transition-all duration-300 hover:bg-primary hover:text-white"
-                  >
-                    -
-                  </button>
-                  <div className="flex min-w-0 flex-1 items-center justify-center px-3 text-primary">
-                    <span className="text-base font-bold">
-                      {quantity}
-                    </span>
-                  </div>
-                  <button
-                    onClick={handleIncrease}
-                    className="flex h-8 w-8  items-center justify-center rounded-lg bg-primary text-xl font-bold leading-none text-white shadow-sm transition-all duration-300 hover:bg-secondary"
-                  >
-                    +
-                  </button>
-                </div>
-              ) : (
-                <button
-                  onClick={handleAdd}
-                  className="flex h-10 w-full items-center justify-center gap-2 rounded-lg border border-primary/20 bg-white px-4 font-semibold text-primary transition-all duration-100 group-hover:bg-primary group-hover:text-white text-sm sm:text-base whitespace-nowrap"
-                >
-                  <ShoppingCart size={18} />
-                  <span>Add to Cart</span>
-                </button>
-              )}
+
+              <div className="flex flex-col">
+                <span className="font-bold text-red-600 text-lg lg:text-xl">৳{product.price}</span>
+                <span className="line-through text-gray-400 text-sm">
+                  ৳{product.originalPrice}
+                </span>
+                <span>
+                  <span className="text-xs text-gray-500">
+                    <span className="text-sm md:text-base 2xl:text-lg text-orange-400">★★★★★</span> {product.rating} (5)
+                  </span>
+                </span>
+              </div>
+
+
             </div>
           </div>
         </div>
       </Link>
+
+      <div
+        className="absolute bottom-3 right-3"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+      >
+        {!inCart ? (
+          // Normal Add button
+          <button
+            onClick={handleAdd}
+            className="flex h-10 w-12 items-center justify-center rounded-lg border border-primary/20 bg-white text-primary transition-all hover:bg-primary hover:text-white"
+          >
+            <ShoppingCart size={18} />
+          </button>
+        ) : (
+          // Cart state
+          <div className="group relative">
+
+            {/* Default */}
+            <div className="relative h-10 w-12 overflow-hidden rounded-xl border border-primary/15 bg-primary text-white shadow-sm transition-all duration-300 ease-out group-hover:w-[128px] group-hover:bg-primary/8">
+              <div className="absolute inset-0 flex items-center justify-center transition-all duration-200 group-hover:scale-90 group-hover:opacity-0">
+                <span className="font-bold">{quantity}</span>
+              </div>
+              <div className="absolute inset-0 flex items-center justify-between gap-1 p-1 opacity-0 transition-all duration-300 ease-out group-hover:opacity-100">
+                <button
+                  onClick={handleDecrease}
+                  className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-lg sm:text-xl leading-none text-primary shadow-sm transition-all duration-200 hover:bg-secondary hover:text-white"
+                >
+                  -
+                </button>
+
+                <span className="min-w-0 flex-1 text-center font-bold text-white">
+                  {quantity}
+                </span>
+
+                <button
+                  onClick={handleIncrease}
+                  className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-lg sm:text-xl leading-none text-primary shadow-sm transition-all duration-200 hover:bg-secondary hover:text-white"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+
     </div>
   );
 }
