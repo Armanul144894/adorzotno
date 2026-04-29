@@ -264,7 +264,7 @@ export default function ProductGrid({
                                 <div>
                                     <div className="my-6 flex flex-col gap-4 border-b pb-4 sm:flex-row sm:items-center sm:justify-between">
                                         <h2 className="text-sm text-gray-500">
-                                            Alternative Brands For <span className="text-black font-semibold">{selectedProduct?.name}</span>
+                                            Available products for <span className="text-black font-semibold">{genericName}</span>
                                         </h2>
 
                                         <select
