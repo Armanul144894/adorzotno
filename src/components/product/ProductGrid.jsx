@@ -1,22 +1,41 @@
 'use client';
-import {
-    ShoppingCart,
-    Heart,
-    Star,
-    Truck,
-    Shield,
-    Plus,
-    Minus,
-    Check,
-    Share2,
-    ChevronRight,
-    Home,
-} from "lucide-react";
-import React from "react";
+import { ShoppingCart, Heart, Star, Truck, Shield, Plus, Minus, Check, Share2, ChevronRight, Home } from "lucide-react";
+import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import ProductDetailsTab from "./ProductDetailsTab";
 
-export default function ProductGrid({ selectedProduct, selectedImage, setSelectedImage, quantity, incrementQuantity, decrementQuantity, activeTab, setActiveTab }) {
+export default function ProductGrid({
+    selectedProduct,
+    selectedImage,
+    setSelectedImage,
+    quantity,
+    incrementQuantity,
+    decrementQuantity,
+    activeTab,
+    setActiveTab,
+    genericName,
+    alternativeBrandProducts = [],
+}) {
+    const [alternativeSort, setAlternativeSort] = useState("relevance");
+    const [expandedAlternativesKey, setExpandedAlternativesKey] = useState("");
+
+    const sortedAlternativeBrandProducts = useMemo(() => {
+        const items = [...alternativeBrandProducts];
+        if (alternativeSort === "price-low") {
+            return items.sort((a, b) => a.price - b.price);
+        }
+        if (alternativeSort === "price-high") {
+            return items.sort((a, b) => b.price - a.price);
+        }
+        return items;
+    }, [alternativeBrandProducts, alternativeSort]);
+
+    const alternativesViewKey = `${selectedProduct?.id || "product"}-${alternativeSort}-${alternativeBrandProducts.length}`;
+    const showAllAlternatives = expandedAlternativesKey === alternativesViewKey;
+
+    const visibleAlternativeBrandProducts = showAllAlternatives
+        ? sortedAlternativeBrandProducts
+        : sortedAlternativeBrandProducts.slice(0, 8);
 
     return (
         <div className="">
@@ -81,7 +100,7 @@ export default function ProductGrid({ selectedProduct, selectedImage, setSelecte
 
                 {/* Product Info */}
                 <div className="xl:col-span-3">
-                    <div className="bg-white rounded-lg border p-6">
+                    <div className="bg-white rounded-lg border p-4">
                         {/* Category Badge */}
                         <span className="inline-block bg-teal-100 text-primary text-xs font-semibold px-3 py-1 rounded-full mb-3">
                             {selectedProduct?.category}
@@ -204,10 +223,18 @@ export default function ProductGrid({ selectedProduct, selectedImage, setSelecte
                                 </div>
                                 <div className="flex gap-2">
                                     <span className="text-gray-600">Manufacturer:</span>
-                                    <span className="font-semibold text-gray-800">
+                                    <span className="font-semibold text-primary">
                                         {selectedProduct?.manufacturer}
                                     </span>
                                 </div>
+                                {selectedProduct?.productType === "medicine" && genericName && (
+                                    <div className="flex gap-2">
+                                        <span className="text-gray-600">Generic:</span>
+                                        <span className="font-semibold text-primary">
+                                            {genericName}
+                                        </span>
+                                    </div>
+                                )}
                             </div>
                             {/* Features */}
                             <div className="pt-6 space-y-3">
@@ -231,12 +258,82 @@ export default function ProductGrid({ selectedProduct, selectedImage, setSelecte
                                 </div>
                             </div>
                         </div>
+                        {selectedProduct?.productType === "medicine" &&
+                            genericName &&
+                            sortedAlternativeBrandProducts.length > 0 && (
+                                <div>
+                                    <div className="my-6 flex flex-col gap-4 border-b pb-4 sm:flex-row sm:items-center sm:justify-between">
+                                        <h2 className="text-sm text-gray-500">
+                                            Alternative Brands For <span className="text-black font-semibold">{selectedProduct?.name}</span>
+                                        </h2>
 
+                                        <select
+                                            value={alternativeSort}
+                                            onChange={(e) => setAlternativeSort(e.target.value)}
+                                            className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary"
+                                        >
+                                            <option value="relevance">Relevance</option>
+                                            <option value="price-low">Price: Low to High</option>
+                                            <option value="price-high">Price: High to Low</option>
+                                        </select>
+                                    </div>
+
+                                    <div className="space-y-3">
+                                        {visibleAlternativeBrandProducts.map((product) => (
+                                            <div
+                                                key={product.id}
+                                                className="flex items-center gap-3 rounded-xl transition-all hover:border-primary/20 hover:shadow-sm"
+                                            >
+                                                <div className="relative h-10 w-10 sm:h-14 sm:w-14 overflow-hidden rounded-lg border bg-gray-50">
+                                                    <Image
+                                                        src={product.images[0]}
+                                                        alt={product.name}
+                                                        fill
+                                                        sizes="96px"
+                                                        className="object-cover"
+                                                    />
+                                                </div>
+
+                                                <div className="min-w-0 flex-1">
+                                                    <h3 className="line-clamp-2 text-sm sm:text-base font-semibold text-gray-800">
+                                                        {product.name}
+                                                    </h3>
+                                                    <p className="mt-1 text-xs sm:text-sm text-gray-500">
+                                                        By {product.manufacturer}
+                                                    </p>
+                                                </div>
+
+                                                <div className="sm:text-right flex items-end gap-1">
+                                                    <p className="text-lg sm:text-xl font-bold">
+                                                        ৳{product.price}
+                                                    </p>
+                                                    <p className="text-xs sm:text-sm text-gray-400 line-through">
+                                                        ৳{product.originalPrice}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    {sortedAlternativeBrandProducts.length > 8 && !showAllAlternatives && (
+                                        <div className="mt-5">
+                                            <button
+                                                onClick={() => setExpandedAlternativesKey(alternativesViewKey)}
+                                                className="flex rounded-lg py-2.5 font-semibold text-primary"
+                                            >
+                                                View More <ChevronRight />
+                                            </button>
+                                        </div>
+                                    )}
+
+                                </div>
+                            )}
 
 
                     </div>
                 </div>
             </div>
+
+
         </div>
     );
 }

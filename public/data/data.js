@@ -1,9 +1,10 @@
 const products = [
-  // Pain Relief (12 products)
   {
     id: 1,
     name: "Paracetamol 500mg Tablets",
     category: "Pain Relief",
+    productType: "medicine",
+    generic: "Paracetamol",
     price: 5.99,
     originalPrice: 8.99,
     discount: "33% OFF",
@@ -35,6 +36,8 @@ const products = [
     id: 2,
     name: "Ibuprofen 400mg Tablets",
     category: "Pain Relief",
+    productType: "medicine",
+    generic: "Ibuprofen",
     price: 7.49,
     originalPrice: 9.99,
     discount: null,
@@ -44,7 +47,9 @@ const products = [
     stockCount: 38,
     sku: "MED-IBU-400",
     manufacturer: "PainAway Pharmaceuticals",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_0NocXVY.png&w=256&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_0NocXVY.png&w=256&q=100",
+    ],
     description: "Ibuprofen provides effective relief from pain, inflammation and fever. Suitable for headaches, dental pain, period pain, and muscular aches.",
     features: [
       "Anti-inflammatory action",
@@ -63,6 +68,8 @@ const products = [
     id: 3,
     name: "Aspirin 75mg Tablets",
     category: "Pain Relief",
+    productType: "medicine",
+    generic: "Aspirin",
     price: 90.99,
     originalPrice: 100.001,
     discount: null,
@@ -72,7 +79,9 @@ const products = [
     stockCount: 62,
     sku: "MED-ASP-75",
     manufacturer: "CardioHealth Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_3_fbyDUCX.png&w=256&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_3_fbyDUCX.png&w=256&q=100",
+    ],
     description: "Low-dose aspirin for cardiovascular health and mild pain relief.",
     features: [
       "Blood thinning properties",
@@ -91,6 +100,8 @@ const products = [
     id: 4,
     name: "Naproxen 250mg Tablets",
     category: "Pain Relief",
+    productType: "medicine",
+    generic: "Naproxen",
     price: 8.99,
     originalPrice: 11.99,
     discount: null,
@@ -100,7 +111,9 @@ const products = [
     stockCount: 27,
     sku: "MED-NAP-250",
     manufacturer: "ReliefMed Inc.",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_12.png&w=256&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_12.png&w=256&q=100",
+    ],
     description: "Long-acting anti-inflammatory for arthritis, muscle pain, and period pain.",
     features: [
       "12-hour relief",
@@ -119,6 +132,8 @@ const products = [
     id: 5,
     name: "Codeine & Paracetamol Tablets",
     category: "Pain Relief",
+    productType: "medicine",
+    generic: "Codeine & Paracetamol",
     price: 9.99,
     originalPrice: 13.99,
     discount: null,
@@ -128,7 +143,9 @@ const products = [
     stockCount: 18,
     sku: "MED-COD-PAR",
     manufacturer: "HealthCare Pharma Ltd.",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2F01-combo.png&w=256&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2F01-combo.png&w=256&q=100",
+    ],
     description: "Combination painkiller for moderate to severe pain relief.",
     features: [
       "Dual-action formula",
@@ -147,6 +164,8 @@ const products = [
     id: 6,
     name: "Heat Patches for Back Pain",
     category: "Pain Relief",
+    productType: "medicine",
+    generic: "Heat Patches for Back Pain",
     price: 11.99,
     originalPrice: 14.99,
     discount: "20% OFF",
@@ -156,7 +175,9 @@ const products = [
     stockCount: 41,
     sku: "MED-HEAT-BACK",
     manufacturer: "ThermaRelief Solutions",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100",
+    ],
     description: "Self-heating patches that provide targeted heat therapy for back pain relief.",
     features: [
       "Up to 8 hours of heat",
@@ -175,6 +196,8 @@ const products = [
     id: 7,
     name: "Migraine Relief Tablets",
     category: "Pain Relief",
+    productType: "medicine",
+    generic: "Migraine Relief",
     price: 12.49,
     originalPrice: 15.99,
     discount: null,
@@ -184,7 +207,9 @@ const products = [
     stockCount: 29,
     sku: "MED-MIG-REL",
     manufacturer: "NeuroHealth Pharma",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Specialized formula for fast migraine and severe headache relief.",
     features: [
       "Fast-dissolving tablets",
@@ -203,6 +228,8 @@ const products = [
     id: 8,
     name: "Muscle Relaxant Cream",
     category: "Pain Relief",
+    productType: "medicine",
+    generic: "Muscle Relaxant",
     price: 8.49,
     originalPrice: 10.99,
     discount: null,
@@ -212,7 +239,9 @@ const products = [
     stockCount: 55,
     sku: "MED-MUS-CRM",
     manufacturer: "SportsMed Pro",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Topical cream for muscle aches, strains, and sports injuries.",
     features: [
       "Fast-absorbing formula",
@@ -231,6 +260,8 @@ const products = [
     id: 9,
     name: "Joint Pain Relief Capsules",
     category: "Pain Relief",
+    productType: "medicine",
+    generic: "Joint Pain Relief",
     price: 13.99,
     originalPrice: 17.99,
     discount: null,
@@ -240,7 +271,9 @@ const products = [
     stockCount: 33,
     sku: "MED-JNT-CAP",
     manufacturer: "ArthriCare Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Advanced formula for joint pain, stiffness, and arthritis support.",
     features: [
       "Glucosamine & Chondroitin",
@@ -259,6 +292,8 @@ const products = [
     id: 10,
     name: "Period Pain Relief Tablets",
     category: "Pain Relief",
+    productType: "medicine",
+    generic: "Period Pain Relief",
     price: 6.99,
     originalPrice: 8.99,
     discount: null,
@@ -268,7 +303,9 @@ const products = [
     stockCount: 47,
     sku: "MED-PER-REL",
     manufacturer: "FemHealth Solutions",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100",
+    ],
     description: "Specifically formulated for menstrual cramp relief and period-related pain.",
     features: [
       "Targets period cramps",
@@ -287,6 +324,8 @@ const products = [
     id: 11,
     name: "Dental Pain Relief Gel",
     category: "Pain Relief",
+    productType: "medicine",
+    generic: "Dental Pain Relief",
     price: 7.99,
     originalPrice: 9.99,
     discount: null,
@@ -296,7 +335,9 @@ const products = [
     stockCount: 39,
     sku: "MED-DEN-GEL",
     manufacturer: "OralCare Pharma",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Fast-acting topical gel for toothache and gum pain relief.",
     features: [
       "Numbing action",
@@ -315,6 +356,8 @@ const products = [
     id: 12,
     name: "Arthritis Pain Relief Cream",
     category: "Pain Relief",
+    productType: "medicine",
+    generic: "Arthritis Pain Relief",
     price: 14.99,
     originalPrice: 19.99,
     discount: "25% OFF",
@@ -324,7 +367,9 @@ const products = [
     stockCount: 22,
     sku: "MED-ART-CRM",
     manufacturer: "ArthriCare Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Advanced topical cream for arthritis pain and joint stiffness.",
     features: [
       "Deep-penetrating formula",
@@ -339,12 +384,12 @@ const products = [
       "Avoid broken or irritated skin",
     ],
   },
-
-  // Vitamins & Supplements (10 products)
   {
     id: 13,
     name: "Multivitamin Tablets - Adults",
     category: "Vitamins & Supplements",
+    productType: "non-medicine",
+    generic: "",
     price: 12.99,
     originalPrice: 16.99,
     discount: "24% OFF",
@@ -354,7 +399,9 @@ const products = [
     stockCount: 78,
     sku: "VIT-MULTI-ADT",
     manufacturer: "VitaLife Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Comprehensive daily multivitamin with essential vitamins and minerals for overall health.",
     features: [
       "25+ essential nutrients",
@@ -373,6 +420,8 @@ const products = [
     id: 14,
     name: "Vitamin D3 1000IU Capsules",
     category: "Vitamins & Supplements",
+    productType: "non-medicine",
+    generic: "",
     price: 8.99,
     originalPrice: 11.99,
     discount: "25% OFF",
@@ -382,7 +431,9 @@ const products = [
     stockCount: 92,
     sku: "VIT-D3-1000",
     manufacturer: "SunHealth Supplements",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Essential vitamin D3 for bone health, immune function, and mood support.",
     features: [
       "Supports bone strength",
@@ -401,6 +452,8 @@ const products = [
     id: 15,
     name: "Omega-3 Fish Oil 1000mg",
     category: "Vitamins & Supplements",
+    productType: "non-medicine",
+    generic: "",
     price: 15.99,
     originalPrice: 19.99,
     discount: "20% OFF",
@@ -410,7 +463,9 @@ const products = [
     stockCount: 64,
     sku: "VIT-OMG-1000",
     manufacturer: "OceanPure Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100",
+    ],
     description: "High-quality omega-3 fish oil for heart, brain, and joint health.",
     features: [
       "EPA & DHA rich",
@@ -429,6 +484,8 @@ const products = [
     id: 16,
     name: "Vitamin C 1000mg Tablets",
     category: "Vitamins & Supplements",
+    productType: "non-medicine",
+    generic: "",
     price: 9.99,
     originalPrice: 12.99,
     discount: null,
@@ -438,7 +495,9 @@ const products = [
     stockCount: 105,
     sku: "VIT-C-1000",
     manufacturer: "ImmuneBoost Co.",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "High-strength vitamin C for immune support and antioxidant protection.",
     features: [
       "Immune system support",
@@ -457,6 +516,8 @@ const products = [
     id: 17,
     name: "Calcium & Vitamin D Tablets",
     category: "Vitamins & Supplements",
+    productType: "non-medicine",
+    generic: "",
     price: 11.49,
     originalPrice: 14.99,
     discount: "23% OFF",
@@ -466,7 +527,9 @@ const products = [
     stockCount: 58,
     sku: "VIT-CAL-D",
     manufacturer: "BoneStrong Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Combined calcium and vitamin D for optimal bone health and strength.",
     features: [
       "Strengthens bones",
@@ -485,6 +548,8 @@ const products = [
     id: 18,
     name: "B-Complex Vitamins",
     category: "Vitamins & Supplements",
+    productType: "non-medicine",
+    generic: "",
     price: 10.99,
     originalPrice: 13.99,
     discount: "21% OFF",
@@ -494,7 +559,9 @@ const products = [
     stockCount: 71,
     sku: "VIT-B-COMP",
     manufacturer: "EnergyVit Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Complete B-vitamin complex for energy, metabolism, and nervous system support.",
     features: [
       "All 8 B vitamins",
@@ -513,6 +580,8 @@ const products = [
     id: 19,
     name: "Iron Supplement 14mg",
     category: "Vitamins & Supplements",
+    productType: "non-medicine",
+    generic: "",
     price: 7.99,
     originalPrice: 9.99,
     discount: null,
@@ -522,7 +591,9 @@ const products = [
     stockCount: 83,
     sku: "VIT-IRON-14",
     manufacturer: "VitaLife Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100",
+    ],
     description: "Gentle iron supplement for preventing and treating iron deficiency anemia.",
     features: [
       "Gentle on stomach",
@@ -541,6 +612,8 @@ const products = [
     id: 20,
     name: "Probiotic Capsules 10 Billion CFU",
     category: "Vitamins & Supplements",
+    productType: "non-medicine",
+    generic: "",
     price: 18.99,
     originalPrice: 24.99,
     discount: "24% OFF",
@@ -550,7 +623,9 @@ const products = [
     stockCount: 45,
     sku: "VIT-PROB-10B",
     manufacturer: "GutHealth Pro",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Advanced probiotic formula for digestive health and immune support.",
     features: [
       "10 billion live cultures",
@@ -569,6 +644,8 @@ const products = [
     id: 21,
     name: "Magnesium 250mg Tablets",
     category: "Vitamins & Supplements",
+    productType: "non-medicine",
+    generic: "",
     price: 9.49,
     originalPrice: 12.49,
     discount: null,
@@ -578,7 +655,9 @@ const products = [
     stockCount: 67,
     sku: "VIT-MAG-250",
     manufacturer: "MineralWell Supplements",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Essential magnesium for muscle function, sleep quality, and stress relief.",
     features: [
       "Reduces muscle cramps",
@@ -597,6 +676,8 @@ const products = [
     id: 22,
     name: "Zinc 25mg Tablets",
     category: "Vitamins & Supplements",
+    productType: "non-medicine",
+    generic: "",
     price: 8.49,
     originalPrice: 10.99,
     discount: "23% OFF",
@@ -606,7 +687,9 @@ const products = [
     stockCount: 89,
     sku: "VIT-ZINC-25",
     manufacturer: "ImmuneBoost Co.",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Zinc supplement for immune function, skin health, and wound healing.",
     features: [
       "Immune system support",
@@ -621,12 +704,12 @@ const products = [
       "Long-term high doses may affect copper levels",
     ],
   },
-
-  // Cold & Flu (8 products)
   {
     id: 23,
     name: "Cold & Flu Relief Capsules",
     category: "Cold & Flu",
+    productType: "medicine",
+    generic: "Cold & Flu Relief",
     price: 8.99,
     originalPrice: 11.99,
     discount: null,
@@ -636,7 +719,9 @@ const products = [
     stockCount: 52,
     sku: "CF-REL-CAP",
     manufacturer: "FluAway Pharma",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100",
+    ],
     description: "Multi-symptom relief for cold and flu including fever, aches, and congestion.",
     features: [
       "Relieves multiple symptoms",
@@ -655,6 +740,8 @@ const products = [
     id: 24,
     name: "Throat Lozenges - Honey & Lemon",
     category: "Cold & Flu",
+    productType: "medicine",
+    generic: "Throat Lozenges - Honey & Lemon",
     price: 5.49,
     originalPrice: 6.99,
     discount: "21% OFF",
@@ -664,7 +751,9 @@ const products = [
     stockCount: 96,
     sku: "CF-THR-LOZ",
     manufacturer: "SootheThroat Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Soothing throat lozenges with antibacterial properties for sore throat relief.",
     features: [
       "Soothes sore throat",
@@ -683,6 +772,8 @@ const products = [
     id: 25,
     name: "Nasal Decongestant Spray",
     category: "Cold & Flu",
+    productType: "medicine",
+    generic: "Nasal Decongestant",
     price: 7.99,
     originalPrice: 9.99,
     discount: null,
@@ -692,7 +783,9 @@ const products = [
     stockCount: 44,
     sku: "CF-NAS-SPR",
     manufacturer: "BreathEasy Solutions",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Fast-acting nasal spray for blocked nose relief due to colds, flu, or allergies.",
     features: [
       "Works in minutes",
@@ -711,6 +804,8 @@ const products = [
     id: 26,
     name: "Cough Syrup - Dry Cough",
     category: "Cold & Flu",
+    productType: "medicine",
+    generic: "Cough - Dry Cough",
     price: 6.99,
     originalPrice: 8.99,
     discount: null,
@@ -720,7 +815,9 @@ const products = [
     stockCount: 38,
     sku: "CF-CGH-DRY",
     manufacturer: "CoughCare Pharma",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Soothing syrup for relief of dry, tickly, irritating coughs.",
     features: [
       "Suppresses dry cough",
@@ -739,6 +836,8 @@ const products = [
     id: 27,
     name: "Chest Rub - Decongestant",
     category: "Cold & Flu",
+    productType: "medicine",
+    generic: "Chest Rub - Decongestant",
     price: 8.49,
     originalPrice: 10.99,
     discount: null,
@@ -748,7 +847,9 @@ const products = [
     stockCount: 61,
     sku: "CF-CHT-RUB",
     manufacturer: "VapoRelief Co.",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100",
+    ],
     description: "Medicated chest rub with eucalyptus and menthol for congestion relief.",
     features: [
       "Relieves congestion",
@@ -767,6 +868,8 @@ const products = [
     id: 28,
     name: "Flu Relief Hot Drink - Lemon",
     category: "Cold & Flu",
+    productType: "medicine",
+    generic: "Flu Relief Hot Drink - Lemon",
     price: 7.49,
     originalPrice: 9.49,
     discount: null,
@@ -776,7 +879,9 @@ const products = [
     stockCount: 72,
     sku: "CF-HOT-LEM",
     manufacturer: "WarmRelief Pharma",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Soothing hot lemon drink for cold and flu symptom relief.",
     features: [
       "Multi-symptom relief",
@@ -795,6 +900,8 @@ const products = [
     id: 29,
     name: "Vitamin C Effervescent Tablets",
     category: "Cold & Flu",
+    productType: "medicine",
+    generic: "Vitamin C Effervescent",
     price: 6.99,
     originalPrice: 8.99,
     discount: "22% OFF",
@@ -804,7 +911,9 @@ const products = [
     stockCount: 85,
     sku: "CF-VIT-EFF",
     manufacturer: "ImmuneBoost Co.",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "High-dose vitamin C effervescent tablets to support immune system during colds.",
     features: [
       "1000mg Vitamin C",
@@ -823,6 +932,8 @@ const products = [
     id: 30,
     name: "Sinus Relief Tablets",
     category: "Cold & Flu",
+    productType: "medicine",
+    generic: "Sinus Relief",
     price: 9.49,
     originalPrice: 11.99,
     discount: null,
@@ -832,7 +943,9 @@ const products = [
     stockCount: 41,
     sku: "CF-SIN-TAB",
     manufacturer: "SinusClear Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Targeted relief for sinus congestion, pressure, and headache.",
     features: [
       "Relieves sinus pressure",
@@ -847,12 +960,12 @@ const products = [
       "Consult doctor if symptoms persist beyond 7 days",
     ],
   },
-
-  // First Aid (6 products)
   {
     id: 31,
     name: "Adhesive Bandages Assorted Pack",
     category: "First Aid",
+    productType: "non-medicine",
+    generic: "",
     price: 4.99,
     originalPrice: 6.99,
     discount: "29% OFF",
@@ -862,7 +975,14 @@ const products = [
     stockCount: 128,
     sku: "FA-BAND-AST",
     manufacturer: "MediCare Supplies",
-    images: ["https://images.ctfassets.net/58z2odx42k4g/3omRwd4PmAfM6xSYCfN9Pa/3e6e541da88741a486d4fccac3c96bfe/bab_381371190560_us_family_pack_outer_only_110ct_00000_0-en-us.webp?fm=webp&w=3840", "https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=600&h=600&fit=crop", "https://images.ctfassets.net/58z2odx42k4g/3omRwd4PmAfM6xSYCfN9Pa/3e6e541da88741a486d4fccac3c96bfe/bab_381371190560_us_family_pack_outer_only_110ct_00000_0-en-us.webp?fm=webp&w=3840", "https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=600&h=600&fit=crop", "https://images.ctfassets.net/58z2odx42k4g/3omRwd4PmAfM6xSYCfN9Pa/3e6e541da88741a486d4fccac3c96bfe/bab_381371190560_us_family_pack_outer_only_110ct_00000_0-en-us.webp?fm=webp&w=3840", "https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.ctfassets.net/58z2odx42k4g/3omRwd4PmAfM6xSYCfN9Pa/3e6e541da88741a486d4fccac3c96bfe/bab_381371190560_us_family_pack_outer_only_110ct_00000_0-en-us.webp?fm=webp&w=3840",
+      "https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=600&h=600&fit=crop",
+      "https://images.ctfassets.net/58z2odx42k4g/3omRwd4PmAfM6xSYCfN9Pa/3e6e541da88741a486d4fccac3c96bfe/bab_381371190560_us_family_pack_outer_only_110ct_00000_0-en-us.webp?fm=webp&w=3840",
+      "https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=600&h=600&fit=crop",
+      "https://images.ctfassets.net/58z2odx42k4g/3omRwd4PmAfM6xSYCfN9Pa/3e6e541da88741a486d4fccac3c96bfe/bab_381371190560_us_family_pack_outer_only_110ct_00000_0-en-us.webp?fm=webp&w=3840",
+      "https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=600&h=600&fit=crop",
+    ],
     description: "Assorted sizes of sterile adhesive bandages for cuts and grazes.",
     features: [
       "Various sizes included",
@@ -881,6 +1001,8 @@ const products = [
     id: 32,
     name: "Antiseptic Cream 30g",
     category: "First Aid",
+    productType: "non-medicine",
+    generic: "",
     price: 5.49,
     originalPrice: 7.49,
     discount: "27% OFF",
@@ -890,7 +1012,9 @@ const products = [
     stockCount: 94,
     sku: "FA-ANT-CRM",
     manufacturer: "WoundCare Pro",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Antiseptic cream for minor cuts, burns, and skin infections.",
     features: [
       "Prevents infection",
@@ -909,6 +1033,8 @@ const products = [
     id: 33,
     name: "Burn Relief Gel",
     category: "First Aid",
+    productType: "non-medicine",
+    generic: "",
     price: 6.99,
     originalPrice: 8.99,
     discount: "22% OFF",
@@ -918,7 +1044,9 @@ const products = [
     stockCount: 67,
     sku: "FA-BRN-GEL",
     manufacturer: "BurnCool Solutions",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100",
+    ],
     description: "Cooling gel for minor burns, scalds, and sunburn relief.",
     features: [
       "Instant cooling relief",
@@ -937,6 +1065,8 @@ const products = [
     id: 34,
     name: "Sterile Gauze Pads 10-Pack",
     category: "First Aid",
+    productType: "non-medicine",
+    generic: "",
     price: 5.99,
     originalPrice: 7.99,
     discount: "25% OFF",
@@ -946,7 +1076,9 @@ const products = [
     stockCount: 103,
     sku: "FA-GAU-10PK",
     manufacturer: "MediCare Supplies",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Sterile gauze pads for wound dressing and cleaning.",
     features: [
       "Individually wrapped",
@@ -965,6 +1097,8 @@ const products = [
     id: 35,
     name: "Instant Cold Pack",
     category: "First Aid",
+    productType: "non-medicine",
+    generic: "",
     price: 3.99,
     originalPrice: 5.99,
     discount: "33% OFF",
@@ -974,7 +1108,9 @@ const products = [
     stockCount: 89,
     sku: "FA-CLD-PCK",
     manufacturer: "QuickRelief Medical",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Instant cold pack for sprains, strains, and bruises.",
     features: [
       "Activates instantly",
@@ -993,6 +1129,8 @@ const products = [
     id: 36,
     name: "Hydrogen Peroxide 3% Solution",
     category: "First Aid",
+    productType: "non-medicine",
+    generic: "",
     price: 4.49,
     originalPrice: 5.99,
     discount: "25% OFF",
@@ -1002,7 +1140,9 @@ const products = [
     stockCount: 76,
     sku: "FA-HYD-3PC",
     manufacturer: "CleanWound Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Antiseptic solution for cleaning wounds and preventing infection.",
     features: [
       "Kills bacteria",
@@ -1021,6 +1161,8 @@ const products = [
     id: 333,
     name: "Burn Relief Gel",
     category: "First Aid",
+    productType: "non-medicine",
+    generic: "",
     price: 6.99,
     originalPrice: 8.99,
     discount: null,
@@ -1030,7 +1172,9 @@ const products = [
     stockCount: 67,
     sku: "FA-BRN-GEL",
     manufacturer: "BurnCool Solutions",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100",
+    ],
     description: "Cooling gel for minor burns, scalds, and sunburn relief.",
     features: [
       "Instant cooling relief",
@@ -1049,6 +1193,8 @@ const products = [
     id: 334,
     name: "Sterile Gauze Pads 10-Pack",
     category: "First Aid",
+    productType: "non-medicine",
+    generic: "",
     price: 5.99,
     originalPrice: 7.99,
     discount: "25% OFF",
@@ -1058,7 +1204,9 @@ const products = [
     stockCount: 103,
     sku: "FA-GAU-10PK",
     manufacturer: "MediCare Supplies",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Sterile gauze pads for wound dressing and cleaning.",
     features: [
       "Individually wrapped",
@@ -1077,6 +1225,8 @@ const products = [
     id: 335,
     name: "Instant Cold Pack",
     category: "First Aid",
+    productType: "non-medicine",
+    generic: "",
     price: 3.99,
     originalPrice: 5.99,
     discount: null,
@@ -1086,7 +1236,9 @@ const products = [
     stockCount: 89,
     sku: "FA-CLD-PCK",
     manufacturer: "QuickRelief Medical",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Instant cold pack for sprains, strains, and bruises.",
     features: [
       "Activates instantly",
@@ -1105,6 +1257,8 @@ const products = [
     id: 336,
     name: "Hydrogen Peroxide 3% Solution",
     category: "First Aid",
+    productType: "non-medicine",
+    generic: "",
     price: 4.49,
     originalPrice: 5.99,
     discount: null,
@@ -1114,7 +1268,9 @@ const products = [
     stockCount: 76,
     sku: "FA-HYD-3PC",
     manufacturer: "CleanWound Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Antiseptic solution for cleaning wounds and preventing infection.",
     features: [
       "Kills bacteria",
@@ -1129,12 +1285,12 @@ const products = [
       "Keep away from eyes",
     ],
   },
-
-  // Personal Care (7 products)
   {
     id: 37,
     name: "Hand Sanitizer Gel 250ml",
     category: "Personal Care",
+    productType: "non-medicine",
+    generic: "",
     price: 5.99,
     originalPrice: 7.99,
     discount: "25% OFF",
@@ -1144,7 +1300,9 @@ const products = [
     stockCount: 142,
     sku: "PC-SAN-250",
     manufacturer: "CleanHands Pro",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "70% alcohol hand sanitizer gel that kills 99.9% of germs.",
     features: [
       "Kills 99.9% germs",
@@ -1163,6 +1321,8 @@ const products = [
     id: 38,
     name: "Moisturizing Body Lotion 400ml",
     category: "Personal Care",
+    productType: "non-medicine",
+    generic: "",
     price: 8.99,
     originalPrice: 11.99,
     discount: "25% OFF",
@@ -1172,7 +1332,9 @@ const products = [
     stockCount: 87,
     sku: "PC-LOT-400",
     manufacturer: "SkinSoft Solutions",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-MOdbPvRMotiueNWQLLet1JpwZIDnGG.png&w=750&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-MOdbPvRMotiueNWQLLet1JpwZIDnGG.png&w=750&q=75",
+    ],
     description: "Rich moisturizing lotion for dry and sensitive skin.",
     features: [
       "24-hour hydration",
@@ -1191,6 +1353,8 @@ const products = [
     id: 39,
     name: "Antibacterial Soap 250ml",
     category: "Personal Care",
+    productType: "non-medicine",
+    generic: "",
     price: 4.99,
     originalPrice: 6.49,
     discount: "23% OFF",
@@ -1200,7 +1364,9 @@ const products = [
     stockCount: 156,
     sku: "PC-SOAP-250",
     manufacturer: "CleanCare Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FMoov_100.webp&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FMoov_100.webp&w=640&q=100",
+    ],
     description: "Antibacterial liquid soap for effective hand hygiene.",
     features: [
       "Kills bacteria",
@@ -1219,6 +1385,8 @@ const products = [
     id: 40,
     name: "Deodorant Roll-On 50ml",
     category: "Personal Care",
+    productType: "non-medicine",
+    generic: "",
     price: 5.49,
     originalPrice: 6.99,
     discount: "21% OFF",
@@ -1228,7 +1396,9 @@ const products = [
     stockCount: 112,
     sku: "PC-DEO-50",
     manufacturer: "FreshGuard Co.",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2F8901248701129.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2F8901248701129.jpg&w=1920&q=75",
+    ],
     description: "48-hour protection roll-on deodorant.",
     features: [
       "48-hour protection",
@@ -1247,6 +1417,8 @@ const products = [
     id: 41,
     name: "Wet Wipes - Antibacterial 60 Pack",
     category: "Personal Care",
+    productType: "non-medicine",
+    generic: "",
     price: 3.99,
     originalPrice: 4.99,
     discount: "20% OFF",
@@ -1256,7 +1428,9 @@ const products = [
     stockCount: 198,
     sku: "PC-WIPE-60",
     manufacturer: "QuickClean Solutions",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Convenient antibacterial wipes for hands and surfaces.",
     features: [
       "Kills 99.9% bacteria",
@@ -1275,6 +1449,8 @@ const products = [
     id: 42,
     name: "Sunscreen SPF 50+ 200ml",
     category: "Personal Care",
+    productType: "non-medicine",
+    generic: "",
     price: 12.99,
     originalPrice: 16.99,
     discount: null,
@@ -1284,7 +1460,9 @@ const products = [
     stockCount: 73,
     sku: "PC-SUN-50",
     manufacturer: "SunShield Labs",
-    images: ["https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=600&h=600&fit=crop",
+    ],
     description: "High protection sunscreen for all skin types.",
     features: [
       "SPF 50+ protection",
@@ -1303,6 +1481,8 @@ const products = [
     id: 43,
     name: "Cotton Swabs 200 Pack",
     category: "Personal Care",
+    productType: "non-medicine",
+    generic: "",
     price: 2.99,
     originalPrice: 3.99,
     discount: null,
@@ -1312,7 +1492,9 @@ const products = [
     stockCount: 215,
     sku: "PC-SWAB-200",
     manufacturer: "PureTouch Products",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "High-quality cotton swabs for personal hygiene and makeup application.",
     features: [
       "100% pure cotton",
@@ -1327,12 +1509,12 @@ const products = [
       "Keep away from children",
     ],
   },
-
-  // Baby Care (6 products)
   {
     id: 44,
     name: "Baby Diaper Rash Cream 100g",
     category: "Baby Care",
+    productType: "non-medicine",
+    generic: "",
     price: 7.99,
     originalPrice: 9.99,
     discount: null,
@@ -1342,7 +1524,9 @@ const products = [
     stockCount: 82,
     sku: "BC-RASH-100",
     manufacturer: "BabySoft Care",
-    images: ["https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&h=600&fit=crop",
+    ],
     description: "Gentle zinc oxide cream for preventing and treating diaper rash.",
     features: [
       "Zinc oxide formula",
@@ -1361,6 +1545,8 @@ const products = [
     id: 45,
     name: "Baby Fever Reducer Suspension",
     category: "Baby Care",
+    productType: "non-medicine",
+    generic: "",
     price: 6.49,
     originalPrice: 8.49,
     discount: null,
@@ -1370,7 +1556,9 @@ const products = [
     stockCount: 64,
     sku: "BC-FEV-SUS",
     manufacturer: "PediaHealth Pharma",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Gentle paracetamol suspension for babies and infants.",
     features: [
       "Sugar-free formula",
@@ -1389,6 +1577,8 @@ const products = [
     id: 46,
     name: "Baby Wipes Sensitive 80 Pack",
     category: "Baby Care",
+    productType: "non-medicine",
+    generic: "",
     price: 4.99,
     originalPrice: 5.99,
     discount: null,
@@ -1398,7 +1588,9 @@ const products = [
     stockCount: 167,
     sku: "BC-WIPE-80",
     manufacturer: "GentleCare Baby",
-    images: ["https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&h=600&fit=crop",
+    ],
     description: "Ultra-gentle baby wipes for sensitive skin.",
     features: [
       "99% water",
@@ -1417,6 +1609,8 @@ const products = [
     id: 47,
     name: "Infant Gripe Water 150ml",
     category: "Baby Care",
+    productType: "non-medicine",
+    generic: "",
     price: 8.49,
     originalPrice: 10.99,
     discount: null,
@@ -1426,7 +1620,9 @@ const products = [
     stockCount: 56,
     sku: "BC-GRIPE-150",
     manufacturer: "TummyCalm Solutions",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Natural gripe water for infant colic and gas relief.",
     features: [
       "Natural herbal formula",
@@ -1445,6 +1641,8 @@ const products = [
     id: 48,
     name: "Baby Nasal Aspirator",
     category: "Baby Care",
+    productType: "non-medicine",
+    generic: "",
     price: 9.99,
     originalPrice: 12.99,
     discount: "23% OFF",
@@ -1454,7 +1652,9 @@ const products = [
     stockCount: 43,
     sku: "BC-NAS-ASP",
     manufacturer: "BreathEasy Baby",
-    images: ["https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&h=600&fit=crop",
+    ],
     description: "Gentle nasal aspirator for clearing baby's blocked nose.",
     features: [
       "Safe and gentle",
@@ -1473,6 +1673,8 @@ const products = [
     id: 49,
     name: "Baby Teething Gel",
     category: "Baby Care",
+    productType: "non-medicine",
+    generic: "",
     price: 5.99,
     originalPrice: 7.49,
     discount: null,
@@ -1482,7 +1684,9 @@ const products = [
     stockCount: 91,
     sku: "BC-TEETH-GEL",
     manufacturer: "SootheGums Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Soothing gel for teething pain relief.",
     features: [
       "Sugar-free",
@@ -1501,6 +1705,8 @@ const products = [
     id: 445,
     name: "Baby Fever Reducer Suspension",
     category: "Baby Care",
+    productType: "non-medicine",
+    generic: "",
     price: 6.49,
     originalPrice: 8.49,
     discount: "24% OFF",
@@ -1510,7 +1716,9 @@ const products = [
     stockCount: 64,
     sku: "BC-FEV-SUS",
     manufacturer: "PediaHealth Pharma",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Gentle paracetamol suspension for babies and infants.",
     features: [
       "Sugar-free formula",
@@ -1529,6 +1737,8 @@ const products = [
     id: 446,
     name: "Baby Wipes Sensitive 80 Pack",
     category: "Baby Care",
+    productType: "non-medicine",
+    generic: "",
     price: 4.99,
     originalPrice: 5.99,
     discount: "17% OFF",
@@ -1538,7 +1748,9 @@ const products = [
     stockCount: 167,
     sku: "BC-WIPE-80",
     manufacturer: "GentleCare Baby",
-    images: ["https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&h=600&fit=crop",
+    ],
     description: "Ultra-gentle baby wipes for sensitive skin.",
     features: [
       "99% water",
@@ -1557,6 +1769,8 @@ const products = [
     id: 447,
     name: "Infant Gripe Water 150ml",
     category: "Baby Care",
+    productType: "non-medicine",
+    generic: "",
     price: 8.49,
     originalPrice: 10.99,
     discount: null,
@@ -1566,7 +1780,9 @@ const products = [
     stockCount: 56,
     sku: "BC-GRIPE-150",
     manufacturer: "TummyCalm Solutions",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Natural gripe water for infant colic and gas relief.",
     features: [
       "Natural herbal formula",
@@ -1585,6 +1801,8 @@ const products = [
     id: 448,
     name: "Baby Nasal Aspirator",
     category: "Baby Care",
+    productType: "non-medicine",
+    generic: "",
     price: 9.99,
     originalPrice: 12.99,
     discount: "23% OFF",
@@ -1594,7 +1812,9 @@ const products = [
     stockCount: 43,
     sku: "BC-NAS-ASP",
     manufacturer: "BreathEasy Baby",
-    images: ["https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&h=600&fit=crop",
+    ],
     description: "Gentle nasal aspirator for clearing baby's blocked nose.",
     features: [
       "Safe and gentle",
@@ -1613,6 +1833,8 @@ const products = [
     id: 449,
     name: "Baby Teething Gel",
     category: "Baby Care",
+    productType: "non-medicine",
+    generic: "",
     price: 5.99,
     originalPrice: 7.49,
     discount: "20% OFF",
@@ -1622,7 +1844,9 @@ const products = [
     stockCount: 91,
     sku: "BC-TEETH-GEL",
     manufacturer: "SootheGums Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Soothing gel for teething pain relief.",
     features: [
       "Sugar-free",
@@ -1637,12 +1861,12 @@ const products = [
       "If symptoms persist, consult doctor",
     ],
   },
-
-  // Diabetes Care (5 products)
   {
     id: 50,
     name: "Blood Glucose Monitor Kit",
     category: "Diabetes Care",
+    productType: "medicine",
+    generic: "Blood Glucose Monitor Kit",
     price: 34.99,
     originalPrice: 44.99,
     discount: null,
@@ -1652,7 +1876,9 @@ const products = [
     stockCount: 38,
     sku: "DC-GLU-KIT",
     manufacturer: "GlucoCheck Pro",
-    images: ["https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop",
+    ],
     description: "Complete blood glucose monitoring system with test strips and lancets.",
     features: [
       "Fast 5-second results",
@@ -1671,6 +1897,8 @@ const products = [
     id: 51,
     name: "Glucose Test Strips 50-Pack",
     category: "Diabetes Care",
+    productType: "medicine",
+    generic: "Glucose Test Strips 50-Pack",
     price: 24.99,
     originalPrice: 29.99,
     discount: null,
@@ -1680,7 +1908,9 @@ const products = [
     stockCount: 67,
     sku: "DC-STRIP-50",
     manufacturer: "GlucoCheck Pro",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Compatible test strips for blood glucose monitoring.",
     features: [
       "Accurate results",
@@ -1699,6 +1929,8 @@ const products = [
     id: 52,
     name: "Lancets 100-Pack",
     category: "Diabetes Care",
+    productType: "medicine",
+    generic: "Lancets 100-Pack",
     price: 8.99,
     originalPrice: 11.99,
     discount: "25% OFF",
@@ -1708,7 +1940,9 @@ const products = [
     stockCount: 124,
     sku: "DC-LAN-100",
     manufacturer: "SafeStick Medical",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Sterile lancets for blood sampling.",
     features: [
       "Ultra-thin gauge",
@@ -1727,6 +1961,8 @@ const products = [
     id: 53,
     name: "Diabetic Foot Cream 100ml",
     category: "Diabetes Care",
+    productType: "medicine",
+    generic: "Diabetic Foot",
     price: 11.99,
     originalPrice: 14.99,
     discount: null,
@@ -1736,7 +1972,9 @@ const products = [
     stockCount: 58,
     sku: "DC-FOOT-CRM",
     manufacturer: "DiabetCare Solutions",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-MOdbPvRMotiueNWQLLet1JpwZIDnGG.png&w=750&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-MOdbPvRMotiueNWQLLet1JpwZIDnGG.png&w=750&q=75",
+    ],
     description: "Specialized moisturizing cream for diabetic foot care.",
     features: [
       "Intense hydration",
@@ -1755,6 +1993,8 @@ const products = [
     id: 54,
     name: "Sugar-Free Energy Tablets",
     category: "Diabetes Care",
+    productType: "medicine",
+    generic: "Sugar-Free Energy",
     price: 6.99,
     originalPrice: 8.99,
     discount: "22% OFF",
@@ -1764,7 +2004,9 @@ const products = [
     stockCount: 89,
     sku: "DC-ENERGY-TAB",
     manufacturer: "GlucoBalance Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Fast-acting glucose tablets for hypoglycemia.",
     features: [
       "4g glucose per tablet",
@@ -1783,6 +2025,8 @@ const products = [
     id: 550,
     name: "Blood Glucose Monitor Kit",
     category: "Diabetes Care",
+    productType: "medicine",
+    generic: "Blood Glucose Monitor Kit",
     price: 34.99,
     originalPrice: 44.99,
     discount: null,
@@ -1792,7 +2036,9 @@ const products = [
     stockCount: 38,
     sku: "DC-GLU-KIT",
     manufacturer: "GlucoCheck Pro",
-    images: ["https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop",
+    ],
     description: "Complete blood glucose monitoring system with test strips and lancets.",
     features: [
       "Fast 5-second results",
@@ -1811,6 +2057,8 @@ const products = [
     id: 551,
     name: "Glucose Test Strips 50-Pack",
     category: "Diabetes Care",
+    productType: "medicine",
+    generic: "Glucose Test Strips 50-Pack",
     price: 24.99,
     originalPrice: 29.99,
     discount: "17% OFF",
@@ -1820,7 +2068,9 @@ const products = [
     stockCount: 67,
     sku: "DC-STRIP-50",
     manufacturer: "GlucoCheck Pro",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Compatible test strips for blood glucose monitoring.",
     features: [
       "Accurate results",
@@ -1839,6 +2089,8 @@ const products = [
     id: 552,
     name: "Lancets 100-Pack",
     category: "Diabetes Care",
+    productType: "medicine",
+    generic: "Lancets 100-Pack",
     price: 8.99,
     originalPrice: 11.99,
     discount: "25% OFF",
@@ -1848,7 +2100,9 @@ const products = [
     stockCount: 124,
     sku: "DC-LAN-100",
     manufacturer: "SafeStick Medical",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Sterile lancets for blood sampling.",
     features: [
       "Ultra-thin gauge",
@@ -1867,6 +2121,8 @@ const products = [
     id: 553,
     name: "Diabetic Foot Cream 100ml",
     category: "Diabetes Care",
+    productType: "medicine",
+    generic: "Diabetic Foot",
     price: 11.99,
     originalPrice: 14.99,
     discount: null,
@@ -1876,7 +2132,9 @@ const products = [
     stockCount: 58,
     sku: "DC-FOOT-CRM",
     manufacturer: "DiabetCare Solutions",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-MOdbPvRMotiueNWQLLet1JpwZIDnGG.png&w=750&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-MOdbPvRMotiueNWQLLet1JpwZIDnGG.png&w=750&q=75",
+    ],
     description: "Specialized moisturizing cream for diabetic foot care.",
     features: [
       "Intense hydration",
@@ -1895,6 +2153,8 @@ const products = [
     id: 554,
     name: "Sugar-Free Energy Tablets",
     category: "Diabetes Care",
+    productType: "medicine",
+    generic: "Sugar-Free Energy",
     price: 6.99,
     originalPrice: 8.99,
     discount: "22% OFF",
@@ -1904,7 +2164,9 @@ const products = [
     stockCount: 89,
     sku: "DC-ENERGY-TAB",
     manufacturer: "GlucoBalance Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Fast-acting glucose tablets for hypoglycemia.",
     features: [
       "4g glucose per tablet",
@@ -1923,6 +2185,8 @@ const products = [
     id: 131,
     name: "Sugar-Free Energy Tablets",
     category: "Diabetes Care",
+    productType: "medicine",
+    generic: "Sugar-Free Energy",
     price: 6.99,
     originalPrice: 8.99,
     discount: "22% OFF",
@@ -1932,7 +2196,9 @@ const products = [
     stockCount: 89,
     sku: "DC-ENERGY-TAB",
     manufacturer: "GlucoBalance Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Fast-acting glucose tablets for hypoglycemia.",
     features: [
       "4g glucose per tablet",
@@ -1947,12 +2213,12 @@ const products = [
       "Keep accessible at all times",
     ],
   },
-
-  // Heart Health (5 products)  
   {
     id: 55,
     name: "Blood Pressure Monitor - Automatic",
     category: "Heart Health",
+    productType: "medicine",
+    generic: "Blood Pressure Monitor - Automatic",
     price: 39.99,
     originalPrice: 49.99,
     discount: "20% OFF",
@@ -1962,7 +2228,9 @@ const products = [
     stockCount: 42,
     sku: "HH-BP-AUTO",
     manufacturer: "CardioMonitor Pro",
-    images: ["https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop",
+    ],
     description: "Clinically validated automatic blood pressure monitor for home use.",
     features: [
       "One-touch operation",
@@ -1981,6 +2249,8 @@ const products = [
     id: 56,
     name: "Omega-3 Heart Formula 1200mg",
     category: "Heart Health",
+    productType: "medicine",
+    generic: "Omega-3 Heart Formula",
     price: 18.99,
     originalPrice: 23.99,
     discount: "21% OFF",
@@ -1990,7 +2260,9 @@ const products = [
     stockCount: 71,
     sku: "HH-OMG-1200",
     manufacturer: "CardioHealth Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100",
+    ],
     description: "High-potency omega-3 specifically formulated for cardiovascular health.",
     features: [
       "1200mg EPA+DHA",
@@ -2009,6 +2281,8 @@ const products = [
     id: 57,
     name: "CoQ10 100mg Capsules",
     category: "Heart Health",
+    productType: "medicine",
+    generic: "CoQ10",
     price: 16.99,
     originalPrice: 21.99,
     discount: null,
@@ -2018,7 +2292,9 @@ const products = [
     stockCount: 55,
     sku: "HH-COQ-100",
     manufacturer: "CardioVital Supplements",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Coenzyme Q10 for heart health and cellular energy production.",
     features: [
       "Supports heart muscle",
@@ -2037,6 +2313,8 @@ const products = [
     id: 58,
     name: "Low-Dose Aspirin 75mg - Heart Health",
     category: "Heart Health",
+    productType: "medicine",
+    generic: "Low-Dose Aspirin - Heart Health",
     price: 5.49,
     originalPrice: 6.99,
     discount: "21% OFF",
@@ -2046,7 +2324,9 @@ const products = [
     stockCount: 126,
     sku: "HH-ASP-75",
     manufacturer: "CardioHealth Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Low-dose aspirin for cardiovascular protection (as recommended by doctor).",
     features: [
       "Blood-thinning properties",
@@ -2065,6 +2345,8 @@ const products = [
     id: 59,
     name: "Cholesterol Support Formula",
     category: "Heart Health",
+    productType: "medicine",
+    generic: "Cholesterol Support Formula",
     price: 19.99,
     originalPrice: 24.99,
     discount: null,
@@ -2074,7 +2356,9 @@ const products = [
     stockCount: 48,
     sku: "HH-CHOL-SUPP",
     manufacturer: "HeartWell Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Natural formula with plant sterols to support healthy cholesterol levels.",
     features: [
       "Plant sterol esters",
@@ -2093,6 +2377,8 @@ const products = [
     id: 555,
     name: "Blood Pressure Monitor - Automatic",
     category: "Heart Health",
+    productType: "medicine",
+    generic: "Blood Pressure Monitor - Automatic",
     price: 39.99,
     originalPrice: 49.99,
     discount: "20% OFF",
@@ -2102,7 +2388,9 @@ const products = [
     stockCount: 42,
     sku: "HH-BP-AUTO",
     manufacturer: "CardioMonitor Pro",
-    images: ["https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop",
+    ],
     description: "Clinically validated automatic blood pressure monitor for home use.",
     features: [
       "One-touch operation",
@@ -2121,6 +2409,8 @@ const products = [
     id: 556,
     name: "Omega-3 Heart Formula 1200mg",
     category: "Heart Health",
+    productType: "medicine",
+    generic: "Omega-3 Heart Formula",
     price: 18.99,
     originalPrice: 23.99,
     discount: null,
@@ -2130,7 +2420,9 @@ const products = [
     stockCount: 71,
     sku: "HH-OMG-1200",
     manufacturer: "CardioHealth Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100",
+    ],
     description: "High-potency omega-3 specifically formulated for cardiovascular health.",
     features: [
       "1200mg EPA+DHA",
@@ -2149,6 +2441,8 @@ const products = [
     id: 557,
     name: "CoQ10 100mg Capsules",
     category: "Heart Health",
+    productType: "medicine",
+    generic: "CoQ10",
     price: 16.99,
     originalPrice: 21.99,
     discount: "23% OFF",
@@ -2158,7 +2452,9 @@ const products = [
     stockCount: 55,
     sku: "HH-COQ-100",
     manufacturer: "CardioVital Supplements",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Coenzyme Q10 for heart health and cellular energy production.",
     features: [
       "Supports heart muscle",
@@ -2177,6 +2473,8 @@ const products = [
     id: 558,
     name: "Low-Dose Aspirin 75mg - Heart Health",
     category: "Heart Health",
+    productType: "medicine",
+    generic: "Low-Dose Aspirin - Heart Health",
     price: 5.49,
     originalPrice: 6.99,
     discount: "21% OFF",
@@ -2186,7 +2484,9 @@ const products = [
     stockCount: 126,
     sku: "HH-ASP-75",
     manufacturer: "CardioHealth Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Low-dose aspirin for cardiovascular protection (as recommended by doctor).",
     features: [
       "Blood-thinning properties",
@@ -2205,6 +2505,8 @@ const products = [
     id: 559,
     name: "Cholesterol Support Formula",
     category: "Heart Health",
+    productType: "medicine",
+    generic: "Cholesterol Support Formula",
     price: 19.99,
     originalPrice: 24.99,
     discount: "20% OFF",
@@ -2214,7 +2516,9 @@ const products = [
     stockCount: 48,
     sku: "HH-CHOL-SUPP",
     manufacturer: "HeartWell Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Natural formula with plant sterols to support healthy cholesterol levels.",
     features: [
       "Plant sterol esters",
@@ -2233,6 +2537,8 @@ const products = [
     id: 132,
     name: "Cholesterol Support Formula",
     category: "Heart Health",
+    productType: "medicine",
+    generic: "Cholesterol Support Formula",
     price: 19.99,
     originalPrice: 24.99,
     discount: null,
@@ -2242,7 +2548,9 @@ const products = [
     stockCount: 48,
     sku: "HH-CHOL-SUPP",
     manufacturer: "HeartWell Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Natural formula with plant sterols to support healthy cholesterol levels.",
     features: [
       "Plant sterol esters",
@@ -2257,12 +2565,12 @@ const products = [
       "Results may take 4-6 weeks",
     ],
   },
-
-  // Digestive Health (5 products)
   {
     id: 60,
     name: "Antacid Tablets - Mint Flavor",
     category: "Digestive Health",
+    productType: "medicine",
+    generic: "Antacid - Mint Flavor",
     price: 6.99,
     originalPrice: 8.99,
     discount: null,
@@ -2272,7 +2580,9 @@ const products = [
     stockCount: 98,
     sku: "DH-ANT-MINT",
     manufacturer: "DigestEase Pharma",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Fast-acting antacid for heartburn and indigestion relief.",
     features: [
       "Quick relief",
@@ -2291,6 +2601,8 @@ const products = [
     id: 61,
     name: "Probiotic Complex 20 Billion CFU",
     category: "Digestive Health",
+    productType: "medicine",
+    generic: "Probiotic Complex 20 Billion CFU",
     price: 22.99,
     originalPrice: 28.99,
     discount: null,
@@ -2300,7 +2612,9 @@ const products = [
     stockCount: 54,
     sku: "DH-PROB-20B",
     manufacturer: "GutHealth Pro",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100",
+    ],
     description: "High-potency probiotic with 10 beneficial strains for digestive balance.",
     features: [
       "20 billion CFU",
@@ -2319,6 +2633,8 @@ const products = [
     id: 62,
     name: "Laxative Tablets - Gentle Relief",
     category: "Digestive Health",
+    productType: "medicine",
+    generic: "Laxative - Gentle Relief",
     price: 7.49,
     originalPrice: 9.49,
     discount: "21% OFF",
@@ -2328,7 +2644,9 @@ const products = [
     stockCount: 76,
     sku: "DH-LAX-GENT",
     manufacturer: "GentleMove Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Gentle overnight relief from occasional constipation.",
     features: [
       "Works overnight",
@@ -2347,6 +2665,8 @@ const products = [
     id: 63,
     name: "Anti-Diarrheal Capsules",
     category: "Digestive Health",
+    productType: "medicine",
+    generic: "Anti-Diarrheal",
     price: 8.99,
     originalPrice: 10.99,
     discount: "18% OFF",
@@ -2356,7 +2676,9 @@ const products = [
     stockCount: 83,
     sku: "DH-DIAR-CAP",
     manufacturer: "StopFlow Pharma",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Fast relief from acute diarrhea and travelers' diarrhea.",
     features: [
       "Fast-acting relief",
@@ -2375,6 +2697,8 @@ const products = [
     id: 64,
     name: "Fiber Supplement Powder",
     category: "Digestive Health",
+    productType: "medicine",
+    generic: "Fiber",
     price: 14.99,
     originalPrice: 18.99,
     discount: "21% OFF",
@@ -2384,7 +2708,9 @@ const products = [
     stockCount: 61,
     sku: "DH-FIB-POW",
     manufacturer: "FiberWell Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Natural psyllium fiber supplement for digestive regularity.",
     features: [
       "100% natural psyllium",
@@ -2403,6 +2729,8 @@ const products = [
     id: 660,
     name: "Antacid Tablets - Mint Flavor",
     category: "Digestive Health",
+    productType: "medicine",
+    generic: "Antacid - Mint Flavor",
     price: 6.99,
     originalPrice: 8.99,
     discount: null,
@@ -2412,7 +2740,9 @@ const products = [
     stockCount: 98,
     sku: "DH-ANT-MINT",
     manufacturer: "DigestEase Pharma",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Fast-acting antacid for heartburn and indigestion relief.",
     features: [
       "Quick relief",
@@ -2431,6 +2761,8 @@ const products = [
     id: 661,
     name: "Probiotic Complex 20 Billion CFU",
     category: "Digestive Health",
+    productType: "medicine",
+    generic: "Probiotic Complex 20 Billion CFU",
     price: 22.99,
     originalPrice: 28.99,
     discount: "21% OFF",
@@ -2440,7 +2772,9 @@ const products = [
     stockCount: 54,
     sku: "DH-PROB-20B",
     manufacturer: "GutHealth Pro",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100",
+    ],
     description: "High-potency probiotic with 10 beneficial strains for digestive balance.",
     features: [
       "20 billion CFU",
@@ -2459,6 +2793,8 @@ const products = [
     id: 662,
     name: "Laxative Tablets - Gentle Relief",
     category: "Digestive Health",
+    productType: "medicine",
+    generic: "Laxative - Gentle Relief",
     price: 7.49,
     originalPrice: 9.49,
     discount: "21% OFF",
@@ -2468,7 +2804,9 @@ const products = [
     stockCount: 76,
     sku: "DH-LAX-GENT",
     manufacturer: "GentleMove Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Gentle overnight relief from occasional constipation.",
     features: [
       "Works overnight",
@@ -2487,6 +2825,8 @@ const products = [
     id: 663,
     name: "Anti-Diarrheal Capsules",
     category: "Digestive Health",
+    productType: "medicine",
+    generic: "Anti-Diarrheal",
     price: 8.99,
     originalPrice: 10.99,
     discount: null,
@@ -2496,7 +2836,9 @@ const products = [
     stockCount: 83,
     sku: "DH-DIAR-CAP",
     manufacturer: "StopFlow Pharma",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Fast relief from acute diarrhea and travelers' diarrhea.",
     features: [
       "Fast-acting relief",
@@ -2515,6 +2857,8 @@ const products = [
     id: 664,
     name: "Fiber Supplement Powder",
     category: "Digestive Health",
+    productType: "medicine",
+    generic: "Fiber",
     price: 14.99,
     originalPrice: 18.99,
     discount: null,
@@ -2524,7 +2868,9 @@ const products = [
     stockCount: 61,
     sku: "DH-FIB-POW",
     manufacturer: "FiberWell Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Natural psyllium fiber supplement for digestive regularity.",
     features: [
       "100% natural psyllium",
@@ -2543,6 +2889,8 @@ const products = [
     id: 133,
     name: "Laxative Tablets - Gentle Relief",
     category: "Digestive Health",
+    productType: "medicine",
+    generic: "Laxative - Gentle Relief",
     price: 7.49,
     originalPrice: 9.49,
     discount: "21% OFF",
@@ -2552,7 +2900,9 @@ const products = [
     stockCount: 76,
     sku: "DH-LAX-GENT",
     manufacturer: "GentleMove Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Gentle overnight relief from occasional constipation.",
     features: [
       "Works overnight",
@@ -2567,12 +2917,12 @@ const products = [
       "Increase fluid intake",
     ],
   },
-
-  // Eye Care (4 products)
   {
     id: 65,
     name: "Artificial Tears Eye Drops",
     category: "Eye Care",
+    productType: "medicine",
+    generic: "Artificial Tears Eye",
     price: 9.99,
     originalPrice: 12.99,
     discount: "23% OFF",
@@ -2582,7 +2932,9 @@ const products = [
     stockCount: 87,
     sku: "EC-TEAR-DROP",
     manufacturer: "ClearVision Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FMoov_100.webp&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FMoov_100.webp&w=640&q=100",
+    ],
     description: "Lubricating eye drops for dry eye relief.",
     features: [
       "Long-lasting relief",
@@ -2601,6 +2953,8 @@ const products = [
     id: 66,
     name: "Allergy Eye Drops",
     category: "Eye Care",
+    productType: "medicine",
+    generic: "Allergy Eye",
     price: 11.99,
     originalPrice: 14.99,
     discount: null,
@@ -2610,7 +2964,9 @@ const products = [
     stockCount: 63,
     sku: "EC-ALL-DROP",
     manufacturer: "AllerRelief Vision",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Antihistamine eye drops for allergic conjunctivitis.",
     features: [
       "Fast itch relief",
@@ -2629,6 +2985,8 @@ const products = [
     id: 67,
     name: "Eye Wash Solution 110ml",
     category: "Eye Care",
+    productType: "medicine",
+    generic: "Eye",
     price: 7.99,
     originalPrice: 9.99,
     discount: null,
@@ -2638,7 +2996,9 @@ const products = [
     stockCount: 74,
     sku: "EC-WASH-110",
     manufacturer: "PureEye Solutions",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Sterile eye wash for flushing irritants and debris.",
     features: [
       "Sterile formula",
@@ -2657,6 +3017,8 @@ const products = [
     id: 68,
     name: "Lutein & Zeaxanthin Eye Vitamins",
     category: "Eye Care",
+    productType: "medicine",
+    generic: "Lutein & Zeaxanthin Eye Vitamins",
     price: 16.99,
     originalPrice: 21.99,
     discount: "23% OFF",
@@ -2666,7 +3028,9 @@ const products = [
     stockCount: 52,
     sku: "EC-LUT-VIT",
     manufacturer: "VisionCare Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Comprehensive eye health supplement with lutein and zeaxanthin.",
     features: [
       "Supports macular health",
@@ -2685,6 +3049,8 @@ const products = [
     id: 665,
     name: "Artificial Tears Eye Drops",
     category: "Eye Care",
+    productType: "medicine",
+    generic: "Artificial Tears Eye",
     price: 9.99,
     originalPrice: 12.99,
     discount: null,
@@ -2694,7 +3060,9 @@ const products = [
     stockCount: 87,
     sku: "EC-TEAR-DROP",
     manufacturer: "ClearVision Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FMoov_100.webp&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FMoov_100.webp&w=640&q=100",
+    ],
     description: "Lubricating eye drops for dry eye relief.",
     features: [
       "Long-lasting relief",
@@ -2713,6 +3081,8 @@ const products = [
     id: 666,
     name: "Allergy Eye Drops",
     category: "Eye Care",
+    productType: "medicine",
+    generic: "Allergy Eye",
     price: 11.99,
     originalPrice: 14.99,
     discount: "20% OFF",
@@ -2722,7 +3092,9 @@ const products = [
     stockCount: 63,
     sku: "EC-ALL-DROP",
     manufacturer: "AllerRelief Vision",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Antihistamine eye drops for allergic conjunctivitis.",
     features: [
       "Fast itch relief",
@@ -2741,6 +3113,8 @@ const products = [
     id: 667,
     name: "Eye Wash Solution 110ml",
     category: "Eye Care",
+    productType: "medicine",
+    generic: "Eye",
     price: 7.99,
     originalPrice: 9.99,
     discount: null,
@@ -2750,7 +3124,9 @@ const products = [
     stockCount: 74,
     sku: "EC-WASH-110",
     manufacturer: "PureEye Solutions",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Sterile eye wash for flushing irritants and debris.",
     features: [
       "Sterile formula",
@@ -2769,6 +3145,8 @@ const products = [
     id: 668,
     name: "Lutein & Zeaxanthin Eye Vitamins",
     category: "Eye Care",
+    productType: "medicine",
+    generic: "Lutein & Zeaxanthin Eye Vitamins",
     price: 16.99,
     originalPrice: 21.99,
     discount: null,
@@ -2778,7 +3156,9 @@ const products = [
     stockCount: 52,
     sku: "EC-LUT-VIT",
     manufacturer: "VisionCare Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Comprehensive eye health supplement with lutein and zeaxanthin.",
     features: [
       "Supports macular health",
@@ -2797,6 +3177,8 @@ const products = [
     id: 134,
     name: "Allergy Eye Drops",
     category: "Eye Care",
+    productType: "medicine",
+    generic: "Allergy Eye",
     price: 11.99,
     originalPrice: 14.99,
     discount: null,
@@ -2806,7 +3188,9 @@ const products = [
     stockCount: 63,
     sku: "EC-ALL-DROP",
     manufacturer: "AllerRelief Vision",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Antihistamine eye drops for allergic conjunctivitis.",
     features: [
       "Fast itch relief",
@@ -2825,6 +3209,8 @@ const products = [
     id: 135,
     name: "Eye Wash Solution 110ml",
     category: "Eye Care",
+    productType: "medicine",
+    generic: "Eye",
     price: 7.99,
     originalPrice: 9.99,
     discount: null,
@@ -2834,7 +3220,9 @@ const products = [
     stockCount: 74,
     sku: "EC-WASH-110",
     manufacturer: "PureEye Solutions",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Sterile eye wash for flushing irritants and debris.",
     features: [
       "Sterile formula",
@@ -2853,6 +3241,8 @@ const products = [
     id: 136,
     name: "Lutein & Zeaxanthin Eye Vitamins",
     category: "Eye Care",
+    productType: "medicine",
+    generic: "Lutein & Zeaxanthin Eye Vitamins",
     price: 16.99,
     originalPrice: 21.99,
     discount: null,
@@ -2862,7 +3252,9 @@ const products = [
     stockCount: 52,
     sku: "EC-LUT-VIT",
     manufacturer: "VisionCare Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Comprehensive eye health supplement with lutein and zeaxanthin.",
     features: [
       "Supports macular health",
@@ -2877,12 +3269,12 @@ const products = [
       "Effects may take several months",
     ],
   },
-
-  // Skin Care (5 products)
   {
     id: 69,
     name: "Acne Treatment Gel 2% Salicylic Acid",
     category: "Skin Care",
+    productType: "non-medicine",
+    generic: "",
     price: 12.99,
     originalPrice: 16.99,
     discount: "24% OFF",
@@ -2892,7 +3284,9 @@ const products = [
     stockCount: 94,
     sku: "SC-ACN-GEL",
     manufacturer: "ClearSkin Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_0NocXVY.png&w=256&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_0NocXVY.png&w=256&q=100",
+    ],
     description: "Fast-acting acne treatment gel with salicylic acid.",
     features: [
       "2% salicylic acid",
@@ -2911,6 +3305,8 @@ const products = [
     id: 70,
     name: "Anti-Aging Retinol Serum",
     category: "Skin Care",
+    productType: "non-medicine",
+    generic: "",
     price: 24.99,
     originalPrice: 32.99,
     discount: null,
@@ -2920,7 +3316,9 @@ const products = [
     stockCount: 67,
     sku: "SC-RET-SER",
     manufacturer: "YouthfulGlow Skincare",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_3_fbyDUCX.png&w=256&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_3_fbyDUCX.png&w=256&q=100",
+    ],
     description: "Premium retinol serum for fine lines, wrinkles, and skin texture.",
     features: [
       "1% retinol",
@@ -2939,6 +3337,8 @@ const products = [
     id: 71,
     name: "Hydrating Face Moisturizer SPF 30",
     category: "Skin Care",
+    productType: "non-medicine",
+    generic: "",
     price: 18.99,
     originalPrice: 23.99,
     discount: null,
@@ -2948,7 +3348,9 @@ const products = [
     stockCount: 103,
     sku: "SC-MOIST-30",
     manufacturer: "HydroSkin Care",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_12.png&w=256&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_12.png&w=256&q=100",
+    ],
     description: "Daily moisturizer with broad-spectrum SPF 30 protection.",
     features: [
       "SPF 30 protection",
@@ -2967,6 +3369,8 @@ const products = [
     id: 72,
     name: "Vitamin C Brightening Serum",
     category: "Skin Care",
+    productType: "non-medicine",
+    generic: "",
     price: 21.99,
     originalPrice: 27.99,
     discount: "21% OFF",
@@ -2976,7 +3380,9 @@ const products = [
     stockCount: 81,
     sku: "SC-VIT-SER",
     manufacturer: "RadiantSkin Solutions",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2F01-combo.png&w=256&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2F01-combo.png&w=256&q=100",
+    ],
     description: "Powerful vitamin C serum for brightening and anti-aging.",
     features: [
       "20% vitamin C",
@@ -2995,6 +3401,8 @@ const products = [
     id: 73,
     name: "Eczema Relief Cream",
     category: "Skin Care",
+    productType: "non-medicine",
+    generic: "",
     price: 14.99,
     originalPrice: 18.99,
     discount: null,
@@ -3004,7 +3412,9 @@ const products = [
     stockCount: 72,
     sku: "SC-ECZ-CRM",
     manufacturer: "SkinSoothe Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_1_biUwD9u.png&w=256&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_1_biUwD9u.png&w=256&q=100",
+    ],
     description: "Intensive cream for eczema-prone and very dry skin.",
     features: [
       "Colloidal oatmeal",
@@ -3023,6 +3433,8 @@ const products = [
     id: 669,
     name: "Acne Treatment Gel 2% Salicylic Acid",
     category: "Skin Care",
+    productType: "non-medicine",
+    generic: "",
     price: 12.99,
     originalPrice: 16.99,
     discount: "24% OFF",
@@ -3032,7 +3444,9 @@ const products = [
     stockCount: 94,
     sku: "SC-ACN-GEL",
     manufacturer: "ClearSkin Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_0NocXVY.png&w=256&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_0NocXVY.png&w=256&q=100",
+    ],
     description: "Fast-acting acne treatment gel with salicylic acid.",
     features: [
       "2% salicylic acid",
@@ -3051,6 +3465,8 @@ const products = [
     id: 770,
     name: "Anti-Aging Retinol Serum",
     category: "Skin Care",
+    productType: "non-medicine",
+    generic: "",
     price: 24.99,
     originalPrice: 32.99,
     discount: "24% OFF",
@@ -3060,7 +3476,9 @@ const products = [
     stockCount: 67,
     sku: "SC-RET-SER",
     manufacturer: "YouthfulGlow Skincare",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_3_fbyDUCX.png&w=256&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_3_fbyDUCX.png&w=256&q=100",
+    ],
     description: "Premium retinol serum for fine lines, wrinkles, and skin texture.",
     features: [
       "1% retinol",
@@ -3079,6 +3497,8 @@ const products = [
     id: 771,
     name: "Hydrating Face Moisturizer SPF 30",
     category: "Skin Care",
+    productType: "non-medicine",
+    generic: "",
     price: 18.99,
     originalPrice: 23.99,
     discount: null,
@@ -3088,7 +3508,9 @@ const products = [
     stockCount: 103,
     sku: "SC-MOIST-30",
     manufacturer: "HydroSkin Care",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_12.png&w=256&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_12.png&w=256&q=100",
+    ],
     description: "Daily moisturizer with broad-spectrum SPF 30 protection.",
     features: [
       "SPF 30 protection",
@@ -3107,6 +3529,8 @@ const products = [
     id: 772,
     name: "Vitamin C Brightening Serum",
     category: "Skin Care",
+    productType: "non-medicine",
+    generic: "",
     price: 21.99,
     originalPrice: 27.99,
     discount: null,
@@ -3116,7 +3540,9 @@ const products = [
     stockCount: 81,
     sku: "SC-VIT-SER",
     manufacturer: "RadiantSkin Solutions",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2F01-combo.png&w=256&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2F01-combo.png&w=256&q=100",
+    ],
     description: "Powerful vitamin C serum for brightening and anti-aging.",
     features: [
       "20% vitamin C",
@@ -3135,6 +3561,8 @@ const products = [
     id: 773,
     name: "Eczema Relief Cream",
     category: "Skin Care",
+    productType: "non-medicine",
+    generic: "",
     price: 14.99,
     originalPrice: 18.99,
     discount: null,
@@ -3144,7 +3572,9 @@ const products = [
     stockCount: 72,
     sku: "SC-ECZ-CRM",
     manufacturer: "SkinSoothe Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_1_biUwD9u.png&w=256&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_1_biUwD9u.png&w=256&q=100",
+    ],
     description: "Intensive cream for eczema-prone and very dry skin.",
     features: [
       "Colloidal oatmeal",
@@ -3163,6 +3593,8 @@ const products = [
     id: 137,
     name: "Eczema Relief Cream",
     category: "Skin Care",
+    productType: "non-medicine",
+    generic: "",
     price: 14.99,
     originalPrice: 18.99,
     discount: "21% OFF",
@@ -3172,7 +3604,9 @@ const products = [
     stockCount: 72,
     sku: "SC-ECZ-CRM",
     manufacturer: "SkinSoothe Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_1_biUwD9u.png&w=256&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_1_biUwD9u.png&w=256&q=100",
+    ],
     description: "Intensive cream for eczema-prone and very dry skin.",
     features: [
       "Colloidal oatmeal",
@@ -3187,12 +3621,12 @@ const products = [
       "Patch test before use",
     ],
   },
-
-  // Hair Care (4 products)
   {
     id: 74,
     name: "Anti-Dandruff Shampoo",
     category: "Hair Care",
+    productType: "non-medicine",
+    generic: "",
     price: 11.99,
     originalPrice: 14.99,
     discount: null,
@@ -3202,7 +3636,9 @@ const products = [
     stockCount: 118,
     sku: "HC-DAN-SHAM",
     manufacturer: "ScalpCare Pro",
-    images: ["https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=600&h=600&fit=crop",
+    ],
     description: "Medicated shampoo for dandruff control and scalp health.",
     features: [
       "Zinc pyrithione formula",
@@ -3221,6 +3657,8 @@ const products = [
     id: 75,
     name: "Hair Growth Supplement",
     category: "Hair Care",
+    productType: "non-medicine",
+    generic: "",
     price: 24.99,
     originalPrice: 31.99,
     discount: null,
@@ -3230,7 +3668,9 @@ const products = [
     stockCount: 64,
     sku: "HC-GROW-SUPP",
     manufacturer: "HairVital Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Biotin and collagen supplement for hair strength and growth.",
     features: [
       "10,000mcg Biotin",
@@ -3249,6 +3689,8 @@ const products = [
     id: 76,
     name: "Minoxidil 5% Hair Regrowth Solution",
     category: "Hair Care",
+    productType: "non-medicine",
+    generic: "",
     price: 29.99,
     originalPrice: 39.99,
     discount: null,
@@ -3258,7 +3700,9 @@ const products = [
     stockCount: 48,
     sku: "HC-MIN-5PC",
     manufacturer: "RegrowRX Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Clinically proven topical solution for hair regrowth.",
     features: [
       "5% minoxidil",
@@ -3277,6 +3721,8 @@ const products = [
     id: 77,
     name: "Deep Conditioning Hair Mask",
     category: "Hair Care",
+    productType: "non-medicine",
+    generic: "",
     price: 16.99,
     originalPrice: 21.99,
     discount: "23% OFF",
@@ -3286,7 +3732,9 @@ const products = [
     stockCount: 92,
     sku: "HC-COND-MASK",
     manufacturer: "SilkHair Solutions",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-MOdbPvRMotiueNWQLLet1JpwZIDnGG.png&w=750&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-MOdbPvRMotiueNWQLLet1JpwZIDnGG.png&w=750&q=75",
+    ],
     description: "Intensive repair treatment for damaged and dry hair.",
     features: [
       "Argan oil & keratin",
@@ -3305,6 +3753,8 @@ const products = [
     id: 774,
     name: "Anti-Dandruff Shampoo",
     category: "Hair Care",
+    productType: "non-medicine",
+    generic: "",
     price: 11.99,
     originalPrice: 14.99,
     discount: "20% OFF",
@@ -3314,7 +3764,9 @@ const products = [
     stockCount: 118,
     sku: "HC-DAN-SHAM",
     manufacturer: "ScalpCare Pro",
-    images: ["https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=600&h=600&fit=crop",
+    ],
     description: "Medicated shampoo for dandruff control and scalp health.",
     features: [
       "Zinc pyrithione formula",
@@ -3333,6 +3785,8 @@ const products = [
     id: 775,
     name: "Hair Growth Supplement",
     category: "Hair Care",
+    productType: "non-medicine",
+    generic: "",
     price: 24.99,
     originalPrice: 31.99,
     discount: "22% OFF",
@@ -3342,7 +3796,9 @@ const products = [
     stockCount: 64,
     sku: "HC-GROW-SUPP",
     manufacturer: "HairVital Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Biotin and collagen supplement for hair strength and growth.",
     features: [
       "10,000mcg Biotin",
@@ -3361,6 +3817,8 @@ const products = [
     id: 776,
     name: "Minoxidil 5% Hair Regrowth Solution",
     category: "Hair Care",
+    productType: "non-medicine",
+    generic: "",
     price: 29.99,
     originalPrice: 39.99,
     discount: "25% OFF",
@@ -3370,7 +3828,9 @@ const products = [
     stockCount: 48,
     sku: "HC-MIN-5PC",
     manufacturer: "RegrowRX Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Clinically proven topical solution for hair regrowth.",
     features: [
       "5% minoxidil",
@@ -3389,6 +3849,8 @@ const products = [
     id: 777,
     name: "Deep Conditioning Hair Mask",
     category: "Hair Care",
+    productType: "non-medicine",
+    generic: "",
     price: 16.99,
     originalPrice: 21.99,
     discount: null,
@@ -3398,7 +3860,9 @@ const products = [
     stockCount: 92,
     sku: "HC-COND-MASK",
     manufacturer: "SilkHair Solutions",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-MOdbPvRMotiueNWQLLet1JpwZIDnGG.png&w=750&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-MOdbPvRMotiueNWQLLet1JpwZIDnGG.png&w=750&q=75",
+    ],
     description: "Intensive repair treatment for damaged and dry hair.",
     features: [
       "Argan oil & keratin",
@@ -3417,6 +3881,8 @@ const products = [
     id: 138,
     name: "Hair Growth Supplement",
     category: "Hair Care",
+    productType: "non-medicine",
+    generic: "",
     price: 24.99,
     originalPrice: 31.99,
     discount: null,
@@ -3426,7 +3892,9 @@ const products = [
     stockCount: 64,
     sku: "HC-GROW-SUPP",
     manufacturer: "HairVital Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Biotin and collagen supplement for hair strength and growth.",
     features: [
       "10,000mcg Biotin",
@@ -3445,6 +3913,8 @@ const products = [
     id: 139,
     name: "Minoxidil 5% Hair Regrowth Solution",
     category: "Hair Care",
+    productType: "non-medicine",
+    generic: "",
     price: 29.99,
     originalPrice: 39.99,
     discount: null,
@@ -3454,7 +3924,9 @@ const products = [
     stockCount: 48,
     sku: "HC-MIN-5PC",
     manufacturer: "RegrowRX Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Clinically proven topical solution for hair regrowth.",
     features: [
       "5% minoxidil",
@@ -3473,6 +3945,8 @@ const products = [
     id: 140,
     name: "Deep Conditioning Hair Mask",
     category: "Hair Care",
+    productType: "non-medicine",
+    generic: "",
     price: 16.99,
     originalPrice: 21.99,
     discount: "23% OFF",
@@ -3482,7 +3956,9 @@ const products = [
     stockCount: 92,
     sku: "HC-COND-MASK",
     manufacturer: "SilkHair Solutions",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-MOdbPvRMotiueNWQLLet1JpwZIDnGG.png&w=750&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-MOdbPvRMotiueNWQLLet1JpwZIDnGG.png&w=750&q=75",
+    ],
     description: "Intensive repair treatment for damaged and dry hair.",
     features: [
       "Argan oil & keratin",
@@ -3497,12 +3973,12 @@ const products = [
       "Use 1-2 times weekly",
     ],
   },
-
-  // Oral Care (4 products)
   {
     id: 78,
     name: "Whitening Toothpaste",
     category: "Oral Care",
+    productType: "non-medicine",
+    generic: "",
     price: 7.99,
     originalPrice: 9.99,
     discount: "20% OFF",
@@ -3512,7 +3988,9 @@ const products = [
     stockCount: 156,
     sku: "OC-WHT-PAST",
     manufacturer: "BrightSmile Dental",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FMoov_100.webp&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FMoov_100.webp&w=640&q=100",
+    ],
     description: "Advanced whitening toothpaste for brighter, whiter teeth.",
     features: [
       "Removes surface stains",
@@ -3531,6 +4009,8 @@ const products = [
     id: 79,
     name: "Antibacterial Mouthwash 500ml",
     category: "Oral Care",
+    productType: "non-medicine",
+    generic: "",
     price: 8.99,
     originalPrice: 11.99,
     discount: null,
@@ -3540,7 +4020,9 @@ const products = [
     stockCount: 127,
     sku: "OC-MOUT-500",
     manufacturer: "FreshBreath Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Alcohol-free mouthwash for complete oral hygiene.",
     features: [
       "Kills 99% bacteria",
@@ -3559,6 +4041,8 @@ const products = [
     id: 80,
     name: "Sensitive Teeth Toothpaste",
     category: "Oral Care",
+    productType: "non-medicine",
+    generic: "",
     price: 9.49,
     originalPrice: 11.99,
     discount: "21% OFF",
@@ -3568,7 +4052,9 @@ const products = [
     stockCount: 98,
     sku: "OC-SENS-PAST",
     manufacturer: "SensoCare Dental",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FMoov_100.webp&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FMoov_100.webp&w=640&q=100",
+    ],
     description: "Specialized toothpaste for sensitive teeth relief.",
     features: [
       "Rapid relief",
@@ -3587,6 +4073,8 @@ const products = [
     id: 81,
     name: "Dental Floss - Mint Waxed",
     category: "Oral Care",
+    productType: "non-medicine",
+    generic: "",
     price: 3.99,
     originalPrice: 4.99,
     discount: null,
@@ -3596,7 +4084,9 @@ const products = [
     stockCount: 187,
     sku: "OC-FLOSS-MIN",
     manufacturer: "FlossPro Dental",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Premium dental floss for thorough plaque removal.",
     features: [
       "Shred-resistant",
@@ -3615,6 +4105,8 @@ const products = [
     id: 111,
     name: "Antibacterial Mouthwash 500ml",
     category: "Oral Care",
+    productType: "non-medicine",
+    generic: "",
     price: 8.99,
     originalPrice: 11.99,
     discount: "25% OFF",
@@ -3624,7 +4116,9 @@ const products = [
     stockCount: 127,
     sku: "OC-MOUT-500",
     manufacturer: "FreshBreath Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Alcohol-free mouthwash for complete oral hygiene.",
     features: [
       "Kills 99% bacteria",
@@ -3643,6 +4137,8 @@ const products = [
     id: 112,
     name: "Sensitive Teeth Toothpaste",
     category: "Oral Care",
+    productType: "non-medicine",
+    generic: "",
     price: 9.49,
     originalPrice: 11.99,
     discount: "21% OFF",
@@ -3652,7 +4148,9 @@ const products = [
     stockCount: 98,
     sku: "OC-SENS-PAST",
     manufacturer: "SensoCare Dental",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FMoov_100.webp&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FMoov_100.webp&w=640&q=100",
+    ],
     description: "Specialized toothpaste for sensitive teeth relief.",
     features: [
       "Rapid relief",
@@ -3671,6 +4169,8 @@ const products = [
     id: 113,
     name: "Dental Floss - Mint Waxed",
     category: "Oral Care",
+    productType: "non-medicine",
+    generic: "",
     price: 3.99,
     originalPrice: 4.99,
     discount: null,
@@ -3680,7 +4180,9 @@ const products = [
     stockCount: 187,
     sku: "OC-FLOSS-MIN",
     manufacturer: "FlossPro Dental",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Premium dental floss for thorough plaque removal.",
     features: [
       "Shred-resistant",
@@ -3695,12 +4197,12 @@ const products = [
       "See dentist regularly",
     ],
   },
-
-  // Respiratory Care (4 products)
   {
     id: 82,
     name: "Asthma Inhaler Spacer Device",
     category: "Respiratory Care",
+    productType: "medicine",
+    generic: "Asthma Inhaler Spacer Device",
     price: 14.99,
     originalPrice: 18.99,
     discount: null,
@@ -3710,7 +4212,9 @@ const products = [
     stockCount: 52,
     sku: "RC-SPAC-DEV",
     manufacturer: "BreatheEasy Medical",
-    images: ["https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop",
+    ],
     description: "Spacer device to improve inhaler medication delivery.",
     features: [
       "Improves medication delivery",
@@ -3729,6 +4233,8 @@ const products = [
     id: 83,
     name: "Nebulizer Machine - Portable",
     category: "Respiratory Care",
+    productType: "medicine",
+    generic: "Nebulizer Machine - Portable",
     price: 49.99,
     originalPrice: 64.99,
     discount: "23% OFF",
@@ -3738,7 +4244,9 @@ const products = [
     stockCount: 31,
     sku: "RC-NEB-PORT",
     manufacturer: "AirFlow Medical",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Compact nebulizer for respiratory medication delivery.",
     features: [
       "Quiet operation",
@@ -3757,6 +4265,8 @@ const products = [
     id: 84,
     name: "Breathing Exercise Device",
     category: "Respiratory Care",
+    productType: "medicine",
+    generic: "Breathing Exercise Device",
     price: 19.99,
     originalPrice: 24.99,
     discount: null,
@@ -3766,7 +4276,9 @@ const products = [
     stockCount: 67,
     sku: "RC-BREATH-EX",
     manufacturer: "LungStrength Pro",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Inspiratory muscle training device for respiratory strength.",
     features: [
       "Strengthens breathing muscles",
@@ -3785,6 +4297,8 @@ const products = [
     id: 85,
     name: "Peak Flow Meter",
     category: "Respiratory Care",
+    productType: "medicine",
+    generic: "Peak Flow Meter",
     price: 16.99,
     originalPrice: 21.99,
     discount: null,
@@ -3794,7 +4308,9 @@ const products = [
     stockCount: 58,
     sku: "RC-PEAK-MET",
     manufacturer: "AsthmaMonitor Labs",
-    images: ["https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop",
+    ],
     description: "Personal peak flow meter for asthma monitoring.",
     features: [
       "Monitors lung function",
@@ -3813,6 +4329,8 @@ const products = [
     id: 114,
     name: "Nebulizer Machine - Portable",
     category: "Respiratory Care",
+    productType: "medicine",
+    generic: "Nebulizer Machine - Portable",
     price: 49.99,
     originalPrice: 64.99,
     discount: "23% OFF",
@@ -3822,7 +4340,9 @@ const products = [
     stockCount: 31,
     sku: "RC-NEB-PORT",
     manufacturer: "AirFlow Medical",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Compact nebulizer for respiratory medication delivery.",
     features: [
       "Quiet operation",
@@ -3841,6 +4361,8 @@ const products = [
     id: 115,
     name: "Breathing Exercise Device",
     category: "Respiratory Care",
+    productType: "medicine",
+    generic: "Breathing Exercise Device",
     price: 19.99,
     originalPrice: 24.99,
     discount: null,
@@ -3850,7 +4372,9 @@ const products = [
     stockCount: 67,
     sku: "RC-BREATH-EX",
     manufacturer: "LungStrength Pro",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Inspiratory muscle training device for respiratory strength.",
     features: [
       "Strengthens breathing muscles",
@@ -3869,6 +4393,8 @@ const products = [
     id: 116,
     name: "Peak Flow Meter",
     category: "Respiratory Care",
+    productType: "medicine",
+    generic: "Peak Flow Meter",
     price: 16.99,
     originalPrice: 21.99,
     discount: null,
@@ -3878,7 +4404,9 @@ const products = [
     stockCount: 58,
     sku: "RC-PEAK-MET",
     manufacturer: "AsthmaMonitor Labs",
-    images: ["https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop",
+    ],
     description: "Personal peak flow meter for asthma monitoring.",
     features: [
       "Monitors lung function",
@@ -3893,12 +4421,12 @@ const products = [
       "Consult doctor about your zones",
     ],
   },
-
-  // Sexual Wellness (3 products)
   {
     id: 86,
     name: "Condoms - Ultra Thin 12 Pack",
     category: "Sexual Wellness",
+    productType: "medicine",
+    generic: "Condoms - Ultra Thin 12 Pack",
     price: 8.99,
     originalPrice: 10.99,
     discount: null,
@@ -3908,7 +4436,9 @@ const products = [
     stockCount: 142,
     sku: "SW-COND-12",
     manufacturer: "SafeChoice Protection",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Premium ultra-thin condoms for maximum sensitivity.",
     features: [
       "Ultra-thin design",
@@ -3927,6 +4457,8 @@ const products = [
     id: 87,
     name: "Personal Lubricant - Water Based 100ml",
     category: "Sexual Wellness",
+    productType: "medicine",
+    generic: "Personal Lubricant - Water Based",
     price: 12.99,
     originalPrice: 15.99,
     discount: "19% OFF",
@@ -3936,7 +4468,9 @@ const products = [
     stockCount: 98,
     sku: "SW-LUBE-100",
     manufacturer: "IntimateComfort Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "High-quality water-based personal lubricant.",
     features: [
       "Water-based formula",
@@ -3955,6 +4489,8 @@ const products = [
     id: 88,
     name: "Emergency Contraceptive Pill",
     category: "Sexual Wellness",
+    productType: "medicine",
+    generic: "Emergency Contraceptive Pill",
     price: 24.99,
     originalPrice: 29.99,
     discount: "17% OFF",
@@ -3964,7 +4500,9 @@ const products = [
     stockCount: 47,
     sku: "SW-EMERG-PILL",
     manufacturer: "FemCare Pharma",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Emergency contraception to prevent pregnancy after unprotected sex.",
     features: [
       "Single-dose tablet",
@@ -3983,6 +4521,8 @@ const products = [
     id: 117,
     name: "Condoms - Ultra Thin 12 Pack",
     category: "Sexual Wellness",
+    productType: "medicine",
+    generic: "Condoms - Ultra Thin 12 Pack",
     price: 8.99,
     originalPrice: 10.99,
     discount: null,
@@ -3992,7 +4532,9 @@ const products = [
     stockCount: 142,
     sku: "SW-COND-12",
     manufacturer: "SafeChoice Protection",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Premium ultra-thin condoms for maximum sensitivity.",
     features: [
       "Ultra-thin design",
@@ -4011,6 +4553,8 @@ const products = [
     id: 118,
     name: "Personal Lubricant - Water Based 100ml",
     category: "Sexual Wellness",
+    productType: "medicine",
+    generic: "Personal Lubricant - Water Based",
     price: 12.99,
     originalPrice: 15.99,
     discount: null,
@@ -4020,7 +4564,9 @@ const products = [
     stockCount: 98,
     sku: "SW-LUBE-100",
     manufacturer: "IntimateComfort Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "High-quality water-based personal lubricant.",
     features: [
       "Water-based formula",
@@ -4039,6 +4585,8 @@ const products = [
     id: 886,
     name: "Condoms - Ultra Thin 12 Pack",
     category: "Sexual Wellness",
+    productType: "medicine",
+    generic: "Condoms - Ultra Thin 12 Pack",
     price: 8.99,
     originalPrice: 10.99,
     discount: "18% OFF",
@@ -4048,7 +4596,9 @@ const products = [
     stockCount: 142,
     sku: "SW-COND-12",
     manufacturer: "SafeChoice Protection",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Premium ultra-thin condoms for maximum sensitivity.",
     features: [
       "Ultra-thin design",
@@ -4067,6 +4617,8 @@ const products = [
     id: 887,
     name: "Personal Lubricant - Water Based 100ml",
     category: "Sexual Wellness",
+    productType: "medicine",
+    generic: "Personal Lubricant - Water Based",
     price: 12.99,
     originalPrice: 15.99,
     discount: "19% OFF",
@@ -4076,7 +4628,9 @@ const products = [
     stockCount: 98,
     sku: "SW-LUBE-100",
     manufacturer: "IntimateComfort Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "High-quality water-based personal lubricant.",
     features: [
       "Water-based formula",
@@ -4095,6 +4649,8 @@ const products = [
     id: 888,
     name: "Emergency Contraceptive Pill",
     category: "Sexual Wellness",
+    productType: "medicine",
+    generic: "Emergency Contraceptive Pill",
     price: 24.99,
     originalPrice: 29.99,
     discount: null,
@@ -4104,7 +4660,9 @@ const products = [
     stockCount: 47,
     sku: "SW-EMERG-PILL",
     manufacturer: "FemCare Pharma",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Emergency contraception to prevent pregnancy after unprotected sex.",
     features: [
       "Single-dose tablet",
@@ -4123,6 +4681,8 @@ const products = [
     id: 817,
     name: "Condoms - Ultra Thin 12 Pack",
     category: "Sexual Wellness",
+    productType: "medicine",
+    generic: "Condoms - Ultra Thin 12 Pack",
     price: 8.99,
     originalPrice: 10.99,
     discount: null,
@@ -4132,7 +4692,9 @@ const products = [
     stockCount: 142,
     sku: "SW-COND-12",
     manufacturer: "SafeChoice Protection",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Premium ultra-thin condoms for maximum sensitivity.",
     features: [
       "Ultra-thin design",
@@ -4151,6 +4713,8 @@ const products = [
     id: 818,
     name: "Personal Lubricant - Water Based 100ml",
     category: "Sexual Wellness",
+    productType: "medicine",
+    generic: "Personal Lubricant - Water Based",
     price: 12.99,
     originalPrice: 15.99,
     discount: "19% OFF",
@@ -4160,7 +4724,9 @@ const products = [
     stockCount: 98,
     sku: "SW-LUBE-100",
     manufacturer: "IntimateComfort Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "High-quality water-based personal lubricant.",
     features: [
       "Water-based formula",
@@ -4179,6 +4745,8 @@ const products = [
     id: 119,
     name: "Emergency Contraceptive Pill",
     category: "Sexual Wellness",
+    productType: "medicine",
+    generic: "Emergency Contraceptive Pill",
     price: 24.99,
     originalPrice: 29.99,
     discount: "17% OFF",
@@ -4188,7 +4756,9 @@ const products = [
     stockCount: 47,
     sku: "SW-EMERG-PILL",
     manufacturer: "FemCare Pharma",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Emergency contraception to prevent pregnancy after unprotected sex.",
     features: [
       "Single-dose tablet",
@@ -4203,12 +4773,12 @@ const products = [
       "Does not protect against STIs",
     ],
   },
-
-  // Women's Health (4 products)
   {
     id: 89,
     name: "Prenatal Vitamins with Folic Acid",
     category: "Women's Health",
+    productType: "medicine",
+    generic: "Prenatal Vitamins with Folic Acid",
     price: 16.99,
     originalPrice: 21.99,
     discount: "23% OFF",
@@ -4218,7 +4788,9 @@ const products = [
     stockCount: 89,
     sku: "WH-PREN-VIT",
     manufacturer: "MaternalCare Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100",
+    ],
     description: "Complete prenatal vitamin formula for pregnancy and nursing.",
     features: [
       "800mcg folic acid",
@@ -4237,6 +4809,8 @@ const products = [
     id: 90,
     name: "Menopause Support Supplement",
     category: "Women's Health",
+    productType: "medicine",
+    generic: "Menopause Support",
     price: 19.99,
     originalPrice: 24.99,
     discount: null,
@@ -4246,7 +4820,9 @@ const products = [
     stockCount: 64,
     sku: "WH-MENO-SUPP",
     manufacturer: "FemBalance Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Natural supplement for menopause symptom relief.",
     features: [
       "Black cohosh extract",
@@ -4265,6 +4841,8 @@ const products = [
     id: 91,
     name: "Cranberry Supplement for UTI Prevention",
     category: "Women's Health",
+    productType: "medicine",
+    generic: "Cranberry for UTI Prevention",
     price: 14.99,
     originalPrice: 18.99,
     discount: "21% OFF",
@@ -4274,7 +4852,9 @@ const products = [
     stockCount: 76,
     sku: "WH-CRAN-UTI",
     manufacturer: "UrinaryHealth Pro",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "High-strength cranberry extract for urinary tract health.",
     features: [
       "36mg PACs per serving",
@@ -4293,6 +4873,8 @@ const products = [
     id: 92,
     name: "Vaginal Yeast Infection Treatment",
     category: "Women's Health",
+    productType: "medicine",
+    generic: "Vaginal Yeast Infection Treatment",
     price: 13.99,
     originalPrice: 16.99,
     discount: null,
@@ -4302,7 +4884,9 @@ const products = [
     stockCount: 58,
     sku: "WH-YEAST-TRT",
     manufacturer: "FemCare Pharma",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Complete yeast infection treatment kit with applicators.",
     features: [
       "1-day or 3-day treatment",
@@ -4321,6 +4905,8 @@ const products = [
     id: 120,
     name: "Cranberry Supplement for UTI Prevention",
     category: "Women's Health",
+    productType: "medicine",
+    generic: "Cranberry for UTI Prevention",
     price: 14.99,
     originalPrice: 18.99,
     discount: null,
@@ -4330,7 +4916,9 @@ const products = [
     stockCount: 76,
     sku: "WH-CRAN-UTI",
     manufacturer: "UrinaryHealth Pro",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "High-strength cranberry extract for urinary tract health.",
     features: [
       "36mg PACs per serving",
@@ -4349,6 +4937,8 @@ const products = [
     id: 889,
     name: "Prenatal Vitamins with Folic Acid",
     category: "Women's Health",
+    productType: "medicine",
+    generic: "Prenatal Vitamins with Folic Acid",
     price: 16.99,
     originalPrice: 21.99,
     discount: null,
@@ -4358,7 +4948,9 @@ const products = [
     stockCount: 89,
     sku: "WH-PREN-VIT",
     manufacturer: "MaternalCare Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100",
+    ],
     description: "Complete prenatal vitamin formula for pregnancy and nursing.",
     features: [
       "800mcg folic acid",
@@ -4377,6 +4969,8 @@ const products = [
     id: 990,
     name: "Menopause Support Supplement",
     category: "Women's Health",
+    productType: "medicine",
+    generic: "Menopause Support",
     price: 19.99,
     originalPrice: 24.99,
     discount: null,
@@ -4386,7 +4980,9 @@ const products = [
     stockCount: 64,
     sku: "WH-MENO-SUPP",
     manufacturer: "FemBalance Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Natural supplement for menopause symptom relief.",
     features: [
       "Black cohosh extract",
@@ -4405,6 +5001,8 @@ const products = [
     id: 991,
     name: "Cranberry Supplement for UTI Prevention",
     category: "Women's Health",
+    productType: "medicine",
+    generic: "Cranberry for UTI Prevention",
     price: 14.99,
     originalPrice: 18.99,
     discount: "21% OFF",
@@ -4414,7 +5012,9 @@ const products = [
     stockCount: 76,
     sku: "WH-CRAN-UTI",
     manufacturer: "UrinaryHealth Pro",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "High-strength cranberry extract for urinary tract health.",
     features: [
       "36mg PACs per serving",
@@ -4433,6 +5033,8 @@ const products = [
     id: 992,
     name: "Vaginal Yeast Infection Treatment",
     category: "Women's Health",
+    productType: "medicine",
+    generic: "Vaginal Yeast Infection Treatment",
     price: 13.99,
     originalPrice: 16.99,
     discount: "18% OFF",
@@ -4442,7 +5044,9 @@ const products = [
     stockCount: 58,
     sku: "WH-YEAST-TRT",
     manufacturer: "FemCare Pharma",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Complete yeast infection treatment kit with applicators.",
     features: [
       "1-day or 3-day treatment",
@@ -4461,6 +5065,8 @@ const products = [
     id: 1120,
     name: "Cranberry Supplement for UTI Prevention",
     category: "Women's Health",
+    productType: "medicine",
+    generic: "Cranberry for UTI Prevention",
     price: 14.99,
     originalPrice: 18.99,
     discount: "21% OFF",
@@ -4470,7 +5076,9 @@ const products = [
     stockCount: 76,
     sku: "WH-CRAN-UTI",
     manufacturer: "UrinaryHealth Pro",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "High-strength cranberry extract for urinary tract health.",
     features: [
       "36mg PACs per serving",
@@ -4489,6 +5097,8 @@ const products = [
     id: 121,
     name: "Vaginal Yeast Infection Treatment",
     category: "Women's Health",
+    productType: "medicine",
+    generic: "Vaginal Yeast Infection Treatment",
     price: 13.99,
     originalPrice: 16.99,
     discount: null,
@@ -4498,7 +5108,9 @@ const products = [
     stockCount: 58,
     sku: "WH-YEAST-TRT",
     manufacturer: "FemCare Pharma",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Complete yeast infection treatment kit with applicators.",
     features: [
       "1-day or 3-day treatment",
@@ -4513,12 +5125,12 @@ const products = [
       "Not for first-time infections without diagnosis",
     ],
   },
-
-  // Men's Health (4 products)
   {
     id: 93,
     name: "Men's Multivitamin Formula",
     category: "Men's Health",
+    productType: "medicine",
+    generic: "Men's Multivitamin Formula",
     price: 15.99,
     originalPrice: 19.99,
     discount: "20% OFF",
@@ -4528,7 +5140,9 @@ const products = [
     stockCount: 92,
     sku: "MH-MULTI-MEN",
     manufacturer: "MenVital Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100",
+    ],
     description: "Comprehensive multivitamin tailored for men's health needs.",
     features: [
       "Supports energy",
@@ -4547,6 +5161,8 @@ const products = [
     id: 94,
     name: "Saw Palmetto Prostate Support",
     category: "Men's Health",
+    productType: "medicine",
+    generic: "Saw Palmetto Prostate Support",
     price: 18.99,
     originalPrice: 23.99,
     discount: null,
@@ -4556,7 +5172,9 @@ const products = [
     stockCount: 67,
     sku: "MH-SAW-PALM",
     manufacturer: "ProstaCare Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Natural saw palmetto supplement for prostate health.",
     features: [
       "320mg standardized extract",
@@ -4575,6 +5193,8 @@ const products = [
     id: 95,
     name: "Testosterone Support Supplement",
     category: "Men's Health",
+    productType: "medicine",
+    generic: "Testosterone Support",
     price: 24.99,
     originalPrice: 31.99,
     discount: null,
@@ -4584,7 +5204,9 @@ const products = [
     stockCount: 54,
     sku: "MH-TEST-SUPP",
     manufacturer: "MenVital Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Natural formula to support healthy testosterone levels.",
     features: [
       "D-Aspartic acid",
@@ -4603,6 +5225,8 @@ const products = [
     id: 96,
     name: "Hair Loss Treatment - Finasteride Alternative",
     category: "Men's Health",
+    productType: "medicine",
+    generic: "Hair Loss Treatment - Finasteride Alternative",
     price: 29.99,
     originalPrice: 39.99,
     discount: null,
@@ -4612,7 +5236,9 @@ const products = [
     stockCount: 41,
     sku: "MH-HAIR-LOSS",
     manufacturer: "HairRestore Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Natural DHT blocker supplement for male pattern hair loss.",
     features: [
       "Saw palmetto & pumpkin seed",
@@ -4631,6 +5257,8 @@ const products = [
     id: 993,
     name: "Men's Multivitamin Formula",
     category: "Men's Health",
+    productType: "medicine",
+    generic: "Men's Multivitamin Formula",
     price: 15.99,
     originalPrice: 19.99,
     discount: "20% OFF",
@@ -4640,7 +5268,9 @@ const products = [
     stockCount: 92,
     sku: "MH-MULTI-MEN",
     manufacturer: "MenVital Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100",
+    ],
     description: "Comprehensive multivitamin tailored for men's health needs.",
     features: [
       "Supports energy",
@@ -4659,6 +5289,8 @@ const products = [
     id: 994,
     name: "Saw Palmetto Prostate Support",
     category: "Men's Health",
+    productType: "medicine",
+    generic: "Saw Palmetto Prostate Support",
     price: 18.99,
     originalPrice: 23.99,
     discount: null,
@@ -4668,7 +5300,9 @@ const products = [
     stockCount: 67,
     sku: "MH-SAW-PALM",
     manufacturer: "ProstaCare Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Natural saw palmetto supplement for prostate health.",
     features: [
       "320mg standardized extract",
@@ -4687,6 +5321,8 @@ const products = [
     id: 995,
     name: "Testosterone Support Supplement",
     category: "Men's Health",
+    productType: "medicine",
+    generic: "Testosterone Support",
     price: 24.99,
     originalPrice: 31.99,
     discount: null,
@@ -4696,7 +5332,9 @@ const products = [
     stockCount: 54,
     sku: "MH-TEST-SUPP",
     manufacturer: "MenVital Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Natural formula to support healthy testosterone levels.",
     features: [
       "D-Aspartic acid",
@@ -4715,6 +5353,8 @@ const products = [
     id: 996,
     name: "Hair Loss Treatment - Finasteride Alternative",
     category: "Men's Health",
+    productType: "medicine",
+    generic: "Hair Loss Treatment - Finasteride Alternative",
     price: 29.99,
     originalPrice: 39.99,
     discount: "25% OFF",
@@ -4724,7 +5364,9 @@ const products = [
     stockCount: 41,
     sku: "MH-HAIR-LOSS",
     manufacturer: "HairRestore Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Natural DHT blocker supplement for male pattern hair loss.",
     features: [
       "Saw palmetto & pumpkin seed",
@@ -4743,6 +5385,8 @@ const products = [
     id: 122,
     name: "Testosterone Support Supplement",
     category: "Men's Health",
+    productType: "medicine",
+    generic: "Testosterone Support",
     price: 24.99,
     originalPrice: 31.99,
     discount: null,
@@ -4752,7 +5396,9 @@ const products = [
     stockCount: 54,
     sku: "MH-TEST-SUPP",
     manufacturer: "MenVital Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Natural formula to support healthy testosterone levels.",
     features: [
       "D-Aspartic acid",
@@ -4771,6 +5417,8 @@ const products = [
     id: 123,
     name: "Hair Loss Treatment - Finasteride Alternative",
     category: "Men's Health",
+    productType: "medicine",
+    generic: "Hair Loss Treatment - Finasteride Alternative",
     price: 29.99,
     originalPrice: 39.99,
     discount: "25% OFF",
@@ -4780,7 +5428,9 @@ const products = [
     stockCount: 41,
     sku: "MH-HAIR-LOSS",
     manufacturer: "HairRestore Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Natural DHT blocker supplement for male pattern hair loss.",
     features: [
       "Saw palmetto & pumpkin seed",
@@ -4795,12 +5445,12 @@ const products = [
       "Consult doctor before use",
     ],
   },
-
-  // Mental Wellness (4 products)
   {
     id: 97,
     name: "Stress Relief Supplement",
     category: "Mental Wellness",
+    productType: "medicine",
+    generic: "Stress Relief",
     price: 17.99,
     originalPrice: 22.99,
     discount: "22% OFF",
@@ -4810,7 +5460,9 @@ const products = [
     stockCount: 78,
     sku: "MW-STRESS-REL",
     manufacturer: "CalmMind Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100",
+    ],
     description: "Natural adaptogen blend for stress management and relaxation.",
     features: [
       "Ashwagandha extract",
@@ -4829,6 +5481,8 @@ const products = [
     id: 98,
     name: "Sleep Aid Tablets - Melatonin 5mg",
     category: "Mental Wellness",
+    productType: "medicine",
+    generic: "Sleep Aid - Melatonin",
     price: 11.99,
     originalPrice: 14.99,
     discount: null,
@@ -4838,7 +5492,9 @@ const products = [
     stockCount: 134,
     sku: "MW-SLEEP-MEL",
     manufacturer: "RestWell Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Melatonin supplement for better sleep quality.",
     features: [
       "5mg melatonin",
@@ -4857,6 +5513,8 @@ const products = [
     id: 99,
     name: "Mood Support Supplement",
     category: "Mental Wellness",
+    productType: "medicine",
+    generic: "Mood Support",
     price: 21.99,
     originalPrice: 27.99,
     discount: null,
@@ -4866,7 +5524,9 @@ const products = [
     stockCount: 62,
     sku: "MW-MOOD-SUPP",
     manufacturer: "MindBalance Pro",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Natural supplement with St. John's Wort for mood support.",
     features: [
       "St. John's Wort extract",
@@ -4885,6 +5545,8 @@ const products = [
     id: 100,
     name: "Focus & Concentration Supplement",
     category: "Mental Wellness",
+    productType: "medicine",
+    generic: "Focus & Concentration",
     price: 19.99,
     originalPrice: 24.99,
     discount: null,
@@ -4894,7 +5556,9 @@ const products = [
     stockCount: 71,
     sku: "MW-FOCUS-SUP",
     manufacturer: "BrainBoost Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Nootropic blend for mental clarity and focus.",
     features: [
       "Bacopa & Ginkgo biloba",
@@ -4913,6 +5577,8 @@ const products = [
     id: 997,
     name: "Stress Relief Supplement",
     category: "Mental Wellness",
+    productType: "medicine",
+    generic: "Stress Relief",
     price: 17.99,
     originalPrice: 22.99,
     discount: "22% OFF",
@@ -4922,7 +5588,9 @@ const products = [
     stockCount: 78,
     sku: "MW-STRESS-REL",
     manufacturer: "CalmMind Nutrition",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100",
+    ],
     description: "Natural adaptogen blend for stress management and relaxation.",
     features: [
       "Ashwagandha extract",
@@ -4941,6 +5609,8 @@ const products = [
     id: 998,
     name: "Sleep Aid Tablets - Melatonin 5mg",
     category: "Mental Wellness",
+    productType: "medicine",
+    generic: "Sleep Aid - Melatonin",
     price: 11.99,
     originalPrice: 14.99,
     discount: "20% OFF",
@@ -4950,7 +5620,9 @@ const products = [
     stockCount: 134,
     sku: "MW-SLEEP-MEL",
     manufacturer: "RestWell Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Melatonin supplement for better sleep quality.",
     features: [
       "5mg melatonin",
@@ -4969,6 +5641,8 @@ const products = [
     id: 999,
     name: "Mood Support Supplement",
     category: "Mental Wellness",
+    productType: "medicine",
+    generic: "Mood Support",
     price: 21.99,
     originalPrice: 27.99,
     discount: "21% OFF",
@@ -4978,7 +5652,9 @@ const products = [
     stockCount: 62,
     sku: "MW-MOOD-SUPP",
     manufacturer: "MindBalance Pro",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Natural supplement with St. John's Wort for mood support.",
     features: [
       "St. John's Wort extract",
@@ -4997,6 +5673,8 @@ const products = [
     id: 1100,
     name: "Focus & Concentration Supplement",
     category: "Mental Wellness",
+    productType: "medicine",
+    generic: "Focus & Concentration",
     price: 19.99,
     originalPrice: 24.99,
     discount: "20% OFF",
@@ -5006,7 +5684,9 @@ const products = [
     stockCount: 71,
     sku: "MW-FOCUS-SUP",
     manufacturer: "BrainBoost Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Nootropic blend for mental clarity and focus.",
     features: [
       "Bacopa & Ginkgo biloba",
@@ -5025,6 +5705,8 @@ const products = [
     id: 124,
     name: "Mood Support Supplement",
     category: "Mental Wellness",
+    productType: "medicine",
+    generic: "Mood Support",
     price: 21.99,
     originalPrice: 27.99,
     discount: "21% OFF",
@@ -5034,7 +5716,9 @@ const products = [
     stockCount: 62,
     sku: "MW-MOOD-SUPP",
     manufacturer: "MindBalance Pro",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Natural supplement with St. John's Wort for mood support.",
     features: [
       "St. John's Wort extract",
@@ -5053,6 +5737,8 @@ const products = [
     id: 125,
     name: "Focus & Concentration Supplement",
     category: "Mental Wellness",
+    productType: "medicine",
+    generic: "Focus & Concentration",
     price: 19.99,
     originalPrice: 24.99,
     discount: null,
@@ -5062,7 +5748,9 @@ const products = [
     stockCount: 71,
     sku: "MW-FOCUS-SUP",
     manufacturer: "BrainBoost Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Nootropic blend for mental clarity and focus.",
     features: [
       "Bacopa & Ginkgo biloba",
@@ -5077,12 +5765,12 @@ const products = [
       "May cause jitteriness in sensitive individuals",
     ],
   },
-
-  // Medical Devices (5 products)
   {
     id: 101,
     name: "Digital Thermometer - Fast Read",
     category: "Medical Devices",
+    productType: "non-medicine",
+    generic: "",
     price: 9.99,
     originalPrice: 12.99,
     discount: "23% OFF",
@@ -5092,7 +5780,9 @@ const products = [
     stockCount: 143,
     sku: "MD-THERM-DIG",
     manufacturer: "MediTemp Solutions",
-    images: ["https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop",
+    ],
     description: "Fast and accurate digital thermometer for oral, underarm, or rectal use.",
     features: [
       "10-second reading",
@@ -5111,6 +5801,8 @@ const products = [
     id: 102,
     name: "Pulse Oximeter - Fingertip",
     category: "Medical Devices",
+    productType: "non-medicine",
+    generic: "",
     price: 24.99,
     originalPrice: 32.99,
     discount: "24% OFF",
@@ -5120,7 +5812,9 @@ const products = [
     stockCount: 68,
     sku: "MD-PULSE-OX",
     manufacturer: "VitalCheck Medical",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Fingertip pulse oximeter for measuring blood oxygen saturation and heart rate.",
     features: [
       "Accurate SpO2 reading",
@@ -5139,6 +5833,8 @@ const products = [
     id: 103,
     name: "Heating Pad - Electric",
     category: "Medical Devices",
+    productType: "non-medicine",
+    generic: "",
     price: 29.99,
     originalPrice: 39.99,
     discount: null,
@@ -5148,7 +5844,9 @@ const products = [
     stockCount: 52,
     sku: "MD-HEAT-PAD",
     manufacturer: "ComfortHeat Pro",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Electric heating pad for pain relief and muscle relaxation.",
     features: [
       "6 heat settings",
@@ -5167,6 +5865,8 @@ const products = [
     id: 104,
     name: "Compression Socks - Knee High",
     category: "Medical Devices",
+    productType: "non-medicine",
+    generic: "",
     price: 16.99,
     originalPrice: 21.99,
     discount: null,
@@ -5176,7 +5876,9 @@ const products = [
     stockCount: 87,
     sku: "MD-COMP-SOCK",
     manufacturer: "CircuFlow Medical",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Graduated compression socks for circulation and leg fatigue.",
     features: [
       "15-20 mmHg compression",
@@ -5195,6 +5897,8 @@ const products = [
     id: 105,
     name: "TENS Unit - Pain Relief Device",
     category: "Medical Devices",
+    productType: "non-medicine",
+    generic: "",
     price: 44.99,
     originalPrice: 59.99,
     discount: null,
@@ -5204,7 +5908,9 @@ const products = [
     stockCount: 34,
     sku: "MD-TENS-UNIT",
     manufacturer: "PainRelief Medical",
-    images: ["https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop",
+    ],
     description: "Electronic pain relief device using transcutaneous electrical nerve stimulation.",
     features: [
       "Multiple massage modes",
@@ -5223,6 +5929,8 @@ const products = [
     id: 1101,
     name: "Digital Thermometer - Fast Read",
     category: "Medical Devices",
+    productType: "non-medicine",
+    generic: "",
     price: 9.99,
     originalPrice: 12.99,
     discount: null,
@@ -5232,7 +5940,9 @@ const products = [
     stockCount: 143,
     sku: "MD-THERM-DIG",
     manufacturer: "MediTemp Solutions",
-    images: ["https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop",
+    ],
     description: "Fast and accurate digital thermometer for oral, underarm, or rectal use.",
     features: [
       "10-second reading",
@@ -5251,6 +5961,8 @@ const products = [
     id: 1102,
     name: "Pulse Oximeter - Fingertip",
     category: "Medical Devices",
+    productType: "non-medicine",
+    generic: "",
     price: 24.99,
     originalPrice: 32.99,
     discount: "24% OFF",
@@ -5260,7 +5972,9 @@ const products = [
     stockCount: 68,
     sku: "MD-PULSE-OX",
     manufacturer: "VitalCheck Medical",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "Fingertip pulse oximeter for measuring blood oxygen saturation and heart rate.",
     features: [
       "Accurate SpO2 reading",
@@ -5279,6 +5993,8 @@ const products = [
     id: 1103,
     name: "Heating Pad - Electric",
     category: "Medical Devices",
+    productType: "non-medicine",
+    generic: "",
     price: 29.99,
     originalPrice: 39.99,
     discount: null,
@@ -5288,7 +6004,9 @@ const products = [
     stockCount: 52,
     sku: "MD-HEAT-PAD",
     manufacturer: "ComfortHeat Pro",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Electric heating pad for pain relief and muscle relaxation.",
     features: [
       "6 heat settings",
@@ -5307,6 +6025,8 @@ const products = [
     id: 1104,
     name: "Compression Socks - Knee High",
     category: "Medical Devices",
+    productType: "non-medicine",
+    generic: "",
     price: 16.99,
     originalPrice: 21.99,
     discount: null,
@@ -5316,7 +6036,9 @@ const products = [
     stockCount: 87,
     sku: "MD-COMP-SOCK",
     manufacturer: "CircuFlow Medical",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Graduated compression socks for circulation and leg fatigue.",
     features: [
       "15-20 mmHg compression",
@@ -5335,6 +6057,8 @@ const products = [
     id: 1105,
     name: "TENS Unit - Pain Relief Device",
     category: "Medical Devices",
+    productType: "non-medicine",
+    generic: "",
     price: 44.99,
     originalPrice: 59.99,
     discount: "25% OFF",
@@ -5344,7 +6068,9 @@ const products = [
     stockCount: 34,
     sku: "MD-TENS-UNIT",
     manufacturer: "PainRelief Medical",
-    images: ["https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop",
+    ],
     description: "Electronic pain relief device using transcutaneous electrical nerve stimulation.",
     features: [
       "Multiple massage modes",
@@ -5363,6 +6089,8 @@ const products = [
     id: 126,
     name: "TENS Unit - Pain Relief Device",
     category: "Medical Devices",
+    productType: "non-medicine",
+    generic: "",
     price: 44.99,
     originalPrice: 59.99,
     discount: null,
@@ -5372,7 +6100,9 @@ const products = [
     stockCount: 34,
     sku: "MD-TENS-UNIT",
     manufacturer: "PainRelief Medical",
-    images: ["https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=600&h=600&fit=crop",
+    ],
     description: "Electronic pain relief device using transcutaneous electrical nerve stimulation.",
     features: [
       "Multiple massage modes",
@@ -5387,12 +6117,12 @@ const products = [
       "Avoid placing on neck/head",
     ],
   },
-
-  // Fitness & Nutrition (5 products)
   {
     id: 106,
     name: "Whey Protein Powder - Chocolate",
     category: "Fitness & Nutrition",
+    productType: "non-medicine",
+    generic: "",
     price: 34.99,
     originalPrice: 44.99,
     discount: null,
@@ -5402,7 +6132,9 @@ const products = [
     stockCount: 96,
     sku: "FN-WHEY-CHOC",
     manufacturer: "MuscleFuel Nutrition",
-    images: ["https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?w=600&h=600&fit=crop",
+    ],
     description: "Premium whey protein isolate for muscle recovery and growth.",
     features: [
       "25g protein per serving",
@@ -5421,6 +6153,8 @@ const products = [
     id: 107,
     name: "Pre-Workout Energy Formula",
     category: "Fitness & Nutrition",
+    productType: "non-medicine",
+    generic: "",
     price: 29.99,
     originalPrice: 37.99,
     discount: "21% OFF",
@@ -5430,7 +6164,9 @@ const products = [
     stockCount: 71,
     sku: "FN-PREWORK-EN",
     manufacturer: "PowerBoost Sports",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "High-energy pre-workout formula for enhanced performance.",
     features: [
       "200mg caffeine",
@@ -5449,6 +6185,8 @@ const products = [
     id: 108,
     name: "Creatine Monohydrate Powder",
     category: "Fitness & Nutrition",
+    productType: "non-medicine",
+    generic: "",
     price: 19.99,
     originalPrice: 24.99,
     discount: "20% OFF",
@@ -5458,7 +6196,9 @@ const products = [
     stockCount: 112,
     sku: "FN-CREAT-MON",
     manufacturer: "StrengthMax Supplements",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Pure micronized creatine monohydrate for strength and power.",
     features: [
       "5g per serving",
@@ -5477,6 +6217,8 @@ const products = [
     id: 109,
     name: "Meal Replacement Shake - Vanilla",
     category: "Fitness & Nutrition",
+    productType: "non-medicine",
+    generic: "",
     price: 39.99,
     originalPrice: 49.99,
     discount: "20% OFF",
@@ -5486,7 +6228,9 @@ const products = [
     stockCount: 58,
     sku: "FN-MEAL-VAN",
     manufacturer: "CompleteNutrition Co.",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Complete meal replacement with vitamins, minerals, and protein.",
     features: [
       "20g protein",
@@ -5505,6 +6249,8 @@ const products = [
     id: 110,
     name: "BCAA Supplement Powder",
     category: "Fitness & Nutrition",
+    productType: "non-medicine",
+    generic: "",
     price: 24.99,
     originalPrice: 31.99,
     discount: "22% OFF",
@@ -5514,7 +6260,9 @@ const products = [
     stockCount: 83,
     sku: "FN-BCAA-POW",
     manufacturer: "RecoverFast Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100",
+    ],
     description: "Branched-chain amino acids for muscle recovery and endurance.",
     features: [
       "2:1:1 ratio",
@@ -5533,6 +6281,8 @@ const products = [
     id: 1106,
     name: "Whey Protein Powder - Chocolate",
     category: "Fitness & Nutrition",
+    productType: "non-medicine",
+    generic: "",
     price: 34.99,
     originalPrice: 44.99,
     discount: "22% OFF",
@@ -5542,7 +6292,9 @@ const products = [
     stockCount: 96,
     sku: "FN-WHEY-CHOC",
     manufacturer: "MuscleFuel Nutrition",
-    images: ["https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?w=600&h=600&fit=crop"],
+    images: [
+      "https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?w=600&h=600&fit=crop",
+    ],
     description: "Premium whey protein isolate for muscle recovery and growth.",
     features: [
       "25g protein per serving",
@@ -5561,6 +6313,8 @@ const products = [
     id: 1107,
     name: "Pre-Workout Energy Formula",
     category: "Fitness & Nutrition",
+    productType: "non-medicine",
+    generic: "",
     price: 29.99,
     originalPrice: 37.99,
     discount: "21% OFF",
@@ -5570,7 +6324,9 @@ const products = [
     stockCount: 71,
     sku: "FN-PREWORK-EN",
     manufacturer: "PowerBoost Sports",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-bPeNEf3ji5VZ5Kofd4BBw17qLInIPM.jpg&w=1920&q=75",
+    ],
     description: "High-energy pre-workout formula for enhanced performance.",
     features: [
       "200mg caffeine",
@@ -5589,6 +6345,8 @@ const products = [
     id: 1108,
     name: "Creatine Monohydrate Powder",
     category: "Fitness & Nutrition",
+    productType: "non-medicine",
+    generic: "",
     price: 19.99,
     originalPrice: 24.99,
     discount: "20% OFF",
@@ -5598,7 +6356,9 @@ const products = [
     stockCount: 112,
     sku: "FN-CREAT-MON",
     manufacturer: "StrengthMax Supplements",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Pure micronized creatine monohydrate for strength and power.",
     features: [
       "5g per serving",
@@ -5617,6 +6377,8 @@ const products = [
     id: 1109,
     name: "Meal Replacement Shake - Vanilla",
     category: "Fitness & Nutrition",
+    productType: "non-medicine",
+    generic: "",
     price: 39.99,
     originalPrice: 49.99,
     discount: null,
@@ -5626,7 +6388,9 @@ const products = [
     stockCount: 58,
     sku: "FN-MEAL-VAN",
     manufacturer: "CompleteNutrition Co.",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2FBlack_Friday_Special_Offer_with_Podium_Product_Instagram_Post_15.png&w=640&q=100",
+    ],
     description: "Complete meal replacement with vitamins, minerals, and protein.",
     features: [
       "20g protein",
@@ -5645,6 +6409,8 @@ const products = [
     id: 1110,
     name: "BCAA Supplement Powder",
     category: "Fitness & Nutrition",
+    productType: "non-medicine",
+    generic: "",
     price: 24.99,
     originalPrice: 31.99,
     discount: "22% OFF",
@@ -5654,7 +6420,9 @@ const products = [
     stockCount: 83,
     sku: "FN-BCAA-POW",
     manufacturer: "RecoverFast Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100",
+    ],
     description: "Branched-chain amino acids for muscle recovery and endurance.",
     features: [
       "2:1:1 ratio",
@@ -5673,6 +6441,8 @@ const products = [
     id: 127,
     name: "BCAA Supplement Powder",
     category: "Fitness & Nutrition",
+    productType: "non-medicine",
+    generic: "",
     price: 24.99,
     originalPrice: 31.99,
     discount: null,
@@ -5682,7 +6452,9 @@ const products = [
     stockCount: 83,
     sku: "FN-BCAA-POW",
     manufacturer: "RecoverFast Labs",
-    images: ["https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100"],
+    images: [
+      "https://medeasy.health/_next/image?url=https%3A%2F%2Fapi.medeasy.health%2Fmedia%2Fmedicines%2Fnormal-5Di5ZBQiGjj1TcIWs6aydbGw7JUFFg.jpg&w=640&q=100",
+    ],
     description: "Branched-chain amino acids for muscle recovery and endurance.",
     features: [
       "2:1:1 ratio",
@@ -5696,7 +6468,7 @@ const products = [
       "Consult doctor if on medications",
       "Use as part of training program",
     ],
-  },
+  }
 ];
 
 export default products;

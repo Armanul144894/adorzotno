@@ -34,6 +34,11 @@ export default function ProductDetails() {
     (product) => product?.name !== selectedProduct?.name,
   );
 
+  const genericName =
+    selectedProduct?.productType === "medicine"
+      ? selectedProduct?.generic || ""
+      : "";
+
   const youMayAlsoLikeProducts = productsExcludingSelected
     .filter((product) => product?.rating >= 4.5)
     .slice(0, 12);
@@ -53,6 +58,25 @@ export default function ProductDetails() {
   const previouslyBrowsedProducts = [...productsExcludingSelected]
     .reverse()
     .slice(0, 12);
+
+  const alternativeBrandProducts = [
+    ...productsExcludingSelected.filter(
+      (product) =>
+        product?.productType === "medicine" &&
+        product?.generic === genericName,
+    ),
+    ...productsExcludingSelected.filter(
+      (product) =>
+        product?.productType === "medicine" &&
+        product?.category === selectedProduct?.category,
+    ),
+  ]
+    .filter(
+      (product, index, array) =>
+        product?.manufacturer !== selectedProduct?.manufacturer &&
+        array.findIndex((item) => item?.id === product?.id) === index,
+    )
+    .slice(0, 10);
 
   const incrementQuantity = () => {
     if (quantity < selectedProduct.stockCount) {
@@ -92,6 +116,8 @@ export default function ProductDetails() {
         decrementQuantity={decrementQuantity}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
+        genericName={genericName}
+        alternativeBrandProducts={alternativeBrandProducts}
       />
 
       <div className="xl:hidden">
