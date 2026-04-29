@@ -52,14 +52,14 @@ export default function ProductDetails() {
 
 
   const relatedProducts = allProducts.filter(
-      (p) =>
-        p?.name !== selectedProduct?.name && 
-        p?.category
-          .toLowerCase()
-          .replace(/&/g, "and")
-          .replace(/[^a-z0-9]+/g, "-")
-          .replace(/(^-|-$)/g, "") === category
-    );
+    (p) =>
+      p?.name !== selectedProduct?.name &&
+      p?.category
+        .toLowerCase()
+        .replace(/&/g, "and")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "") === category
+  );
 
 
 
@@ -98,14 +98,19 @@ export default function ProductDetails() {
         <span className="text-gray-800">{selectedProduct?.name}</span>
       </div>
 
-      <ProductGrid selectedProduct={selectedProduct} selectedImage={selectedImage} setSelectedImage={setSelectedImage} quantity={quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} />
-
-      {/* Product Details Tabs */}
-      <ProductDetailsTab
-        selectedProduct={selectedProduct}
+      <ProductGrid selectedProduct={selectedProduct} selectedImage={selectedImage} setSelectedImage={setSelectedImage} quantity={quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />
+
+      {/* Product Details Tabs */}
+      <div className="xl:hidden">
+        <ProductDetailsTab
+          selectedProduct={selectedProduct}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
+      </div>
 
       {/* Related Products */}
       <RelatedProduct relatedProducts={relatedProducts} />

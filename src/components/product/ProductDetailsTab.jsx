@@ -5,7 +5,7 @@ export default function ProductDetailsTab({selectedProduct, activeTab, setActive
   return (
     <div>
         {/* Product Details Tabs */}
-        <div className="bg-white rounded-lg shadow-md mb-12">
+        <div className="bg-white rounded-lg border mb-12">
           {/* Tab Headers */}
           <div className="border-b">
             <div className="flex flex-wrap">

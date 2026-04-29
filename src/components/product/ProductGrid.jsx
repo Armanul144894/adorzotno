@@ -14,57 +14,74 @@ import {
 } from "lucide-react";
 import React from "react";
 import Image from "next/image";
+import ProductDetailsTab from "./ProductDetailsTab";
 
-export default function ProductGrid({ selectedProduct, selectedImage, setSelectedImage, quantity, incrementQuantity, decrementQuantity }) {
+export default function ProductGrid({ selectedProduct, selectedImage, setSelectedImage, quantity, incrementQuantity, decrementQuantity, activeTab, setActiveTab }) {
 
     return (
         <div className="">
-            <div className="grid xl:grid-cols-2 gap-8 mb-12">
+            <div className="grid xl:grid-cols-7 gap-4 mb-4">
                 {/* Product Images */}
-                <div className="">
-                    {/* Main Image */}
-                    <div className=" rounded-lg mb-4 overflow-hidden relative">
-                        <Image
-                            src={selectedProduct?.images[selectedImage]}
-                            alt={selectedProduct?.name}
-                            width={400}
-                            height={400}
-                            className="w-full max-h-[400px] object-contain"
-                        />
-                        {selectedProduct?.discount && (
-                            <span className="absolute top-4 right-4 bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-full">
-                                {selectedProduct?.discount}
-                            </span>
-                        )}
+                <div className="xl:col-span-4">
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-12">
+                        {/* Thumbnail Images */}
+                        <div className="order-2 md:order-1 md:col-span-2">
+                            <div className="flex gap-3 overflow-x-auto pb-1 md:max-h-[420] xl:max-h-[500px] md:flex-col md:gap-4 md:overflow-y-auto md:overflow-x-hidden [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-thumb]:bg-gray-300">
+                                {selectedProduct?.images.map((image, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => setSelectedImage(index)}
+                                        className={`shrink-0 bg-white rounded-lg overflow-hidden border transition-all md:w-full ${selectedImage === index
+                                            ? "border-secondary"
+                                            : "border-gray-200 hover:border-primary"
+                                            }`}
+                                    >
+
+                                        <Image
+                                            src={image}
+                                            alt={`${selectedProduct?.name} ${index + 1}`}
+                                            width={300}
+                                            height={300}
+                                            className="h-20 w-20 object-contain md:h-24 md:w-full"
+                                        />
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Main Image */}
+                        <div className="order-1 md:order-2 md:col-span-10 md:mb-4">
+                            <div className="relative flex h-[320px] items-center justify-center overflow-hidden rounded-lg border bg-white p-4 md:h-[420px] xl:h-[500px]">
+                                <Image
+                                    src={selectedProduct?.images[selectedImage]}
+                                    alt={selectedProduct?.name}
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                    className="object-contain p-4"
+                                />
+                                {selectedProduct?.discount && (
+                                    <span className="absolute top-4 right-4 bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-full">
+                                        {selectedProduct?.discount}
+                                    </span>
+                                )}
+                            </div>
+                        </div>
+
+
                     </div>
 
-                    {/* Thumbnail Images */}
-                    <div className="grid grid-cols-4 gap-4">
-                        {selectedProduct?.images.map((image, index) => (
-                            <button
-                                key={index}
-                                onClick={() => setSelectedImage(index)}
-                                className={`bg-white rounded-lg overflow-hidden border-2 transition-all ${selectedImage === index
-                                    ? "border-secondary"
-                                    : "border-gray-200 hover:border-primary"
-                                    }`}
-                            >
-
-                                <Image
-                                    src={image}
-                                    alt={`${selectedProduct?.name} ${index + 1}`}
-                                    width={300}
-                                    height={300}
-                                    className="w-full h-24 object-contain"
-                                />
-                            </button>
-                        ))}
+                    <div className="mt-6 max-xl:hidden">
+                        <ProductDetailsTab
+                            selectedProduct={selectedProduct}
+                            activeTab={activeTab}
+                            setActiveTab={setActiveTab}
+                        />
                     </div>
                 </div>
 
                 {/* Product Info */}
-                <div>
-                    <div className="bg-white rounded-lg shadow-md p-6">
+                <div className="xl:col-span-3">
+                    <div className="bg-white rounded-lg border p-6">
                         {/* Category Badge */}
                         <span className="inline-block bg-teal-100 text-primary text-xs font-semibold px-3 py-1 rounded-full mb-3">
                             {selectedProduct?.category}
