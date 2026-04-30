@@ -15,10 +15,10 @@ export default function MainLayout({ children }) {
   const [chatExpanded, setChatExpanded] = useState(false);
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Header />
       <CartOffcanvas />
-      <div className="container mx-auto relative">
+      <div className="container mx-auto relative flex-1">
         <div className="flex lg:gap-0 items-start">
           {/* Sidebar - LEFT SIDE ON DESKTOP */}
           {/* <SideBar /> */}

@@ -19,6 +19,7 @@ export default function Footer() {
                                 <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
                                 <li><Link href="/brand" className="hover:text-white">Brand</Link></li>
                                 <li><Link href="/faq" className="hover:text-white">Faqs</Link></li>
+                                <li><Link href="/business-register" className="hover:text-white">Register the Pharmacy</Link></li>
                             </ul>
                         </div>
                         <div>
