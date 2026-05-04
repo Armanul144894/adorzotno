@@ -3,6 +3,7 @@ import { ShoppingCart, Heart, Star, Truck, Shield, Plus, Minus, Check, Share2, C
 import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import ProductDetailsTab from "./ProductDetailsTab";
+import { useCart } from "../../context/CartContext";
 
 export default function ProductGrid({
     selectedProduct,
@@ -16,8 +17,10 @@ export default function ProductGrid({
     genericName,
     alternativeBrandProducts = [],
 }) {
+    const { setCartItems, setIsCartOpen } = useCart();
     const [alternativeSort, setAlternativeSort] = useState("relevance");
     const [expandedAlternativesKey, setExpandedAlternativesKey] = useState("");
+    const [isWishlisted, setIsWishlisted] = useState(false);
 
     const sortedAlternativeBrandProducts = useMemo(() => {
         const items = [...alternativeBrandProducts];
@@ -36,6 +39,40 @@ export default function ProductGrid({
     const visibleAlternativeBrandProducts = showAllAlternatives
         ? sortedAlternativeBrandProducts
         : sortedAlternativeBrandProducts.slice(0, 8);
+
+    const handleAddToCart = () => {
+        if (!selectedProduct?.id || !selectedProduct?.inStock) return;
+
+        setCartItems((prev) => {
+            const existingItem = prev.find((item) => item.id === selectedProduct.id);
+            const maxAllowedQuantity = selectedProduct?.stockCount || quantity;
+
+            if (existingItem) {
+                return prev.map((item) =>
+                    item.id === selectedProduct.id
+                        ? {
+                            ...item,
+                            quantity: Math.min(item.quantity + quantity, maxAllowedQuantity),
+                        }
+                        : item,
+                );
+            }
+
+            return [
+                ...prev,
+                {
+                    id: selectedProduct.id,
+                    name: selectedProduct.name,
+                    price: selectedProduct.price,
+                    quantity: Math.min(quantity, maxAllowedQuantity),
+                    image: selectedProduct.images?.[0] || "",
+                    category: selectedProduct.category || "",
+                },
+            ];
+        });
+
+        setIsCartOpen(true);
+    };
 
     return (
         <div className="">
@@ -200,13 +237,21 @@ export default function ProductGrid({
 
                         {/* Action Buttons */}
                         <div className="flex gap-4 mb-6">
-                            <button className="max-sm:flex-1 bg-primary text-white sm:px-10 py-3 rounded-lg font-semibold hover:bg-secondary transition flex items-center justify-center gap-2">
+                            <button
+                                onClick={handleAddToCart}
+                                disabled={!selectedProduct?.inStock}
+                                className="max-sm:flex-1 bg-primary text-white sm:px-10 py-3 rounded-lg font-semibold hover:bg-secondary transition flex items-center justify-center gap-2"
+                            >
                                 <ShoppingCart size={20} />
                                 Add to Cart
                             </button>
-                            <button className="p-3 border-2 border-primary text-primary rounded-lg hover:bg-teal-50 transition">
-                                <Heart size={24} />
+
+                            <button
+                                onClick={() => setIsWishlisted(!isWishlisted)}
+                                className="p-3 border-2 border-primary text-primary rounded-lg hover:bg-teal-50 transition">
+                                <Heart size={24} className={isWishlisted ? "fill-red-500 border-red-500" : ""} />
                             </button>
+
                             <button className="p-3 border-2 border-gray-300 text-gray-600 rounded-lg hover:bg-gray-50 transition">
                                 <Share2 size={24} />
                             </button>
