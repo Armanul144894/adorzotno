@@ -129,7 +129,7 @@ export default function BrandSection() {
   };
 
   return (
-    <div className="mb-8 px-4 md:px-6">
+    <div className="mb-8 px-4">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
@@ -152,18 +152,21 @@ export default function BrandSection() {
       </div>
 
       {/* Slider Container */}
-      <div className="relative">
+      <div className="relative group/brands">
         {/* Previous Button */}
         <button
           onClick={handlePrev}
-          disabled={isBeginning}
-          className={`hidden md:block absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 bg-white shadow-xl rounded-full p-3 transition-all duration-300 ${isBeginning
-            ? 'opacity-30 cursor-not-allowed'
-            : 'opacity-100 hover:bg-primary hover:text-white hover:shadow-2xl active:scale-95'
-            }`}
+          className="absolute -left-2 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-xl bg-primary/85 text-white shadow-md opacity-0 transition-all duration-300 md:translate-x-3 group-hover/brands:translate-x-0 group-hover/brands:opacity-100 hover:bg-primary"
           aria-label="Previous brands"
         >
-          <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+          <ChevronLeft size={18} strokeWidth={3} />
+        </button>
+        <button
+          onClick={handleNext}
+          className="absolute -right-2 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-xl bg-primary/85 text-white shadow-md opacity-0 transition-all duration-300 md:-translate-x-3 group-hover/brands:translate-x-0 group-hover/brands:opacity-100 hover:bg-primary"
+          aria-label="Next brands"
+        >
+          <ChevronRight size={18} strokeWidth={3} />
         </button>
 
         {/* Swiper */}
@@ -255,18 +258,6 @@ export default function BrandSection() {
           ))}
         </Swiper>
 
-        {/* Next Button */}
-        <button
-          onClick={handleNext}
-          disabled={isEnd}
-          className={`hidden md:block absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 bg-white shadow-xl rounded-full p-3 transition-all duration-300 ${isEnd
-            ? 'opacity-30 cursor-not-allowed'
-            : 'opacity-100 hover:bg-primary hover:text-white hover:shadow-2xl active:scale-95'
-            }`}
-          aria-label="Next brands"
-        >
-          <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
-        </button>
       </div>
 
       {/* Mobile View All Button */}
