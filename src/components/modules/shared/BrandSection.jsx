@@ -129,7 +129,7 @@ export default function BrandSection() {
   };
 
   return (
-    <div className="mb-8 px-4">
+    <div className="mb-8">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
