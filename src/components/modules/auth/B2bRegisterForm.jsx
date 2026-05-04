@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React from "react";
+import { useForm, useWatch } from "react-hook-form";
 
 const initialFormData = {
     fullName: "",
@@ -15,142 +16,55 @@ const initialFormData = {
 };
 
 export default function B2bRegisterForm() {
-    const [formData, setFormData] = useState(initialFormData);
-    const [error, setError] = useState({});
+    const {
+        control,
+        register,
+        handleSubmit,
+        resetField,
+        clearErrors,
+        formState: { errors, isValid },
+    } = useForm({
+        defaultValues: initialFormData,
+        mode: "onChange",
+        shouldUnregister: true,
+    });
 
-    const isPharmacy = formData.businessType === "Pharmacy";
-    const isOthers = formData.businessType === "Others";
-
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value,
-        }));
-
-        setError((prev) => ({
-            ...prev,
-            [name]: "",
-        }));
-    };
+    const businessType = useWatch({
+        control,
+        name: "businessType",
+        defaultValue: "",
+    });
+    const isPharmacy = businessType === "Pharmacy";
+    const isOthers = businessType === "Others";
 
     const handleBusinessTypeChange = (event) => {
         const selectedType = event.target.value;
 
-        setFormData((prev) => ({
-            ...prev,
-            businessType: selectedType,
-            pharmacyName: "",
-            drugLicenseNumber: "",
-            drugLicenseFile: null,
-            businessName: "",
-            tradeLicenseNumber: "",
-            tradeLicenseFile: null,
-        }));
+        clearErrors();
 
-        setError({});
+        if (selectedType === "Pharmacy") {
+            resetField("businessName");
+            resetField("tradeLicenseNumber");
+            resetField("tradeLicenseFile");
+        } else if (selectedType === "Others") {
+            resetField("pharmacyName");
+            resetField("drugLicenseNumber");
+            resetField("drugLicenseFile");
+        } else {
+            resetField("pharmacyName");
+            resetField("drugLicenseNumber");
+            resetField("drugLicenseFile");
+            resetField("businessName");
+            resetField("tradeLicenseNumber");
+            resetField("tradeLicenseFile");
+        }
     };
 
-    const handleFileChange = (event) => {
-        const { name, files } = event.target;
-        const selectedFile = files?.[0] ?? null;
-
-        setFormData((prev) => ({
-            ...prev,
-            [name]: selectedFile,
-        }));
-
-        setError((prev) => ({
-            ...prev,
-            [name]: "",
-        }));
-    };
-
-    const validateForm = () => {
-        const newErrors = {};
-
-        if (!formData.fullName.trim()) {
-            newErrors.fullName = "Full Name is required.";
-        }
-
-        if (!formData.mobileNumber.trim()) {
-            newErrors.mobileNumber = "Mobile Number is required.";
-        }
-
-        if (!formData.businessType) {
-            newErrors.businessType = "Business Type is required.";
-        }
-
-        if (isPharmacy) {
-            if (!formData.pharmacyName.trim()) {
-                newErrors.pharmacyName = "Pharmacy Name is required.";
-            }
-
-            if (!formData.drugLicenseNumber.trim()) {
-                newErrors.drugLicenseNumber = "Drug License Number is required.";
-            }
-
-            if (!formData.drugLicenseFile) {
-                newErrors.drugLicenseFile = "Drug License file is required.";
-            }
-        }
-
-        if (isOthers) {
-            if (!formData.businessName.trim()) {
-                newErrors.businessName = "Business Name is required.";
-            }
-
-            if (!formData.tradeLicenseNumber.trim()) {
-                newErrors.tradeLicenseNumber = "Trade License Number is required.";
-            }
-
-            if (!formData.tradeLicenseFile) {
-                newErrors.tradeLicenseFile = "Trade License file is required.";
-            }
-        }
-
-        setError(newErrors);
-        return Object.keys(newErrors).length === 0;
-    };
-
-    const isSubmitDisabled = useMemo(() => {
-        if (
-            !formData.fullName.trim() ||
-            !formData.mobileNumber.trim() ||
-            !formData.businessType
-        ) {
-            return true;
-        }
-
-        if (isPharmacy) {
-            return (
-                !formData.pharmacyName.trim() ||
-                !formData.drugLicenseNumber.trim() ||
-                !formData.drugLicenseFile
-            );
-        }
-
-        if (isOthers) {
-            return (
-                !formData.businessName.trim() ||
-                !formData.tradeLicenseNumber.trim() ||
-                !formData.tradeLicenseFile
-            );
-        }
-
-        return true;
-    }, [formData, isPharmacy, isOthers]);
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-
-        if (!validateForm()) return;
-
+    const onSubmit = (data) => {
         console.log({
-            ...formData,
-            drugLicenseFile: formData.drugLicenseFile?.name ?? null,
-            tradeLicenseFile: formData.tradeLicenseFile?.name ?? null,
+            ...data,
+            drugLicenseFile: data.drugLicenseFile?.[0]?.name ?? null,
+            tradeLicenseFile: data.tradeLicenseFile?.[0]?.name ?? null,
         });
     };
 
@@ -160,14 +74,17 @@ export default function B2bRegisterForm() {
     const fileClassName =
         "block w-full rounded-xl border border-dashed border-slate-300 bg-slate-50 px-2 py-2 text-sm text-slate-600 cursor-pointer file:mr-4 file:rounded-lg file:border-0 file:bg-primary file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:bg-secondary file:cursor-pointer";
 
+    const businessTypeField = register("businessType", {
+        required: "Business Type is required.",
+    });
+
     return (
         <div className="px-6 border rounded-xl py-8 border-slate-200 bg-slate-50/70">
             <h2 className="text-3xl font-semibold mb-4 text-center">
                 B2B Registration
             </h2>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
-
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                 <div className="grid gap-4 md:grid-cols-2">
                     <div className="md:col-span-2">
                         <label
@@ -178,15 +95,17 @@ export default function B2bRegisterForm() {
                         </label>
                         <input
                             id="fullName"
-                            name="fullName"
                             type="text"
-                            value={formData.fullName}
-                            onChange={handleInputChange}
                             placeholder="Enter your full name"
                             className={inputClassName}
+                            {...register("fullName", {
+                                required: "Full Name is required.",
+                            })}
                         />
-                        {error.fullName && (
-                            <p className="mt-2 text-sm text-red-500">{error.fullName}</p>
+                        {errors.fullName && (
+                            <p className="mt-2 text-sm text-red-500">
+                                {errors.fullName.message}
+                            </p>
                         )}
                     </div>
 
@@ -199,16 +118,16 @@ export default function B2bRegisterForm() {
                         </label>
                         <input
                             id="mobileNumber"
-                            name="mobileNumber"
                             type="tel"
-                            value={formData.mobileNumber}
-                            onChange={handleInputChange}
                             placeholder="Enter your mobile number"
                             className={inputClassName}
+                            {...register("mobileNumber", {
+                                required: "Mobile Number is required.",
+                            })}
                         />
-                        {error.mobileNumber && (
+                        {errors.mobileNumber && (
                             <p className="mt-2 text-sm text-red-500">
-                                {error.mobileNumber}
+                                {errors.mobileNumber.message}
                             </p>
                         )}
                     </div>
@@ -222,18 +141,20 @@ export default function B2bRegisterForm() {
                         </label>
                         <select
                             id="businessType"
-                            name="businessType"
-                            value={formData.businessType}
-                            onChange={handleBusinessTypeChange}
                             className={inputClassName}
+                            {...businessTypeField}
+                            onChange={(event) => {
+                                businessTypeField.onChange(event);
+                                handleBusinessTypeChange(event);
+                            }}
                         >
                             <option value="">Select business type</option>
                             <option value="Pharmacy">Pharmacy</option>
                             <option value="Others">Others</option>
                         </select>
-                        {error.businessType && (
+                        {errors.businessType && (
                             <p className="mt-2 text-sm text-red-500">
-                                {error.businessType}
+                                {errors.businessType.message}
                             </p>
                         )}
                     </div>
@@ -250,16 +171,16 @@ export default function B2bRegisterForm() {
                             </label>
                             <input
                                 id="pharmacyName"
-                                name="pharmacyName"
                                 type="text"
-                                value={formData.pharmacyName}
-                                onChange={handleInputChange}
                                 placeholder="Enter pharmacy name"
                                 className={inputClassName}
+                                {...register("pharmacyName", {
+                                    required: "Pharmacy Name is required.",
+                                })}
                             />
-                            {error.pharmacyName && (
+                            {errors.pharmacyName && (
                                 <p className="mt-2 text-sm text-red-500">
-                                    {error.pharmacyName}
+                                    {errors.pharmacyName.message}
                                 </p>
                             )}
                         </div>
@@ -273,16 +194,16 @@ export default function B2bRegisterForm() {
                             </label>
                             <input
                                 id="drugLicenseNumber"
-                                name="drugLicenseNumber"
                                 type="text"
-                                value={formData.drugLicenseNumber}
-                                onChange={handleInputChange}
                                 placeholder="Enter drug license number"
                                 className={inputClassName}
+                                {...register("drugLicenseNumber", {
+                                    required: "Drug License Number is required.",
+                                })}
                             />
-                            {error.drugLicenseNumber && (
+                            {errors.drugLicenseNumber && (
                                 <p className="mt-2 text-sm text-red-500">
-                                    {error.drugLicenseNumber}
+                                    {errors.drugLicenseNumber.message}
                                 </p>
                             )}
                         </div>
@@ -296,15 +217,17 @@ export default function B2bRegisterForm() {
                             </label>
                             <input
                                 id="drugLicenseFile"
-                                name="drugLicenseFile"
                                 type="file"
                                 accept=".pdf,.jpg,.jpeg,.png"
-                                onChange={handleFileChange}
                                 className={fileClassName}
+                                {...register("drugLicenseFile", {
+                                    validate: (files) =>
+                                        files?.length > 0 || "Drug License file is required.",
+                                })}
                             />
-                            {error.drugLicenseFile && (
+                            {errors.drugLicenseFile && (
                                 <p className="mt-2 text-sm text-red-500">
-                                    {error.drugLicenseFile}
+                                    {errors.drugLicenseFile.message}
                                 </p>
                             )}
                         </div>
@@ -322,16 +245,16 @@ export default function B2bRegisterForm() {
                             </label>
                             <input
                                 id="businessName"
-                                name="businessName"
                                 type="text"
-                                value={formData.businessName}
-                                onChange={handleInputChange}
                                 placeholder="Enter business name"
                                 className={inputClassName}
+                                {...register("businessName", {
+                                    required: "Business Name is required.",
+                                })}
                             />
-                            {error.businessName && (
+                            {errors.businessName && (
                                 <p className="mt-2 text-sm text-red-500">
-                                    {error.businessName}
+                                    {errors.businessName.message}
                                 </p>
                             )}
                         </div>
@@ -345,16 +268,16 @@ export default function B2bRegisterForm() {
                             </label>
                             <input
                                 id="tradeLicenseNumber"
-                                name="tradeLicenseNumber"
                                 type="text"
-                                value={formData.tradeLicenseNumber}
-                                onChange={handleInputChange}
                                 placeholder="Enter trade license number"
                                 className={inputClassName}
+                                {...register("tradeLicenseNumber", {
+                                    required: "Trade License Number is required.",
+                                })}
                             />
-                            {error.tradeLicenseNumber && (
+                            {errors.tradeLicenseNumber && (
                                 <p className="mt-2 text-sm text-red-500">
-                                    {error.tradeLicenseNumber}
+                                    {errors.tradeLicenseNumber.message}
                                 </p>
                             )}
                         </div>
@@ -368,15 +291,17 @@ export default function B2bRegisterForm() {
                             </label>
                             <input
                                 id="tradeLicenseFile"
-                                name="tradeLicenseFile"
                                 type="file"
                                 accept=".pdf,.jpg,.jpeg,.png"
-                                onChange={handleFileChange}
                                 className={fileClassName}
+                                {...register("tradeLicenseFile", {
+                                    validate: (files) =>
+                                        files?.length > 0 || "Trade License file is required.",
+                                })}
                             />
-                            {error.tradeLicenseFile && (
+                            {errors.tradeLicenseFile && (
                                 <p className="mt-2 text-sm text-red-500">
-                                    {error.tradeLicenseFile}
+                                    {errors.tradeLicenseFile.message}
                                 </p>
                             )}
                         </div>
@@ -385,13 +310,12 @@ export default function B2bRegisterForm() {
 
                 <button
                     type="submit"
-                    disabled={isSubmitDisabled}
+                    disabled={!isValid}
                     className="w-full rounded-xl bg-primary px-4 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-secondary disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-500"
                 >
                     Submit Registration
                 </button>
             </form>
         </div>
-
     );
 }
