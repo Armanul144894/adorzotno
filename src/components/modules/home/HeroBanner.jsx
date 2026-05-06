@@ -36,7 +36,7 @@ export default function HeroBanner() {
                         width={1500}
                         height={500}
                         sizes="100vw"
-                        className="w-full h-auto max-h-[500px] object-cover"
+                        className="w-full h-auto max-h-[500px] min-h-36 object-cover"
                         priority={index === 0}
                     />
                 </div>
