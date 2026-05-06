@@ -9,6 +9,7 @@ import CartOffcanvas from "./CartOffcanvas";
 import ScrollToTop from "../ScrollToTop";
 import StickyCartButton from "../StickyCartButton";
 import LiveChatWidget from "./LiveChatWidget";
+import MobileNav from "./MobileNav";
 
 export default function MainLayout({ children }) {
   const [chatOpen, setChatOpen] = useState(false);
@@ -29,6 +30,7 @@ export default function MainLayout({ children }) {
 
             <ScrollToTop />
             <StickyCartButton />
+            <MobileNav />
             <LiveChatWidget
               chatOpen={chatOpen}
               setChatOpen={setChatOpen}

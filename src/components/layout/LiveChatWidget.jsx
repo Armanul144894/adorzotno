@@ -9,7 +9,7 @@ export default function LiveChatWidget({ chatOpen, setChatOpen, chatExpanded }) 
       {!chatOpen && (
         <button
           onClick={() => setChatOpen(true)}
-          className="fixed bottom-6 right-6 bg-primary text-white p-4 rounded-full shadow-2xl hover:bg-primary transition z-30 animate-bounce"
+          className="max-md:hidden fixed bottom-6 right-6 bg-primary text-white p-4 rounded-full shadow-2xl hover:bg-primary transition z-30 animate-bounce"
         >
           <MessageCircle size={28} />
         </button>

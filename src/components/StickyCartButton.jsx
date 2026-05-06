@@ -23,7 +23,7 @@ export default function StickyCartButton() {
             </div>
 
             {/* Mobile Sticky Cart Button */}
-            {cartItems.length > 0 && (
+            {/* {cartItems.length > 0 && (
                 <div
                     className={`md:hidden fixed flex flex-row bottom-0 left-0 right-0 items-center justify-between bg-sky-600 px-5 py-3 cursor-pointer z-40 rounded-t-xl`}
                 >
@@ -38,7 +38,7 @@ export default function StickyCartButton() {
                         View Cart
                     </div>
                 </div>
-            )}
+            )} */}
 
         </>
     )
