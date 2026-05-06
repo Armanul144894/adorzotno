@@ -3,7 +3,7 @@ import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../lib/useCart";
 
 export default function ProductCard({ product }) {
   const { addToCart, getItemQuantity, updateQuantity, removeItem } = useCart();

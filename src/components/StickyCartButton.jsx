@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { ShoppingCart } from 'lucide-react';
-import { useCart } from '@/context/CartContext';
+import { useCart } from '@/lib/useCart';
 
 export default function StickyCartButton() {
     const { cartItems, isCartOpen, setIsCartOpen } = useCart();

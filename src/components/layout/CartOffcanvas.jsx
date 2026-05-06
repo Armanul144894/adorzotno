@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../lib/useCart";
 
 const CartOffcanvas = () => {
   const {

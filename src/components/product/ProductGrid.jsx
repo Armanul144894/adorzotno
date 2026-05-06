@@ -3,7 +3,7 @@ import { ShoppingCart, Heart, Star, Truck, Shield, Plus, Minus, Check, Share2, C
 import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import ProductDetailsTab from "./ProductDetailsTab";
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../lib/useCart";
 
 export default function ProductGrid({
     selectedProduct,
@@ -210,7 +210,7 @@ export default function ProductGrid({
                                 <div className="flex items-center border-2 border-gray-300 rounded-lg">
                                     <button
                                         onClick={decrementQuantity}
-                                        className="p-3 hover:bg-gray-100 transition"
+                                        className="p-3 hover:bg-gray-100 rounded-lg transition"
                                         disabled={quantity <= 1}
                                     >
                                         <Minus size={20} />
@@ -220,7 +220,7 @@ export default function ProductGrid({
                                     </span>
                                     <button
                                         onClick={incrementQuantity}
-                                        className="p-3 hover:bg-gray-100 transition"
+                                        className="p-3 hover:bg-gray-100 rounded-lg transition"
                                         disabled={quantity >= selectedProduct?.stockCount}
                                     >
                                         <Plus size={20} />

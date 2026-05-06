@@ -8,7 +8,7 @@ import SignInModal from "./SignInModal";
 import Image from "next/image";
 import LiveChatWidget from "./LiveChatWidget";
 import HeaderSearch from "./HeaderSearch";
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../lib/useCart";
 import DeliveryLocation from "../DeliveryLocation";
 import allCategories from "../../../public/data/category";
 

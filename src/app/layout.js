@@ -1,8 +1,8 @@
 // app/layout.jsx
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { CartProvider } from "../context/CartContext";
 import MainLayout from "@/components/layout/MainLayout";
+import Providers from "@/redux/Providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,11 +33,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased relative bg-white`}
       >
-        <CartProvider>
+        <Providers>
           <MainLayout>
             {children}
           </MainLayout>
-        </CartProvider>
+        </Providers>
       </body>
     </html>
   );
