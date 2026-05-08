@@ -1,122 +1,88 @@
 "use client";
+
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { X, Phone, Mail, Facebook, Lock, Eye, EyeOff } from "lucide-react";
+import { X } from "lucide-react";
 import Image from "next/image";
-import { FcGoogle } from "react-icons/fc";
+import { toast } from "sonner";
+import LoginForm from "./LoginForm";
+import OtpForm from "./OtpForm";
+import RegisterForm from "./RegisterForm";
 
 export default function SignInModal({ isSignInOpen, setSignInOpen }) {
-  const [loginMethod, setLoginMethod] = useState("phone"); // 'phone' or 'email'
-  const [showPassword, setShowPassword] = useState(false);
+  const [loginMethod, setLoginMethod] = useState("phone");
   const [isSignUp, setIsSignUp] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
-  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
-  const {
-    register,
-    handleSubmit,
-    reset,
-    getValues,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      phoneNumber: "",
-      email: "",
-      password: "",
-    },
+  const [contactInfo, setContactInfo] = useState({
+    phoneNumber: "",
+    email: "",
   });
 
-  const phoneNumber = getValues("phoneNumber");
-  const email = getValues("email");
+  const handleAuthSubmit = ({ phoneNumber, email }) => {
+    setContactInfo({
+      phoneNumber: phoneNumber || "",
+      email: email || "",
+    });
 
-  const handleAuthSubmit = ({ phoneNumber: submittedPhone, email: submittedEmail }) => {
-    if (loginMethod === "phone" && submittedPhone) {
+    if (loginMethod === "phone" && phoneNumber) {
       setOtpSent(true);
-      alert(`OTP sent to +88${submittedPhone}`);
-    } else if (loginMethod === "email" && submittedEmail) {
-      alert(`Verification link sent to ${submittedEmail}`);
+      toast.success(`OTP sent to +88${phoneNumber}`);
+      return;
+    }
+
+    if (loginMethod === "email" && email) {
+      toast.success(`Verification link sent to ${email}`);
     }
   };
 
-  const handleOtpChange = (index, value) => {
-    if (value.length > 1) return;
+  const handleRegisterSubmit = ({ name, email, phone }) => {
+    setContactInfo({
+      phoneNumber: phone || "",
+      email: email || "",
+    });
 
-    const newOtp = [...otp];
-    newOtp[index] = value;
-    setOtp(newOtp);
-
-    // Auto-focus next input
-    if (value && index < 5) {
-      const nextInput = document.getElementById(`otp-${index + 1}`);
-      if (nextInput) nextInput.focus();
-    }
+    toast.success(`Account created for ${name}`);
   };
 
-  const handleOtpKeyDown = (index, e) => {
-    if (e.key === "Backspace" && !otp[index] && index > 0) {
-      const prevInput = document.getElementById(`otp-${index - 1}`);
-      if (prevInput) prevInput.focus();
-    }
-  };
-
-  const handleVerifyOTP = () => {
-    const otpValue = otp.join("");
-    if (otpValue.length === 6) {
-      alert(`Verifying OTP: ${otpValue}`);
-      // Add your OTP verification logic here
-    } else {
-      alert("Please enter complete OTP");
-    }
+  const handleVerifyOTP = (otpValue) => {
+    toast.success(`Verifying OTP: ${otpValue}`);
   };
 
   const handleResendOTP = () => {
-    setOtp(["", "", "", "", "", ""]);
-    alert(`OTP resent to +88${phoneNumber}`);
+    toast.success(`OTP resent to +88${contactInfo.phoneNumber}`);
   };
 
   const handleChangeNumber = () => {
     setOtpSent(false);
-    setOtp(["", "", "", "", "", ""]);
-    reset(
-      {
-        ...getValues(),
-        phoneNumber: "",
-      },
-      {
-        keepErrors: false,
-        keepDirty: false,
-        keepTouched: false,
-      },
-    );
+    setContactInfo((prev) => ({
+      ...prev,
+      phoneNumber: "",
+    }));
   };
 
   return (
-    <div className="">
-      {/* Overlay */}
+    <div>
       {isSignInOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40"
+          className="fixed inset-0 z-40 bg-black/50"
           onClick={() => setSignInOpen(false)}
         />
       )}
 
-      {/* Modal Overlay */}
       {isSignInOpen && (
-        <div className={`fixed inset-0 bg-opacity-50 z-50 flex items-center justify-center p-4 transform transition-transform duration-300
-        ${isSignInOpen ? "translate-x-0" : "-translate-x-full"}`}>
-          {/* Modal Container */}
-          <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full overflow-hidden animate-fadeIn">
+        <div
+          className={`fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4 transition-transform duration-300 ${isSignInOpen ? "translate-x-0" : "-translate-x-full"
+            }`}
+        >
+          <div className="max-w-4xl w-full max-h-[95vh] overflow-y-auto rounded-2xl bg-white shadow-2xl animate-fadeIn">
             <div className="flex flex-col md:flex-row">
-              {/* Left Side - Branding */}
-              <div className="bg-primary hidden md:block p-8 md:w-2/5 text-white relative overflow-hidden">
-                {/* Close Button - Mobile */}
+              <div className="relative hidden overflow-hidden bg-primary p-8 text-white md:block md:w-2/5">
                 <button
                   onClick={() => setSignInOpen(false)}
-                  className="md:hidden absolute top-4 right-4 p-2 hover:bg-white/20 rounded-full transition"
+                  className="absolute right-4 top-4 rounded-full p-2 transition hover:bg-white/20 md:hidden"
                 >
                   <X size={24} />
                 </button>
 
-                {/* Logo and Tagline */}
                 <div className="mb-8">
                   <div className="flex items-center gap-2 mb-4">
                     <div className="">
@@ -139,36 +105,31 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
                   </p>
                 </div>
 
-                {/* Phone Mockup Image */}
-                <div className="flex justify-center mt-8">
+                <div className="mt-8 flex justify-center">
                   <Image
                     src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=300&h=500&fit=crop"
                     alt="Phone Mockup"
                     width={200}
                     height={400}
-                    className="rounded-2xl shadow-xl max-w-[200px] border-4 border-white/20"
+                    className="max-w-[200px] rounded-2xl border-4 border-white/20 shadow-xl"
                   />
                 </div>
 
-                {/* Decorative Elements */}
-                <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-full"></div>
-                <div className="absolute -top-10 -left-10 w-32 h-32 bg-white/10 rounded-full"></div>
+                <div className="absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-white/10"></div>
+                <div className="absolute -left-10 -top-10 h-32 w-32 rounded-full bg-white/10"></div>
               </div>
 
-              {/* Right Side - Sign In Form */}
-              <div className="p-8 md:w-3/5 relative">
-                {/* Close Button - Desktop */}
+              <div className="relative p-8 md:w-3/5">
                 <button
                   onClick={() => setSignInOpen(false)}
-                  className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-full transition"
+                  className="absolute right-4 top-4 rounded-full p-2 transition hover:bg-gray-100"
                 >
                   <X size={24} className="text-gray-600" />
                 </button>
 
-                <div className="max-w-md mx-auto">
-                  {/* Header */}
+                <div className="mx-auto max-w-md">
                   <div className="mb-8">
-                    <h2 className="text-3xl font-bold text-gray-800 mb-2">
+                    <h2 className="mb-2 text-3xl font-bold text-gray-800">
                       {otpSent && loginMethod === "phone"
                         ? "Verify OTP"
                         : isSignUp
@@ -177,303 +138,31 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
                     </h2>
                     <p className="text-gray-600">
                       {otpSent && loginMethod === "phone"
-                        ? `Enter the 6-digit code sent to +88${phoneNumber}`
+                        ? `Enter the 6-digit code sent to +88${contactInfo.phoneNumber}`
                         : isSignUp
-                          ? "Sign up to get started"
+                          ? ""
                           : "Welcome back! Please enter your details"}
                     </p>
                   </div>
 
-                  {/* OTP Verification Section (shown when OTP is sent) */}
                   {otpSent && loginMethod === "phone" ? (
-                    <>
-                      {/* OTP Input Fields */}
-                      <div className="mb-6">
-                        <label className="block text-sm font-semibold text-gray-700 mb-3">
-                          Enter OTP
-                        </label>
-                        <div className="flex gap-2 justify-center">
-                          {otp.map((digit, index) => (
-                            <input
-                              key={index}
-                              id={`otp-${index}`}
-                              type="text"
-                              inputMode="numeric"
-                              maxLength="1"
-                              value={digit}
-                              onChange={(e) => handleOtpChange(index, e.target.value.replace(/[^0-9]/g, ""))}
-                              onKeyDown={(e) => handleOtpKeyDown(index, e)}
-                              className="w-12 h-12 text-center text-xl font-bold border-2 border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 transition"
-                            />
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Verify OTP Button */}
-                      <button
-                        onClick={handleVerifyOTP}
-                        className="group mb-4 flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-primary via-primary to-secondary px-5 py-2 font-semibold text-white transition-all duration-300 hover:shadow-[0_14px_30px_rgba(14,165,233,0.10)]"
-                      >
-                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/18 ring-1 ring-white/25">
-                          <Lock size={16} />
-                        </span>
-                        <span>Verify OTP</span>
-                        <span className="text-lg transition-transform duration-300 group-hover:translate-x-0.5">
-                          →
-                        </span>
-                      </button>
-
-                      {/* Resend OTP */}
-                      <div className="text-center mb-4">
-                        <p className="text-gray-600 text-sm mb-2">
-                          Did nott receive the code?
-                        </p>
-                        <button
-                          onClick={handleResendOTP}
-                          className="text-primary font-semibold hover:underline"
-                        >
-                          Resend OTP
-                        </button>
-                      </div>
-
-                      {/* Change Number */}
-                      <div className="text-center">
-                        <button
-                          onClick={handleChangeNumber}
-                          className="text-gray-600 text-sm hover:underline"
-                        >
-                          Change Phone Number
-                        </button>
-                      </div>
-                    </>
+                    <OtpForm
+                      onVerify={handleVerifyOTP}
+                      onResend={handleResendOTP}
+                      onChangeNumber={handleChangeNumber}
+                    />
+                  ) : isSignUp ? (
+                    <RegisterForm
+                      onSubmit={handleRegisterSubmit}
+                      onToggleSignIn={() => setIsSignUp(false)}
+                    />
                   ) : (
-                    <>
-                      {/* Login Method Toggle */}
-                      <div className="flex gap-2 mb-6">
-                        <button
-                          onClick={() => setLoginMethod("phone")}
-                          className={`flex-1 py-2 px-4 rounded-lg font-semibold transition ${loginMethod === "phone"
-                            ? "bg-primary text-white"
-                            : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                            }`}
-                        >
-                          <Phone size={18} className="inline mr-2" />
-                          Phone
-                        </button>
-                        <button
-                          onClick={() => setLoginMethod("email")}
-                          className={`flex-1 py-2 px-4 rounded-lg font-semibold transition ${loginMethod === "email"
-                            ? "bg-primary text-white"
-                            : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                            }`}
-                        >
-                          <Mail size={18} className="inline mr-2" />
-                          Email
-                        </button>
-                      </div>
-
-                      {/* Phone Number Input */}
-                      {loginMethod === "phone" && (
-                        <div className="mb-4">
-                          <label className="block text-sm font-semibold text-gray-700 mb-2">
-                            Your Contact Number
-                          </label>
-                          <div className="flex gap-2">
-                            <div className="bg-gray-100 px-4 py-3 rounded-lg font-semibold text-gray-700">
-                              +88
-                            </div>
-                            <input
-                              type="tel"
-                              placeholder="01XXXXXXXXX"
-                              className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-teal-500 transition"
-                              maxLength="11"
-                              {...register("phoneNumber", {
-                                validate: (value) =>
-                                  loginMethod !== "phone" ||
-                                  (/^01\d{9}$/.test(value) && value.length === 11) ||
-                                  "Enter a valid 11-digit phone number",
-                                onChange: (e) => {
-                                  e.target.value = e.target.value.replace(/[^0-9]/g, "").slice(0, 11);
-                                },
-                              })}
-                            />
-                          </div>
-                          {errors.phoneNumber && (
-                            <p className="mt-2 text-sm text-red-500">
-                              {errors.phoneNumber.message}
-                            </p>
-                          )}
-                        </div>
-                      )}
-
-                      {/* Email Input */}
-                      {loginMethod === "email" && (
-                        <div className="mb-4">
-                          <label className="block text-sm font-semibold text-gray-700 mb-2">
-                            Email Address
-                          </label>
-                          <input
-                            type="email"
-                            placeholder="your.email@example.com"
-                            className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-teal-500 transition"
-                            {...register("email", {
-                              validate: (value) =>
-                                loginMethod !== "email" ||
-                                /\S+@\S+\.\S+/.test(value) ||
-                                "Enter a valid email address",
-                            })}
-                          />
-                          {errors.email && (
-                            <p className="mt-2 text-sm text-red-500">
-                              {errors.email.message}
-                            </p>
-                          )}
-                        </div>
-                      )}
-
-                      {/* Password Input (for Email login or Sign Up) */}
-                      {(loginMethod === "email" || isSignUp) && (
-                        <div className="mb-4">
-                          <label className="block text-sm font-semibold text-gray-700 mb-2">
-                            Password
-                          </label>
-                          <div className="relative">
-                            <input
-                              type={showPassword ? "text" : "password"}
-                              placeholder="Enter your password"
-                              className="w-full px-4 py-3 pr-12 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-teal-500 transition"
-                              {...register("password", {
-                                validate: (value) =>
-                                  loginMethod !== "email" ||
-                                  value.length >= 6 ||
-                                  "Password must be at least 6 characters",
-                              })}
-                            />
-                            <button
-                              type="button"
-                              onClick={() => setShowPassword(!showPassword)}
-                              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                            >
-                              {showPassword ? (
-                                <EyeOff size={20} />
-                              ) : (
-                                <Eye size={20} />
-                              )}
-                            </button>
-                          </div>
-                          {errors.password && (
-                            <p className="mt-2 text-sm text-red-500">
-                              {errors.password.message}
-                            </p>
-                          )}
-                        </div>
-                      )}
-
-                      {/* Terms and Privacy */}
-                      <div className="mb-6">
-                        <p className="text-xs text-gray-600">
-                          By continuing you agree to{" "}
-                          <a href="#" className="text-primary hover:underline">
-                            Terms & Conditions
-                          </a>
-                          ,{" "}
-                          <a href="#" className="text-primary hover:underline">
-                            Privacy Policy
-                          </a>{" "}
-                          &{" "}
-                          <a href="#" className="text-primary hover:underline">
-                            Refund-Return Policy
-                          </a>
-                        </p>
-                      </div>
-
-                      {/* Send OTP / Sign In Button */}
-                      <button
-                        onClick={handleSubmit(handleAuthSubmit)}
-                        className="group mb-4 flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-primary via-primary to-secondary px-5 py-2 font-semibold text-white transition-all duration-300 hover:shadow-[0_14px_30px_rgba(14,165,233,0.10)]"
-                      >
-                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/18 ring-1 ring-white/25">
-                          {loginMethod === "phone" ? (
-                            <Phone size={16} />
-                          ) : (
-                            <Lock size={16} />
-                          )}
-                        </span>
-                        <span>
-                          {loginMethod === "phone"
-                            ? "Send OTP"
-                            : isSignUp
-                              ? "Sign Up"
-                              : "Sign In"}
-                        </span>
-                        <span className="text-lg transition-transform duration-300 group-hover:translate-x-0.5">
-                          →
-                        </span>
-                      </button>
-
-                      {/* Forgot Password */}
-                      {loginMethod === "email" && !isSignUp && (
-                        <div className="text-center mb-4">
-                          <button className="text-primary text-sm hover:underline">
-                            Forgot Password?
-                          </button>
-                        </div>
-                      )}
-
-                      {/* Divider */}
-                      <div className="relative my-6">
-                        <div className="absolute inset-0 flex items-center">
-                          <div className="w-full border-t border-gray-300"></div>
-                        </div>
-                        <div className="relative flex justify-center text-sm">
-                          <span className="px-4 bg-white text-gray-500">
-                            or continue with
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Social Login Buttons */}
-                      <div className="flex gap-3 mb-6">
-                        <button
-                          className="flex-1 flex items-center justify-center gap-2 py-2 border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition"
-                        >
-                          <svg className="w-5 h-5" viewBox="0 0 24 24">
-                            <path
-                              fill="#1877F2"
-                              d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                            />
-                          </svg>
-                          <span className="font-semibold text-gray-700">
-                            Facebook
-                          </span>
-                        </button>
-                        <button
-                          className="flex-1 flex items-center justify-center gap-2 py-2 border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition"
-                        >
-                          <span>
-                            <FcGoogle className="w-5 h-5" />
-                          </span>
-                          <span className="font-semibold text-gray-700">
-                            Google
-                          </span>
-                        </button>
-                      </div>
-
-                      {/* Sign Up Link */}
-                      <div className="text-center">
-                        <p className="text-gray-600">
-                          {isSignUp
-                            ? "Already have an account?"
-                            : "Don't have an account?"}{" "}
-                          <button
-                            onClick={() => setIsSignUp(!isSignUp)}
-                            className="text-primary font-semibold hover:underline"
-                          >
-                            {isSignUp ? "Sign In" : "Sign Up"}
-                          </button>
-                        </p>
-                      </div>
-                    </>
+                    <LoginForm
+                      loginMethod={loginMethod}
+                      setLoginMethod={setLoginMethod}
+                      onSubmit={handleAuthSubmit}
+                      onToggleSignUp={() => setIsSignUp(true)}
+                    />
                   )}
                 </div>
               </div>
