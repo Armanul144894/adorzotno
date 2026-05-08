@@ -1,25 +1,39 @@
 "use client";
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { X, Phone, Mail, Facebook, Lock, Eye, EyeOff } from "lucide-react";
 import Image from "next/image";
 import { FcGoogle } from "react-icons/fc";
 
 export default function SignInModal({ isSignInOpen, setSignInOpen }) {
   const [loginMethod, setLoginMethod] = useState("phone"); // 'phone' or 'email'
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    getValues,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      phoneNumber: "",
+      email: "",
+      password: "",
+    },
+  });
 
-  const handleSendOTP = () => {
-    if (loginMethod === "phone" && phoneNumber) {
+  const phoneNumber = getValues("phoneNumber");
+  const email = getValues("email");
+
+  const handleAuthSubmit = ({ phoneNumber: submittedPhone, email: submittedEmail }) => {
+    if (loginMethod === "phone" && submittedPhone) {
       setOtpSent(true);
-      alert(`OTP sent to +88${phoneNumber}`);
-    } else if (loginMethod === "email" && email) {
-      alert(`Verification link sent to ${email}`);
+      alert(`OTP sent to +88${submittedPhone}`);
+    } else if (loginMethod === "email" && submittedEmail) {
+      alert(`Verification link sent to ${submittedEmail}`);
     }
   };
 
@@ -62,6 +76,17 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
   const handleChangeNumber = () => {
     setOtpSent(false);
     setOtp(["", "", "", "", "", ""]);
+    reset(
+      {
+        ...getValues(),
+        phoneNumber: "",
+      },
+      {
+        keepErrors: false,
+        keepDirty: false,
+        keepTouched: false,
+      },
+    );
   };
 
   return (
@@ -259,13 +284,25 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
                             </div>
                             <input
                               type="tel"
-                              value={phoneNumber}
-                              onChange={(e) => setPhoneNumber(e.target.value.replace(/[^0-9]/g, ""))}
                               placeholder="01XXXXXXXXX"
                               className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-teal-500 transition"
                               maxLength="11"
+                              {...register("phoneNumber", {
+                                validate: (value) =>
+                                  loginMethod !== "phone" ||
+                                  (/^01\d{9}$/.test(value) && value.length === 11) ||
+                                  "Enter a valid 11-digit phone number",
+                                onChange: (e) => {
+                                  e.target.value = e.target.value.replace(/[^0-9]/g, "").slice(0, 11);
+                                },
+                              })}
                             />
                           </div>
+                          {errors.phoneNumber && (
+                            <p className="mt-2 text-sm text-red-500">
+                              {errors.phoneNumber.message}
+                            </p>
+                          )}
                         </div>
                       )}
 
@@ -277,11 +314,20 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
                           </label>
                           <input
                             type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
                             placeholder="your.email@example.com"
                             className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-teal-500 transition"
+                            {...register("email", {
+                              validate: (value) =>
+                                loginMethod !== "email" ||
+                                /\S+@\S+\.\S+/.test(value) ||
+                                "Enter a valid email address",
+                            })}
                           />
+                          {errors.email && (
+                            <p className="mt-2 text-sm text-red-500">
+                              {errors.email.message}
+                            </p>
+                          )}
                         </div>
                       )}
 
@@ -294,10 +340,14 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
                           <div className="relative">
                             <input
                               type={showPassword ? "text" : "password"}
-                              value={password}
-                              onChange={(e) => setPassword(e.target.value)}
                               placeholder="Enter your password"
                               className="w-full px-4 py-3 pr-12 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-teal-500 transition"
+                              {...register("password", {
+                                validate: (value) =>
+                                  loginMethod !== "email" ||
+                                  value.length >= 6 ||
+                                  "Password must be at least 6 characters",
+                              })}
                             />
                             <button
                               type="button"
@@ -311,6 +361,11 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
                               )}
                             </button>
                           </div>
+                          {errors.password && (
+                            <p className="mt-2 text-sm text-red-500">
+                              {errors.password.message}
+                            </p>
+                          )}
                         </div>
                       )}
 
@@ -334,7 +389,7 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
 
                       {/* Send OTP / Sign In Button */}
                       <button
-                        onClick={handleSendOTP}
+                        onClick={handleSubmit(handleAuthSubmit)}
                         className="group mb-4 flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-primary via-primary to-secondary px-5 py-2 font-semibold text-white transition-all duration-300 hover:shadow-[0_14px_30px_rgba(14,165,233,0.10)]"
                       >
                         <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/18 ring-1 ring-white/25">
