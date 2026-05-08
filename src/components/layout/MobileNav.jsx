@@ -11,7 +11,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useCart } from "../../lib/useCart";
-import SignInModal from "./SignInModal";
+import SignInModal from "../modules/auth/SignInModal";
 
 export default function MobileNav() {
     const pathname = usePathname();

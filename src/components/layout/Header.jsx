@@ -4,9 +4,8 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import CategoryOffcanvas from "./CategoryOffcanvas";
 import HeaderCategoryMenu from "./HeaderCategoryMenu";
-import SignInModal from "./SignInModal";
+import SignInModal from "../modules/auth/SignInModal";
 import Image from "next/image";
-import LiveChatWidget from "./LiveChatWidget";
 import HeaderSearch from "./HeaderSearch";
 import { useCart } from "../../lib/useCart";
 import DeliveryLocation from "../DeliveryLocation";
@@ -19,8 +18,6 @@ export default function Header() {
   const [isSignInOpen, setSignInOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [categoryMenuOpen, setCategoryMenuOpen] = useState(false);
-  const [chatOpen, setChatOpen] = useState(false);
-  const [chatExpanded, setChatExpanded] = useState(false);
   const categoryMenuRef = useRef(null);
 
   useEffect(() => {
