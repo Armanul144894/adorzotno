@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { X, Phone, Mail, Facebook, Lock, Eye, EyeOff } from "lucide-react";
 import Image from "next/image";
+import { FcGoogle } from "react-icons/fc";
 
 export default function SignInModal({ isSignInOpen, setSignInOpen }) {
   const [loginMethod, setLoginMethod] = useState("phone"); // 'phone' or 'email'
@@ -186,10 +187,10 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
                       {/* Verify OTP Button */}
                       <button
                         onClick={handleVerifyOTP}
-                        className="group mb-4 flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-primary via-primary to-secondary px-5 py-2.5 font-semibold text-white transition-all duration-300 hover:shadow-[0_14px_30px_rgba(14,165,233,0.10)]"
+                        className="group mb-4 flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-primary via-primary to-secondary px-5 py-2 font-semibold text-white transition-all duration-300 hover:shadow-[0_14px_30px_rgba(14,165,233,0.10)]"
                       >
-                        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/18 ring-1 ring-white/25">
-                          <Lock size={18} />
+                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/18 ring-1 ring-white/25">
+                          <Lock size={16} />
                         </span>
                         <span>Verify OTP</span>
                         <span className="text-lg transition-transform duration-300 group-hover:translate-x-0.5">
@@ -334,13 +335,13 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
                       {/* Send OTP / Sign In Button */}
                       <button
                         onClick={handleSendOTP}
-                        className="group mb-4 flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-primary via-primary to-secondary px-5 py-2.5 font-semibold text-white transition-all duration-300 hover:shadow-[0_14px_30px_rgba(14,165,233,0.10)]"
+                        className="group mb-4 flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-primary via-primary to-secondary px-5 py-2 font-semibold text-white transition-all duration-300 hover:shadow-[0_14px_30px_rgba(14,165,233,0.10)]"
                       >
-                        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/18 ring-1 ring-white/25">
+                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/18 ring-1 ring-white/25">
                           {loginMethod === "phone" ? (
-                            <Phone size={18} />
+                            <Phone size={16} />
                           ) : (
-                            <Lock size={18} />
+                            <Lock size={16} />
                           )}
                         </span>
                         <span>
@@ -378,7 +379,9 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
 
                       {/* Social Login Buttons */}
                       <div className="flex gap-3 mb-6">
-                        <button className="flex-1 flex items-center justify-center gap-2 py-3 border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                        <button
+                          className="flex-1 flex items-center justify-center gap-2 py-2 border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition"
+                        >
                           <svg className="w-5 h-5" viewBox="0 0 24 24">
                             <path
                               fill="#1877F2"
@@ -389,13 +392,12 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
                             Facebook
                           </span>
                         </button>
-                        <button className="flex-1 flex items-center justify-center gap-2 py-3 border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                          <svg className="w-5 h-5" viewBox="0 0 24 24">
-                            <path
-                              fill="#EA4335"
-                              d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"
-                            />
-                          </svg>
+                        <button
+                          className="flex-1 flex items-center justify-center gap-2 py-2 border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition"
+                        >
+                          <span>
+                            <FcGoogle className="w-5 h-5" />
+                          </span>
                           <span className="font-semibold text-gray-700">
                             Google
                           </span>
