@@ -8,8 +8,12 @@ import LoginForm from "./LoginForm";
 import OtpForm from "./OtpForm";
 import RegisterForm from "./RegisterForm";
 
-export default function SignInModal({ isSignInOpen, setSignInOpen }) {
-  const [loginMethod, setLoginMethod] = useState("phone");
+export default function SignInModal({
+  isSignInOpen,
+  setSignInOpen,
+  onLoginSuccess,
+}) {
+  const [loginMethod, setLoginMethod] = useState("email");
   const [isSignUp, setIsSignUp] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
   const [contactInfo, setContactInfo] = useState({
@@ -17,30 +21,29 @@ export default function SignInModal({ isSignInOpen, setSignInOpen }) {
     email: "",
   });
 
-  const handleAuthSubmit = ({ phoneNumber, email }) => {
+  const handleAuthSubmit = (responseData) => {
+    const loggedInUser = responseData?.user;
+
     setContactInfo({
-      phoneNumber: phoneNumber || "",
-      email: email || "",
+      phoneNumber: loggedInUser?.phone || "",
+      email: loggedInUser?.email || "",
     });
-
-    if (loginMethod === "phone" && phoneNumber) {
-      setOtpSent(true);
-      toast.success(`OTP sent to +88${phoneNumber}`);
-      return;
-    }
-
-    if (loginMethod === "email" && email) {
-      toast.success(`Verification link sent to ${email}`);
-    }
+    setOtpSent(false);
+    setIsSignUp(false);
+    setSignInOpen(false);
+    onLoginSuccess?.();
   };
 
-  const handleRegisterSubmit = ({ name, email, phone }) => {
-    setContactInfo({
-      phoneNumber: phone || "",
-      email: email || "",
-    });
+  const handleRegisterSubmit = (responseData) => {
+    const registeredUser = responseData?.user;
 
-    toast.success(`Account created for ${name}`);
+    setContactInfo({
+      phoneNumber: registeredUser?.phone || "",
+      email: registeredUser?.email || "",
+    });
+    setLoginMethod("email");
+    setIsSignUp(false);
+    setOtpSent(false);
   };
 
   const handleVerifyOTP = (otpValue) => {

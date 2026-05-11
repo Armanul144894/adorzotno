@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import "../../app/globals.css";
 import Header from "./Header";
 import SideBar from "./SideBar";
@@ -17,7 +17,9 @@ export default function MainLayout({ children }) {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
+      <Suspense fallback={<div className="sticky top-0 z-50 h-[74px] w-full bg-white shadow-md" />}>
+        <Header />
+      </Suspense>
       <CartOffcanvas />
       <div className="container mx-auto relative flex-1">
         <div className="flex lg:gap-0 items-start">

@@ -1,16 +1,22 @@
 "use client";
 
 import React, { useState } from "react";
-import { Eye, EyeOff, Lock, Mail, Phone, User } from "lucide-react";
+import { Eye, EyeOff, Lock, Mail, MoveRight, Phone, User } from "lucide-react";
 import { useForm, useWatch } from "react-hook-form";
+import { toast } from "sonner";
+import { useRegisterMutation } from "@/redux/features/auth/authApi";
 
 export default function RegisterForm({ onSubmit, onToggleSignIn }) {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [registerUser, { isLoading }] = useRegisterMutation();
+
   const {
     register,
     handleSubmit,
     control,
+    reset,
+    setError,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -27,9 +33,34 @@ export default function RegisterForm({ onSubmit, onToggleSignIn }) {
     name: "password",
   });
 
+  const handleRegister = async (formData) => {
+    try {
+      const response = await registerUser(formData).unwrap();
+
+      reset();
+      toast.success(response?.message || "Registration successful");
+      onSubmit?.(response?.data);
+    } catch (error) {
+      const errorMessage =
+        error?.data?.message || "Registration failed. Please try again.";
+      const fieldErrors = error?.data?.errors;
+
+      if (fieldErrors && typeof fieldErrors === "object") {
+        Object.entries(fieldErrors).forEach(([fieldName, messages]) => {
+          setError(fieldName, {
+            type: "server",
+            message: Array.isArray(messages) ? messages[0] : messages,
+          });
+        });
+      }
+
+      toast.error(errorMessage);
+    }
+  };
+
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(handleRegister)}>
         <div className="mb-4">
           <label className="mb-1 block text-sm font-semibold text-gray-700">
             Full Name
@@ -101,7 +132,7 @@ export default function RegisterForm({ onSubmit, onToggleSignIn }) {
                 },
               })}
             />
-            <span className="absolute left-4 top-1/2 flex -translate-y-1/2 text-gray-400 items-center gap-1">
+            <span className="absolute left-4 top-1/2 flex -translate-y-1/2 items-center gap-1 text-gray-400">
               <Phone size={18} />
               <span>+88</span>
             </span>
@@ -200,14 +231,15 @@ export default function RegisterForm({ onSubmit, onToggleSignIn }) {
 
         <button
           type="submit"
-          className="group mb-4 flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-primary via-primary to-secondary px-5 py-2 font-semibold text-white transition-all duration-300 hover:shadow-[0_14px_30px_rgba(14,165,233,0.10)]"
+          disabled={isLoading}
+          className="group mb-4 flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-primary via-primary to-secondary px-5 py-2 font-semibold text-white transition-all duration-300 hover:shadow-[0_14px_30px_rgba(14,165,233,0.10)] disabled:cursor-not-allowed disabled:opacity-70"
         >
           <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/18 ring-1 ring-white/25">
             <User size={16} />
           </span>
-          <span>Sign Up</span>
+          <span>{isLoading ? "Creating Account..." : "Sign Up"}</span>
           <span className="text-lg transition-transform duration-300 group-hover:translate-x-0.5">
-            →
+            <MoveRight strokeWidth={1.5} />
           </span>
         </button>
       </form>
