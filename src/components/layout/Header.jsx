@@ -1,7 +1,15 @@
 "use client";
 
-import { ChevronDown, LogOut, Menu, ShoppingCart, User, X, } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
+import {
+  ChevronDown,
+  LogOut,
+  Menu,
+  MoveRight,
+  ShoppingCart,
+  User,
+  X,
+} from "lucide-react";
+import React, { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -17,6 +25,11 @@ import allCategories from "../../../public/data/category";
 import { useLogoutMutation } from "@/redux/features/auth/authApi";
 
 export default function Header() {
+  const hasMounted = useSyncExternalStore(
+    () => () => { },
+    () => true,
+    () => false,
+  );
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -29,16 +42,15 @@ export default function Header() {
   const signInRequestKey = shouldOpenSignIn
     ? `${pathname}?${searchParams.toString()}`
     : "";
-  const firstName =
-    isHydrated && isAuthenticated
-      ? user?.name?.trim()?.split(" ")[0] || "Sign In"
-      : "Sign In";
+  const showAuthenticatedAccount = hasMounted && isHydrated && isAuthenticated;
+  const firstName = user?.name?.trim()?.split(" ")[0] || "Sign In";
 
   const [manualSignInOpen, setManualSignInOpen] = useState(false);
   const [dismissedSignInKey, setDismissedSignInKey] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [categoryMenuOpen, setCategoryMenuOpen] = useState(false);
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
+
   const categoryMenuRef = useRef(null);
   const desktopAccountMenuRef = useRef(null);
   const mobileAccountMenuRef = useRef(null);
@@ -104,29 +116,27 @@ export default function Header() {
     }
   };
 
-  const handleAccountClick = () => {
-    if (!isHydrated || !isAuthenticated) {
-      setManualSignInOpen(true);
-      return;
-    }
-
-    setAccountMenuOpen((open) => !open);
+  const handleOpenSignIn = () => {
+    setManualSignInOpen(true);
   };
 
-  const handleLogout = async () => {
-    try {
-      const response = await logoutUser().unwrap();
-      // toast.success(response?.message || "Logout successful");
-      setAccountMenuOpen(false);
-      router.push("/");
-    } catch (error) {
-      toast.error(error?.data?.message || "Logout failed. Please try again.");
-    }
+  const handleToggleAccountMenu = () => {
+    setAccountMenuOpen((open) => !open);
   };
 
   const handleProfileNavigate = () => {
     setAccountMenuOpen(false);
     router.push("/profile");
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logoutUser().unwrap();
+      setAccountMenuOpen(false);
+      router.push("/");
+    } catch (error) {
+      toast.error(error?.data?.message || "Logout failed. Please try again.");
+    }
   };
 
   const handleLoginSuccess = () => {
@@ -141,6 +151,38 @@ export default function Header() {
       router.replace("/");
     }
   };
+
+  const renderAccountDropdown = () => (
+    <div
+      className="absolute right-0 top-full z-50 mt-3 w-56 overflow-hidden rounded-xl border border-gray-200 bg-white p-2"
+      onMouseDown={(event) => event.stopPropagation()}
+      onClick={(event) => event.stopPropagation()}
+    >
+      <div className="border-b border-gray-100 px-3 py-2">
+        <p className="text-sm font-semibold text-slate-800">{user?.name}</p>
+        <p className="truncate text-xs text-slate-500">{user?.email}</p>
+      </div>
+
+      <button
+        type="button"
+        onClick={handleProfileNavigate}
+        className="mt-2 flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-medium text-slate-700 transition hover:bg-primary/5"
+      >
+        <User size={18} className="text-primary" />
+        Profile
+      </button>
+
+      <button
+        type="button"
+        onClick={handleLogout}
+        disabled={isLoggingOut}
+        className="mt-1 flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-medium text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-70"
+      >
+        <LogOut size={18} />
+        {isLoggingOut ? "Logging out..." : "Log Out"}
+      </button>
+    </div>
+  );
 
   return (
     <div className="sticky top-0 z-50 w-full">
@@ -220,108 +262,82 @@ export default function Header() {
               <div className="h-6 w-[2px] rounded bg-primary md:hidden"></div>
 
               <div ref={mobileAccountMenuRef} className="relative md:hidden">
-                <button
-                  onClick={handleAccountClick}
-                  className="relative cursor-pointer rounded-lg p-2.5 transition-colors duration-300 hover:bg-primary/5"
-                >
-                  <User size={24} className="text-gray-600" />
-                </button>
-
-                {isHydrated && isAuthenticated && accountMenuOpen && (
-                  <div
-                    className="absolute right-0 top-full z-50 mt-2 w-52 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xl"
-                    onMouseDown={(e) => e.stopPropagation()}
-                    onClick={(e) => e.stopPropagation()}
+                {showAuthenticatedAccount ? (
+                  <button
+                    onClick={handleToggleAccountMenu}
+                    className="relative cursor-pointer rounded-lg p-2.5 transition-colors duration-300 hover:bg-primary/5"
                   >
-                    <button
-                      type="button"
-                      onClick={handleProfileNavigate}
-                      className="flex w-full items-center gap-3 px-4 py-3 text-left text-sm font-medium text-slate-700 transition hover:bg-primary/5"
-                    >
-                      <User size={18} className="text-primary" />
-                      Profile
-                    </button>
-                    <button
-                      type="button"
-                      onClick={handleLogout}
-                      disabled={isLoggingOut}
-                      className="flex w-full items-center gap-3 px-4 py-3 text-left text-sm font-medium text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-70"
-                    >
-                      <LogOut size={18} />
-                      {isLoggingOut ? "Logging out..." : "Log Out"}
-                    </button>
-                  </div>
+                    <User size={24} className="text-gray-600" />
+                  </button>
+                ) : (
+                  <button
+                    onClick={handleOpenSignIn}
+                    className="relative cursor-pointer rounded-lg p-2.5 transition-colors duration-300 hover:bg-primary/5"
+                  >
+                    <User size={24} className="text-gray-600" />
+                  </button>
                 )}
+
+                {showAuthenticatedAccount && accountMenuOpen && renderAccountDropdown()}
               </div>
 
               <div className="hidden h-8 w-[3px] rounded bg-primary md:block"></div>
 
               <div ref={desktopAccountMenuRef} className="relative hidden md:block">
-                <button
-                  onClick={handleAccountClick}
-                  className="group relative overflow-hidden rounded-xl"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/8 via-transparent to-secondary/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  <div className="relative flex items-center gap-3 rounded-[14px] p-2.5 font-semibold text-slate-800">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-secondary text-white shadow-sm">
-                      <User size={20} />
-                    </span>
-                    <span className="flex flex-col items-start leading-tight">
-                      <span className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">
-                        Account
-                      </span>
-                      <span className="text-sm font-bold text-slate-800">
-                        {firstName}
-                      </span>
-                    </span>
-                    <span className="text-slate-400 transition-all duration-300 group-hover:text-primary">
-                      {isHydrated && isAuthenticated ? (
-                        <ChevronDown
-                          size={18}
-                          className={`transition-transform duration-200 ${accountMenuOpen ? "rotate-180" : ""
-                            }`}
-                        />
-                      ) : (
-                        <span className="text-lg">→</span>
-                      )}
-                    </span>
-                  </div>
-                </button>
+                {showAuthenticatedAccount ? (
+                  <>
+                    <button
+                      onClick={handleToggleAccountMenu}
+                      className="group relative overflow-hidden rounded-xl"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary/8 via-transparent to-secondary/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                      <div className="relative flex items-center gap-3 rounded-[14px] p-2.5 font-semibold text-slate-800">
+                        <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-secondary text-white">
+                          <User size={20} />
+                        </span>
+                        <span className="flex flex-col items-start leading-tight">
+                          <span className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">
+                            Account
+                          </span>
+                          <span className="text-sm font-bold text-slate-800">
+                            {firstName}
+                          </span>
+                        </span>
+                        <span className="text-slate-400 transition-all duration-300 group-hover:text-primary">
+                          <ChevronDown
+                            size={18}
+                            className={`transition-transform duration-200 ${accountMenuOpen ? "rotate-180" : ""
+                              }`}
+                          />
+                        </span>
+                      </div>
+                    </button>
 
-                {isHydrated && isAuthenticated && accountMenuOpen && (
-                  <div
-                    className="absolute right-0 top-full z-50 mt-3 w-56 overflow-hidden rounded-xl border border-gray-200 bg-white p-2 shadow-[0_20px_50px_rgba(15,23,42,0.12)]"
-                    onMouseDown={(e) => e.stopPropagation()}
-                    onClick={(e) => e.stopPropagation()}
+                    {accountMenuOpen && renderAccountDropdown()}
+                  </>
+                ) : (
+                  <button
+                    onClick={handleOpenSignIn}
+                    className="group relative overflow-hidden rounded-xl"
                   >
-                    <div className="border-b border-gray-100 px-3 py-2">
-                      <p className="text-sm font-semibold text-slate-800">
-                        {user?.name}
-                      </p>
-                      <p className="truncate text-xs text-slate-500">
-                        {user?.email}
-                      </p>
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/8 via-transparent to-secondary/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    <div className="relative flex items-center gap-3 rounded-[14px] p-2.5 font-semibold text-slate-800">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-secondary text-white">
+                        <User size={20} />
+                      </span>
+                      <span className="flex flex-col items-start leading-tight">
+                        <span className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">
+                          Account
+                        </span>
+                        <span className="text-sm font-bold text-slate-800">
+                          Sign In
+                        </span>
+                      </span>
+                      <span className="text-slate-400 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-primary">
+                        <MoveRight size={18} />
+                      </span>
                     </div>
-
-                    <button
-                      type="button"
-                      onClick={handleProfileNavigate}
-                      className="mt-2 flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-medium text-slate-700 transition hover:bg-primary/5"
-                    >
-                      <User size={18} className="text-primary" />
-                      Profile
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={handleLogout}
-                      disabled={isLoggingOut}
-                      className="mt-1 flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-medium text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-70"
-                    >
-                      <LogOut size={18} />
-                      {isLoggingOut ? "Logging out..." : "Log Out"}
-                    </button>
-                  </div>
+                  </button>
                 )}
               </div>
             </div>

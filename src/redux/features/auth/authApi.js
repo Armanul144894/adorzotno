@@ -56,7 +56,7 @@ export const authApi = baseApi.injectEndpoints({
                         );
                     }
                 } catch {
-                    // Leave existing credentials as-is if profile fetch fails.
+                    dispatch(clearAuth());
                 }
             },
         }),
