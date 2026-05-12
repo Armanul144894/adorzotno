@@ -1,6 +1,10 @@
 "use client";
 
 import { Mail, MapPin, Phone, User } from "lucide-react";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { useUpdateProfileMutation } from "@/redux/features/auth/authApi";
 
 const inputClassName =
   "h-12 w-full rounded-xl border border-gray-200 bg-white px-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-primary/10";
@@ -9,6 +13,71 @@ const textareaClassName =
   "w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-primary/10";
 
 export default function ProfileSection({ user, customer }) {
+  const [updateProfile, { isLoading }] = useUpdateProfileMutation();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setError,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      name: user?.name || "",
+      phone: user?.phone || "",
+      email: user?.email || "",
+      billing_address: customer?.billing_address || "",
+      shipping_address: customer?.shipping_address || "",
+      customer_code: customer?.customer_code || "",
+    },
+  });
+
+  useEffect(() => {
+    reset({
+      name: user?.name || "",
+      phone: user?.phone || "",
+      email: user?.email || "",
+      billing_address: customer?.billing_address || "",
+      shipping_address: customer?.shipping_address || "",
+      customer_code: customer?.customer_code || "",
+    });
+  }, [
+    customer?.billing_address,
+    customer?.customer_code,
+    customer?.shipping_address,
+    reset,
+    user?.email,
+    user?.name,
+    user?.phone,
+  ]);
+
+  const handleProfileUpdate = async (formData) => {
+    try {
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+      };
+
+      const response = await updateProfile(payload).unwrap();
+      toast.success(response?.message || "Profile updated successfully");
+    } catch (error) {
+      const errorMessage =
+        error?.data?.message || "Profile update failed. Please try again.";
+      const fieldErrors = error?.data?.errors;
+
+      if (fieldErrors && typeof fieldErrors === "object") {
+        Object.entries(fieldErrors).forEach(([fieldName, messages]) => {
+          setError(fieldName, {
+            type: "server",
+            message: Array.isArray(messages) ? messages[0] : messages,
+          });
+        });
+      }
+
+      toast.error(errorMessage);
+    }
+  };
+
   return (
     <div className="rounded-[24px] border border-gray-200 bg-white p-4 sm:rounded-[30px] sm:p-7 lg:p-8">
       <div className="mb-6 flex flex-col gap-4 border-b border-gray-100 pb-5 sm:mb-8 sm:pb-6 sm:flex-row sm:items-start sm:justify-between">
@@ -32,7 +101,7 @@ export default function ProfileSection({ user, customer }) {
         </div>
       </div>
 
-      <form className="space-y-5 sm:space-y-6">
+      <form onSubmit={handleSubmit(handleProfileUpdate)} className="space-y-5 sm:space-y-6">
         <div className="grid gap-4 sm:gap-5 md:grid-cols-2">
           <div>
             <label className="mb-1 block text-sm font-semibold text-slate-700">
@@ -45,10 +114,15 @@ export default function ProfileSection({ user, customer }) {
               />
               <input
                 type="text"
-                defaultValue={user?.name || ""}
                 className={`${inputClassName} pl-11`}
+                {...register("name", {
+                  required: "Name is required",
+                })}
               />
             </div>
+            {errors.name && (
+              <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
+            )}
           </div>
 
           <div>
@@ -62,10 +136,23 @@ export default function ProfileSection({ user, customer }) {
               />
               <input
                 type="tel"
-                defaultValue={user?.phone || ""}
                 className={`${inputClassName} pl-11`}
+                maxLength="11"
+                {...register("phone", {
+                  required: "Phone number is required",
+                  validate: (value) =>
+                    /^01\d{9}$/.test(value) || "Enter a valid 11-digit phone number",
+                  onChange: (e) => {
+                    e.target.value = e.target.value
+                      .replace(/[^0-9]/g, "")
+                      .slice(0, 11);
+                  },
+                })}
               />
             </div>
+            {errors.phone && (
+              <p className="mt-1 text-sm text-red-500">{errors.phone.message}</p>
+            )}
           </div>
 
           <div>
@@ -79,10 +166,19 @@ export default function ProfileSection({ user, customer }) {
               />
               <input
                 type="email"
-                defaultValue={user?.email || ""}
                 className={`${inputClassName} pl-11`}
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /\S+@\S+\.\S+/,
+                    message: "Enter a valid email address",
+                  },
+                })}
               />
             </div>
+            {errors.email && (
+              <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
+            )}
           </div>
 
           <div>
@@ -91,9 +187,9 @@ export default function ProfileSection({ user, customer }) {
             </label>
             <input
               type="text"
-              defaultValue={customer?.customer_code || ""}
               className={inputClassName}
               readOnly
+              {...register("customer_code")}
             />
           </div>
 
@@ -108,9 +204,9 @@ export default function ProfileSection({ user, customer }) {
               />
               <textarea
                 rows={4}
-                defaultValue={customer?.billing_address || ""}
                 placeholder="Add your billing address"
                 className={`${textareaClassName} pl-11`}
+                {...register("billing_address")}
               />
             </div>
           </div>
@@ -126,9 +222,9 @@ export default function ProfileSection({ user, customer }) {
               />
               <textarea
                 rows={4}
-                defaultValue={customer?.shipping_address || ""}
                 placeholder="Add your shipping address"
                 className={`${textareaClassName} pl-11`}
+                {...register("shipping_address")}
               />
             </div>
           </div>
@@ -139,10 +235,11 @@ export default function ProfileSection({ user, customer }) {
             Keep your account information up to date for a smoother checkout experience.
           </p>
           <button
-            type="button"
-            className="inline-flex w-full items-center justify-center rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-secondary sm:w-auto"
+            type="submit"
+            disabled={isLoading}
+            className="inline-flex w-full items-center justify-center rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-secondary disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
           >
-            Save Changes
+            {isLoading ? "Saving..." : "Save Changes"}
           </button>
         </div>
       </form>

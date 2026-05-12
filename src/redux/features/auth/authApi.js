@@ -60,6 +60,30 @@ export const authApi = baseApi.injectEndpoints({
                 }
             },
         }),
+        updateProfile: builder.mutation({
+            query: (payload) => ({
+                url: "/auth/update-profile",
+                method: "POST",
+                body: payload,
+            }),
+            async onQueryStarted(_, { dispatch, getState, queryFulfilled }) {
+                try {
+                    const { data } = await queryFulfilled;
+                    const currentToken = getState()?.auth?.token || null;
+
+                    if (currentToken && data?.data?.user) {
+                        dispatch(
+                            setCredentials({
+                                user: data.data.user,
+                                token: currentToken,
+                            }),
+                        );
+                    }
+                } catch {
+                    // Errors are handled in the consuming UI.
+                }
+            },
+        }),
         logout: builder.mutation({
             query: () => ({
                 url: "/auth/logout",
@@ -82,5 +106,6 @@ export const {
     useLoginMutation,
     useGetMeQuery,
     useLazyGetMeQuery,
+    useUpdateProfileMutation,
     useLogoutMutation,
 } = authApi;

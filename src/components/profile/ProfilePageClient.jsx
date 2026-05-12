@@ -3,6 +3,7 @@
 import { Heart, Package, Settings, User } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 import { toast } from "sonner";
 import { useLogoutMutation } from "@/redux/features/auth/authApi";
 import LogoutNavItem from "./LogoutNavItem";
@@ -18,11 +19,13 @@ const navItems = [
   { id: "settings", label: "Settings", icon: Settings },
 ];
 
-export default function ProfilePageClient({ user }) {
+export default function ProfilePageClient({ user: initialUser }) {
   const router = useRouter();
+  const authUser = useSelector((state) => state.auth.user);
   const [logoutUser, { isLoading: isLoggingOut }] = useLogoutMutation();
   const [activeSection, setActiveSection] = useState("profile");
 
+  const user = authUser || initialUser;
   const customer = user?.customer || {};
   const initials = useMemo(() => {
     return (
@@ -74,7 +77,7 @@ export default function ProfilePageClient({ user }) {
                     <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/70">
                       Account
                     </p>
-                    <h1 className="truncate text-lg font-bold sm:text-xl">{user?.name}</h1>
+                    <h1 className="truncate text-lg font-bold sm:text-xl capitalize">{user?.name}</h1>
                     <p className="truncate text-xs text-white/80 sm:text-sm">{user?.email}</p>
                   </div>
                 </div>
@@ -112,16 +115,14 @@ export default function ProfilePageClient({ user }) {
                         key={item.id}
                         type="button"
                         onClick={() => setActiveSection(item.id)}
-                        className={`flex w-full items-center gap-3 rounded-lg px-4 text-left text-sm font-semibold transition-all duration-200 ${
-                          isActive
-                            ? "bg-primary text-white"
-                            : "text-slate-700 hover:bg-slate-50 hover:text-primary"
-                        }`}
+                        className={`flex w-full items-center gap-3 rounded-lg px-4 text-left text-sm font-semibold transition-all duration-200 ${isActive
+                          ? "bg-primary text-white"
+                          : "text-slate-700 hover:bg-slate-50 hover:text-primary"
+                          }`}
                       >
                         <span
-                          className={`flex h-10 w-10 items-center justify-center rounded-xl ${
-                            isActive ? "text-white" : "text-primary"
-                          }`}
+                          className={`flex h-10 w-10 items-center justify-center rounded-xl ${isActive ? "text-white" : "text-primary"
+                            }`}
                         >
                           <Icon size={18} />
                         </span>
@@ -146,11 +147,10 @@ export default function ProfilePageClient({ user }) {
                         key={item.id}
                         type="button"
                         onClick={() => setActiveSection(item.id)}
-                        className={`flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-semibold transition-all duration-200 ${
-                          isActive
-                            ? "bg-primary text-white"
-                            : "bg-slate-50 text-slate-700"
-                        }`}
+                        className={`flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-semibold transition-all duration-200 ${isActive
+                          ? "bg-primary text-white"
+                          : "bg-slate-50 text-slate-700"
+                          }`}
                       >
                         <Icon size={18} />
                         <span>{item.label}</span>
