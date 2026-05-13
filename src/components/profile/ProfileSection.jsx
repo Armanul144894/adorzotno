@@ -8,6 +8,8 @@ import { useUpdateProfileMutation } from "@/redux/features/auth/authApi";
 
 const inputClassName =
   "h-12 w-full rounded-xl border border-gray-200 bg-white px-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-primary/10";
+const disabledInputClassName =
+  "h-12 w-full rounded-xl border border-gray-200 bg-slate-50 px-4 text-sm text-slate-500 outline-none";
 
 const textareaClassName =
   "w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-primary/10";
@@ -56,6 +58,8 @@ export default function ProfileSection({ user, customer }) {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
+        billing_address: formData.billing_address,
+        shipping_address: formData.shipping_address,
       };
 
       const response = await updateProfile(payload).unwrap();
@@ -187,8 +191,8 @@ export default function ProfileSection({ user, customer }) {
             </label>
             <input
               type="text"
-              className={inputClassName}
-              readOnly
+              className={disabledInputClassName}
+              disabled
               {...register("customer_code")}
             />
           </div>
