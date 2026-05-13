@@ -137,8 +137,8 @@ export default function BrandSection() {
               return (
                 <SwiperSlide key={brand.id}>
                   <Link href={`/brand/${brand.slug}`}>
-                    <div className="group relative h-full cursor-pointer overflow-hidden rounded-2xl shadow-sm border border-transparent bg-white transition-all duration-300 hover:border-primary/20">
-                      <div className="relative flex h-36 items-center justify-center overflow-hidden bg-slate-50 p-6 transition-all duration-300">
+                    <div className="group relative h-full cursor-pointer overflow-hidden rounded-2xl shadow-md border border-gray-50 bg-white transition-all duration-300 hover:border-primary/20">
+                      <div className="relative flex h-36 items-center justify-center overflow-hidden p-6 transition-all duration-300">
                         <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-10">
                           <div
                             className="absolute inset-0"

@@ -6,7 +6,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "http",
-        hostname: "127.0.0.1:3000",
+        hostname: "localhost/adorzotno-pos/pos",
       },
       {
         protocol: "https",

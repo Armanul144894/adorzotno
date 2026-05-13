@@ -62,9 +62,9 @@ export default function BrandProductsPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       <div className="bg-white border-b">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4 py-2">
           <div className="flex items-center gap-2 text-sm text-gray-600">
             <Link href="/" className="hover:text-primary flex items-center gap-1">
               <Home size={16} />
@@ -81,7 +81,7 @@ export default function BrandProductsPage() {
       </div>
 
       <div className="bg-white border-b mb-6">
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto py-8">
           <div className="relative h-48 md:h-64 rounded-2xl overflow-hidden mb-6">
             <Image src={currentBrand.banner} alt={currentBrand.name} fill className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/40"></div>
@@ -168,8 +168,8 @@ export default function BrandProductsPage() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 pb-12">
-        <div className="bg-white rounded-lg shadow-md p-4 mb-6">
+      <div className="container mx-auto pb-12">
+        <div className="bg-white rounded-lg shadow-sm border p-4 mb-6">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <h2 className="text-lg font-bold text-gray-800">{sortedProducts.length} Products</h2>
 
@@ -207,7 +207,7 @@ export default function BrandProductsPage() {
         </div>
 
         {sortedProducts.length === 0 ? (
-          <div className="bg-white rounded-lg shadow-md p-12 text-center">
+          <div className="bg-white rounded-lg shadow-sm border p-12 text-center">
             <Package className="mx-auto text-gray-300 mb-4" size={64} />
             <h3 className="text-xl font-bold text-gray-800 mb-2">No Products Found</h3>
           </div>
@@ -224,7 +224,7 @@ export default function BrandProductsPage() {
                 {viewMode === 'grid' ? (
                   <ProductCard product={product} />
                 ) : (
-                  <div className="bg-white rounded-lg shadow-md p-4 flex gap-4 hover:shadow-xl transition">
+                  <div className="bg-white rounded-lg shadow-sm border p-4 flex gap-4 hover:shadow-xl transition">
                     <Image
                       src={product.images[0]}
                       alt={product.name}
