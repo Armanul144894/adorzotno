@@ -2,19 +2,25 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, ChevronRight, Grid2x2 } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+import { useMemo } from "react";
+import { useGetCategoriesQuery } from "@/redux/features/category/categoryApi";
+import { getImageUrl } from "@/lib/imageHelpers";
 
-const slugify = (text) =>
-  text
-    .toLowerCase()
-    .replace(/&/g, "and")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
+export default function HeaderCategoryMenu({
+  isOpen,
+  onClose,
+}) {
+  const { data: apiCategories = [], isLoading } = useGetCategoriesQuery();
 
-export default function HeaderCategoryMenu({ isOpen, onClose, categories }) {
+  const categories = useMemo(() => {
+    return apiCategories
+      .filter((category) => category?.status ? category.status === "active" : true)
+      .sort((a, b) => (a?.sort_order ?? 9999) - (b?.sort_order ?? 9999));
+  }, [apiCategories]);
+
   if (!isOpen) return null;
 
-  const featuredCategories = categories.slice(0, 3);
   const midpoint = Math.ceil(categories.length / 2);
   const categoryColumns = [
     categories.slice(0, midpoint),
@@ -43,40 +49,77 @@ export default function HeaderCategoryMenu({ isOpen, onClose, categories }) {
           </Link>
         </div>
 
-        <div className="grid gap-x-3 gap-y-2 md:grid-cols-2">
-          {categoryColumns.map((column, columnIndex) => (
-            <div key={columnIndex} className="space-y-2">
-              {column.map((category) => (
-                <Link
-                  key={category.id}
-                  href={`/category/${slugify(category.name)}`}
-                  onClick={onClose}
-                  className="group/item flex items-center justify-between rounded-lg px-3 py-2.5 transition-all duration-300 hover:bg-gradient-to-r hover:from-primary/20 hover:to-primary/10"
-                >
-                  <div className="flex min-w-0 items-center gap-3">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-lg">
-                      {category.icon}
-                    </span>
-                    <div className="min-w-0">
-                      <p className="truncate text-sm font-semibold text-slate-800 transition-colors group-hover/item:text-primary">
-                        {category.name}
-                      </p>
-                      <p className="text-xs text-slate-500">
-                        {category.count}+ products
-                      </p>
-                    </div>
+        {isLoading ? (
+          <div className="grid gap-x-3 gap-y-2 md:grid-cols-2">
+            {Array.from({ length: 8 }).map((_, index) => (
+              <div
+                key={index}
+                className="flex items-center justify-between rounded-lg px-3 py-2.5"
+              >
+                <div className="flex min-w-0 items-center gap-3">
+                  <div className="h-10 w-10 animate-pulse rounded-lg bg-slate-100" />
+                  <div className="min-w-0 space-y-2">
+                    <div className="h-4 w-28 animate-pulse rounded bg-slate-100" />
+                    <div className="h-3 w-20 animate-pulse rounded bg-slate-100" />
                   </div>
-                  <ChevronRight
-                    size={16}
-                    className="shrink-0 text-slate-300 transition-all duration-300 group-hover/item:translate-x-0.5 group-hover/item:text-primary"
-                  />
-                </Link>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid gap-x-3 gap-y-2 md:grid-cols-2">
+            {categoryColumns.map((column, columnIndex) => (
+              <div key={columnIndex} className="space-y-2">
+                {column.map((category) => {
+                  const iconUrl = category?.icon ? getImageUrl(category.icon) : null;
 
+                  return (
+                    <Link
+                      key={category.id}
+                      href={`/category/${category.slug}`}
+                      onClick={onClose}
+                      className="group/item flex items-center justify-between rounded-lg px-3 py-2.5 transition-all duration-300 hover:bg-gradient-to-r hover:from-primary/20 hover:to-primary/10"
+                    >
+                      <div className="flex min-w-0 items-center gap-3">
+                        <span className={`flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg ${iconUrl ? "bg-transparent" : "bg-slate-100"}`}>
+                          {iconUrl ? (
+                            <Image
+                              src={iconUrl}
+                              alt={category.name}
+                              width={40}
+                              height={40}
+                              className="h-full w-full object-cover"
+                              unoptimized
+                            />
+                          ) : (
+                            <span className="text-sm font-bold text-primary">
+                              {category?.name?.slice(0, 2)?.toUpperCase()}
+                            </span>
+                          )}
+                        </span>
+                        <div className="min-w-0">
+                          <p className="truncate text-sm font-semibold text-slate-800 transition-colors group-hover/item:text-primary">
+                            {category.name}
+                          </p>
+                          <p className="text-xs text-slate-500">
+                            {category.children?.length > 0
+                              ? `${category.children.length} subcategories`
+                              : "Explore products"}
+                          </p>
+                        </div>
+                      </div>
+                      <ChevronRight
+                        size={16}
+                        className="shrink-0 text-slate-300 transition-all duration-300 group-hover/item:translate-x-0.5 group-hover/item:text-primary"
+                      />
+                    </Link>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

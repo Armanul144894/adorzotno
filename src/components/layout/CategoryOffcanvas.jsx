@@ -1,10 +1,20 @@
-import React from "react";
+"use client";
+
+import React, { useMemo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ChevronRight, Menu, X } from "lucide-react";
-import allCategories from "../../../public/data/category";
+import { getImageUrl } from "@/lib/imageHelpers";
+import { useGetCategoriesQuery } from "@/redux/features/category/categoryApi";
 
 export default function CategoryOffcanvas({ sidebarOpen, setSidebarOpen }) {
-  const categories = allCategories;
+  const { data: apiCategories = [], isLoading } = useGetCategoriesQuery();
+
+  const categories = useMemo(() => {
+    return apiCategories
+      .filter((category) => (category?.status ? category.status === "active" : true))
+      .sort((a, b) => (a?.sort_order ?? 9999) - (b?.sort_order ?? 9999));
+  }, [apiCategories]);
 
   const handleCategoryClick = () => {
     setSidebarOpen(false);
@@ -46,34 +56,73 @@ export default function CategoryOffcanvas({ sidebarOpen, setSidebarOpen }) {
 
           {/* Category List */}
           <div className="flex-1 overflow-y-auto py-6 space-y-2">
-            {categories?.map((category, index) => {
-              const slug = category.name
-                .toLowerCase()
-                .replace(/&/g, "and")
-                .replace(/[^a-z0-9]+/g, "-")
-                .replace(/(^-|-$)/g, "");
-
-              return (
-                <Link
+            {isLoading ? (
+              Array.from({ length: 8 }).map((_, index) => (
+                <div
                   key={index}
-                  href={`/category/${slug}`}
-                  onClick={handleCategoryClick}
-                  className="flex items-center justify-between px-6 py-2 rounded-lg hover:bg-sky-50 transition group"
+                  className="flex items-center justify-between px-6 py-3"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-8 mx-auto">
-                      <span className="text-xl">{category.icon}</span>
+                    <div className="h-10 w-10 animate-pulse rounded-lg bg-slate-100" />
+                    <div className="space-y-2">
+                      <div className="h-4 w-28 animate-pulse rounded bg-slate-100" />
+                      <div className="h-3 w-16 animate-pulse rounded bg-slate-100" />
                     </div>
-                    <span className="text-gray-700 group-hover:text-primary font-bold">
-                      {category.name}
-                    </span>
                   </div>
-                  <span className="text-xs px-2 py-1 rounded">
-                    <ChevronRight />
-                  </span>
-                </Link>
-              );
-            })}
+                  <div className="h-5 w-5 animate-pulse rounded bg-slate-100" />
+                </div>
+              ))
+            ) : (
+              categories?.map((category) => {
+                const iconUrl = category?.icon ? getImageUrl(category.icon) : null;
+
+                return (
+                  <Link
+                    key={category.id}
+                    href={`/category/${category.slug}`}
+                    onClick={handleCategoryClick}
+                    className="flex items-center justify-between px-6 py-3 transition group hover:bg-sky-50"
+                  >
+                    <div className="flex min-w-0 items-center gap-3">
+                      <span
+                        className={`flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg ${iconUrl ? "bg-transparent" : "bg-slate-100"
+                          }`}
+                      >
+                        {iconUrl ? (
+                          <Image
+                            src={iconUrl}
+                            alt={category.name}
+                            width={40}
+                            height={40}
+                            className="h-full w-full object-cover"
+                            unoptimized
+                          />
+                        ) : (
+                          <span className="text-sm font-bold text-primary">
+                            {category?.name?.slice(0, 2)?.toUpperCase()}
+                          </span>
+                        )}
+                      </span>
+
+                      <div className="min-w-0">
+                        <span className="block truncate font-bold text-gray-700 group-hover:text-primary">
+                          {category.name}
+                        </span>
+                        <span className="block text-xs text-slate-500">
+                          {category.children?.length > 0
+                            ? `${category.children.length} subcategories`
+                            : "Explore products"}
+                        </span>
+                      </div>
+                    </div>
+
+                    <span className="rounded text-slate-400 transition group-hover:text-primary">
+                      <ChevronRight size={18} />
+                    </span>
+                  </Link>
+                );
+              })
+            )}
           </div>
         </div>
       </div>

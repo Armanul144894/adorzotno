@@ -21,7 +21,6 @@ import SignInModal from "../modules/auth/SignInModal";
 import HeaderSearch from "./HeaderSearch";
 import { useCart } from "../../lib/useCart";
 import DeliveryLocation from "../DeliveryLocation";
-import allCategories from "../../../public/data/category";
 import { useLogoutMutation } from "@/redux/features/auth/authApi";
 
 export default function Header() {
@@ -234,7 +233,6 @@ export default function Header() {
               <HeaderCategoryMenu
                 isOpen={categoryMenuOpen}
                 onClose={() => setCategoryMenuOpen(false)}
-                categories={allCategories}
               />
             </div>
 
