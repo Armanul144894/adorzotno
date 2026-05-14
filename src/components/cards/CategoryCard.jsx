@@ -1,6 +1,6 @@
-import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { getImageUrl } from "@/lib/imageHelpers";
 
 const slugify = (text) =>
     text
@@ -10,9 +10,12 @@ const slugify = (text) =>
         .replace(/(^-|-$)/g, "");
 
 export default function CategoryCard({ category }) {
+    const categoryHref = `/category/${category?.slug || slugify(category?.name || "")}`;
+    const imageSrc = getImageUrl(category.image);
+
     return (
         <Link
-            href={`/category/${slugify(category.name)}`}
+            href={categoryHref}
             className="group flex flex-col items-center rounded-lg bg-transparent p-2 sm:p-3 text-center transition-transform duration-300"
         >
             <div className="flex w-full items-center justify-center">
@@ -21,11 +24,12 @@ export default function CategoryCard({ category }) {
                     <div className="absolute inset-0 z-10 flex items-center justify-center">
                         <div className="relative h-[120%] w-[120%]">
                             <Image
-                                src={category.image}
+                                src={imageSrc}
                                 alt={category.name}
                                 fill
                                 sizes="112px"
                                 className="object-contain transition-transform duration-300 group-hover:scale-110"
+                                unoptimized
                             />
                         </div>
                     </div>
