@@ -231,6 +231,7 @@ export default function Header() {
               <div></div>
 
               <HeaderCategoryMenu
+                key={categoryMenuOpen ? "category-menu-open" : "category-menu-closed"}
                 isOpen={categoryMenuOpen}
                 onClose={() => setCategoryMenuOpen(false)}
               />

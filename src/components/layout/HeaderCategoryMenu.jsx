@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useGetCategoriesQuery } from "@/redux/features/category/categoryApi";
 import { getImageUrl } from "@/lib/imageHelpers";
 
@@ -12,6 +12,7 @@ export default function HeaderCategoryMenu({
   onClose,
 }) {
   const { data: apiCategories = [], isLoading } = useGetCategoriesQuery();
+  const [activeParentCategory, setActiveParentCategory] = useState(null);
 
   const categories = useMemo(() => {
     return apiCategories
@@ -19,34 +20,70 @@ export default function HeaderCategoryMenu({
       .sort((a, b) => (a?.sort_order ?? 9999) - (b?.sort_order ?? 9999));
   }, [apiCategories]);
 
+  const activeSubcategories = useMemo(() => {
+    if (!activeParentCategory?.children?.length) {
+      return [];
+    }
+
+    return activeParentCategory.children
+      .filter((category) => (category?.status ? category.status === "active" : true))
+      .sort((a, b) => (a?.sort_order ?? 9999) - (b?.sort_order ?? 9999));
+  }, [activeParentCategory]);
+
   if (!isOpen) return null;
 
-  const midpoint = Math.ceil(categories.length / 2);
+  const isSubcategoryView = Boolean(activeParentCategory);
+  const visibleCategories = isSubcategoryView ? activeSubcategories : categories;
+  const midpoint = Math.ceil(visibleCategories.length / 2);
   const categoryColumns = [
-    categories.slice(0, midpoint),
-    categories.slice(midpoint),
+    visibleCategories.slice(0, midpoint),
+    visibleCategories.slice(midpoint),
   ];
 
   return (
     <div className="absolute left-0 top-full z-50 mt-1 hidden w-[min(92vw,560px)] max-w-[560px] overflow-hidden border border-slate-200 bg-white shadow-[0_24px_80px_rgba(15,23,42,0.16)] lg:block">
       <div className="p-5 lg:max-h-[min(78vh,680px)] lg:overflow-y-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-gray-300">
         <div className="mb-4 flex items-center justify-between">
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
-              Shop Faster
-            </p>
-            <h3 className="mt-1 text-lg font-bold text-slate-900">
-              Explore by category
-            </h3>
-          </div>
-          <Link
-            href="/category"
-            onClick={onClose}
-            className="inline-flex items-center gap-1 rounded-full border border-primary/20 px-3 py-1.5 text-sm font-semibold text-primary transition-all hover:bg-primary hover:text-white"
-          >
-            View all
-            <ChevronRight size={16} />
-          </Link>
+          {isSubcategoryView ? (
+            <div className="flex w-full items-center justify-between gap-3">
+              <button
+                type="button"
+                onClick={() => setActiveParentCategory(null)}
+                className="inline-flex items-center gap-1 rounded-full border border-primary/20 px-3 py-1.5 text-sm font-semibold text-primary transition-all hover:bg-primary hover:text-white"
+              >
+                <ChevronRight size={16} className="rotate-180" />
+                Back
+              </button>
+
+              <div className="text-right">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
+                  Subcategories
+                </p>
+                <h3 className="mt-1 text-lg font-bold text-slate-600">
+                  {activeParentCategory?.name}
+                </h3>
+              </div>
+            </div>
+          ) : (
+            <>
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
+                  Shop Faster
+                </p>
+                <h3 className="mt-1 text-lg font-bold text-slate-600">
+                  Explore by category
+                </h3>
+              </div>
+              <Link
+                href="/category"
+                onClick={onClose}
+                className="inline-flex items-center gap-1 rounded-full border border-primary/20 px-3 py-1.5 text-sm font-semibold text-primary transition-all hover:bg-primary hover:text-white"
+              >
+                View all
+                <ChevronRight size={16} />
+              </Link>
+            </>
+          )}
         </div>
 
         {isLoading ? (
@@ -72,15 +109,18 @@ export default function HeaderCategoryMenu({
               <div key={columnIndex} className="space-y-2">
                 {column.map((category) => {
                   const iconUrl = category?.icon ? getImageUrl(category.icon) : null;
+                  const hasChildren = !isSubcategoryView && category.children?.length > 0;
 
                   return (
-                    <Link
+                    <div
                       key={category.id}
-                      href={`/category/${category.slug}`}
-                      onClick={onClose}
                       className="group/item flex items-center justify-between rounded-lg px-3 py-2.5 transition-all duration-300 hover:bg-gradient-to-r hover:from-primary/20 hover:to-primary/10"
                     >
-                      <div className="flex min-w-0 items-center gap-3">
+                      <Link
+                        href={`/category/${category.slug}`}
+                        onClick={onClose}
+                        className="flex min-w-0 flex-1 items-center gap-3"
+                      >
                         <span className={`flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg ${iconUrl ? "bg-transparent" : "bg-slate-100"}`}>
                           {iconUrl ? (
                             <Image
@@ -102,17 +142,26 @@ export default function HeaderCategoryMenu({
                             {category.name}
                           </p>
                           <p className="text-xs text-slate-500">
-                            {category.children?.length > 0
+                            {hasChildren
                               ? `${category.children.length} subcategories`
                               : "Explore products"}
                           </p>
                         </div>
-                      </div>
-                      <ChevronRight
-                        size={16}
-                        className="shrink-0 text-slate-300 transition-all duration-300 group-hover/item:translate-x-0.5 group-hover/item:text-primary"
-                      />
-                    </Link>
+                      </Link>
+
+                      {hasChildren ? (
+                        <button
+                          type="button"
+                          onClick={() => setActiveParentCategory(category)}
+                          className="ml-3 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-slate-500 transition-all duration-300 hover:bg-white/80 hover:text-primary group-hover/item:translate-x-0.5"
+                          aria-label={`View subcategories of ${category.name}`}
+                        >
+                          <ChevronRight size={18} />
+                        </button>
+                      ) : (
+                        <span className="ml-3 h-10 w-10 shrink-0" />
+                      )}
+                    </div>
                   );
                 })}
               </div>
