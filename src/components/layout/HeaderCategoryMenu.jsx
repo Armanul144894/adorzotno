@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useGetCategoriesQuery } from "@/redux/features/category/categoryApi";
 import { getImageUrl } from "@/lib/imageHelpers";
 
@@ -13,6 +13,7 @@ export default function HeaderCategoryMenu({
 }) {
   const { data: apiCategories = [], isLoading } = useGetCategoriesQuery();
   const [activeParentCategory, setActiveParentCategory] = useState(null);
+  const scrollContainerRef = useRef(null);
 
   const categories = useMemo(() => {
     return apiCategories
@@ -44,6 +45,22 @@ export default function HeaderCategoryMenu({
 
   const categoryColumns = buildCategoryColumns(categories);
   const subcategoryColumns = buildCategoryColumns(activeSubcategories);
+
+  const scrollMenuToTop = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({ top: 0, behavior: "instant" });
+    }
+  };
+
+  const handleOpenSubcategories = (category) => {
+    scrollMenuToTop();
+    setActiveParentCategory(category);
+  };
+
+  const handleBackToCategories = () => {
+    scrollMenuToTop();
+    setActiveParentCategory(null);
+  };
 
   const renderCategoryColumns = (columns, subcategoryView = false) => (
     <div className="grid gap-x-3 gap-y-2 md:grid-cols-2">
@@ -94,7 +111,7 @@ export default function HeaderCategoryMenu({
                 {hasChildren ? (
                   <button
                     type="button"
-                    onClick={() => setActiveParentCategory(category)}
+                    onClick={() => handleOpenSubcategories(category)}
                     className="ml-3 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-slate-500 transition-all duration-300 hover:bg-white/80 hover:text-primary group-hover/item:translate-x-0.5"
                     aria-label={`View subcategories of ${category.name}`}
                   >
@@ -113,13 +130,16 @@ export default function HeaderCategoryMenu({
 
   return (
     <div className="absolute left-0 top-full z-50 mt-1 hidden w-[min(92vw,560px)] max-w-[560px] overflow-hidden border border-slate-200 bg-white shadow-[0_24px_80px_rgba(15,23,42,0.16)] lg:block">
-      <div className="p-5 lg:max-h-[min(78vh,630px)] lg:overflow-y-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-gray-300">
+      <div
+        ref={scrollContainerRef}
+        className="p-5 lg:max-h-[min(78vh,630px)] lg:overflow-y-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-gray-300"
+      >
         <div className="mb-4 flex items-center justify-between transition-all duration-200 ease-out">
           {isSubcategoryView ? (
             <div className="flex w-full items-center justify-between gap-3">
               <button
                 type="button"
-                onClick={() => setActiveParentCategory(null)}
+                onClick={handleBackToCategories}
                 className="inline-flex items-center gap-1 rounded-full border border-primary/20 px-3 py-1.5 text-sm font-semibold text-primary transition-all hover:bg-primary hover:text-white"
               >
                 <ChevronRight size={16} className="rotate-180" />
