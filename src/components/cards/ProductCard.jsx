@@ -1,15 +1,24 @@
 ﻿"use client";
+
 import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useCart } from "../../lib/useCart";
 
+const formatPrice = (value) => {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed.toFixed(2) : "0.00";
+};
+
 export default function ProductCard({ product }) {
   const { addToCart, getItemQuantity, updateQuantity, removeItem } = useCart();
 
   const quantity = getItemQuantity(product.id);
   const inCart = quantity > 0;
+  const productHref = `/product/${product.slug}`;
+  const imageSrc = product.images?.[0] || "/images/no-image-available.png";
+  const discountTag = product.discountLabel || product.discount;
 
   const handleAdd = (e) => {
     e.preventDefault();
@@ -34,53 +43,49 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <div className="relative h-full flex-shrink-0 overflow-hidden border border-slate-200 rounded-lg bg-white transition-all hover:border-primary/20 hover:shadow-md">
-      <Link
-        href={`/product/${product.name
-          .toLowerCase()
-          .replace(/&/g, "and")
-          .replace(/[^a-z0-9]+/g, "-")
-          .replace(/(^-|-$)/g, "")}`}
-      >
-        {product.discount && (
-          <span className="absolute top-0 left-2 bg-red-600 text-white text-xs font-bold p-1.5 leading-tight [clip-path:polygon(0%_0%,100%_0%,100%_100%,87.5%_90%,75%_100%,62.5%_90%,50%_100%,37.5%_90%,25%_100%,12.5%_90%,0%_100%)] z-10">
-            {product.discount.split(" ")[0]} <br />
-            {product.discount.split(" ")[1]}
+    <div className="relative h-full flex-shrink-0 overflow-hidden rounded-lg border border-slate-200 bg-white transition-all hover:border-primary/20 hover:shadow-md">
+      <Link href={productHref}>
+        {discountTag ? (
+          <span className="absolute top-0 left-2 z-10 bg-red-600 p-1.5 text-xs font-bold leading-tight text-white [clip-path:polygon(0%_0%,100%_0%,100%_100%,87.5%_90%,75%_100%,62.5%_90%,50%_100%,37.5%_90%,25%_100%,12.5%_90%,0%_100%)]">
+            {discountTag.split(" ")[0]} <br />
+            {discountTag.split(" ")[1]}
           </span>
-        )}
+        ) : null}
 
-        <div className="bg-white h-full overflow-hidden">
-          <div className="relative h-40 lg:h-44 bg-gray-50 overflow-hidden">
+        <div className="h-full overflow-hidden bg-white">
+          <div className="relative h-40 overflow-hidden bg-gray-50 lg:h-44">
             <Image
-              src={product.images[0]}
+              src={imageSrc}
               alt={product.name}
               fill
               sizes="(max-width: 640px) 50vw, 25vw"
               className="object-cover transform transition-transform duration-300 group-hover:scale-105"
+              unoptimized
             />
           </div>
 
           <div className="p-3">
-            <h3 className="text-sm font-semibold text-gray-800 mb-2 line-clamp-2 h-10">
+            <h3 className="mb-2 line-clamp-2 h-10 text-sm font-semibold text-gray-800">
               {product.name}
             </h3>
 
             <div className="flex items-end justify-between">
-
-
               <div className="flex flex-col">
-                <span className="font-bold text-red-600 text-lg lg:text-xl">৳{product.price}</span>
-                <span className="line-through text-gray-400 text-sm">
-                  ৳{product.originalPrice}
+                <span className="text-lg font-bold text-red-600 lg:text-xl">
+                  {"\u09F3"}{formatPrice(product.price)}
                 </span>
-                <span>
-                  <span className="text-xs text-gray-500">
-                    <span className="text-sm md:text-base 2xl:text-lg text-orange-400">★★★★★</span> {product.rating} <span className="max-sm:hidden">(5)</span>
+                {product.originalPrice ? (
+                  <span className="text-sm text-gray-400 line-through">
+                    {"\u09F3"}{formatPrice(product.originalPrice)}
                   </span>
+                ) : null}
+                <span className="text-xs text-gray-500">
+                  <span className="text-sm text-orange-400 md:text-base 2xl:text-lg">
+                    {"\u2605\u2605\u2605\u2605\u2605"}
+                  </span>{" "}
+                  {product.rating} <span className="max-sm:hidden">(5)</span>
                 </span>
               </div>
-
-
             </div>
           </div>
         </div>
@@ -113,7 +118,7 @@ export default function ProductCard({ product }) {
               <div className="absolute inset-0 flex items-center justify-between gap-1 p-1 opacity-0 transition-all duration-300 ease-out group-hover:opacity-100">
                 <button
                   onClick={handleDecrease}
-                  className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-lg sm:text-xl leading-none text-primary shadow-sm transition-all duration-200 hover:bg-secondary hover:text-white"
+                  className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-lg leading-none text-primary shadow-sm transition-all duration-200 hover:bg-secondary hover:text-white sm:text-xl"
                 >
                   -
                 </button>
@@ -124,7 +129,7 @@ export default function ProductCard({ product }) {
 
                 <button
                   onClick={handleIncrease}
-                  className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-lg sm:text-xl leading-none text-primary shadow-sm transition-all duration-200 hover:bg-secondary hover:text-white"
+                  className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-lg leading-none text-primary shadow-sm transition-all duration-200 hover:bg-secondary hover:text-white sm:text-xl"
                 >
                   +
                 </button>
@@ -133,8 +138,6 @@ export default function ProductCard({ product }) {
           </div>
         )}
       </div>
-
-
     </div>
   );
 }

@@ -1,61 +1,132 @@
 "use client";
 
-import { ChevronRight, Heart, Home, Star } from "lucide-react";
+import { ChevronRight, Home } from "lucide-react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import React, { useMemo } from "react";
-import products from "../../../public/data/data";
-import allCategories from "../../../public/data/category";
+import React, { useMemo, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { getImageUrl } from "@/lib/imageHelpers";
+import {
+  useGetCategoriesQuery,
+  useGetCategoryProductsQuery,
+} from "@/redux/features/category/categoryApi";
 import FilteredProductCard from "./FilteredProductCard";
 
-export default function ProductCategoryCard() {
-  const { id } = useParams(); // ✅ correct param
+const toNumber = (value) => {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : 0;
+};
 
-  const slug = id
-    .toLowerCase()
-    .replace(/&/g, "and")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-  /* ================= DATA ================= */
-  const categories = allCategories;
+export default function ProductCategoryCard({ slug, initialPage = 1 }) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [currentPage, setCurrentPage] = useState(initialPage);
+  const { data: apiCategories = [], isLoading: isCategoriesLoading } =
+    useGetCategoriesQuery();
 
-  const allProducts = products;
-
-  /* ================= LOGIC ================= */
+  const flattenedCategories = useMemo(() => {
+    return (apiCategories || []).flatMap((category) => [
+      category,
+      ...(category.children || []),
+    ]);
+  }, [apiCategories]);
 
   const selectedCategory = useMemo(() => {
-    return categories.find(
-      (c) =>
-        c.name
-          .toLowerCase()
-          .replace(/&/g, "and")
-          .replace(/[^a-z0-9]+/g, "-")
-          .replace(/(^-|-$)/g, "") === slug,
-    );
-  }, [categories, slug]);
+    return flattenedCategories.find((category) => category.slug === slug);
+  }, [flattenedCategories, slug]);
+
+  const {
+    data: categoryProductsResponse = {},
+    isLoading: isProductsLoading,
+    isFetching: isProductsFetching,
+  } = useGetCategoryProductsQuery(
+    {
+      categoryId: selectedCategory?.id,
+      page: currentPage,
+      perPage: 20,
+    },
+    {
+      skip: !selectedCategory?.id,
+    },
+  );
+
+  const categoryData = categoryProductsResponse?.category || selectedCategory;
+  const productPagination = categoryProductsResponse?.products || null;
 
   const filteredProducts = useMemo(() => {
-    return allProducts.filter(
-      (p) =>
-        p.category
-          .toLowerCase()
-          .replace(/&/g, "and")
-          .replace(/[^a-z0-9]+/g, "-")
-          .replace(/(^-|-$)/g, "") === slug,
-    );
-  }, [allProducts, slug]);
+    const apiProducts = productPagination?.data || [];
 
-  /* ================= UI ================= */
+    return apiProducts.map((product) => {
+      const primarySku = product?.sku?.[0] || {};
+      const onlinePrice = toNumber(primarySku?.online_price);
+      const retailPrice = toNumber(primarySku?.retail_price);
+      const effectivePrice = onlinePrice > 0 ? onlinePrice : retailPrice;
+      const originalPrice = retailPrice > effectivePrice ? retailPrice : null;
+      const discountAmount = originalPrice ? originalPrice - effectivePrice : 0;
+      const discountPercent = originalPrice
+        ? Math.round((discountAmount / originalPrice) * 100)
+        : 0;
+      const imagePath =
+        primarySku?.images?.[0]?.image_path ||
+        product?.product_images?.[0]?.image_path ||
+        product?.thumbnail_image;
+
+      return {
+        id: product.id,
+        slug: product.slug,
+        name: product.name,
+        rating: primarySku?.rating || "0.0",
+        price: effectivePrice,
+        originalPrice,
+        discountAmount: discountAmount > 0 ? discountAmount : null,
+        discountLabel: discountPercent > 0 ? `${discountPercent}% OFF` : null,
+        images: [
+          imagePath
+            ? getImageUrl(imagePath)
+            : "/images/no-image-available.png",
+        ],
+        brand: product?.brand?.name || "",
+        category: product?.category?.name || categoryData?.name || "",
+      };
+    });
+  }, [categoryData?.name, productPagination?.data]);
+
+  const isLoading =
+    isCategoriesLoading || isProductsLoading || isProductsFetching;
+
+  const handlePageChange = (page) => {
+    if (!productPagination?.last_page) {
+      return;
+    }
+
+    const nextPage = Math.min(Math.max(page, 1), productPagination.last_page);
+
+    if (nextPage === currentPage) {
+      return;
+    }
+
+    setCurrentPage(nextPage);
+
+    const nextSearchParams = new URLSearchParams(searchParams.toString());
+
+    if (nextPage <= 1) {
+      nextSearchParams.delete("page");
+    } else {
+      nextSearchParams.set("page", String(nextPage));
+    }
+
+    const nextQuery = nextSearchParams.toString();
+    const nextUrl = nextQuery ? `${pathname}?${nextQuery}` : pathname;
+
+    router.push(nextUrl);
+  };
 
   return (
-    <div className="">
-      {/* Breadcrumb */}
-
-      {/* Category Header */}
-      <div className="bg-gradient-to-r from-primary to-primary/80 rounded-md px-4 py-3 mb-6 text-white">
+    <div>
+      <div className="mb-6 rounded-md bg-gradient-to-r from-primary to-primary/80 px-4 py-3 text-white">
         <div className="flex items-center gap-4">
           <Link href="/">
-            <button className="flex items-center gap-1 hover:underline hover:underline-offset-2 cursor-pointer">
+            <button className="flex cursor-pointer items-center gap-1 hover:underline hover:underline-offset-2">
               <Home size={16} />
               Home
             </button>
@@ -63,27 +134,22 @@ export default function ProductCategoryCard() {
           <ChevronRight size={16} />
           <div className="space-x-1">
             <span className="font-semibold">
-              {selectedCategory?.name}
+              {categoryData?.name || "Category"}
             </span>
             <span className="text-sm text-gray-100">
-              ({filteredProducts.length} items)
+              ({productPagination?.total ?? filteredProducts.length} items)
             </span>
           </div>
         </div>
       </div>
 
-      {/* Products Header */}
-      {/* <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-gray-800">
-          {selectedCategory?.name}
-          <span className="text-sm text-gray-500 ml-2">
-            ({filteredProducts.length} items)
-          </span>
-        </h2>
-      </div> */}
-
-      {/* Products Grid */}
-      <FilteredProductCard filteredProducts={filteredProducts} />
+      <FilteredProductCard
+        filteredProducts={filteredProducts}
+        isLoading={isLoading}
+        pagination={productPagination}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 }
