@@ -66,10 +66,7 @@ export default function ProductCategoryCard({ slug, initialPage = 1 }) {
       const discountPercent = originalPrice
         ? Math.round((discountAmount / originalPrice) * 100)
         : 0;
-      const imagePath =
-        primarySku?.images?.[0]?.image_path ||
-        product?.product_images?.[0]?.image_path ||
-        product?.thumbnail_image;
+      const imagePath = product?.thumbnail_image;
 
       return {
         id: product.id,

@@ -4,6 +4,7 @@ import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import RatingStars from "../shared/RatingStars";
 import { useCart } from "../../lib/useCart";
 
 const formatPrice = (value) => {
@@ -52,7 +53,7 @@ export default function ProductCard({ product }) {
           </span>
         ) : null}
 
-        <div className="h-full overflow-hidden bg-white">
+        <div className="flex h-full flex-col overflow-hidden bg-white">
           <div className="relative h-40 overflow-hidden bg-gray-50 lg:h-44">
             <Image
               src={imageSrc}
@@ -64,12 +65,12 @@ export default function ProductCard({ product }) {
             />
           </div>
 
-          <div className="p-3">
+          <div className="flex flex-1 flex-col p-3">
             <h3 className="mb-2 line-clamp-2 h-10 text-sm font-semibold text-gray-800">
               {product.name}
             </h3>
 
-            <div className="flex items-end justify-between">
+            <div className="mt-auto flex items-end justify-between">
               <div className="flex flex-col">
                 <span className="text-lg font-bold text-red-600 lg:text-xl">
                   {"\u09F3"}{formatPrice(product.price)}
@@ -79,12 +80,7 @@ export default function ProductCard({ product }) {
                     {"\u09F3"}{formatPrice(product.originalPrice)}
                   </span>
                 ) : null}
-                <span className="text-xs text-gray-500">
-                  <span className="text-sm text-orange-400 md:text-base 2xl:text-lg">
-                    {"\u2605\u2605\u2605\u2605\u2605"}
-                  </span>{" "}
-                  {product.rating} <span className="max-sm:hidden">(5)</span>
-                </span>
+                <RatingStars rating={product.rating} />
               </div>
             </div>
           </div>
@@ -99,7 +95,6 @@ export default function ProductCard({ product }) {
         }}
       >
         {!inCart ? (
-          // Normal Add button
           <button
             onClick={handleAdd}
             className="flex h-10 w-12 items-center justify-center rounded-lg border border-primary/20 bg-white text-primary transition-all hover:bg-primary hover:text-white"
@@ -107,10 +102,7 @@ export default function ProductCard({ product }) {
             <ShoppingCart size={18} />
           </button>
         ) : (
-          // Cart state
           <div className="group relative">
-
-            {/* Default */}
             <div className="relative h-10 w-12 overflow-hidden rounded-xl border border-primary/15 bg-primary text-white shadow-sm transition-all duration-300 ease-out group-hover:w-[128px] group-hover:bg-primary/8">
               <div className="absolute inset-0 flex items-center justify-center transition-all duration-200 group-hover:scale-90 group-hover:opacity-0">
                 <span className="font-bold">{quantity}</span>
