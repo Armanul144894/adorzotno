@@ -1,261 +1,39 @@
 "use client";
+
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Search,
-  Grid3x3,
-  List,
-  TrendingUp,
-  Filter,
-  ChevronDown,
-  Package,
-  Star,
-  ArrowUpDown,
-} from "lucide-react";
+import { Search, Grid3x3, List, Package } from "lucide-react";
+import RatingStars from "../shared/RatingStars";
+import { getImageUrl } from "@/lib/imageHelpers";
+import { useGetBrandsQuery } from "@/redux/features/brand/brandApi";
+
+const toNumber = (value) => {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : 0;
+};
 
 export default function BrandPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [viewMode, setViewMode] = useState("grid"); // 'grid' or 'list'
+  const [viewMode, setViewMode] = useState("grid");
   const [sortBy, setSortBy] = useState("name-asc");
-  const [filterBy, setFilterBy] = useState("all"); // 'all', 'popular', 'az'
+  const { data: brands = [], isLoading } = useGetBrandsQuery();
 
-  const brands = [
-    {
-      id: 1,
-      name: "Pfizer",
-      slug: "pfizer",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Pfizer_logo.svg/250px-Pfizer_logo.svg.png",
-      products: 145,
-      description: "Leading pharmaceutical company",
-      rating: 4.8,
-      totalReviews: 12847,
-      bgColor: "bg-blue-50",
-      hoverColor: "hover:bg-blue-100",
-      founded: "1849",
-      country: "USA",
-      specialties: ["Vaccines", "Oncology", "Cardiology"],
-    },
-    {
-      id: 2,
-      name: "Johnson & Johnson",
-      slug: "johnson-johnson",
-      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-7B24ITY89Biek0SSz9BuPZD0iKSTi8SNDQ&s",
-      products: 238,
-      description: "Healthcare innovation leader",
-      rating: 4.7,
-      totalReviews: 18934,
-      bgColor: "bg-red-50",
-      hoverColor: "hover:bg-red-100",
-      founded: "1886",
-      country: "USA",
-      specialties: ["Consumer Health", "Medical Devices", "Pharmaceuticals"],
-    },
-    {
-      id: 3,
-      name: "Bayer",
-      slug: "bayer",
-      logo: "https://e7.pngegg.com/pngimages/979/373/png-clipart-leverkusen-bayer-cropscience-agriculture-business-pharma-company-text-thumbnail.png",
-      products: 152,
-      description: "Science for a better life",
-      rating: 4.6,
-      totalReviews: 9876,
-      bgColor: "bg-green-50",
-      hoverColor: "hover:bg-green-100",
-      founded: "1863",
-      country: "Germany",
-      specialties: ["Pain Relief", "Cardiology", "Women's Health"],
-    },
-    {
-      id: 4,
-      name: "GlaxoSmithKline",
-      slug: "glaxosmithkline",
-      logo: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/GSK_logo_2014.svg/250px-GSK_logo_2014.svg.png",
-      products: 187,
-      description: "Global healthcare company",
-      rating: 4.7,
-      totalReviews: 11234,
-      bgColor: "bg-orange-50",
-      hoverColor: "hover:bg-orange-100",
-      founded: "2000",
-      country: "UK",
-      specialties: ["Vaccines", "Respiratory", "HIV"],
-    },
-    {
-      id: 5,
-      name: "Abbott",
-      slug: "abbott",
-      logo: "https://www.abbott.com.sg/etc.clientlibs/abbott-platform/clientlibs/clientlib-site/resources/images/abbott-logo.png",
-      products: 198,
-      description: "Life-changing technologies",
-      rating: 4.8,
-      totalReviews: 13567,
-      bgColor: "bg-purple-50",
-      hoverColor: "hover:bg-purple-100",
-      founded: "1888",
-      country: "USA",
-      specialties: ["Nutrition", "Diagnostics", "Medical Devices"],
-    },
-    {
-      id: 6,
-      name: "Novartis",
-      slug: "novartis",
-      logo: "https://www.tbsnews.net/sites/default/files/styles/amp_metadata_content_image_min_696px_wide/public/images/2024/12/05/m.png",
-      products: 134,
-      description: "Reimagining medicine",
-      rating: 4.7,
-      totalReviews: 10456,
-      bgColor: "bg-cyan-50",
-      hoverColor: "hover:bg-cyan-100",
-      founded: "1996",
-      country: "Switzerland",
-      specialties: ["Oncology", "Immunology", "Neuroscience"],
-    },
-    {
-      id: 7,
-      name: "Roche",
-      slug: "roche",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Hoffmann-La_Roche_logo.svg/512px-Hoffmann-La_Roche_logo.png",
-      products: 176,
-      description: "Pioneering healthcare",
-      rating: 4.9,
-      totalReviews: 15678,
-      bgColor: "bg-pink-50",
-      hoverColor: "hover:bg-pink-100",
-      founded: "1896",
-      country: "Switzerland",
-      specialties: ["Oncology", "Immunology", "Diagnostics"],
-    },
-    {
-      id: 8,
-      name: "Merck",
-      slug: "merck",
-      logo: "https://www.merck.com/wp-content/uploads/sites/124/2022/03/Merck.png",
-      products: 143,
-      description: "Inventing for life",
-      rating: 4.6,
-      totalReviews: 8923,
-      bgColor: "bg-indigo-50",
-      hoverColor: "hover:bg-indigo-100",
-      founded: "1891",
-      country: "USA",
-      specialties: ["Vaccines", "Oncology", "Diabetes"],
-    },
-    {
-      id: 9,
-      name: "Sanofi",
-      slug: "sanofi",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/7/79/Sanofi_logo.svg",
-      products: 162,
-      description: "Healthcare solutions",
-      rating: 4.7,
-      totalReviews: 11890,
-      bgColor: "bg-teal-50",
-      hoverColor: "hover:bg-teal-100",
-      founded: "1973",
-      country: "France",
-      specialties: ["Diabetes", "Cardiovascular", "Vaccines"],
-    },
-    {
-      id: 10,
-      name: "AstraZeneca",
-      slug: "astrazeneca",
-      logo: "https://mms.businesswire.com/media/20240206590080/en/484259/5/Logo.jpg?download=1",
-      products: 129,
-      description: "Science-led biopharmaceutical",
-      rating: 4.8,
-      totalReviews: 14234,
-      bgColor: "bg-yellow-50",
-      hoverColor: "hover:bg-yellow-100",
-      founded: "1999",
-      country: "UK",
-      specialties: ["Oncology", "Cardiovascular", "Respiratory"],
-    },
-    {
-      id: 11,
-      name: "Eli Lilly",
-      slug: "eli-lilly",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Eli_Lilly_and_Company.svg/2560px-Eli_Lilly_and_Company.svg.png",
-      products: 118,
-      description: "Medicines that matter",
-      rating: 4.7,
-      totalReviews: 9567,
-      bgColor: "bg-red-50",
-      hoverColor: "hover:bg-red-100",
-      founded: "1876",
-      country: "USA",
-      specialties: ["Diabetes", "Oncology", "Immunology"],
-    },
-    {
-      id: 12,
-      name: "Bristol Myers Squibb",
-      slug: "bristol-myers-squibb",
-      logo: "https://6a3d28ac.delivery.rocketcdn.me/wp-content/uploads/2025/03/Bristol-Myers-Squibb.png",
-      products: 156,
-      description: "Transforming patients lives",
-      rating: 4.6,
-      totalReviews: 10234,
-      bgColor: "bg-blue-50",
-      hoverColor: "hover:bg-blue-100",
-      founded: "1887",
-      country: "USA",
-      specialties: ["Oncology", "Immunology", "Cardiovascular"],
-    },
-    {
-      id: 13,
-      name: "Boehringer Ingelheim",
-      slug: "boehringer-ingelheim",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Boehringer_Ingelheim_Logo.svg/960px-Boehringer_Ingelheim_Logo.svg.png",
-      products: 142,
-      description: "Value through innovation",
-      rating: 4.7,
-      totalReviews: 8765,
-      bgColor: "bg-green-50",
-      hoverColor: "hover:bg-green-100",
-      founded: "1885",
-      country: "Germany",
-      specialties: ["Respiratory", "Cardiology", "Oncology"],
-    },
-    {
-      id: 14,
-      name: "Takeda",
-      slug: "takeda",
-      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHE4NuqbvBg1BuzLdPemq1PSVjNocSSEARZA&s",
-      products: 134,
-      description: "Better health, brighter future",
-      rating: 4.8,
-      totalReviews: 11234,
-      bgColor: "bg-purple-50",
-      hoverColor: "hover:bg-purple-100",
-      founded: "1781",
-      country: "Japan",
-      specialties: ["Oncology", "Gastroenterology", "Neuroscience"],
-    },
-    {
-      id: 15,
-      name: "Amgen",
-      slug: "amgen",
-      logo: "https://amgen.wd1.myworkdayjobs.com/wday/cxs/amgen/Careers/sidebarimage/ff565065af860119e1b725ed27020a01",
-      products: 98,
-      description: "Serving patients",
-      rating: 4.6,
-      totalReviews: 7890,
-      bgColor: "bg-cyan-50",
-      hoverColor: "hover:bg-cyan-100",
-      founded: "1980",
-      country: "USA",
-      specialties: ["Oncology", "Cardiovascular", "Inflammation"],
-    },
-  ];
-
-  // Filter brands based on search query
-  const filteredBrands = brands.filter(
-    (brand) =>
-      brand.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      brand.description.toLowerCase().includes(searchQuery.toLowerCase()),
+  const activeBrands = (brands || []).filter(
+    (brand) => (brand?.status ? brand.status === "active" : true),
   );
 
-  // Sort brands
+  const filteredBrands = activeBrands.filter((brand) => {
+    const query = searchQuery.trim().toLowerCase();
+    if (!query) return true;
+
+    return (
+      brand?.name?.toLowerCase().includes(query) ||
+      (brand?.description || "").toLowerCase().includes(query) ||
+      (brand?.headquarter_address || "").toLowerCase().includes(query)
+    );
+  });
+
   const sortedBrands = [...filteredBrands].sort((a, b) => {
     switch (sortBy) {
       case "name-asc":
@@ -263,44 +41,43 @@ export default function BrandPage() {
       case "name-desc":
         return b.name.localeCompare(a.name);
       case "products-high":
-        return b.products - a.products;
+        return toNumber(b.products_count) - toNumber(a.products_count);
       case "products-low":
-        return a.products - b.products;
+        return toNumber(a.products_count) - toNumber(b.products_count);
       case "rating-high":
-        return b.rating - a.rating;
+        return toNumber(b.rating) - toNumber(a.rating);
       case "popular":
-        return b.totalReviews - a.totalReviews;
+        return toNumber(b.reviews_count) - toNumber(a.reviews_count);
       default:
-        return 0;
+        return (a.sort_order ?? 9999) - (b.sort_order ?? 9999);
     }
   });
 
-  // Group brands alphabetically
-  const groupedBrands = sortedBrands.reduce((acc, brand) => {
-    const firstLetter = brand.name[0].toUpperCase();
-    if (!acc[firstLetter]) {
-      acc[firstLetter] = [];
-    }
-    acc[firstLetter].push(brand);
-    return acc;
-  }, {});
+  const totalProducts = activeBrands.reduce(
+    (sum, brand) => sum + toNumber(brand.products_count),
+    0,
+  );
+  const averageRatingSource = activeBrands.filter((brand) => toNumber(brand.rating) > 0);
+  const averageRating = averageRatingSource.length
+    ? (
+      averageRatingSource.reduce((sum, brand) => sum + toNumber(brand.rating), 0) /
+      averageRatingSource.length
+    ).toFixed(1)
+    : "0.0";
+  const verifiedBrandsCount = activeBrands.filter((brand) => brand.is_verified).length;
 
   return (
-    <div className="min-h-scree">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-primary to-primary/80 text-white py-16">
+    <div className="min-h-screen">
+      <div className="bg-gradient-to-r from-primary to-primary/80 py-16 text-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Shop by Brand
-            </h1>
-            <p className="text-lg md:text-xl text-white/90 mb-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <h1 className="mb-4 text-4xl font-bold md:text-5xl">Shop by Brand</h1>
+            <p className="mb-8 text-lg text-white/90 md:text-xl">
               Discover trusted pharmaceutical brands and healthcare products
               from leading companies worldwide
             </p>
 
-            {/* Search Bar */}
-            <div className="relative max-w-2xl mx-auto">
+            <div className="relative mx-auto max-w-2xl">
               <Search
                 className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
                 size={24}
@@ -310,68 +87,63 @@ export default function BrandPage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search brands..."
-                className="w-full pl-14 pr-4 py-4 rounded-xl text-gray-800 text-lg focus:outline-none focus:ring-4 focus:ring-white/30 shadow-xl"
+                className="w-full rounded-xl py-4 pl-14 pr-4 text-lg text-gray-800 shadow-xl focus:outline-none focus:ring-4 focus:ring-white/30"
               />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Stats Bar */}
-      <div className="bg-white border-b shadow-sm">
+      <div className="border-b bg-white shadow-sm">
         <div className="container mx-auto px-4 py-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary mb-1">
-                {brands.length}
+              <div className="mb-1 text-3xl font-bold text-primary">
+                {activeBrands.length}
               </div>
               <div className="text-sm text-gray-600">Total Brands</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary mb-1">
-                {brands.reduce((sum, b) => sum + b.products, 0)}
+              <div className="mb-1 text-3xl font-bold text-primary">
+                {totalProducts}
               </div>
               <div className="text-sm text-gray-600">Total Products</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary mb-1">
-                {(
-                  brands.reduce((sum, b) => sum + b.rating, 0) / brands.length
-                ).toFixed(1)}
-                ★
+              <div className="mb-1 text-3xl font-bold text-primary">
+                {averageRating}
               </div>
               <div className="text-sm text-gray-600">Average Rating</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary mb-1">100%</div>
+              <div className="mb-1 text-3xl font-bold text-primary">
+                {verifiedBrandsCount}
+              </div>
               <div className="text-sm text-gray-600">Verified Brands</div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="container mx-auto py-8">
-        {/* Toolbar */}
-        <div className="bg-white rounded-xl shadow-md p-4 mb-6">
-          <div className="flex flex-wrap flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-4 w-full md:w-auto">
-              <span className="text-gray-700 font-semibold">
+        <div className="mb-6 rounded-xl bg-white p-4 shadow-md">
+          <div className="flex flex-col flex-wrap items-center justify-between gap-4 md:flex-row">
+            <div className="flex w-full items-center gap-4 md:w-auto">
+              <span className="font-semibold text-gray-700">
                 {sortedBrands.length} Brands
               </span>
-              {searchQuery && (
+              {searchQuery ? (
                 <span className="text-sm text-gray-500">
                   searching for &quot;{searchQuery}&quot;
                 </span>
-              )}
+              ) : null}
             </div>
 
-            <div className="flex items-center gap-3 w-full md:w-auto">
-              {/* Sort Dropdown */}
+            <div className="flex w-full items-center gap-3 md:w-auto">
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="flex-1 md:flex-none px-4 py-2 border border-gray-300 rounded-lg text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-primary"
+                className="flex-1 rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-primary md:flex-none"
               >
                 <option value="name-asc">Name: A-Z</option>
                 <option value="name-desc">Name: Z-A</option>
@@ -381,25 +153,22 @@ export default function BrandPage() {
                 <option value="popular">Most Popular</option>
               </select>
 
-              {/* View Mode Toggle */}
               <div className="flex gap-2">
                 <button
                   onClick={() => setViewMode("grid")}
-                  className={`p-2 rounded-lg transition-colors ${
-                    viewMode === "grid"
-                      ? "bg-primary text-white"
-                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                  }`}
+                  className={`rounded-lg p-2 transition-colors ${viewMode === "grid"
+                    ? "bg-primary text-white"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    }`}
                 >
                   <Grid3x3 size={20} />
                 </button>
                 <button
                   onClick={() => setViewMode("list")}
-                  className={`p-2 rounded-lg transition-colors ${
-                    viewMode === "list"
-                      ? "bg-primary text-white"
-                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                  }`}
+                  className={`rounded-lg p-2 transition-colors ${viewMode === "list"
+                    ? "bg-primary text-white"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    }`}
                 >
                   <List size={20} />
                 </button>
@@ -408,106 +177,103 @@ export default function BrandPage() {
           </div>
         </div>
 
-        {/* No Results */}
-        {sortedBrands.length === 0 && (
-          <div className="bg-white rounded-xl shadow-md p-12 text-center">
-            <Package className="mx-auto text-gray-300 mb-4" size={64} />
-            <h3 className="text-xl font-bold text-gray-800 mb-2">
-              No brands found
-            </h3>
-            <p className="text-gray-600 mb-6">
-              Try adjusting your search query
-            </p>
+        {isLoading ? (
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5">
+            {Array.from({ length: 10 }).map((_, index) => (
+              <div
+                key={index}
+                className="overflow-hidden rounded-2xl border-2 border-slate-100 bg-white"
+              >
+                <div className="h-48 animate-pulse bg-slate-100" />
+                <div className="space-y-3 p-6">
+                  <div className="h-6 w-2/3 animate-pulse rounded bg-slate-100" />
+                  <div className="h-4 w-full animate-pulse rounded bg-slate-100" />
+                  <div className="h-4 w-1/2 animate-pulse rounded bg-slate-100" />
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : sortedBrands.length === 0 ? (
+          <div className="rounded-xl bg-white p-12 text-center shadow-md">
+            <Package className="mx-auto mb-4 text-gray-300" size={64} />
+            <h3 className="mb-2 text-xl font-bold text-gray-800">No brands found</h3>
+            <p className="mb-6 text-gray-600">Try adjusting your search query</p>
             <button
               onClick={() => setSearchQuery("")}
-              className="px-6 py-2 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90"
+              className="rounded-lg bg-primary px-6 py-2 font-semibold text-white hover:bg-primary/90"
             >
               Clear Search
             </button>
           </div>
-        )}
-
-        {/* Grid View */}
-        {viewMode === "grid" && sortedBrands.length > 0 && (
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-4">
+        ) : viewMode === "grid" ? (
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5">
             {sortedBrands.map((brand) => (
               <Link key={brand.id} href={`/brand/${brand.slug}`}>
-                <div
-                  className={`group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer border-2 border-transparent hover:border-primary/20 h-full flex flex-col`}
-                >
-                  {/* Logo Container */}
-                  <div
-                    className={`${brand.bgColor} ${brand.hoverColor} p-8 flex items-center justify-center transition-all duration-300 relative`}
-                  >
-                    <div className="relative w-full h-32 flex items-center justify-center">
+                <div className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border-2 border-transparent bg-white shadow-md transition-all duration-300 hover:border-primary/20 hover:shadow-2xl">
+                  <div className="relative flex h-48 items-center justify-center bg-gradient-to-br from-slate-50 to-white p-8 transition-all duration-300">
+                    <div className="relative flex h-32 w-full items-center justify-center">
                       <Image
-                        src={brand.logo}
+                        src={getImageUrl(brand.logo)}
                         alt={brand.name}
                         width={200}
                         height={100}
-                        className="object-contain max-w-full max-h-full group-hover:scale-110 transition-transform duration-300"
+                        className="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-110"
                         unoptimized
                       />
                     </div>
 
-                    {/* Product Count Badge */}
-                    <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold text-primary shadow-md">
-                      {brand.products}+ Products
+                    <div className="absolute top-3 right-3 rounded-full bg-white/90 px-3 py-1 text-sm font-bold text-primary shadow-md backdrop-blur-sm">
+                      {toNumber(brand.products_count)} Products
                     </div>
                   </div>
 
-                  {/* Brand Info */}
-                  <div className="p-6 flex-1 flex flex-col">
-                    <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-primary transition-colors">
+                  <div className="flex flex-1 flex-col p-6">
+                    <h3 className="mb-2 text-xl font-bold text-gray-800 transition-colors group-hover:text-primary">
                       {brand.name}
                     </h3>
-                    <p className="text-sm text-gray-600 mb-4 line-clamp-2 flex-1">
-                      {brand.description}
+                    <p className="mb-4 line-clamp-2 flex-1 text-sm text-gray-600">
+                      {brand.description || "No description available yet."}
                     </p>
 
-                    {/* Rating */}
-                    <div className="flex items-center gap-2 mb-4">
-                      <div className="flex items-center gap-1">
-                        <Star
-                          className="fill-yellow-400 text-yellow-400"
-                          size={18}
-                        />
-                        <span className="font-bold text-gray-800">
-                          {brand.rating}
-                        </span>
-                      </div>
+                    <div className="mb-4 flex items-center gap-2">
+                      <RatingStars
+                        rating={brand.rating}
+                        showCount={false}
+                        className="text-sm"
+                      />
                       <span className="text-sm text-gray-500">
-                        ({brand.totalReviews.toLocaleString()} reviews)
+                        ({toNumber(brand.reviews_count).toLocaleString()} reviews)
                       </span>
                     </div>
 
-                    {/* Meta Info */}
-                    <div className="flex items-center justify-between text-sm text-gray-600 pt-4 border-t">
-                      <span>Founded {brand.founded}</span>
-                      <span className="font-semibold">{brand.country}</span>
+                    <div className="flex items-center justify-between border-t pt-4 text-sm text-gray-600">
+                      <span>
+                        Founded {brand.founded_year || "N/A"}
+                      </span>
+                      <span className="font-semibold">
+                        {brand.is_verified ? "Verified" : "Brand"}
+                      </span>
                     </div>
 
-                    {/* Specialties */}
-                    <div className="flex flex-wrap gap-2 mt-4">
-                      {brand.specialties.slice(0, 2).map((specialty, index) => (
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {(brand.brand_tags || []).slice(0, 2).map((item) => (
                         <span
-                          key={index}
-                          className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-semibold"
+                          key={item.id || item.tag}
+                          className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary"
                         >
-                          {specialty}
+                          {item.tag}
                         </span>
                       ))}
-                      {brand.specialties.length > 2 && (
-                        <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-semibold">
-                          +{brand.specialties.length - 2}
+                      {(brand.brand_tags || []).length > 2 ? (
+                        <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600">
+                          +{brand.brand_tags.length - 2}
                         </span>
-                      )}
+                      ) : null}
                     </div>
                   </div>
 
-                  {/* View Products Button */}
                   <div className="p-6 pt-0">
-                    <button className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 transition-all group-hover:shadow-lg">
+                    <button className="w-full rounded-lg bg-primary py-3 font-semibold text-white transition-all hover:bg-primary/90 group-hover:shadow-lg">
                       View Products
                     </button>
                   </div>
@@ -515,97 +281,76 @@ export default function BrandPage() {
               </Link>
             ))}
           </div>
-        )}
-
-        {/* List View */}
-        {viewMode === "list" && sortedBrands.length > 0 && (
+        ) : (
           <div className="space-y-4">
             {sortedBrands.map((brand) => (
               <Link key={brand.id} href={`/brand/${brand.slug}`}>
-                <div className="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-primary/20 p-6 mb-3">
+                <div className="group mb-3 cursor-pointer rounded-2xl border-2 border-transparent bg-white p-6 shadow-md transition-all duration-300 hover:border-primary/20 hover:shadow-2xl">
                   <div className="flex gap-6">
-                    {/* Logo */}
-                    <div
-                      className={`${brand.bgColor} ${brand.hoverColor} rounded-xl p-6 flex items-center justify-center w-48 flex-shrink-0`}
-                    >
+                    <div className="flex w-48 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-slate-50 to-white p-6">
                       <Image
-                        src={brand.logo}
+                        src={getImageUrl(brand.logo)}
                         alt={brand.name}
                         width={150}
                         height={75}
-                        className="object-contain max-w-full max-h-full"
+                        className="max-h-full max-w-full object-contain"
                         unoptimized
                       />
                     </div>
 
-                    {/* Info */}
                     <div className="flex-1">
-                      <div className="flex items-start justify-between mb-3">
+                      <div className="mb-3 flex items-start justify-between">
                         <div>
-                          <h3 className="text-2xl font-bold text-gray-800 mb-1 group-hover:text-primary transition-colors">
+                          <h3 className="mb-1 text-2xl font-bold text-gray-800 transition-colors group-hover:text-primary">
                             {brand.name}
                           </h3>
-                          <p className="text-gray-600 mb-2">
-                            {brand.description}
+                          <p className="mb-2 text-gray-600">
+                            {brand.description || "No description available yet."}
                           </p>
                         </div>
                         <div className="text-right">
-                          <div className="text-2xl font-bold text-primary mb-1">
-                            {brand.products}
+                          <div className="mb-1 text-2xl font-bold text-primary">
+                            {toNumber(brand.products_count)}
                           </div>
                           <div className="text-sm text-gray-500">Products</div>
                         </div>
                       </div>
 
-                      {/* Rating & Reviews */}
-                      <div className="flex items-center gap-4 mb-4">
+                      <div className="mb-4 flex items-center gap-4">
                         <div className="flex items-center gap-2">
-                          <div className="flex">
-                            {[...Array(5)].map((_, i) => (
-                              <Star
-                                key={i}
-                                size={18}
-                                className={`${
-                                  i < Math.floor(brand.rating)
-                                    ? "fill-yellow-400 text-yellow-400"
-                                    : "text-gray-300"
-                                }`}
-                              />
-                            ))}
-                          </div>
-                          <span className="font-bold text-gray-800">
-                            {brand.rating}
-                          </span>
+                          <RatingStars
+                            rating={brand.rating}
+                            showCount={false}
+                            className="text-sm"
+                          />
                         </div>
                         <span className="text-gray-500">
-                          {brand.totalReviews.toLocaleString()} reviews
+                          {toNumber(brand.reviews_count).toLocaleString()} reviews
                         </span>
                         <span className="text-gray-400">•</span>
                         <span className="text-gray-600">
-                          Founded {brand.founded}
+                          Founded {brand.founded_year || "N/A"}
                         </span>
                         <span className="text-gray-400">•</span>
-                        <span className="text-gray-600 font-semibold">
-                          {brand.country}
+                        <span className="font-semibold text-gray-600">
+                          {brand.is_verified ? "Verified" : "Brand"}
                         </span>
                       </div>
 
-                      {/* Specialties */}
                       <div className="flex flex-wrap gap-2">
-                        {brand.specialties.map((specialty, index) => (
+                        {(brand.brand_tags || []).map((item) => (
                           <span
-                            key={index}
-                            className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-semibold"
+                            key={item.id || item.tag}
+                            className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary"
                           >
-                            {specialty}
+                            {item.tag}
                           </span>
                         ))}
                       </div>
                     </div>
 
-                    {/* Action */}
                     <div className="flex items-center">
-                      <button className="bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-all whitespace-nowrap">
+                      <button className="whitespace-nowrap rounded-lg bg-primary px-8 py-3 font-semibold text-white transition-all hover:bg-primary/90">
                         View Products
                       </button>
                     </div>
