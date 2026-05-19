@@ -9,7 +9,7 @@ import { useUpdateProfileMutation } from "@/redux/features/auth/authApi";
 const inputClassName =
   "h-12 w-full rounded-xl border border-gray-200 bg-white px-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-primary/10";
 const disabledInputClassName =
-  "h-12 w-full rounded-xl border border-gray-200 bg-slate-50 px-4 text-sm text-slate-500 outline-none";
+  "h-12 w-full rounded-xl border border-gray-200 bg-slate-50 px-4 text-sm text-slate-500 outline-none cursor-not-allowed";
 
 const textareaClassName =
   "w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-primary/10";
