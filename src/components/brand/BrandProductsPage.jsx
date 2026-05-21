@@ -25,9 +25,21 @@ import {
   useGetBrandsQuery,
 } from "@/redux/features/brand/brandApi";
 
+const BRAND_SORT_OPTIONS = [
+  { value: "most_popular", label: "Most Popular" },
+  { value: "price_low_to_high", label: "Price: Low to High" },
+  { value: "price_high_to_low", label: "Price: High to Low" },
+  { value: "highest_rated", label: "Highest Rated" },
+];
+
 const normalizePage = (value) => {
   const parsed = Number(value);
   return Number.isInteger(parsed) && parsed > 0 ? parsed : 1;
+};
+
+const normalizeSort = (value) => {
+  const matchedOption = BRAND_SORT_OPTIONS.find((option) => option.value === value);
+  return matchedOption?.value || "most_popular";
 };
 
 const toNumber = (value) => {
@@ -40,12 +52,16 @@ const formatPrice = (value) => {
   return Number.isFinite(parsed) ? parsed.toFixed(2) : "0.00";
 };
 
-export default function BrandProductsPage({ slug, initialPage = 1 }) {
+export default function BrandProductsPage({
+  slug,
+  initialPage = 1,
+  initialSort = "most_popular",
+}) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [viewMode, setViewMode] = useState("grid");
-  const [sortBy, setSortBy] = useState("popular");
+  const [sortBy, setSortBy] = useState(normalizeSort(initialSort));
   const [currentPage, setCurrentPage] = useState(normalizePage(initialPage));
 
   const { data: brands = [], isLoading: isBrandsLoading } = useGetBrandsQuery();
@@ -60,12 +76,13 @@ export default function BrandProductsPage({ slug, initialPage = 1 }) {
     isFetching: isProductsFetching,
   } = useGetBrandProductsQuery(
     {
-      brandId: selectedBrand?.id,
+      brandSlug: slug,
       page: currentPage,
       perPage: 20,
+      sortBy,
     },
     {
-      skip: !selectedBrand?.id,
+      skip: !slug,
     },
   );
 
@@ -78,13 +95,27 @@ export default function BrandProductsPage({ slug, initialPage = 1 }) {
     .map((product) => {
       const primarySku = product?.sku?.[0] || {};
       const onlinePrice = toNumber(primarySku?.online_price);
-      const retailPrice = toNumber(primarySku?.retail_price);
-      const effectivePrice = onlinePrice > 0 ? onlinePrice : retailPrice;
-      const originalPrice = retailPrice > effectivePrice ? retailPrice : null;
-      const discountAmount = originalPrice ? originalPrice - effectivePrice : 0;
-      const discountPercent = originalPrice
-        ? Math.round((discountAmount / originalPrice) * 100)
-        : 0;
+      const salePrice = toNumber(product?.sale_price);
+      const basePrice = onlinePrice > 0 ? onlinePrice : salePrice;
+      const discountType = product?.default_discount_type;
+      const discountValue = toNumber(product?.default_discount_value);
+
+      let originalPrice = basePrice > 0 ? basePrice : null;
+      let effectivePrice = basePrice;
+      let discountAmount = 0;
+      let discountLabel = null;
+
+      if (basePrice > 0 && discountValue > 0) {
+        if (discountType === "amount") {
+          discountAmount = Math.min(discountValue, basePrice);
+          effectivePrice = Math.max(basePrice - discountAmount, 0);
+          discountLabel = `\u09F3${discountAmount.toFixed(0)} off`;
+        } else if (discountType === "percent" && discountValue < 100) {
+          discountAmount = (basePrice * discountValue) / 100;
+          effectivePrice = Math.max(basePrice - discountAmount, 0);
+          discountLabel = `${Math.round(discountValue)}% off`;
+        }
+      }
 
       return {
         id: product.id,
@@ -92,27 +123,14 @@ export default function BrandProductsPage({ slug, initialPage = 1 }) {
         name: product.name,
         rating: primarySku?.rating || 0,
         price: effectivePrice,
-        originalPrice,
+        originalPrice:
+          originalPrice && originalPrice > effectivePrice ? originalPrice : null,
         discountAmount: discountAmount > 0 ? discountAmount : null,
-        discountLabel: discountPercent > 0 ? `${discountPercent}% OFF` : null,
+        discountLabel,
         images: [getImageUrl(product?.thumbnail_image)],
         category: product?.category?.name || "",
         shortDescription: product?.short_description || "",
       };
-    })
-    .sort((a, b) => {
-      switch (sortBy) {
-        case "price-low":
-          return toNumber(a.price) - toNumber(b.price);
-        case "price-high":
-          return toNumber(b.price) - toNumber(a.price);
-        case "rating":
-          return toNumber(b.rating) - toNumber(a.rating);
-        case "name":
-          return a.name.localeCompare(b.name);
-        default:
-          return 0;
-      }
     });
 
   const isLoading = isBrandsLoading || isProductsLoading || isProductsFetching;
@@ -131,6 +149,30 @@ export default function BrandProductsPage({ slug, initialPage = 1 }) {
     } else {
       nextSearchParams.set("page", String(nextPage));
     }
+
+    const nextQuery = nextSearchParams.toString();
+    router.push(nextQuery ? `${pathname}?${nextQuery}` : pathname);
+  };
+
+  const handleSortChange = (nextSort) => {
+    const normalizedSort = normalizeSort(nextSort);
+
+    if (normalizedSort === sortBy) {
+      return;
+    }
+
+    setSortBy(normalizedSort);
+    setCurrentPage(1);
+
+    const nextSearchParams = new URLSearchParams(searchParams.toString());
+
+    if (normalizedSort === "most_popular") {
+      nextSearchParams.delete("sort_by");
+    } else {
+      nextSearchParams.set("sort_by", normalizedSort);
+    }
+
+    nextSearchParams.delete("page");
 
     const nextQuery = nextSearchParams.toString();
     router.push(nextQuery ? `${pathname}?${nextQuery}` : pathname);
@@ -292,14 +334,14 @@ export default function BrandProductsPage({ slug, initialPage = 1 }) {
             <div className="flex items-center gap-3">
               <select
                 value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
+                onChange={(e) => handleSortChange(e.target.value)}
                 className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-primary"
               >
-                <option value="popular">Default</option>
-                <option value="price-low">Price: Low to High</option>
-                <option value="price-high">Price: High to Low</option>
-                <option value="rating">Highest Rated</option>
-                <option value="name">Name</option>
+                {BRAND_SORT_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
               </select>
 
               <div className="hidden gap-2 md:flex">

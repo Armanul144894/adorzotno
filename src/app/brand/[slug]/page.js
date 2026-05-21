@@ -6,6 +6,17 @@ const normalizePage = (value) => {
   return Number.isInteger(parsed) && parsed > 0 ? parsed : 1;
 };
 
+const normalizeSort = (value) => {
+  const allowedSorts = new Set([
+    "most_popular",
+    "price_high_to_low",
+    "price_low_to_high",
+    "highest_rated",
+  ]);
+
+  return allowedSorts.has(value) ? value : "most_popular";
+};
+
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const readableName = slug
@@ -28,13 +39,15 @@ export default async function page({ params, searchParams }) {
   const { slug } = await params;
   const resolvedSearchParams = await searchParams;
   const initialPage = normalizePage(resolvedSearchParams?.page);
+  const initialSort = normalizeSort(resolvedSearchParams?.sort_by);
 
   return (
     <div>
       <BrandProductsPage
-        key={`${slug}-${initialPage}`}
+        key={`${slug}-${initialPage}-${initialSort}`}
         slug={slug}
         initialPage={initialPage}
+        initialSort={initialSort}
       />
     </div>
   );

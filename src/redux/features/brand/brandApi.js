@@ -10,12 +10,18 @@ export const brandApi = baseApi.injectEndpoints({
       transformResponse: (response) => response?.data?.brands || [],
     }),
     getBrandProducts: builder.query({
-      query: ({ brandId, page = 1, perPage = 20 }) => ({
-        url: `/brands/${brandId}/products`,
+      query: ({
+        brandSlug,
+        page = 1,
+        perPage = 20,
+        sortBy = "most_popular",
+      }) => ({
+        url: `/brands/${brandSlug}/products`,
         method: "GET",
         params: {
           page,
           per_page: perPage,
+          sort_by: sortBy,
         },
       }),
       transformResponse: (response) => response?.data || {},

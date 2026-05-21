@@ -10,12 +10,20 @@ export const categoryApi = baseApi.injectEndpoints({
       transformResponse: (response) => response?.data?.categories || [],
     }),
     getCategoryProducts: builder.query({
-      query: ({ categoryId, page = 1, perPage = 20 }) => ({
-        url: `/categories/${categoryId}/products`,
+      query: ({
+        categorySlug,
+        page = 1,
+        perPage = 20,
+        sortBy = "created_at",
+        sortOrder = "desc",
+      }) => ({
+        url: `/categories/${categorySlug}/products`,
         method: "GET",
         params: {
           page,
           per_page: perPage,
+          sort_by: sortBy,
+          sort_order: sortOrder,
         },
       }),
       transformResponse: (response) => response?.data || {},

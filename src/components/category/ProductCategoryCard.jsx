@@ -41,12 +41,14 @@ export default function ProductCategoryCard({ slug, initialPage = 1 }) {
     isFetching: isProductsFetching,
   } = useGetCategoryProductsQuery(
     {
-      categoryId: selectedCategory?.id,
+      categorySlug: slug,
       page: currentPage,
       perPage: 20,
+      sortBy: "created_at",
+      sortOrder: "desc",
     },
     {
-      skip: !selectedCategory?.id,
+      skip: !slug,
     },
   );
 
@@ -59,13 +61,28 @@ export default function ProductCategoryCard({ slug, initialPage = 1 }) {
     return apiProducts.map((product) => {
       const primarySku = product?.sku?.[0] || {};
       const onlinePrice = toNumber(primarySku?.online_price);
-      const retailPrice = toNumber(primarySku?.retail_price);
-      const effectivePrice = onlinePrice > 0 ? onlinePrice : retailPrice;
-      const originalPrice = retailPrice > effectivePrice ? retailPrice : null;
-      const discountAmount = originalPrice ? originalPrice - effectivePrice : 0;
-      const discountPercent = originalPrice
-        ? Math.round((discountAmount / originalPrice) * 100)
-        : 0;
+      const salePrice = toNumber(product?.sale_price);
+      const basePrice = onlinePrice > 0 ? onlinePrice : salePrice;
+      const discountType = product?.default_discount_type;
+      const discountValue = toNumber(product?.default_discount_value);
+
+      let originalPrice = basePrice > 0 ? basePrice : null;
+      let effectivePrice = basePrice;
+      let discountAmount = 0;
+      let discountLabel = null;
+
+      if (basePrice > 0 && discountValue > 0) {
+        if (discountType === "amount") {
+          discountAmount = Math.min(discountValue, basePrice);
+          effectivePrice = Math.max(basePrice - discountAmount, 0);
+          discountLabel = `\u09F3${discountAmount.toFixed(0)} off`;
+        } else if (discountType === "percent" && discountValue < 100) {
+          discountAmount = (basePrice * discountValue) / 100;
+          effectivePrice = Math.max(basePrice - discountAmount, 0);
+          discountLabel = `${Math.round(discountValue)}% off`;
+        }
+      }
+
       const imagePath = product?.thumbnail_image;
 
       return {
@@ -74,9 +91,10 @@ export default function ProductCategoryCard({ slug, initialPage = 1 }) {
         name: product.name,
         rating: primarySku?.rating || "0.0",
         price: effectivePrice,
-        originalPrice,
+        originalPrice:
+          originalPrice && originalPrice > effectivePrice ? originalPrice : null,
         discountAmount: discountAmount > 0 ? discountAmount : null,
-        discountLabel: discountPercent > 0 ? `${discountPercent}% OFF` : null,
+        discountLabel,
         images: [
           imagePath
             ? getImageUrl(imagePath)
