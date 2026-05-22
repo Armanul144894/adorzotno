@@ -1,51 +1,33 @@
-import React from 'react'
-import ProductDetails from '../../../components/product/ProductDetails'
-import products from '../../../../public/data/data';
-import flashDeals from '../../../../public/data/flashDeals';
+import React from "react";
+import ProductDetails from "../../../components/product/ProductDetails";
 
+const getReadableName = (value = "") =>
+  value
+    .replace(/[_-]+/g, " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
 
-// ✅ Metadata generation function (export this)
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const slug = id
-    .toLowerCase()
-    .replace(/&/g, "and")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-
-  const product = products.find(
-    (p) =>
-      p.name
-        .toLowerCase()
-        .replace(/&/g, "and")
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/(^-|-$)/g, "") === slug
-  ) || flashDeals.find(
-    (p) =>
-      p.name
-        .toLowerCase()
-        .replace(/&/g, "and")
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/(^-|-$)/g, "") === slug
-  );
+  const readableName = getReadableName(id);
 
   return {
-    title: `${product?.name || "Product"} - Shop Our Collection`,
-    description: `Explore our wide range of ${product?.name || "Products"} with items available. Find the best deals and quality products.`,
-    keywords: `${product?.name}, products, shop, online store, buy ${product?.name}`,
+    title: `${readableName || "Product"} - Shop Our Collection`,
+    description: `Explore details, pricing, and product information for ${readableName || "this product"}.`,
+    keywords: `${readableName}, products, shop, online store, buy ${readableName}`,
     openGraph: {
-      title: `${product?.name || "Product"} - Shop Our Collection`,
-      description: `Browse ${product?.name || "Products"} available now`,
+      title: `${readableName || "Product"} - Shop Our Collection`,
+      description: `Browse ${readableName || "this product"} available now`,
       type: "website",
     },
   };
-
 }
 
-export default function page() {
+export default async function page({ params }) {
+  const { id } = await params;
+
   return (
     <div>
-      <ProductDetails />
+      <ProductDetails key={id} />
     </div>
-  )
+  );
 }
