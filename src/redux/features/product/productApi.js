@@ -45,6 +45,22 @@ export const productApi = baseApi.injectEndpoints({
       }),
       transformResponse: (response) => response?.data || {},
     }),
+    searchProducts: builder.query({
+      query: ({
+        query,
+        page = 1,
+        perPage = 20,
+      } = {}) => ({
+        url: "/products/search",
+        method: "GET",
+        params: {
+          page,
+          per_page: perPage,
+          q: query,
+        },
+      }),
+      transformResponse: (response) => response?.data || {},
+    }),
   }),
 });
 
@@ -52,4 +68,5 @@ export const {
   useGetProductQuery,
   useGetFlashDealsQuery,
   useGetFeaturedDealsQuery,
+  useSearchProductsQuery,
 } = productApi;
