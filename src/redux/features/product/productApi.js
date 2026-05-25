@@ -9,7 +9,47 @@ export const productApi = baseApi.injectEndpoints({
       }),
       transformResponse: (response) => response?.data?.product || null,
     }),
+    getFlashDeals: builder.query({
+      query: ({
+        page = 1,
+        perPage = 20,
+        sortBy = "created_at",
+        sortOrder = "desc",
+      } = {}) => ({
+        url: "/products/flash-deals",
+        method: "GET",
+        params: {
+          page,
+          per_page: perPage,
+          sort_by: sortBy,
+          sort_order: sortOrder,
+        },
+      }),
+      transformResponse: (response) => response?.data || {},
+    }),
+    getFeaturedDeals: builder.query({
+      query: ({
+        page = 1,
+        perPage = 20,
+        sortBy = "created_at",
+        sortOrder = "desc",
+      } = {}) => ({
+        url: "/products/featured",
+        method: "GET",
+        params: {
+          page,
+          per_page: perPage,
+          sort_by: sortBy,
+          sort_order: sortOrder,
+        },
+      }),
+      transformResponse: (response) => response?.data || {},
+    }),
   }),
 });
 
-export const { useGetProductQuery } = productApi;
+export const {
+  useGetProductQuery,
+  useGetFlashDealsQuery,
+  useGetFeaturedDealsQuery,
+} = productApi;
