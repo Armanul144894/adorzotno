@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useMemo, useState } from "react";
 import { getImageUrl } from "@/lib/imageHelpers";
+import { useGetBrandProductsQuery } from "@/redux/features/brand/brandApi";
 import { useGetProductQuery } from "@/redux/features/product/productApi";
 import products from "../../../public/data/data";
 import flashDeals from "../../../public/data/flashDeals";
@@ -156,6 +157,19 @@ export default function ProductDetails() {
     { skip: !id },
   );
 
+  const selectedBrandSlug = product?.brand?.slug;
+
+  const { data: sameBrandProductsResponse = {} } = useGetBrandProductsQuery(
+    {
+      brandSlug: selectedBrandSlug,
+      perPage: 20,
+      sortBy: "most_popular",
+    },
+    {
+      skip: !selectedBrandSlug,
+    },
+  );
+
   const selectedProduct = useMemo(() => {
     if (!product) {
       return null;
@@ -234,6 +248,32 @@ export default function ProductDetails() {
   );
 
   const manufacturerProducts = useMemo(
+    () =>
+    ((sameBrandProductsResponse?.products?.data || [])
+      .filter((brandProduct) => brandProduct?.id !== selectedProduct?.id)
+      .map((brandProduct) => {
+        const primarySku = brandProduct?.sku?.[0] || {};
+        const pricing = getPricing(brandProduct);
+
+        return {
+          id: brandProduct.id,
+          slug: brandProduct.slug,
+          name: brandProduct.name,
+          rating: toNumber(primarySku?.rating),
+          price: pricing.price,
+          originalPrice: pricing.originalPrice,
+          discountAmount: pricing.discountAmount > 0 ? pricing.discountAmount : null,
+          discountLabel: pricing.discountLabel,
+          images: buildProductImages(brandProduct),
+          brand: brandProduct?.brand?.name || "",
+          category: brandProduct?.category?.name || "",
+        };
+      })
+      .slice(0, 12)),
+    [sameBrandProductsResponse?.products?.data, selectedProduct?.id],
+  );
+
+  const fallbackManufacturerProducts = useMemo(
     () =>
       productsExcludingSelected
         .filter((product) => product?.rating >= 4.5)
@@ -350,9 +390,16 @@ export default function ProductDetails() {
       </div>
 
       <ProductCarouselSection
-        relatedProducts={manufacturerProducts}
+        relatedProducts={
+          manufacturerProducts.length > 0
+            ? manufacturerProducts
+            : fallbackManufacturerProducts
+        }
         title={`More from ${selectedProduct?.manufacturer || "Incepta Pharmaceuticals Ltd."}`}
         navKey="more-from-manufacturer"
+        viewAllHref={
+          selectedProduct?.brand?.slug ? `/brand/${selectedProduct.brand.slug}` : "#"
+        }
       />
 
       <div className="bg-sky-50">
