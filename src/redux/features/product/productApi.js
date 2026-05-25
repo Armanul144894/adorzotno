@@ -45,6 +45,16 @@ export const productApi = baseApi.injectEndpoints({
       }),
       transformResponse: (response) => response?.data || {},
     }),
+    getTrendingProducts: builder.query({
+      query: ({ limit = 10 } = {}) => ({
+        url: "/products/trending",
+        method: "GET",
+        params: {
+          limit,
+        },
+      }),
+      transformResponse: (response) => response?.data?.products || [],
+    }),
     searchProducts: builder.query({
       query: ({
         query,
@@ -68,5 +78,6 @@ export const {
   useGetProductQuery,
   useGetFlashDealsQuery,
   useGetFeaturedDealsQuery,
+  useGetTrendingProductsQuery,
   useSearchProductsQuery,
 } = productApi;

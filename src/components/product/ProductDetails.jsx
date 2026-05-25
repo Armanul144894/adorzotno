@@ -5,8 +5,12 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useMemo, useState } from "react";
 import { getImageUrl } from "@/lib/imageHelpers";
+import { mapApiProductToCard } from "@/lib/mapApiProductToCard";
 import { useGetBrandProductsQuery } from "@/redux/features/brand/brandApi";
-import { useGetProductQuery } from "@/redux/features/product/productApi";
+import {
+  useGetProductQuery,
+  useGetTrendingProductsQuery,
+} from "@/redux/features/product/productApi";
 import products from "../../../public/data/data";
 import flashDeals from "../../../public/data/flashDeals";
 import ProductCarouselSection from "./ProductCarouselSection";
@@ -170,6 +174,10 @@ export default function ProductDetails() {
     },
   );
 
+  const { data: trendingProductsResponse = [] } = useGetTrendingProductsQuery({
+    limit: 10,
+  });
+
   const selectedProduct = useMemo(() => {
     if (!product) {
       return null;
@@ -241,10 +249,11 @@ export default function ProductDetails() {
 
   const youMayAlsoLikeProducts = useMemo(
     () =>
-      productsExcludingSelected
-        .filter((product) => product?.rating >= 4.5)
-        .slice(0, 12),
-    [productsExcludingSelected],
+      trendingProductsResponse
+        .filter((trendingProduct) => trendingProduct?.id !== selectedProduct?.id)
+        .map(mapApiProductToCard)
+        .slice(0, 10),
+    [selectedProduct?.id, trendingProductsResponse],
   );
 
   const manufacturerProducts = useMemo(
@@ -386,6 +395,7 @@ export default function ProductDetails() {
           relatedProducts={youMayAlsoLikeProducts}
           title="You May Also Like"
           navKey="you-may-also-like"
+          viewAllHref="/trending-products"
         />
       </div>
 
