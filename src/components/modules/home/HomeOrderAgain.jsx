@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, RotateCcw } from "lucide-react";
+import { useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
@@ -36,12 +37,17 @@ function SkeletonCard() {
 }
 
 export default function HomeOrderAgain() {
+  const { isAuthenticated, isHydrated } = useSelector((state) => state.auth);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(timer);
   }, []);
+
+  if (!isHydrated || !isAuthenticated) {
+    return null;
+  }
 
   const skeletonCount = 7;
   return (

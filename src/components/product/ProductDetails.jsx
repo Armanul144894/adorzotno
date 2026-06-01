@@ -395,7 +395,7 @@ export default function ProductDetails() {
           relatedProducts={youMayAlsoLikeProducts}
           title="You May Also Like"
           navKey="you-may-also-like"
-          viewAllHref="/trending-products"
+          viewAllHref="/recommended-products"
         />
       </div>
 
