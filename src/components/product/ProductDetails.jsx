@@ -9,6 +9,7 @@ import { mapApiProductToCard } from "@/lib/mapApiProductToCard";
 import { useGetBrandProductsQuery } from "@/redux/features/brand/brandApi";
 import {
   useGetProductQuery,
+  useGetRelatedProductsQuery,
   useGetTrendingProductsQuery,
 } from "@/redux/features/product/productApi";
 import products from "../../../public/data/data";
@@ -178,6 +179,11 @@ export default function ProductDetails() {
     limit: 10,
   });
 
+  const { data: relatedProductsResponse = [] } = useGetRelatedProductsQuery(
+    { productSlug: id },
+    { skip: !id },
+  );
+
   const selectedProduct = useMemo(() => {
     if (!product) {
       return null;
@@ -293,14 +299,11 @@ export default function ProductDetails() {
 
   const frequentlyBoughtTogetherProducts = useMemo(
     () =>
-      productsExcludingSelected
-        .filter(
-          (product) =>
-            product?.category === selectedProduct?.category ||
-            product?.manufacturer === selectedProduct?.manufacturer,
-        )
+      relatedProductsResponse
+        .filter((relatedProduct) => relatedProduct?.id !== selectedProduct?.id)
+        .map(mapApiProductToCard)
         .slice(0, 12),
-    [productsExcludingSelected, selectedProduct?.category, selectedProduct?.manufacturer],
+    [relatedProductsResponse, selectedProduct?.id],
   );
 
   const previouslyBrowsedProducts = useMemo(
