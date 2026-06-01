@@ -34,6 +34,7 @@ export const mapApiProductToCard = (product) => {
 
   return {
     id: product?.id,
+    skuId: primarySku?.id || product?.sku_id || null,
     slug: product?.slug,
     name: product?.name,
     rating: primarySku?.rating || "0.0",

@@ -12,9 +12,17 @@ import {
 } from "lucide-react";
 import React, { useMemo, useState } from "react";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
+import { toast } from "sonner";
 import ProductDetailsTab from "./ProductDetailsTab";
 import { useCart } from "../../lib/useCart";
 import RatingStars from "../shared/RatingStars";
+import {
+  useAddToWishlistMutation,
+  useGetWishlistQuery,
+  useRemoveFromWishlistMutation,
+} from "@/redux/features/wishlist/wishlistApi";
 
 const formatPrice = (value) => {
   const parsed = Number(value);
@@ -33,10 +41,19 @@ export default function ProductGrid({
   genericName,
   alternativeBrandProducts = [],
 }) {
+  const router = useRouter();
+  const pathname = usePathname();
   const { setCartItems, setIsCartOpen } = useCart();
+  const { isAuthenticated, isHydrated } = useSelector((state) => state.auth);
   const [alternativeSort, setAlternativeSort] = useState("relevance");
   const [expandedAlternativesKey, setExpandedAlternativesKey] = useState("");
-  const [isWishlisted, setIsWishlisted] = useState(false);
+  const { data: wishlistItems = [] } = useGetWishlistQuery(undefined, {
+    skip: !isAuthenticated,
+  });
+  const [addToWishlist, { isLoading: isAddingToWishlist }] =
+    useAddToWishlistMutation();
+  const [removeFromWishlist, { isLoading: isRemovingFromWishlist }] =
+    useRemoveFromWishlistMutation();
 
   const sortedAlternativeBrandProducts = useMemo(() => {
     const items = [...alternativeBrandProducts];
@@ -55,6 +72,14 @@ export default function ProductGrid({
   const visibleAlternativeBrandProducts = showAllAlternatives
     ? sortedAlternativeBrandProducts
     : sortedAlternativeBrandProducts.slice(0, 8);
+
+  const isWishlisted = useMemo(
+    () =>
+      wishlistItems.some((item) => Number(item?.sku_id) === Number(selectedProduct?.skuId)),
+    [selectedProduct?.skuId, wishlistItems],
+  );
+
+  const isWishlistLoading = isAddingToWishlist || isRemovingFromWishlist;
 
   const handleAddToCart = () => {
     if (!selectedProduct?.id || !selectedProduct?.inStock) return;
@@ -88,6 +113,34 @@ export default function ProductGrid({
     });
 
     setIsCartOpen(true);
+  };
+
+  const handleWishlistToggle = async () => {
+    if (!selectedProduct?.skuId) {
+      toast.error("This product is not available for wishlist yet.");
+      return;
+    }
+
+    if (!isHydrated || !isAuthenticated) {
+      router.push(`/?signin=1&redirect=${encodeURIComponent(pathname)}`);
+      return;
+    }
+
+    try {
+      if (isWishlisted) {
+        const response = await removeFromWishlist({
+          skuId: selectedProduct.skuId,
+        }).unwrap();
+        toast.success(response?.message || "Removed from wishlist");
+      } else {
+        const response = await addToWishlist({
+          skuId: selectedProduct.skuId,
+        }).unwrap();
+        toast.success(response?.message || "Added to wishlist");
+      }
+    } catch (error) {
+      toast.error(error?.data?.message || "Wishlist update failed.");
+    }
   };
 
   return (
@@ -262,12 +315,16 @@ export default function ProductGrid({
               </button>
 
               <button
-                onClick={() => setIsWishlisted(!isWishlisted)}
-                className="rounded-lg border-2 border-primary p-3 text-primary transition hover:bg-teal-50"
+                onClick={handleWishlistToggle}
+                disabled={isWishlistLoading}
+                className={`rounded-lg border-2 p-3 transition ${isWishlisted
+                    ? "border-red-500 bg-red-50 text-red-500"
+                    : "border-primary text-primary hover:bg-teal-50"
+                  } ${isWishlistLoading ? "cursor-not-allowed opacity-60" : ""}`}
               >
                 <Heart
                   size={24}
-                  className={isWishlisted ? "fill-red-500 border-red-500" : ""}
+                  className={isWishlisted ? "fill-current" : ""}
                 />
               </button>
 

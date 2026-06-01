@@ -194,6 +194,7 @@ export default function ProductDetails() {
 
     return {
       id: product.id,
+      skuId: primarySku?.id || null,
       slug: product.slug,
       name: product.name,
       productType: product.product_type,
