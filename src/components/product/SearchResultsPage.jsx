@@ -1,11 +1,23 @@
 "use client";
 
-import { Search } from "lucide-react";
+import { Search, Sparkles, TrendingUp } from "lucide-react";
 import React, { useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { mapApiProductToCard } from "@/lib/mapApiProductToCard";
-import { useSearchProductsQuery } from "@/redux/features/product/productApi";
+import {
+  useGetTrendingProductsQuery,
+  useSearchProductsQuery,
+} from "@/redux/features/product/productApi";
 import FilteredProductCard from "../category/FilteredProductCard";
+
+const popularSearches = [
+  "vitamin",
+  "face wash",
+  "pain relief",
+  "baby care",
+  "first aid",
+  "supplements",
+];
 
 export default function SearchResultsPage({ initialQuery = "", initialPage = 1 }) {
   const router = useRouter();
@@ -35,6 +47,24 @@ export default function SearchResultsPage({ initialQuery = "", initialPage = 1 }
   const searchResults = useMemo(
     () => (searchResponse?.data || []).map(mapApiProductToCard),
     [searchResponse?.data],
+  );
+
+  const {
+    data: trendingProductsResponse = [],
+    isLoading: isTrendingLoading,
+    isFetching: isTrendingFetching,
+  } = useGetTrendingProductsQuery(
+    {
+      limit: 12,
+    },
+    {
+      skip: Boolean(trimmedQuery),
+    },
+  );
+
+  const trendingProducts = useMemo(
+    () => trendingProductsResponse.map(mapApiProductToCard),
+    [trendingProductsResponse],
   );
 
   const handlePageChange = (page) => {
@@ -68,10 +98,67 @@ export default function SearchResultsPage({ initialQuery = "", initialPage = 1 }
     router.push(nextUrl);
   };
 
+  const handleSuggestionClick = (suggestion) => {
+    const nextSearchParams = new URLSearchParams();
+    nextSearchParams.set("q", suggestion);
+    router.push(`/search?${nextSearchParams.toString()}`);
+  };
+
   if (!trimmedQuery) {
     return (
-      <div className="rounded-lg border border-dashed border-slate-200 bg-white py-16 text-center text-gray-500">
-        Start typing in the header search to find products.
+      <div className="space-y-8">
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="flex items-start gap-4">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <Search size={22} />
+            </div>
+            <div>
+              <p className="mb-1 text-xs font-semibold uppercase tracking-[0.24em] text-primary/80">
+                Search Products
+              </p>
+              <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">
+                Start typing to search
+              </h1>
+              <p className="mt-2 text-sm text-slate-500">
+                Search for products, brands, and categories to find what you need faster.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="mb-4 flex items-center gap-2">
+            <Sparkles size={18} className="text-primary" />
+            <h2 className="text-lg font-semibold text-slate-900">Popular Searches</h2>
+          </div>
+
+          <div className="flex flex-wrap gap-3">
+            {popularSearches.map((suggestion) => (
+              <button
+                key={suggestion}
+                type="button"
+                onClick={() => handleSuggestionClick(suggestion)}
+                className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-primary/40 hover:bg-primary/5 hover:text-primary"
+              >
+                {suggestion}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <div className="mb-4 flex items-center gap-2">
+            <TrendingUp size={22} className="text-teal-500" />
+            <h2 className="text-lg font-semibold sm:text-xl md:text-2xl">
+              Trending Products
+            </h2>
+          </div>
+
+          <FilteredProductCard
+            filteredProducts={trendingProducts}
+            isLoading={isTrendingLoading || isTrendingFetching}
+          />
+        </div>
       </div>
     );
   }

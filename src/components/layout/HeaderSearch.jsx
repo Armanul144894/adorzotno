@@ -2,14 +2,15 @@
 
 import { Search } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 export default function HeaderSearch() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [query, setQuery] = useState(searchParams.get("q") || "");
   const searchTimeoutRef = useRef(null);
+  const inputRef = useRef(null);
+  const currentQuery = searchParams.get("q") || "";
 
   useEffect(() => {
     if (searchTimeoutRef.current) {
@@ -18,9 +19,18 @@ export default function HeaderSearch() {
     }
   }, [pathname]);
 
+  useEffect(() => {
+    if (!inputRef.current) {
+      return;
+    }
+
+    if (inputRef.current.value !== currentQuery) {
+      inputRef.current.value = currentQuery;
+    }
+  }, [currentQuery]);
+
   const handleChange = (event) => {
     const nextQuery = event.target.value;
-    setQuery(nextQuery);
 
     if (searchTimeoutRef.current) {
       clearTimeout(searchTimeoutRef.current);
@@ -29,6 +39,9 @@ export default function HeaderSearch() {
     searchTimeoutRef.current = setTimeout(() => {
       const trimmedQuery = nextQuery.trim();
       if (!trimmedQuery) {
+        if (pathname === "/search") {
+          router.replace("/search");
+        }
         return;
       }
 
@@ -39,7 +52,7 @@ export default function HeaderSearch() {
   };
 
   const runSearch = () => {
-    const trimmedQuery = query.trim();
+    const trimmedQuery = inputRef.current?.value?.trim() || "";
 
     if (searchTimeoutRef.current) {
       clearTimeout(searchTimeoutRef.current);
@@ -47,6 +60,9 @@ export default function HeaderSearch() {
     }
 
     if (!trimmedQuery) {
+      if (pathname === "/search") {
+        router.replace("/search");
+      }
       return;
     }
 
@@ -66,8 +82,9 @@ export default function HeaderSearch() {
     <div className="flex max-w-4xl flex-1">
       <div className="relative flex w-full">
         <input
+          ref={inputRef}
           type="text"
-          value={query}
+          defaultValue={currentQuery}
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder="Search for products..."
