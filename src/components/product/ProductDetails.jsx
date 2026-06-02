@@ -9,6 +9,7 @@ import { mapApiProductToCard } from "@/lib/mapApiProductToCard";
 import { useGetBrandProductsQuery } from "@/redux/features/brand/brandApi";
 import {
   useGetProductQuery,
+  useGetProductsByGenericNameQuery,
   useGetRelatedProductsQuery,
   useGetTrendingProductsQuery,
 } from "@/redux/features/product/productApi";
@@ -236,8 +237,17 @@ export default function ProductDetails() {
     };
   }, [product]);
 
-  const genericName =
-    selectedProduct?.productType === "medicine" ? selectedProduct?.generic || "" : "";
+  const genericName = selectedProduct?.generic?.trim() || "";
+
+  const { data: genericProductsResponse = {} } = useGetProductsByGenericNameQuery(
+    {
+      genericName,
+      perPage: 20,
+    },
+    {
+      skip: !genericName,
+    },
+  );
 
   const productsExcludingSelected = useMemo(
     () =>
@@ -304,6 +314,29 @@ export default function ProductDetails() {
         .map(mapApiProductToCard)
         .slice(0, 12),
     [relatedProductsResponse, selectedProduct?.id],
+  );
+
+  const alternativeBrandProducts = useMemo(
+    () =>
+      (genericProductsResponse?.data || [])
+        .filter((genericProduct) => genericProduct?.id !== selectedProduct?.id)
+        .map((genericProduct) => {
+          const pricing = getPricing(genericProduct);
+
+          return {
+            id: genericProduct.id,
+            slug: genericProduct.slug,
+            name: genericProduct.name,
+            manufacturer:
+              genericProduct?.manufacturer_name ||
+              genericProduct?.brand?.name ||
+              "Healthcare",
+            price: pricing.price,
+            originalPrice: pricing.originalPrice,
+            images: buildProductImages(genericProduct),
+          };
+        }),
+    [genericProductsResponse?.data, selectedProduct?.id],
   );
 
   const previouslyBrowsedProducts = useMemo(
@@ -383,7 +416,7 @@ export default function ProductDetails() {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         genericName={genericName}
-        alternativeBrandProducts={[]}
+        alternativeBrandProducts={alternativeBrandProducts}
       />
 
       <div className="xl:hidden">

@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import React, { useMemo, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { toast } from "sonner";
@@ -318,8 +319,8 @@ export default function ProductGrid({
                 onClick={handleWishlistToggle}
                 disabled={isWishlistLoading}
                 className={`rounded-lg border-2 p-3 transition ${isWishlisted
-                    ? "border-red-500 bg-red-50 text-red-500"
-                    : "border-primary text-primary hover:bg-teal-50"
+                  ? "border-red-500 bg-red-50 text-red-500"
+                  : "border-primary text-primary hover:bg-teal-50"
                   } ${isWishlistLoading ? "cursor-not-allowed opacity-60" : ""}`}
               >
                 <Heart
@@ -347,6 +348,14 @@ export default function ProductGrid({
                     {selectedProduct?.manufacturer}
                   </span>
                 </div>
+                {genericName ? (
+                  <div className="flex gap-2">
+                    <span className="text-gray-600">Generic:</span>
+                    <span className="font-semibold text-primary">
+                      {genericName}
+                    </span>
+                  </div>
+                ) : null}
                 <div className="flex gap-2">
                   <span className="text-gray-600">Available Stock:</span>
                   <span
@@ -356,14 +365,6 @@ export default function ProductGrid({
                     {selectedProduct?.stockCount || 0}
                   </span>
                 </div>
-                {selectedProduct?.productType === "medicine" && genericName ? (
-                  <div className="flex gap-2">
-                    <span className="text-gray-600">Generic:</span>
-                    <span className="font-semibold text-primary">
-                      {genericName}
-                    </span>
-                  </div>
-                ) : null}
               </div>
 
               <div className="space-y-3 pt-6">
@@ -386,9 +387,7 @@ export default function ProductGrid({
               </div>
             </div>
 
-            {selectedProduct?.productType === "medicine" &&
-              genericName &&
-              sortedAlternativeBrandProducts.length > 0 ? (
+            {genericName && sortedAlternativeBrandProducts.length > 0 ? (
               <div>
                 <div className="my-6 flex flex-col gap-4 border-b pb-4 sm:flex-row sm:items-center sm:justify-between">
                   <h2 className="text-sm text-gray-500">
@@ -413,25 +412,30 @@ export default function ProductGrid({
                       key={product.id}
                       className="flex items-center gap-3 rounded-xl transition-all hover:border-primary/20 hover:shadow-sm"
                     >
-                      <div className="relative h-10 w-10 overflow-hidden rounded-lg border bg-gray-50 sm:h-14 sm:w-14">
-                        <Image
-                          src={product.images[0]}
-                          alt={product.name}
-                          fill
-                          sizes="96px"
-                          className="object-cover"
-                          unoptimized
-                        />
-                      </div>
+                      <Link
+                        href={`/product/${product.slug}`}
+                        className="flex min-w-0 flex-1 items-center gap-3"
+                      >
+                        <div className="relative h-10 w-10 overflow-hidden rounded-lg border bg-gray-50 sm:h-14 sm:w-14">
+                          <Image
+                            src={product.images[0]}
+                            alt={product.name}
+                            fill
+                            sizes="96px"
+                            className="object-cover"
+                            unoptimized
+                          />
+                        </div>
 
-                      <div className="min-w-0 flex-1">
-                        <h3 className="line-clamp-2 text-sm font-semibold text-gray-800 sm:text-base">
-                          {product.name}
-                        </h3>
-                        <p className="mt-1 text-xs text-gray-500 sm:text-sm">
-                          By {product.manufacturer}
-                        </p>
-                      </div>
+                        <div className="min-w-0 flex-1">
+                          <h3 className="line-clamp-2 text-sm font-semibold text-gray-800 transition hover:text-primary sm:text-base">
+                            {product.name}
+                          </h3>
+                          <p className="mt-1 text-xs text-gray-500 sm:text-sm">
+                            By {product.manufacturer}
+                          </p>
+                        </div>
+                      </Link>
 
                       <div className="flex items-end gap-1 sm:text-right">
                         <p className="text-lg font-bold sm:text-xl">

@@ -62,6 +62,16 @@ export const productApi = baseApi.injectEndpoints({
       }),
       transformResponse: (response) => response?.data?.related || [],
     }),
+    getProductsByGenericName: builder.query({
+      query: ({ genericName, perPage = 20 }) => ({
+        url: `/products/generic-name/${genericName}`,
+        method: "GET",
+        params: {
+          per_page: perPage,
+        },
+      }),
+      transformResponse: (response) => response?.data || {},
+    }),
     searchProducts: builder.query({
       query: ({
         query,
@@ -87,5 +97,6 @@ export const {
   useGetFeaturedDealsQuery,
   useGetTrendingProductsQuery,
   useGetRelatedProductsQuery,
+  useGetProductsByGenericNameQuery,
   useSearchProductsQuery,
 } = productApi;
