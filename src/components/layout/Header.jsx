@@ -32,10 +32,11 @@ export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const { cartItems, setIsCartOpen } = useCart();
+  const { cartItems, isHydrated: isCartHydrated, setIsCartOpen } = useCart();
   const { user, isAuthenticated, isHydrated } = useSelector((state) => state.auth);
   const [logoutUser, { isLoading: isLoggingOut }] = useLogoutMutation();
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const showCartCount = hasMounted && isCartHydrated && cartCount > 0;
   const shouldOpenSignIn = searchParams.get("signin") === "1";
   const redirectPath = searchParams.get("redirect");
   const signInRequestKey = shouldOpenSignIn
@@ -251,7 +252,7 @@ export default function Header() {
                 className="relative cursor-pointer rounded-lg p-2.5 transition-colors duration-300 hover:bg-primary/5"
               >
                 <ShoppingCart size={24} className="text-gray-600" />
-                {cartCount > 0 && (
+                {showCartCount && (
                   <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">
                     {cartCount}
                   </span>

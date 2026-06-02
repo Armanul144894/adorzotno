@@ -16,7 +16,6 @@ import { useCart } from "../../lib/useCart";
 const CartOffcanvas = () => {
   const {
     cartItems,
-    setCartItems,
     isCartOpen,
     setIsCartOpen,
     updateQuantity,
@@ -64,9 +63,8 @@ const CartOffcanvas = () => {
 
       {/* Offcanvas */}
       <div
-        className={`fixed top-0 right-0 h-full w-full sm:w-96 bg-white shadow-2xl z-50 transform transition-transform duration-300 ${
-          isCartOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed top-0 right-0 h-full w-full sm:w-96 bg-white shadow-2xl z-50 transform transition-transform duration-300 ${isCartOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         <div className="flex flex-col h-full">
           {/* Header */}
@@ -126,6 +124,7 @@ const CartOffcanvas = () => {
                         width={80}
                         height={80}
                         className="w-20 h-20 object-cover rounded-lg"
+                        unoptimized
                       />
                       <div className="flex-1">
                         <span className="text-xs text-primary font-semibold">
@@ -260,11 +259,6 @@ const CartOffcanvas = () => {
                 </button>
               </Link>
 
-              <div className="mt-4 text-center">
-                <p className="text-xs text-gray-500 flex items-center justify-center gap-1">
-                  🔒 Secure Checkout - SSL Encrypted
-                </p>
-              </div>
             </div>
           )}
         </div>

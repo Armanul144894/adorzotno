@@ -1,67 +1,107 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+export const GUEST_CART_STORAGE_KEY = "guest_cart";
+
+export const getCartStorageKey = (userId) =>
+  userId ? `${userId}_cart` : GUEST_CART_STORAGE_KEY;
+
+export const getStoredCart = (storageKey = GUEST_CART_STORAGE_KEY) => {
+  if (typeof window === "undefined") {
+    return {
+      cartItems: [],
+      storageKey,
+    };
+  }
+
+  try {
+    const storedValue = window.localStorage.getItem(storageKey);
+    if (!storedValue) {
+      return {
+        cartItems: [],
+        storageKey,
+      };
+    }
+
+    const parsedValue = JSON.parse(storedValue);
+
+    return {
+      cartItems: Array.isArray(parsedValue?.cartItems)
+        ? parsedValue.cartItems
+        : [],
+      storageKey,
+    };
+  } catch {
+    return {
+      cartItems: [],
+      storageKey,
+    };
+  }
+};
+
+export const removeStoredCart = (storageKey) => {
+  if (typeof window === "undefined" || !storageKey) return;
+  window.localStorage.removeItem(storageKey);
+};
+
+const persistCart = (storageKey, cartState) => {
+  if (typeof window === "undefined" || !storageKey) return;
+
+  window.localStorage.setItem(storageKey, JSON.stringify(cartState));
+};
+
 const initialState = {
   cartItems: [],
   isCartOpen: false,
+  isHydrated: false,
+  storageKey: GUEST_CART_STORAGE_KEY,
 };
-
-const normalizeCartItem = (product, quantity = 1) => ({
-  id: product.id,
-  name: product.name,
-  price: product.price,
-  quantity,
-  image: product.image || product.images?.[0] || "",
-  category: product.category || "",
-});
 
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    hydrateCart(state, action) {
+      state.cartItems = Array.isArray(action.payload?.cartItems)
+        ? action.payload.cartItems
+        : [];
+      state.storageKey = action.payload?.storageKey || GUEST_CART_STORAGE_KEY;
+      state.isHydrated = true;
+    },
+    switchCartContext(state, action) {
+      state.cartItems = Array.isArray(action.payload?.cartItems)
+        ? action.payload.cartItems
+        : [];
+      state.storageKey = action.payload?.storageKey || GUEST_CART_STORAGE_KEY;
+      state.isHydrated = true;
+      persistCart(state.storageKey, {
+        cartItems: state.cartItems,
+      });
+    },
     setCartItems(state, action) {
       state.cartItems = action.payload;
+      state.isHydrated = true;
+      persistCart(state.storageKey, {
+        cartItems: state.cartItems,
+      });
     },
     setIsCartOpen(state, action) {
       state.isCartOpen = action.payload;
     },
-    addToCart(state, action) {
-      const product = action.payload;
-      const existing = state.cartItems.find((item) => item.id === product.id);
-
-      if (existing) {
-        existing.quantity += 1;
-      } else {
-        state.cartItems.push(normalizeCartItem(product));
-      }
-
-      state.isCartOpen = true;
-    },
-    updateQuantity(state, action) {
-      const { id, quantity } = action.payload;
-      if (quantity < 1) return;
-
-      const existing = state.cartItems.find((item) => item.id === id);
-      if (existing) {
-        existing.quantity = quantity;
-      }
-    },
-    removeItem(state, action) {
-      state.cartItems = state.cartItems.filter(
-        (item) => item.id !== action.payload,
-      );
-    },
     clearCart(state) {
       state.cartItems = [];
+      state.isHydrated = true;
+      persistCart(state.storageKey, {
+        cartItems: [],
+      });
     },
   },
 });
 
 export const {
+  hydrateCart,
+  switchCartContext,
   setCartItems,
   setIsCartOpen,
-  addToCart,
-  updateQuantity,
-  removeItem,
   clearCart,
 } = cartSlice.actions;
 

@@ -9,15 +9,21 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { useCart } from "../../lib/useCart";
 import SignInModal from "../modules/auth/SignInModal";
 
 export default function MobileNav() {
+    const hasMounted = useSyncExternalStore(
+        () => () => { },
+        () => true,
+        () => false,
+    );
     const pathname = usePathname();
-    const { cartItems, setIsCartOpen } = useCart();
+    const { cartItems, isHydrated, setIsCartOpen } = useCart();
     const [isSignInOpen, setSignInOpen] = useState(false);
     const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+    const showCartCount = hasMounted && isHydrated && cartCount > 0;
 
     const homeActive = pathname === "/";
     const categoryActive = pathname === "/category" || pathname.startsWith("/category/");
@@ -57,7 +63,7 @@ export default function MobileNav() {
                         <div className="relative">
                             <ShoppingCart size={20} />
 
-                            {cartCount > 0 && (
+                            {showCartCount && (
                                 <span className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] min-w-[16px] h-4 px-1 rounded-full flex items-center justify-center">
                                     {cartCount}
                                 </span>

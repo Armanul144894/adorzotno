@@ -44,7 +44,7 @@ export default function ProductGrid({
 }) {
   const router = useRouter();
   const pathname = usePathname();
-  const { setCartItems, setIsCartOpen } = useCart();
+  const { addToCart, setIsCartOpen } = useCart();
   const { isAuthenticated, isHydrated } = useSelector((state) => state.auth);
   const [alternativeSort, setAlternativeSort] = useState("relevance");
   const [expandedAlternativesKey, setExpandedAlternativesKey] = useState("");
@@ -85,35 +85,10 @@ export default function ProductGrid({
   const handleAddToCart = () => {
     if (!selectedProduct?.id || !selectedProduct?.inStock) return;
 
-    setCartItems((prev) => {
-      const existingItem = prev.find((item) => item.id === selectedProduct.id);
-      const maxAllowedQuantity = selectedProduct?.stockCount || quantity;
-
-      if (existingItem) {
-        return prev.map((item) =>
-          item.id === selectedProduct.id
-            ? {
-              ...item,
-              quantity: Math.min(item.quantity + quantity, maxAllowedQuantity),
-            }
-            : item,
-        );
-      }
-
-      return [
-        ...prev,
-        {
-          id: selectedProduct.id,
-          name: selectedProduct.name,
-          price: selectedProduct.price,
-          quantity: Math.min(quantity, maxAllowedQuantity),
-          image: selectedProduct.images?.[0] || "",
-          category: selectedProduct.category || "",
-        },
-      ];
-    });
-
-    setIsCartOpen(true);
+    const result = addToCart(selectedProduct, quantity);
+    if (result?.success) {
+      setIsCartOpen(true);
+    }
   };
 
   const handleWishlistToggle = async () => {

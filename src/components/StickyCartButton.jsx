@@ -1,14 +1,22 @@
 "use client"
 
 import React from 'react'
+import { useSyncExternalStore } from 'react';
 import { ShoppingCart } from 'lucide-react';
 import { useCart } from '@/lib/useCart';
 
 export default function StickyCartButton() {
-    const { cartItems, isCartOpen, setIsCartOpen } = useCart();
+    const hasMounted = useSyncExternalStore(
+        () => () => { },
+        () => true,
+        () => false,
+    );
+    const { cartItems, isHydrated, isCartOpen, setIsCartOpen } = useCart();
 
     const totalItem = cartItems.reduce((sum, item) => sum + item.quantity, 0);
     const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const showCartSummary = hasMounted && isHydrated;
+
     return (
         <>
             <div
@@ -16,9 +24,9 @@ export default function StickyCartButton() {
                 className={`hidden md:fixed md:flex md:flex-col md:gap-1 md:items-center md:right-0 md:top-80 md:bg-sky-600 md:pt-2 md:rounded-l md:text-sm hover:cursor-pointer ${isCartOpen ? 'z-40' : ''}`}
             >
                 <ShoppingCart size={18} className="text-white" />
-                <p className="px-2 text-white">{totalItem} Item</p>
+                <p className="px-2 text-white">{showCartSummary ? totalItem : 0} Item</p>
                 <div className="bg-sky-200 w-full text-center rounded-bl border-t border-sky-300 px-2">
-                    <p className="font-semibold">৳{totalPrice.toFixed(2)}</p>
+                    <p className="font-semibold">৳{showCartSummary ? totalPrice.toFixed(2) : "0.00"}</p>
                 </div>
             </div>
 
