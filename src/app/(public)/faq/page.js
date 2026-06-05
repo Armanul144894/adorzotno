@@ -1,5 +1,5 @@
 import React from 'react'
-import FAQSection from "../../components/modules/shared/FAQSection";
+import FAQSection from "@/components/modules/shared/FAQSection";
 
 export default function page() {
   return (

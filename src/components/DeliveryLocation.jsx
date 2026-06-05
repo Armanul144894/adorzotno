@@ -2,31 +2,19 @@
 
 import { useState } from "react";
 import { Check, ChevronDown, MapPin } from "lucide-react";
+import { useGetShipmentZonesQuery } from "@/redux/features/settings/settingsApi";
+import { useSelectedShipmentZone } from "@/lib/shipmentZoneStorage";
 
 export default function DeliveryLocation() {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedLocation, setSelectedLocation] = useState("Dhanmondi");
+    const { data: locations = [], isLoading } = useGetShipmentZonesQuery();
+    const {
+        selectedShipmentZone: selectedLocation,
+        setSelectedShipmentZoneId,
+    } = useSelectedShipmentZone(locations);
 
-    const locations = [
-        { name: "Dhanmondi", region: "Central Dhaka" },
-        { name: "Gulshan", region: "North Dhaka" },
-        { name: "Banani", region: "North Dhaka" },
-        { name: "Uttara", region: "Airport Zone" },
-        { name: "Mirpur", region: "West Dhaka" },
-        { name: "Mohammadpur", region: "West Central" },
-        { name: "Bashundhara", region: "East Dhaka" },
-        { name: "Badda", region: "North East Dhaka" },
-        { name: "Rampura", region: "East Central" },
-        { name: "Shantinagar", region: "Central Dhaka" },
-        { name: "Malibagh", region: "Central Dhaka" },
-        { name: "Khilgaon", region: "South East Dhaka" },
-        { name: "Shyamoli", region: "West Dhaka" },
-        { name: "Farmgate", region: "Central Dhaka" },
-        { name: "Old Dhaka", region: "Historic Zone" },
-    ];
-
-    const handleLocationSelect = (locationName) => {
-        setSelectedLocation(locationName);
+    const handleLocationSelect = (locationId) => {
+        setSelectedShipmentZoneId(locationId);
         setIsOpen(false);
     };
 
@@ -47,7 +35,7 @@ export default function DeliveryLocation() {
                             Delivery To
                         </p>
                         <p className="truncate whitespace-nowrap text-sm font-bold text-slate-800">
-                            {selectedLocation}
+                            {selectedLocation?.name || "Select area"}
                         </p>
                     </div>
                     <ChevronDown
@@ -70,7 +58,7 @@ export default function DeliveryLocation() {
                         Delivery to
                     </span>
                     <span className="truncate whitespace-nowrap text-sm font-semibold text-slate-800">
-                        {selectedLocation}
+                        {selectedLocation?.name || "Select area"}
                     </span>
                     <ChevronDown
                         className={`h-4 w-4 shrink-0 text-slate-500 transition-transform duration-200 ${isOpen ? "rotate-180" : ""
@@ -91,26 +79,38 @@ export default function DeliveryLocation() {
 
                     {/* Scroll area uses the same thin scrollbar style as the sidebar */}
                     <div className="max-h-96 overflow-y-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-gray-300">
-                        {locations.map((location, index) => (
-                            <button
-                                key={index}
-                                onClick={() => handleLocationSelect(location.name)}
-                                className={`flex w-full items-center justify-between px-4 py-3 text-left transition-colors duration-150 ${selectedLocation === location.name
-                                    ? "bg-primary/20"
-                                    : "hover:bg-slate-100"
-                                    }`}
-                            >
-                                <div>
-                                    <p className="font-medium text-slate-900">{location.name}</p>
-                                    <p className="text-xs text-slate-500">{location.region}</p>
-                                </div>
-                                {selectedLocation === location.name && (
-                                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-white">
-                                        <Check className="h-3.5 w-3.5" />
+                        {isLoading ? (
+                            <div className="px-4 py-6 text-sm text-slate-500">
+                                Loading delivery areas...
+                            </div>
+                        ) : locations.length > 0 ? (
+                            locations.map((location) => (
+                                <button
+                                    key={location.id}
+                                    onClick={() => handleLocationSelect(location.id)}
+                                    className={`flex w-full items-center justify-between px-4 py-3 text-left transition-colors duration-150 ${selectedLocation?.id === location.id
+                                        ? "bg-primary/20"
+                                        : "hover:bg-slate-100"
+                                        }`}
+                                >
+                                    <div>
+                                        <p className="font-medium text-slate-900">{location.name}</p>
+                                        {/* <p className="text-xs text-slate-500">
+                                            Delivery charge: Tk {location.charge}
+                                        </p> */}
                                     </div>
-                                )}
-                            </button>
-                        ))}
+                                    {selectedLocation?.id === location.id && (
+                                        <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-white">
+                                            <Check className="h-3.5 w-3.5" />
+                                        </div>
+                                    )}
+                                </button>
+                            ))
+                        ) : (
+                            <div className="px-4 py-6 text-sm text-slate-500">
+                                No delivery areas available right now.
+                            </div>
+                        )}
                     </div>
 
                     <div className="flex gap-2 border-t border-blue-100 bg-slate-50 px-4 py-3">

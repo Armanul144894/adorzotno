@@ -1,5 +1,5 @@
 import React from "react";
-import BrandProductsPage from "../../../components/brand/BrandProductsPage";
+import BrandProductsPage from "@/components/brand/BrandProductsPage";
 
 const normalizePage = (value) => {
   const parsed = Number(value);

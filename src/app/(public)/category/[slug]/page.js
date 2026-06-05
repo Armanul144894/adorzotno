@@ -1,5 +1,5 @@
 import React from "react";
-import ProductCategoryCard from "../../../components/category/ProductCategoryCard";
+import ProductCategoryCard from "@/components/category/ProductCategoryCard";
 
 const normalizePage = (value) => {
   const parsed = Number(value);
