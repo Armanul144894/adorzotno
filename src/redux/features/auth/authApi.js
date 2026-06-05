@@ -23,6 +23,7 @@ export const authApi = baseApi.injectEndpoints({
                     const token = data?.data?.token || null;
 
                     if (token) {
+                        dispatch(baseApi.util.resetApiState());
                         dispatch(
                             setCredentials({
                                 user,
@@ -99,6 +100,7 @@ export const authApi = baseApi.injectEndpoints({
             async onQueryStarted(_, { dispatch, queryFulfilled }) {
                 try {
                     await queryFulfilled;
+                    dispatch(baseApi.util.resetApiState());
                     dispatch(clearAuth());
                 } catch {
                     // Errors are handled in the consuming UI.
