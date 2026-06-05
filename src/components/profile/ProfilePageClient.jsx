@@ -2,7 +2,7 @@
 
 import { Heart, Package, Settings, User } from "lucide-react";
 import { useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import { toast } from "sonner";
 import { useLogoutMutation } from "@/redux/features/auth/authApi";
@@ -18,12 +18,20 @@ const navItems = [
   { id: "wishlist", label: "Wishlist", icon: Heart },
   { id: "settings", label: "Settings", icon: Settings },
 ];
+const validSectionIds = new Set(navItems.map((item) => item.id));
 
 export default function ProfilePageClient({ user: initialUser }) {
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const authUser = useSelector((state) => state.auth.user);
   const [logoutUser, { isLoading: isLoggingOut }] = useLogoutMutation();
-  const [activeSection, setActiveSection] = useState("profile");
+  const [manualActiveSection, setManualActiveSection] = useState("profile");
+
+  const requestedSection = searchParams.get("tab");
+  const activeSection = validSectionIds.has(requestedSection)
+    ? requestedSection
+    : manualActiveSection;
 
   const user = authUser || initialUser;
   const customer = user?.customer || {};
@@ -46,6 +54,14 @@ export default function ProfilePageClient({ user: initialUser }) {
     } catch (error) {
       toast.error(error?.data?.message || "Logout failed. Please try again.");
     }
+  };
+
+  const handleSectionChange = (sectionId) => {
+    setManualActiveSection(sectionId);
+
+    const nextParams = new URLSearchParams(searchParams.toString());
+    nextParams.set("tab", sectionId);
+    router.replace(`${pathname}?${nextParams.toString()}`, { scroll: false });
   };
 
   const renderActiveSection = () => {
@@ -114,7 +130,7 @@ export default function ProfilePageClient({ user: initialUser }) {
                       <button
                         key={item.id}
                         type="button"
-                        onClick={() => setActiveSection(item.id)}
+                        onClick={() => handleSectionChange(item.id)}
                         className={`flex w-full items-center gap-3 rounded-lg px-4 text-left text-sm font-semibold transition-all duration-200 ${isActive
                           ? "bg-primary text-white"
                           : "text-slate-700 hover:bg-slate-50 hover:text-primary"
@@ -146,7 +162,7 @@ export default function ProfilePageClient({ user: initialUser }) {
                       <button
                         key={item.id}
                         type="button"
-                        onClick={() => setActiveSection(item.id)}
+                        onClick={() => handleSectionChange(item.id)}
                         className={`flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-semibold transition-all duration-200 ${isActive
                           ? "bg-primary text-white"
                           : "bg-slate-50 text-slate-700"

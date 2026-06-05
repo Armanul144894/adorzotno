@@ -46,7 +46,7 @@ export default function OrderDetailsPageClient({ orderId }) {
       <div className="container mx-auto py-4">
         <div className="mb-4">
           <Link
-            href="/profile"
+            href="/profile?tab=orders"
             className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-50"
           >
             <ArrowLeft size={16} />
@@ -89,7 +89,7 @@ export default function OrderDetailsPageClient({ orderId }) {
                   : errorMessage}
               </p>
               <Link
-                href="/profile"
+                href="/profile?tab=orders"
                 className="mt-5 inline-flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
               >
                 <ArrowLeft size={16} />

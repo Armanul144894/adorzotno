@@ -1,36 +1,65 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, RotateCcw } from "lucide-react";
+import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import products from "../../../../public/data/data";
 import ProductCard from "../../cards/ProductCard";
+import { getImageUrl } from "@/lib/imageHelpers";
+import { useGetOrdersQuery } from "@/redux/features/order/orderApi";
 
-const previousOrders = products.slice(30, 44);
+const toNumber = (value) => {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : 0;
+};
+
+const mapOrderedItemToCard = (item) => {
+  const product = item?.sku?.product;
+
+  if (!product?.id || !product?.slug) {
+    return null;
+  }
+
+  const price = toNumber(
+    item?.unit_price ??
+    product?.sale_price ??
+    product?.mrp ??
+    product?.sku?.[0]?.online_price ??
+    product?.sku?.[0]?.sale_price,
+  );
+
+  return {
+    id: product.id,
+    skuId: item?.sku?.id || product?.sku?.[0]?.id || null,
+    slug: product.slug,
+    name: product.name,
+    rating: product?.sku?.[0]?.rating || "0.0",
+    price,
+    originalPrice: null,
+    discountAmount: null,
+    discountLabel: null,
+    images: [getImageUrl(product?.thumbnail_image)],
+    brand: product?.brand?.name || "",
+    category: product?.category?.name || "",
+    inStock:
+      Boolean(product?.in_stock) ||
+      Boolean(item?.sku?.in_stock) ||
+      toNumber(product?.available_stock) > 0,
+  };
+};
 
 function SkeletonCard() {
   return (
-    <div className="bg-white border border-gray-100 rounded-2xl shadow-sm flex flex-col overflow-hidden h-full animate-pulse">
-      <div className="h-40 bg-gray-200" />
-      <div className="p-3 flex flex-col gap-2">
-        <div className="h-2.5 bg-gray-200 rounded w-1/3" />
-        <div className="h-3.5 bg-gray-200 rounded w-4/5" />
-        <div className="h-3.5 bg-gray-200 rounded w-3/5" />
-        <div className="h-2.5 bg-gray-200 rounded w-1/4 mt-1" />
-        <div className="flex gap-1 mt-0.5">
-          {[...Array(5)].map((_, i) => (
-            <div key={i} className="w-3 h-3 bg-gray-200 rounded-full" />
-          ))}
-        </div>
-        <div className="flex items-center justify-between mt-2">
-          <div className="h-5 bg-gray-200 rounded w-16" />
-          <div className="w-9 h-9 bg-gray-200 rounded-lg" />
-        </div>
+    <div className="overflow-hidden rounded-lg border border-slate-200 bg-white">
+      <div className="h-40 animate-pulse bg-slate-100 lg:h-44" />
+      <div className="space-y-3 p-3">
+        <div className="h-4 w-3/4 animate-pulse rounded bg-slate-100" />
+        <div className="h-4 w-1/2 animate-pulse rounded bg-slate-100" />
+        <div className="h-5 w-1/3 animate-pulse rounded bg-slate-100" />
       </div>
     </div>
   );
@@ -38,36 +67,64 @@ function SkeletonCard() {
 
 export default function HomeOrderAgain() {
   const { isAuthenticated, isHydrated } = useSelector((state) => state.auth);
-  const [loading, setLoading] = useState(true);
+  const { data: ordersResponse, isLoading } = useGetOrdersQuery(
+    {
+      page: 1,
+      perPage: 10,
+    },
+    {
+      skip: !isHydrated || !isAuthenticated,
+      refetchOnMountOrArgChange: true,
+    },
+  );
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1500);
-    return () => clearTimeout(timer);
-  }, []);
+  const orderedProducts = useMemo(() => {
+    const uniqueProducts = new Map();
+    const orders = ordersResponse?.data || [];
+
+    orders.forEach((order) => {
+      order?.items?.forEach((item) => {
+        const mappedProduct = mapOrderedItemToCard(item);
+
+        if (!mappedProduct || uniqueProducts.has(mappedProduct.id)) {
+          return;
+        }
+
+        uniqueProducts.set(mappedProduct.id, mappedProduct);
+      });
+    });
+
+    return Array.from(uniqueProducts.values()).slice(0, 14);
+  }, [ordersResponse]);
 
   if (!isHydrated || !isAuthenticated) {
     return null;
   }
 
-  const skeletonCount = 7;
+  if (!isLoading && orderedProducts.length === 0) {
+    return null;
+  }
+
   return (
-    <section className="group/category w-full mb-8">
-      <div className="flex items-center justify-between mb-4">
+    <section className="group/category mb-8 w-full">
+      <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">Order Again</h2>
+          <h2 className="text-lg font-semibold sm:text-xl md:text-2xl">
+            Order Again
+          </h2>
           <RotateCcw className="text-primary" size={24} />
         </div>
 
         <Link
-          href="/orders"
-          className="text-primary font-semibold flex items-center gap-1 hover:gap-2 transition-all text-sm border border-primary/30 px-3 py-1.5 rounded-full hover:bg-primary/5"
+          href="/profile?tab=orders"
+          className="flex items-center gap-1 rounded-full border border-primary/30 px-3 py-1.5 text-sm font-semibold text-primary transition-all hover:gap-2 hover:bg-primary/5"
         >
           View Orders <ChevronRight size={16} />
         </Link>
       </div>
 
       <div className="relative">
-        {!loading && (
+        {!isLoading && orderedProducts.length > 0 && (
           <>
             <button
               className="order-again-prev absolute -left-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-xl bg-primary/85 text-white shadow-md opacity-0 transition-all duration-300 group-hover/category:translate-x-0 group-hover/category:opacity-100 md:translate-x-3"
@@ -84,10 +141,10 @@ export default function HomeOrderAgain() {
           </>
         )}
 
-        {loading ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-6 gap-3">
-            {[...Array(skeletonCount)].map((_, i) => (
-              <SkeletonCard key={i} />
+        {isLoading ? (
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-6">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <SkeletonCard key={index} />
             ))}
           </div>
         ) : (
@@ -109,7 +166,7 @@ export default function HomeOrderAgain() {
               1400: { slidesPerView: 6 },
             }}
           >
-            {previousOrders.map((product) => (
+            {orderedProducts.map((product) => (
               <SwiperSlide key={product.id} className="h-auto py-4">
                 <ProductCard product={product} />
               </SwiperSlide>
