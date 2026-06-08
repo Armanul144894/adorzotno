@@ -188,7 +188,7 @@ export default function CheckoutConfirmationPage({ orderNumber }) {
 
               <div className="mt-6 grid gap-3">
                 <Link
-                  href="/profile"
+                  href="/profile?tab=orders"
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:bg-secondary"
                 >
                   <ShoppingBag className="h-4 w-4" />
