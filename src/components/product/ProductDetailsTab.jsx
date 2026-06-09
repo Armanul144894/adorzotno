@@ -1,52 +1,14 @@
 import { Check } from "lucide-react";
 import React from "react";
-import RatingStars from "../shared/RatingStars";
+import ProductReviewsTab from "./ProductReviewsTab";
 
 const renderHtml = (html) => ({ __html: html || "" });
-const formatReviewDate = (value) => {
-  if (!value) return "Recently";
-
-  return new Date(value).toLocaleDateString("en-BD", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-};
-
-const getReviewFallbacks = () => [
-  {
-    id: "review-1",
-    customer: {
-      name: "John D.",
-    },
-    created_at: new Date().toISOString(),
-    rating: 5,
-    comment:
-      "Excellent product quality and very smooth delivery experience.",
-    is_verified_purchase: true,
-  },
-  {
-    id: "review-2",
-    customer: {
-      name: "Sarah M.",
-    },
-    created_at: new Date().toISOString(),
-    rating: 4,
-    comment: "Good product and packaging. Will consider ordering again.",
-    is_verified_purchase: false,
-  },
-];
 
 export default function ProductDetailsTab({
   selectedProduct,
   activeTab,
   setActiveTab,
 }) {
-  const reviewItems =
-    selectedProduct?.reviewItems?.length > 0
-      ? selectedProduct.reviewItems
-      : getReviewFallbacks();
-
   const dosageLines = String(selectedProduct?.dosage || "")
     .split(/\r?\n/)
     .map((line) => line.trim())
@@ -166,44 +128,10 @@ export default function ProductDetailsTab({
           ) : null}
 
           {activeTab === "reviews" ? (
-            <div>
-              <h3 className="mb-4 text-xl font-bold text-gray-800">
-                Customer Reviews
-              </h3>
-              <div className="space-y-4">
-                {reviewItems.map((review, index) => (
-                  <div
-                    key={review?.id || `${review?.customer?.name || review?.author}-${index}`}
-                    className="border-b pb-4 last:border-b-0"
-                  >
-                    <div className="mb-2 flex flex-wrap items-center gap-3">
-                      <RatingStars
-                        rating={review?.rating}
-                        showCount={false}
-                        className="shrink-0"
-                      />
-                      <span className="font-semibold text-gray-800">
-                        {review?.customer?.name ||
-                          review?.author ||
-                          review?.user?.name ||
-                          "Customer"}
-                      </span>
-                      {review?.is_verified_purchase ? (
-                        <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700">
-                          Verified Purchase
-                        </span>
-                      ) : null}
-                      <span className="text-sm text-gray-500">
-                        {formatReviewDate(review?.approved_at || review?.created_at)}
-                      </span>
-                    </div>
-                    <p className="text-gray-600">
-                      {review?.comment || review?.review || "No review comment."}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <ProductReviewsTab
+              key={selectedProduct?.slug || selectedProduct?.id || "reviews"}
+              selectedProduct={selectedProduct}
+            />
           ) : null}
         </div>
       </div>

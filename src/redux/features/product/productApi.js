@@ -7,6 +7,9 @@ export const productApi = baseApi.injectEndpoints({
         url: `/products/${productSlug}`,
         method: "GET",
       }),
+      providesTags: (_, __, { productSlug }) => [
+        { type: "Product", id: productSlug },
+      ],
       transformResponse: (response) => response?.data?.product || null,
     }),
     getFlashDeals: builder.query({
@@ -88,6 +91,26 @@ export const productApi = baseApi.injectEndpoints({
       }),
       transformResponse: (response) => response?.data || {},
     }),
+    createReview: builder.mutation({
+      query: (payload) => ({
+        url: "/reviews",
+        method: "POST",
+        body: payload,
+      }),
+    }),
+    updateReview: builder.mutation({
+      query: ({ reviewId, ...payload }) => ({
+        url: `/reviews/${reviewId}`,
+        method: "PUT",
+        body: payload,
+      }),
+    }),
+    deleteReview: builder.mutation({
+      query: ({ reviewId }) => ({
+        url: `/reviews/${reviewId}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
@@ -99,4 +122,7 @@ export const {
   useGetRelatedProductsQuery,
   useGetProductsByGenericNameQuery,
   useSearchProductsQuery,
+  useCreateReviewMutation,
+  useUpdateReviewMutation,
+  useDeleteReviewMutation,
 } = productApi;

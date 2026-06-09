@@ -208,7 +208,7 @@ export default function ProductDetails() {
       category: product?.category?.name || categories?.[0]?.name || "",
       categories,
       rating: toNumber(primarySku?.rating),
-      reviews: product?.reviews?.length || 2,
+      reviews: product?.reviews?.length || 0,
       inStock: stockInfo.inStock,
       stockCount: stockInfo.stockCount,
       sku: primarySku?.sku_code || "N/A",

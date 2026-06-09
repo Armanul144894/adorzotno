@@ -71,7 +71,7 @@ const baseQueryWithCsrf = async (args, api, extraOptions) => {
 export const baseApi = createApi({
     reducerPath: "baseApi",
     baseQuery: baseQueryWithCsrf,
-    tagTypes: ["Wishlist"],
+    tagTypes: ["Wishlist", "Product"],
     endpoints: () => ({}),
 });
 
