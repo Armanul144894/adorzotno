@@ -9,7 +9,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import ProductCard from "../../cards/ProductCard";
-import { getImageUrl } from "@/lib/imageHelpers";
+import { mapApiProductToCard } from "@/lib/mapApiProductToCard";
 import { useGetOrdersQuery } from "@/redux/features/order/orderApi";
 
 const toNumber = (value) => {
@@ -19,36 +19,31 @@ const toNumber = (value) => {
 
 const mapOrderedItemToCard = (item) => {
   const product = item?.sku?.product;
+  const orderedSku = item?.sku || null;
 
   if (!product?.id || !product?.slug) {
     return null;
   }
 
-  const price = toNumber(
-    item?.unit_price ??
-    product?.sale_price ??
-    product?.mrp ??
-    product?.sku?.[0]?.online_price ??
-    product?.sku?.[0]?.sale_price,
-  );
+  const normalizedProduct = {
+    ...product,
+    sku: orderedSku ? [{ ...orderedSku }] : product?.sku || [],
+  };
 
+  const mappedProduct = mapApiProductToCard(normalizedProduct);
+  const currentPrice = toNumber(mappedProduct?.price);
+  const orderedUnitPrice = toNumber(item?.unit_price);
+
+  console.log(mappedProduct);
   return {
-    id: product.id,
-    skuId: item?.sku?.id || product?.sku?.[0]?.id || null,
-    slug: product.slug,
-    name: product.name,
-    rating: product?.sku?.[0]?.rating || "0.0",
-    price,
-    originalPrice: null,
-    discountAmount: null,
-    discountLabel: null,
-    images: [getImageUrl(product?.thumbnail_image)],
-    brand: product?.brand?.name || "",
-    category: product?.category?.name || "",
-    inStock:
-      Boolean(product?.in_stock) ||
-      Boolean(item?.sku?.in_stock) ||
-      toNumber(product?.available_stock) > 0,
+    ...mappedProduct,
+    productId: product.id,
+    skuId: orderedSku?.id || mappedProduct?.skuId || null,
+    price: currentPrice > 0 ? currentPrice : orderedUnitPrice,
+    image: mappedProduct?.images?.[0] || "",
+    rating: orderedSku?.rating || mappedProduct?.rating || "0.0",
+    inStock: true,
+    in_stock: true,
   };
 };
 
