@@ -61,6 +61,7 @@ export default function Checkout({ user: initialUser }) {
         id: item.id,
         productId: Number(item.productId || item.id),
         name: item.name,
+        slug: item.slug || "",
         price: Number(item.price) || 0,
         quantity: Number(item.quantity) || 0,
         image: item.image || "/images/no-image-available.png",

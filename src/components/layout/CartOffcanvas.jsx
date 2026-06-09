@@ -87,7 +87,7 @@ const CartOffcanvas = () => {
           </div>
 
           {/* Items */}
-          <div className="flex-1 overflow-y-auto p-6">
+          <div className="flex-1 overflow-y-auto p-4">
             {cartItems.length === 0 ? (
               <div className="text-center py-12">
                 <ShoppingBag size={64} className="mx-auto text-gray-300 mb-4" />
@@ -118,21 +118,30 @@ const CartOffcanvas = () => {
                       <Trash2 size={18} />
                     </button>
                     <div className="flex gap-4">
-                      <Image
-                        src={item.image}
-                        alt={item.name}
-                        width={80}
-                        height={80}
-                        className="w-20 h-20 object-cover rounded-lg"
-                        unoptimized
-                      />
+                      <Link
+                        href={item.slug ? `/product/${item.slug}` : "#"}
+                        onClick={() => setIsCartOpen(false)}
+                        className="shrink-0"
+                      >
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          width={80}
+                          height={80}
+                          className="w-20 h-20 object-cover rounded-lg"
+                          unoptimized
+                        />
+                      </Link>
                       <div className="flex-1">
-                        <span className="text-xs text-primary font-semibold">
-                          {item.category}
-                        </span>
-                        <h3 className="font-semibold text-gray-800 text-sm mb-1">
-                          {item.name}
-                        </h3>
+                        <Link
+                          href={item.slug ? `/product/${item.slug}` : "#"}
+                          onClick={() => setIsCartOpen(false)}
+                          className="block"
+                        >
+                          <h3 className="mb-1 pr-2 text-sm font-semibold text-gray-800 transition hover:text-primary">
+                            {item.name}
+                          </h3>
+                        </Link>
                         <p className="text-primary font-bold">৳{item.price}</p>
                         <div className="flex items-center gap-2 mt-2">
                           <button
@@ -216,7 +225,7 @@ const CartOffcanvas = () => {
 
           {/* Footer */}
           {cartItems.length > 0 && (
-            <div className="border-t bg-white p-6">
+            <div className="border-t bg-white p-4">
               <div className="space-y-2 mb-4">
                 <div className="flex justify-between text-sm text-gray-600">
                   <span>Subtotal:</span>

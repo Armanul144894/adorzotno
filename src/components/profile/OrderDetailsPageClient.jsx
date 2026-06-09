@@ -153,23 +153,28 @@ export default function OrderDetailsPageClient({ orderId }) {
                 <div className="space-y-4">
                   {selectedOrder.items?.map((item) => {
                     const product = item?.sku?.product;
+                    const productHref = product?.slug ? `/product/${product.slug}` : "#";
                     return (
                       <div
                         key={item.id}
                         className="flex gap-3 border-b border-slate-100 pb-4 last:border-b-0"
                       >
-                        <Image
-                          src={getImageUrl(product?.thumbnail_image)}
-                          alt={product?.name || "Ordered product"}
-                          width={72}
-                          height={72}
-                          className="h-[72px] w-[72px] rounded-xl object-cover"
-                          unoptimized
-                        />
+                        <Link href={productHref} className="shrink-0">
+                          <Image
+                            src={getImageUrl(product?.thumbnail_image)}
+                            alt={product?.name || "Ordered product"}
+                            width={72}
+                            height={72}
+                            className="h-[72px] w-[72px] rounded-xl object-cover"
+                            unoptimized
+                          />
+                        </Link>
                         <div className="min-w-0 flex-1">
-                          <p className="line-clamp-2 font-semibold text-slate-800">
-                            {product?.name || "Product"}
-                          </p>
+                          <Link href={productHref} className="block">
+                            <p className="line-clamp-2 font-semibold text-slate-800 transition hover:text-primary">
+                              {product?.name || "Product"}
+                            </p>
+                          </Link>
                           <div className="mt-2 grid gap-1 text-sm text-slate-500 sm:grid-cols-2">
                             <p>SKU: {item?.sku?.sku_code || "N/A"}</p>
                             <p>Quantity: {item.quantity}</p>

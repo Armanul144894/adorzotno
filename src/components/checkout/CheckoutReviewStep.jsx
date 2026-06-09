@@ -2,6 +2,7 @@
 
 import { CreditCard, Package, Shield } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function CheckoutReviewStep({
   shippingInfo,
@@ -92,16 +93,28 @@ export default function CheckoutReviewStep({
             {cartItems.length > 0 ? (
               cartItems.map((item) => (
                 <div key={item.id} className="flex gap-3 border-b pb-3 last:border-b-0 sm:gap-4 sm:pb-4">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    width={80}
-                    height={80}
-                    className="h-16 w-16 rounded-lg object-cover sm:h-20 sm:w-20"
-                    unoptimized
-                  />
+                  <Link
+                    href={item.slug ? `/product/${item.slug}` : "#"}
+                    className="shrink-0"
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      width={80}
+                      height={80}
+                      className="h-16 w-16 rounded-lg object-cover sm:h-20 sm:w-20"
+                      unoptimized
+                    />
+                  </Link>
                   <div className="min-w-0 flex-1">
-                    <h4 className="line-clamp-2 text-sm font-semibold text-gray-800 sm:text-base">{item.name}</h4>
+                    <Link
+                      href={item.slug ? `/product/${item.slug}` : "#"}
+                      className="block"
+                    >
+                      <h4 className="line-clamp-2 text-sm font-semibold text-gray-800 transition hover:text-primary sm:text-base">
+                        {item.name}
+                      </h4>
+                    </Link>
                     <p className="mt-1 text-xs text-gray-600 sm:text-sm">Quantity: {item.quantity}</p>
                     <p className="mt-1 text-[11px] text-slate-500 sm:text-xs">
                       Unit price: Tk {item.price.toFixed(2)}

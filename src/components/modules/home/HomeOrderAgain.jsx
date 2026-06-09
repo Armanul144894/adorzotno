@@ -34,7 +34,6 @@ const mapOrderedItemToCard = (item) => {
   const currentPrice = toNumber(mappedProduct?.price);
   const orderedUnitPrice = toNumber(item?.unit_price);
 
-  console.log(mappedProduct);
   return {
     ...mappedProduct,
     productId: product.id,

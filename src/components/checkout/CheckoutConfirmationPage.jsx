@@ -103,24 +103,29 @@ export default function CheckoutConfirmationPage({ orderNumber }) {
                 {orderItems.map((item) => {
                   const product = item?.sku?.product;
                   const imageSrc = getImageUrl(product?.thumbnail_image || "");
+                  const productHref = product?.slug ? `/product/${product.slug}` : "#";
 
                   return (
                     <div
                       key={item.id}
                       className="flex gap-3 border-b border-slate-100 pb-4 last:border-b-0"
                     >
-                      <Image
-                        src={imageSrc}
-                        alt={product?.name || "Ordered product"}
-                        width={72}
-                        height={72}
-                        className="h-16 w-16 rounded-lg object-cover sm:h-[72px] sm:w-[72px]"
-                        unoptimized
-                      />
+                      <Link href={productHref} className="shrink-0">
+                        <Image
+                          src={imageSrc}
+                          alt={product?.name || "Ordered product"}
+                          width={72}
+                          height={72}
+                          className="h-16 w-16 rounded-lg object-cover sm:h-[72px] sm:w-[72px]"
+                          unoptimized
+                        />
+                      </Link>
                       <div className="min-w-0 flex-1">
-                        <p className="line-clamp-2 text-sm font-semibold text-slate-800 sm:text-base">
-                          {product?.name || "Product"}
-                        </p>
+                        <Link href={productHref} className="block">
+                          <p className="line-clamp-2 text-sm font-semibold text-slate-800 transition hover:text-primary sm:text-base">
+                            {product?.name || "Product"}
+                          </p>
+                        </Link>
                         <p className="mt-1 text-xs text-slate-500 sm:text-sm">
                           SKU: {item?.sku?.sku_code || "N/A"}
                         </p>
