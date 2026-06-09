@@ -1,23 +1,39 @@
-import { Check, Star } from "lucide-react";
+import { Check } from "lucide-react";
 import React from "react";
+import RatingStars from "../shared/RatingStars";
 
 const renderHtml = (html) => ({ __html: html || "" });
+const formatReviewDate = (value) => {
+  if (!value) return "Recently";
+
+  return new Date(value).toLocaleDateString("en-BD", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+};
 
 const getReviewFallbacks = () => [
   {
     id: "review-1",
-    author: "John D.",
-    created_at: "2 weeks ago",
+    customer: {
+      name: "John D.",
+    },
+    created_at: new Date().toISOString(),
     rating: 5,
     comment:
       "Excellent product quality and very smooth delivery experience.",
+    is_verified_purchase: true,
   },
   {
     id: "review-2",
-    author: "Sarah M.",
-    created_at: "1 month ago",
+    customer: {
+      name: "Sarah M.",
+    },
+    created_at: new Date().toISOString(),
     rating: 4,
     comment: "Good product and packaging. Will consider ordering again.",
+    is_verified_purchase: false,
   },
 ];
 
@@ -157,28 +173,28 @@ export default function ProductDetailsTab({
               <div className="space-y-4">
                 {reviewItems.map((review, index) => (
                   <div
-                    key={review?.id || `${review?.author}-${index}`}
-                    className="border-b pb-4"
+                    key={review?.id || `${review?.customer?.name || review?.author}-${index}`}
+                    className="border-b pb-4 last:border-b-0"
                   >
-                    <div className="mb-2 flex items-center gap-3">
-                      <div className="flex">
-                        {Array.from({ length: 5 }).map((_, starIndex) => (
-                          <Star
-                            key={starIndex}
-                            size={16}
-                            className={
-                              starIndex < Number(review?.rating || 0)
-                                ? "fill-yellow-400 text-yellow-400"
-                                : "text-gray-300"
-                            }
-                          />
-                        ))}
-                      </div>
+                    <div className="mb-2 flex flex-wrap items-center gap-3">
+                      <RatingStars
+                        rating={review?.rating}
+                        showCount={false}
+                        className="shrink-0"
+                      />
                       <span className="font-semibold text-gray-800">
-                        {review?.author || review?.user?.name || "Customer"}
+                        {review?.customer?.name ||
+                          review?.author ||
+                          review?.user?.name ||
+                          "Customer"}
                       </span>
+                      {review?.is_verified_purchase ? (
+                        <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700">
+                          Verified Purchase
+                        </span>
+                      ) : null}
                       <span className="text-sm text-gray-500">
-                        {review?.created_at || "Recently"}
+                        {formatReviewDate(review?.approved_at || review?.created_at)}
                       </span>
                     </div>
                     <p className="text-gray-600">
