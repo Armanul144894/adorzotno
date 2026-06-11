@@ -16,7 +16,7 @@ const formatRating = (value) => {
   return Number.isFinite(parsed) ? parsed.toFixed(2) : "0.00";
 };
 
-export default function RatingStars({
+export default function DemoRatingStars({
   rating = 0,
   showValue = true,
   showCount = true,

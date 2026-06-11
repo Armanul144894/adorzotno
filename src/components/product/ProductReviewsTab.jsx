@@ -1,10 +1,10 @@
 "use client";
 
-import { Pencil, Star, Trash2, X } from "lucide-react";
+import { Pencil, Trash2, X } from "lucide-react";
 import React, { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "sonner";
-import RatingStars from "../shared/RatingStars";
+import InteractiveRatingStars from "../shared/InteractiveRatingStars";
 import { useGetOrdersQuery } from "@/redux/features/order/orderApi";
 import {
   useCreateReviewMutation,
@@ -211,33 +211,11 @@ export default function ProductReviewsTab({ selectedProduct }) {
             <label className="mb-2 block text-sm font-semibold text-slate-700">
               Your Rating
             </label>
-            <div className="flex flex-wrap items-center gap-2">
-              {Array.from({ length: 5 }).map((_, index) => {
-                const starValue = index + 1;
-                const isActive = starValue <= reviewRating;
+            <InteractiveRatingStars
+              value={reviewRating}
+              onChange={setReviewRating}
+            />
 
-                return (
-                  <button
-                    key={starValue}
-                    type="button"
-                    onClick={() => setReviewRating(starValue)}
-                    className="transition hover:scale-105"
-                  >
-                    <Star
-                      size={22}
-                      className={
-                        isActive
-                          ? "fill-yellow-400 text-yellow-400"
-                          : "text-slate-300"
-                      }
-                    />
-                  </button>
-                );
-              })}
-              <span className="text-sm font-medium text-slate-600">
-                {reviewRating}/5
-              </span>
-            </div>
           </div>
 
           <div className="mb-4">
@@ -320,9 +298,11 @@ export default function ProductReviewsTab({ selectedProduct }) {
               className="border-b pb-4 last:border-b-0"
             >
               <div className="mb-2 flex flex-wrap items-center gap-3">
-                <RatingStars
-                  rating={review?.rating}
-                  showCount={false}
+                <InteractiveRatingStars
+                  value={review?.rating}
+                  readonly
+                  showValue
+                  size={18}
                   className="shrink-0"
                 />
                 <span className="font-semibold text-gray-800">
@@ -386,33 +366,10 @@ export default function ProductReviewsTab({ selectedProduct }) {
                 <label className="mb-2 block text-sm font-semibold text-slate-700">
                   Your Rating
                 </label>
-                <div className="flex flex-wrap items-center gap-2">
-                  {Array.from({ length: 5 }).map((_, index) => {
-                    const starValue = index + 1;
-                    const isActive = starValue <= editRating;
-
-                    return (
-                      <button
-                        key={starValue}
-                        type="button"
-                        onClick={() => setEditRating(starValue)}
-                        className="transition hover:scale-105"
-                      >
-                        <Star
-                          size={22}
-                          className={
-                            isActive
-                              ? "fill-yellow-400 text-yellow-400"
-                              : "text-slate-300"
-                          }
-                        />
-                      </button>
-                    );
-                  })}
-                  <span className="text-sm font-medium text-slate-600">
-                    {editRating}/5
-                  </span>
-                </div>
+                <InteractiveRatingStars
+                  value={editRating}
+                  onChange={setEditRating}
+                />
               </div>
 
               <div className="mb-5">

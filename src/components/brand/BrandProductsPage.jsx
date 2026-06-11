@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import ProductCard from "../cards/ProductCard";
 import Pagination from "../shared/Pagination";
-import RatingStars from "../shared/RatingStars";
+import InteractiveRatingStars from "../shared/InteractiveRatingStars";
 import { getImageUrl } from "@/lib/imageHelpers";
 import {
   useGetBrandProductsQuery,
@@ -229,9 +229,10 @@ export default function BrandProductsPage({
                     </h1>
                     <div className="flex flex-wrap items-center gap-4 text-sm">
                       <span className="flex items-center gap-1">
-                        <RatingStars
-                          rating={brand?.rating}
-                          showCount={false}
+                        <InteractiveRatingStars
+                          value={brand?.rating}
+                          readonly
+                          size={16}
                           className="text-white"
                         />
                       </span>
@@ -422,7 +423,11 @@ export default function BrandProductsPage({
                           </h3>
                         </div>
                         <div className="mb-3">
-                          <RatingStars rating={product.rating} />
+                          <InteractiveRatingStars
+                            value={product.rating}
+                            readonly
+                            size={16}
+                          />
                         </div>
                         <div className="flex items-center justify-between">
                           <div>

@@ -4,7 +4,7 @@ import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import RatingStars from "../shared/RatingStars";
+import InteractiveRatingStars from "../shared/InteractiveRatingStars";
 import { useCart } from "../../lib/useCart";
 
 const formatPrice = (value) => {
@@ -80,7 +80,11 @@ export default function ProductCard({ product }) {
                     {"\u09F3"}{formatPrice(product.originalPrice)}
                   </span>
                 ) : null}
-                <RatingStars rating={product.rating} />
+                <InteractiveRatingStars
+                  value={product.rating}
+                  readonly
+                  size={16}
+                />
               </div>
             </div>
           </div>

@@ -18,7 +18,7 @@ import { useSelector } from "react-redux";
 import { toast } from "sonner";
 import ProductDetailsTab from "./ProductDetailsTab";
 import { useCart } from "../../lib/useCart";
-import RatingStars from "../shared/RatingStars";
+import InteractiveRatingStars from "../shared/InteractiveRatingStars";
 import {
   useAddToWishlistMutation,
   useGetWishlistQuery,
@@ -199,11 +199,16 @@ export default function ProductGrid({
             </h1>
 
             <div className="mb-4 flex flex-wrap items-center gap-2">
-              <RatingStars
-                rating={selectedProduct?.rating}
-                countLabel={`(${selectedProduct?.reviews} reviews)`}
+              <InteractiveRatingStars
+                value={selectedProduct?.rating}
+                readonly
+                size={18}
+                className="shrink-0"
               />
               <span className="text-gray-600 sm:hidden text-xs">
+                ({selectedProduct?.reviews} reviews)
+              </span>
+              <span className="max-sm:hidden text-xs text-gray-500">
                 ({selectedProduct?.reviews} reviews)
               </span>
             </div>

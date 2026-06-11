@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Search, Grid3x3, List, Package } from "lucide-react";
-import RatingStars from "../shared/RatingStars";
+import InteractiveRatingStars from "../shared/InteractiveRatingStars";
 import { getImageUrl } from "@/lib/imageHelpers";
 import { useGetBrandsQuery } from "@/redux/features/brand/brandApi";
 
@@ -236,9 +236,10 @@ export default function BrandPage() {
                     </p>
 
                     <div className="mb-4 flex items-center gap-2">
-                      <RatingStars
-                        rating={brand.rating}
-                        showCount={false}
+                      <InteractiveRatingStars
+                        value={brand.rating}
+                        readonly
+                        size={16}
                         className="text-sm"
                       />
                       <span className="text-sm text-gray-500">
@@ -318,9 +319,10 @@ export default function BrandPage() {
 
                       <div className="mb-4 flex items-center gap-4">
                         <div className="flex items-center gap-2">
-                          <RatingStars
-                            rating={brand.rating}
-                            showCount={false}
+                          <InteractiveRatingStars
+                            value={brand.rating}
+                            readonly
+                            size={16}
                             className="text-sm"
                           />
                         </div>
