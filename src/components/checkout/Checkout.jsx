@@ -20,7 +20,7 @@ export default function Checkout({ user: initialUser }) {
   const router = useRouter();
   const authUser = useSelector((state) => state.auth.user);
   const user = authUser || initialUser;
-  const { cartItems, clearCart } = useCart();
+  const { cartItems, appliedCoupon, clearCart } = useCart();
   const { data: shipmentZones = [] } = useGetShipmentZonesQuery();
   const { selectedShipmentZone } = useSelectedShipmentZone(shipmentZones);
   const [checkoutOrder, { isLoading: isPlacingOrder }] = useCheckoutOrderMutation();
@@ -88,7 +88,8 @@ export default function Checkout({ user: initialUser }) {
     normalizedCartItems.length > 0
       ? Number(selectedShipmentZone?.charge) || 0
       : 0;
-  const grandTotal = subtotal + finalDeliveryCharge;
+  const couponDiscount = Number(appliedCoupon?.discountAmount || 0);
+  const grandTotal = subtotal - couponDiscount + finalDeliveryCharge;
 
   const handleShippingSubmit = (formData) => {
     setShippingInfo(formData);
@@ -118,6 +119,7 @@ export default function Checkout({ user: initialUser }) {
       })),
       shipping_address: shippingInfo.fullAddress,
       phone: shippingInfo.phone,
+      coupon_code: appliedCoupon?.code || "",
       shipment_zone_id: selectedShipmentZone.id,
       notes: shippingInfo.notes?.trim() || "",
     };
@@ -174,6 +176,8 @@ export default function Checkout({ user: initialUser }) {
             paymentInfo={paymentInfo}
             cartItems={normalizedCartItems}
             subtotal={subtotal}
+            appliedCoupon={appliedCoupon}
+            couponDiscount={couponDiscount}
             deliveryCharge={finalDeliveryCharge}
             grandTotal={grandTotal}
             totalItems={totalItems}

@@ -9,6 +9,7 @@ export const getStoredCart = (storageKey = GUEST_CART_STORAGE_KEY) => {
   if (typeof window === "undefined") {
     return {
       cartItems: [],
+      appliedCoupon: null,
       storageKey,
     };
   }
@@ -18,6 +19,7 @@ export const getStoredCart = (storageKey = GUEST_CART_STORAGE_KEY) => {
     if (!storedValue) {
       return {
         cartItems: [],
+        appliedCoupon: null,
         storageKey,
       };
     }
@@ -28,11 +30,13 @@ export const getStoredCart = (storageKey = GUEST_CART_STORAGE_KEY) => {
       cartItems: Array.isArray(parsedValue?.cartItems)
         ? parsedValue.cartItems
         : [],
+      appliedCoupon: parsedValue?.appliedCoupon || null,
       storageKey,
     };
   } catch {
     return {
       cartItems: [],
+      appliedCoupon: null,
       storageKey,
     };
   }
@@ -51,6 +55,7 @@ const persistCart = (storageKey, cartState) => {
 
 const initialState = {
   cartItems: [],
+  appliedCoupon: null,
   isCartOpen: false,
   isHydrated: false,
   storageKey: GUEST_CART_STORAGE_KEY,
@@ -64,6 +69,7 @@ const cartSlice = createSlice({
       state.cartItems = Array.isArray(action.payload?.cartItems)
         ? action.payload.cartItems
         : [];
+      state.appliedCoupon = action.payload?.appliedCoupon || null;
       state.storageKey = action.payload?.storageKey || GUEST_CART_STORAGE_KEY;
       state.isHydrated = true;
     },
@@ -71,10 +77,12 @@ const cartSlice = createSlice({
       state.cartItems = Array.isArray(action.payload?.cartItems)
         ? action.payload.cartItems
         : [];
+      state.appliedCoupon = action.payload?.appliedCoupon || null;
       state.storageKey = action.payload?.storageKey || GUEST_CART_STORAGE_KEY;
       state.isHydrated = true;
       persistCart(state.storageKey, {
         cartItems: state.cartItems,
+        appliedCoupon: state.appliedCoupon,
       });
     },
     setCartItems(state, action) {
@@ -82,6 +90,15 @@ const cartSlice = createSlice({
       state.isHydrated = true;
       persistCart(state.storageKey, {
         cartItems: state.cartItems,
+        appliedCoupon: state.appliedCoupon,
+      });
+    },
+    setAppliedCoupon(state, action) {
+      state.appliedCoupon = action.payload || null;
+      state.isHydrated = true;
+      persistCart(state.storageKey, {
+        cartItems: state.cartItems,
+        appliedCoupon: state.appliedCoupon,
       });
     },
     setIsCartOpen(state, action) {
@@ -89,9 +106,11 @@ const cartSlice = createSlice({
     },
     clearCart(state) {
       state.cartItems = [];
+      state.appliedCoupon = null;
       state.isHydrated = true;
       persistCart(state.storageKey, {
         cartItems: [],
+        appliedCoupon: null,
       });
     },
   },
@@ -101,6 +120,7 @@ export const {
   hydrateCart,
   switchCartContext,
   setCartItems,
+  setAppliedCoupon,
   setIsCartOpen,
   clearCart,
 } = cartSlice.actions;

@@ -2,6 +2,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
   clearCart as clearCartAction,
+  setAppliedCoupon as setAppliedCouponAction,
   setCartItems as setCartItemsAction,
   setIsCartOpen as setIsCartOpenAction,
 } from "../redux/features/cart/cartSlice";
@@ -36,6 +37,7 @@ const normalizeCartItem = (product, quantity = 1) => ({
 export function useCart() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const appliedCoupon = useSelector((state) => state.cart.appliedCoupon);
   const isCartOpen = useSelector((state) => state.cart.isCartOpen);
   const isHydrated = useSelector((state) => state.cart.isHydrated);
 
@@ -49,6 +51,10 @@ export function useCart() {
 
   const setIsCartOpen = (value) => {
     dispatch(setIsCartOpenAction(value));
+  };
+
+  const setAppliedCoupon = (value) => {
+    dispatch(setAppliedCouponAction(value));
   };
 
   const addToCart = (product, quantity = 1) => {
@@ -83,6 +89,9 @@ export function useCart() {
       : [...cartItems, normalizedProduct];
 
     dispatch(setCartItemsAction(nextCartItems));
+    if (appliedCoupon) {
+      dispatch(setAppliedCouponAction(null));
+    }
 
     dispatch(setIsCartOpenAction(true));
     return { success: true, cartItems: nextCartItems };
@@ -97,6 +106,9 @@ export function useCart() {
           cartItems.filter((item) => Number(item.id) !== Number(id)),
         ),
       );
+      if (appliedCoupon) {
+        dispatch(setAppliedCouponAction(null));
+      }
       return { success: true };
     }
 
@@ -118,6 +130,9 @@ export function useCart() {
         }),
       ),
     );
+    if (appliedCoupon) {
+      dispatch(setAppliedCouponAction(null));
+    }
 
     return { success: true };
   };
@@ -126,6 +141,9 @@ export function useCart() {
     dispatch(
       setCartItemsAction(cartItems.filter((item) => Number(item.id) !== Number(id))),
     );
+    if (appliedCoupon) {
+      dispatch(setAppliedCouponAction(null));
+    }
     return { success: true };
   };
 
@@ -139,10 +157,12 @@ export function useCart() {
 
   return {
     cartItems,
+    appliedCoupon,
     isHydrated,
     setCartItems,
     isCartOpen,
     setIsCartOpen,
+    setAppliedCoupon,
     addToCart,
     updateQuantity,
     removeItem,

@@ -10,6 +10,8 @@ export default function CheckoutReviewStep({
   paymentInfo,
   cartItems,
   subtotal,
+  appliedCoupon,
+  couponDiscount,
   deliveryCharge,
   grandTotal,
   totalItems,
@@ -154,6 +156,14 @@ export default function CheckoutReviewStep({
                 Tk {subtotal.toFixed(2)}
               </span>
             </div>
+            {appliedCoupon ? (
+              <div className="flex items-center justify-between text-xs text-slate-600 sm:text-sm">
+                <span>Coupon ({appliedCoupon.code})</span>
+                <span className="font-semibold text-emerald-600">
+                  -Tk {Number(couponDiscount || 0).toFixed(2)}
+                </span>
+              </div>
+            ) : null}
             <div className="flex items-center justify-between text-xs text-slate-600 sm:text-sm">
               <span>Shipment Zone</span>
               <span className="font-semibold text-slate-800">
