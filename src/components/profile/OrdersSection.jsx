@@ -3,6 +3,7 @@
 import Link from "next/link";
 import {
   CalendarDays,
+  CircleX,
   ChevronLeft,
   ChevronRight,
   CreditCard,
@@ -11,10 +12,18 @@ import {
   Truck,
 } from "lucide-react";
 import { useMemo, useState } from "react";
-import { useGetOrdersQuery } from "@/redux/features/order/orderApi";
+import { toast } from "sonner";
+import OrderCancelModal from "./OrderCancelModal";
+import {
+  useCancelOrderMutation,
+  useGetOrdersQuery,
+} from "@/redux/features/order/orderApi";
 
 export default function OrdersSection() {
   const [currentPage, setCurrentPage] = useState(1);
+  const [cancellingOrderId, setCancellingOrderId] = useState(null);
+  const [orderToCancel, setOrderToCancel] = useState(null);
+  const [cancelOrder, { isLoading: isCancellingOrder }] = useCancelOrderMutation();
   const { data: ordersResponse, isLoading } = useGetOrdersQuery({
     page: currentPage,
     perPage: 10,
@@ -37,6 +46,7 @@ export default function OrdersSection() {
   );
 
   const formatMoney = (value) => `Tk ${Number(value || 0).toFixed(2)}`;
+  const isPendingOrder = (status) => String(status || "").toLowerCase() === "pending";
   const formatDate = (value) => {
     if (!value) return "N/A";
 
@@ -63,6 +73,20 @@ export default function OrdersSection() {
     }
 
     return "bg-slate-100 text-slate-700";
+  };
+
+  const confirmCancelOrder = async () => {
+    if (!orderToCancel?.id) return;
+    try {
+      setCancellingOrderId(orderToCancel.id);
+      const response = await cancelOrder(orderToCancel.id).unwrap();
+      toast.success(response?.message || "Order cancelled successfully.");
+      setOrderToCancel(null);
+    } catch (error) {
+      toast.error(error?.data?.message || "Could not cancel this order.");
+    } finally {
+      setCancellingOrderId(null);
+    }
   };
 
   return (
@@ -150,13 +174,30 @@ export default function OrdersSection() {
                       </div>
                     </div>
 
-                    <Link
-                      href={`/profile/orders/${order.id}`}
-                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-primary/20 bg-white px-4 py-2.5 text-sm font-semibold text-primary transition hover:bg-primary hover:text-white"
-                    >
-                      <Eye size={16} />
-                      View Details
-                    </Link>
+                    <div className="flex flex-wrap items-center gap-2">
+
+                      {isPendingOrder(order.status) ? (
+                        <button
+                          type="button"
+                          onClick={() => setOrderToCancel(order)}
+                          disabled={isCancellingOrder && cancellingOrderId === order.id}
+                          className="inline-flex items-center justify-center gap-2 rounded-xl border border-red-200 bg-white px-4 py-2.5 text-sm font-semibold text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-60"
+                        >
+                          <CircleX size={16} />
+                          {isCancellingOrder && cancellingOrderId === order.id
+                            ? "Cancelling..."
+                            : "Cancel Order"}
+                        </button>
+                      ) : null}
+
+                      <Link
+                        href={`/profile/orders/${order.id}`}
+                        className="inline-flex items-center justify-center gap-2 rounded-xl border border-primary/20 bg-white px-4 py-2.5 text-sm font-semibold text-primary transition hover:bg-primary hover:text-white"
+                      >
+                        <Eye size={16} />
+                        View Details
+                      </Link>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -207,6 +248,14 @@ export default function OrdersSection() {
           </div>
         )}
       </div>
+
+      <OrderCancelModal
+        isOpen={Boolean(orderToCancel)}
+        orderNo={orderToCancel?.order_no}
+        isLoading={isCancellingOrder}
+        onClose={() => setOrderToCancel(null)}
+        onConfirm={confirmCancelOrder}
+      />
     </div>
   );
 }

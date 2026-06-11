@@ -18,6 +18,13 @@ export const orderApi = baseApi.injectEndpoints({
           per_page: perPage,
         },
       }),
+      providesTags: (result) => [
+        { type: "Order", id: "LIST" },
+        ...((result?.data || []).map((order) => ({
+          type: "Order",
+          id: order.id,
+        }))),
+      ],
       transformResponse: (response) => response?.data || null,
     }),
     getOrderDetails: builder.query({
@@ -25,7 +32,18 @@ export const orderApi = baseApi.injectEndpoints({
         url: `/orders/${orderId}`,
         method: "GET",
       }),
+      providesTags: (_, __, orderId) => [{ type: "Order", id: orderId }],
       transformResponse: (response) => response?.data?.order || null,
+    }),
+    cancelOrder: builder.mutation({
+      query: (orderId) => ({
+        url: `/orders/${orderId}/cancel`,
+        method: "PUT",
+      }),
+      invalidatesTags: (_, __, orderId) => [
+        { type: "Order", id: "LIST" },
+        { type: "Order", id: orderId },
+      ],
     }),
   }),
 });
@@ -34,4 +52,5 @@ export const {
   useCheckoutOrderMutation,
   useGetOrdersQuery,
   useGetOrderDetailsQuery,
+  useCancelOrderMutation,
 } = orderApi;

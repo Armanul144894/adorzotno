@@ -2,16 +2,23 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import {
   ArrowLeft,
   CalendarDays,
+  CircleX,
   CreditCard,
   Package,
   ReceiptText,
   Truck,
 } from "lucide-react";
+import { toast } from "sonner";
 import { getImageUrl } from "@/lib/imageHelpers";
-import { useGetOrderDetailsQuery } from "@/redux/features/order/orderApi";
+import {
+  useCancelOrderMutation,
+  useGetOrderDetailsQuery,
+} from "@/redux/features/order/orderApi";
+import OrderCancelModal from "./OrderCancelModal";
 
 const formatMoney = (value) => `Tk ${Number(value || 0).toFixed(2)}`;
 
@@ -26,6 +33,8 @@ const formatDate = (value) => {
 };
 
 export default function OrderDetailsPageClient({ orderId }) {
+  const [showCancelModal, setShowCancelModal] = useState(false);
+  const [cancelOrder, { isLoading: isCancellingOrder }] = useCancelOrderMutation();
   const {
     data: selectedOrder,
     isLoading,
@@ -40,6 +49,21 @@ export default function OrderDetailsPageClient({ orderId }) {
     (isError ? "We could not load this order right now." : "");
   const isOrderUnavailable =
     isError && errorMessage.toLowerCase() === "order not found";
+  const isPendingOrder =
+    String(selectedOrder?.status || "").toLowerCase() === "pending";
+
+  const handleCancelOrder = async () => {
+    if (!selectedOrder?.id) return;
+    try {
+      const response = await cancelOrder(selectedOrder.id).unwrap();
+      toast.success(response?.message || "Order cancelled successfully.");
+      setShowCancelModal(false);
+    } catch (cancelError) {
+      toast.error(
+        cancelError?.data?.message || "Could not cancel this order.",
+      );
+    }
+  };
 
   return (
     <div className="bg-white">
@@ -67,6 +91,18 @@ export default function OrderDetailsPageClient({ orderId }) {
                 Review the items, status, totals, and notes for this order.
               </p>
             </div>
+
+            {selectedOrder && isPendingOrder ? (
+              <button
+                type="button"
+                onClick={() => setShowCancelModal(true)}
+                disabled={isCancellingOrder}
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-red-200 bg-white px-4 py-2.5 text-sm font-semibold text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                <CircleX size={16} />
+                {isCancellingOrder ? "Cancelling..." : "Cancel Order"}
+              </button>
+            ) : null}
           </div>
 
           {isLoading ? (
@@ -238,6 +274,14 @@ export default function OrderDetailsPageClient({ orderId }) {
           )}
         </div>
       </div>
+
+      <OrderCancelModal
+        isOpen={showCancelModal && Boolean(selectedOrder)}
+        orderNo={selectedOrder?.order_no}
+        isLoading={isCancellingOrder}
+        onClose={() => setShowCancelModal(false)}
+        onConfirm={handleCancelOrder}
+      />
     </div>
   );
 }
