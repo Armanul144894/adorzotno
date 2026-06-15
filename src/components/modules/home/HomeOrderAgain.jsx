@@ -9,6 +9,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import ProductCard from "../../cards/ProductCard";
+import { getProductRating } from "@/lib/getProductRating";
 import { mapApiProductToCard } from "@/lib/mapApiProductToCard";
 import { useGetOrdersQuery } from "@/redux/features/order/orderApi";
 
@@ -33,6 +34,7 @@ const mapOrderedItemToCard = (item) => {
   const mappedProduct = mapApiProductToCard(normalizedProduct);
   const currentPrice = toNumber(mappedProduct?.price);
   const orderedUnitPrice = toNumber(item?.unit_price);
+  const rating = getProductRating(normalizedProduct);
 
   return {
     ...mappedProduct,
@@ -40,7 +42,7 @@ const mapOrderedItemToCard = (item) => {
     skuId: orderedSku?.id || mappedProduct?.skuId || null,
     price: currentPrice > 0 ? currentPrice : orderedUnitPrice,
     image: mappedProduct?.images?.[0] || "",
-    rating: orderedSku?.rating || mappedProduct?.rating || "0.0",
+    rating: rating || mappedProduct?.rating || 0,
     inStock: true,
     in_stock: true,
   };

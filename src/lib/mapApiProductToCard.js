@@ -8,9 +8,9 @@ const toNumber = (value) => {
 
 export const mapApiProductToCard = (product) => {
   const primarySku = product?.sku?.[0] || {};
-  const onlinePrice = toNumber(primarySku?.online_price);
-  const salePrice = toNumber(product?.sale_price || primarySku?.sale_price);
-  const basePrice = onlinePrice > 0 ? onlinePrice : salePrice;
+  const skuSellingPrice = toNumber(primarySku?.selling_price);
+  const productSellingPrice = toNumber(product?.selling_price);
+  const basePrice = skuSellingPrice || productSellingPrice;
   const discountType = product?.default_discount_type;
   const discountValue = toNumber(product?.default_discount_value);
 

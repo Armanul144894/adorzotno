@@ -18,9 +18,9 @@ const toNumber = (value) => {
 const formatPrice = (value) => toNumber(value).toFixed(2);
 
 const getWishlistPrice = (sku, product) => {
-  const onlinePrice = toNumber(sku?.online_price);
-  const salePrice = toNumber(sku?.sale_price || product?.sale_price);
-  const basePrice = onlinePrice > 0 ? onlinePrice : salePrice;
+  const skuSellingPrice = toNumber(sku?.selling_price);
+  const productSellingPrice = toNumber(product?.selling_price);
+  const basePrice = skuSellingPrice || productSellingPrice;
   const discountType = product?.default_discount_type;
   const discountValue = toNumber(product?.default_discount_value);
 
