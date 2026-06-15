@@ -1,4 +1,5 @@
 import { getImageUrl } from "./imageHelpers";
+import { getProductRating } from "./getProductRating";
 
 const toNumber = (value) => {
   const parsed = Number(value);
@@ -37,7 +38,7 @@ export const mapApiProductToCard = (product) => {
     skuId: primarySku?.id || product?.sku_id || null,
     slug: product?.slug,
     name: product?.name,
-    rating: primarySku?.rating || "0.0",
+    rating: getProductRating(product),
     price,
     originalPrice:
       originalPrice && originalPrice > price ? originalPrice : null,

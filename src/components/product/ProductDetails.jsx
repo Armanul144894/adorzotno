@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useMemo, useState } from "react";
 import { getImageUrl } from "@/lib/imageHelpers";
+import { getProductRating } from "@/lib/getProductRating";
 import { mapApiProductToCard } from "@/lib/mapApiProductToCard";
 import { useGetBrandProductsQuery } from "@/redux/features/brand/brandApi";
 import {
@@ -22,20 +23,6 @@ import ProductGrid from "./ProductGrid";
 const toNumber = (value) => {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : 0;
-};
-
-const getAverageReviewRating = (reviews = []) => {
-  const approvedRatings = reviews
-    .filter((review) => review?.status === "approved")
-    .map((review) => toNumber(review?.rating))
-    .filter((rating) => rating > 0);
-
-  if (approvedRatings.length === 0) {
-    return 0;
-  }
-
-  const total = approvedRatings.reduce((sum, rating) => sum + rating, 0);
-  return total / approvedRatings.length;
 };
 
 const stripHtml = (value = "") =>
@@ -205,7 +192,6 @@ export default function ProductDetails() {
     }
 
     const primarySku = product?.sku?.[0] || {};
-    const reviewAverageRating = getAverageReviewRating(product?.reviews || []);
     const categories = (product?.categories || []).map((category) => ({
       id: category.id,
       name: category.name,
@@ -222,7 +208,7 @@ export default function ProductDetails() {
       productType: product.product_type,
       category: product?.category?.name || categories?.[0]?.name || "",
       categories,
-      rating: toNumber(primarySku?.rating) || reviewAverageRating,
+      rating: getProductRating(product),
       reviews: product?.reviews?.length || 0,
       inStock: stockInfo.inStock,
       stockCount: stockInfo.stockCount,
@@ -293,14 +279,13 @@ export default function ProductDetails() {
     ((sameBrandProductsResponse?.products?.data || [])
       .filter((brandProduct) => brandProduct?.id !== selectedProduct?.id)
       .map((brandProduct) => {
-        const primarySku = brandProduct?.sku?.[0] || {};
         const pricing = getPricing(brandProduct);
 
         return {
           id: brandProduct.id,
           slug: brandProduct.slug,
           name: brandProduct.name,
-          rating: toNumber(primarySku?.rating),
+          rating: getProductRating(brandProduct),
           price: pricing.price,
           originalPrice: pricing.originalPrice,
           discountAmount: pricing.discountAmount > 0 ? pricing.discountAmount : null,

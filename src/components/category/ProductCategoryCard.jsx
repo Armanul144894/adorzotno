@@ -5,6 +5,7 @@ import Link from "next/link";
 import React, { useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { getImageUrl } from "@/lib/imageHelpers";
+import { getProductRating } from "@/lib/getProductRating";
 import {
   useGetCategoriesQuery,
   useGetCategoryProductsQuery,
@@ -89,7 +90,7 @@ export default function ProductCategoryCard({ slug, initialPage = 1 }) {
         id: product.id,
         slug: product.slug,
         name: product.name,
-        rating: primarySku?.rating || "0.0",
+        rating: getProductRating(product),
         price: effectivePrice,
         originalPrice:
           originalPrice && originalPrice > effectivePrice ? originalPrice : null,

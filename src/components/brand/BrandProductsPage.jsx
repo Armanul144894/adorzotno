@@ -20,6 +20,7 @@ import ProductCard from "../cards/ProductCard";
 import Pagination from "../shared/Pagination";
 import InteractiveRatingStars from "../shared/InteractiveRatingStars";
 import { getImageUrl } from "@/lib/imageHelpers";
+import { getProductRating } from "@/lib/getProductRating";
 import {
   useGetBrandProductsQuery,
   useGetBrandsQuery,
@@ -121,7 +122,7 @@ export default function BrandProductsPage({
         id: product.id,
         slug: product.slug,
         name: product.name,
-        rating: primarySku?.rating || 0,
+        rating: getProductRating(product),
         price: effectivePrice,
         originalPrice:
           originalPrice && originalPrice > effectivePrice ? originalPrice : null,
