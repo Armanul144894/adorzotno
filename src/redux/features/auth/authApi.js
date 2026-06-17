@@ -1,6 +1,8 @@
 import baseApi from "../../baseApi";
 import { clearAuth, setCredentials } from "./authSlice";
 
+const getErrorStatus = (error) => error?.error?.status || error?.status || null;
+
 export const authApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         register: builder.mutation({
@@ -56,8 +58,12 @@ export const authApi = baseApi.injectEndpoints({
                             }),
                         );
                     }
-                } catch {
-                    dispatch(clearAuth());
+                } catch (error) {
+                    const status = getErrorStatus(error);
+
+                    if (status === 401 || status === 403) {
+                        dispatch(clearAuth());
+                    }
                 }
             },
         }),

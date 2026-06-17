@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
+import { AUTH_COOKIE_KEY } from "@/lib/authSession";
 
 export function middleware(request) {
-    const authToken = request.cookies.get("adorzotno_token")?.value?.trim();
+    const authToken = request.cookies.get(AUTH_COOKIE_KEY)?.value?.trim();
 
     if (!authToken) {
         const homeUrl = new URL("/", request.url);
@@ -15,5 +16,5 @@ export function middleware(request) {
 }
 
 export const config = {
-    matcher: ["/profile/:path*"],
+    matcher: ["/profile/:path*", "/checkout/:path*"],
 };

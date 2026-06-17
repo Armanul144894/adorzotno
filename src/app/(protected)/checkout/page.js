@@ -1,6 +1,5 @@
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import Checkout from "@/components/checkout/Checkout";
+import { requireAuthenticatedUser } from "@/lib/serverAuth";
 
 export const metadata = {
   title: "Checkout | Adorzotno Limited",
@@ -38,42 +37,7 @@ export const metadata = {
   },
 };
 
-const redirectToSignIn = () => {
-  redirect("/?signin=1&redirect=/checkout");
-};
-
 export default async function page() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("adorzotno_token")?.value?.trim();
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
-
-  if (!token || !apiBaseUrl) {
-    redirectToSignIn();
-  }
-
-  try {
-    const response = await fetch(`${apiBaseUrl}/auth/me`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      cache: "no-store",
-    });
-
-    if (!response.ok) {
-      redirectToSignIn();
-    }
-
-    const payload = await response.json();
-    const user = payload?.data?.user;
-
-    if (!user) {
-      redirectToSignIn();
-    }
-
-    return <Checkout user={user} />;
-  } catch {
-    redirectToSignIn();
-  }
+  const user = await requireAuthenticatedUser("/checkout");
+  return <Checkout user={user} />;
 }

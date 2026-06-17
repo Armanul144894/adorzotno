@@ -2,9 +2,10 @@
 
 import React, { useEffect } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
+import { getStoredAuth } from "@/lib/authSession";
 import { store } from "./store";
 import { authApi } from "./features/auth/authApi";
-import { getStoredAuth, hydrateAuth } from "./features/auth/authSlice";
+import { hydrateAuth } from "./features/auth/authSlice";
 import {
   getCartStorageKey,
   getStoredCart,
