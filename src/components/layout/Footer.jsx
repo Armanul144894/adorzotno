@@ -5,8 +5,8 @@ import React from 'react'
 export default function Footer() {
     return (
         <div>
-            <footer className="bg-gray-800 text-white mt-8">
-                <div className="container mx-auto px-4 py-8">
+            <footer className="mt-8 bg-gray-800 text-white">
+                <div className="container mx-auto px-4 py-8 pb-24 md:pb-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div>
                             <Link href="/"> <Image src="/images/AdorzotnoLogo.png" alt="adorzotno Logo" width={200} height={60} />

@@ -27,7 +27,7 @@ export default function MainLayout({ children }) {
           {/* <SideBar /> */}
 
           {/* Main Content */}
-          <main className="flex-1 min-w-0 relative overflow-x-hidden px-4 py-6 border-blue-50">
+          <main className="relative min-w-0 flex-1 overflow-x-hidden border-blue-50 px-4 py-6 pb-24 md:pb-6">
             {children}
 
             <ScrollToTop />
