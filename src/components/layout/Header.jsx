@@ -16,7 +16,8 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import { toast } from "sonner";
 import CategoryOffcanvas from "./CategoryOffcanvas";
-import HeaderCategoryMenu from "./HeaderCategoryMenu";
+// import HeaderCategoryMenu from "./HeaderCategoryMenu";
+import FiveLevelCategoryMenu from "./FiveLevelCategoryMenu";
 import SignInModal from "../modules/auth/SignInModal";
 import HeaderSearch from "./HeaderSearch";
 import { useCart } from "../../lib/useCart";
@@ -231,7 +232,15 @@ export default function Header() {
 
               <div></div>
 
+              {/* Previous API menu kept here for the later integration.
               <HeaderCategoryMenu
+                key={categoryMenuOpen ? "category-menu-open" : "category-menu-closed"}
+                isOpen={categoryMenuOpen}
+                onClose={() => setCategoryMenuOpen(false)}
+              />
+              */}
+
+              <FiveLevelCategoryMenu
                 key={categoryMenuOpen ? "category-menu-open" : "category-menu-closed"}
                 isOpen={categoryMenuOpen}
                 onClose={() => setCategoryMenuOpen(false)}
