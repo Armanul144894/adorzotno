@@ -65,10 +65,7 @@ function CategoryLevel({ items, level, activePath, setActivePath, onClose }) {
             >
               {iconUrl ? (
                 <span
-                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg p-1 transition-all duration-200 ${isActive
-                    ? "bg-white/[0.18]"
-                    : "bg-slate-50 group-hover/item:bg-white"
-                    }`}
+                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg p-1 transition-all duration-200 ${isActive && "bg-white/[0.18]"}`}
                 >
                   <Image
                     src={iconUrl}
