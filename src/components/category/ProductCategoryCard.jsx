@@ -11,11 +11,18 @@ import {
   useGetCategoryProductsQuery,
 } from "@/redux/features/category/categoryApi";
 import FilteredProductCard from "./FilteredProductCard";
+import Image from "next/image";
 
 const toNumber = (value) => {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : 0;
 };
+
+const flattenCategoryTree = (categories = []) =>
+  categories.flatMap((category) => [
+    category,
+    ...flattenCategoryTree(category?.children || []),
+  ]);
 
 export default function ProductCategoryCard({ slug, initialPage = 1 }) {
   const router = useRouter();
@@ -25,12 +32,10 @@ export default function ProductCategoryCard({ slug, initialPage = 1 }) {
   const { data: apiCategories = [], isLoading: isCategoriesLoading } =
     useGetCategoriesQuery();
 
-  const flattenedCategories = useMemo(() => {
-    return (apiCategories || []).flatMap((category) => [
-      category,
-      ...(category.children || []),
-    ]);
-  }, [apiCategories]);
+  const flattenedCategories = useMemo(
+    () => flattenCategoryTree(apiCategories),
+    [apiCategories],
+  );
 
   const selectedCategory = useMemo(() => {
     return flattenedCategories.find((category) => category.slug === slug);
@@ -136,10 +141,24 @@ export default function ProductCategoryCard({ slug, initialPage = 1 }) {
 
     router.push(nextUrl);
   };
+  const categoryBannerUrl = getImageUrl(categoryData?.bg_image);
 
   return (
     <div>
-      <div className="mb-6 rounded-md bg-gradient-to-r from-primary to-primary/80 px-4 py-3 text-white">
+
+      {/* Bg Image */}
+      <div className="relative mb-3 h-28 overflow-hidden rounded-lg bg-slate-100 sm:h-36 md:h-48">
+        <Image
+          src={categoryBannerUrl}
+          alt={(categoryData?.name || "Category") + " banner"}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 1200px"
+          className="object-cover object-center"
+          unoptimized
+        />
+      </div>
+
+      <div className="mb-6">
         <div className="flex items-center gap-4">
           <Link href="/">
             <button className="flex cursor-pointer items-center gap-1 hover:underline hover:underline-offset-2">
@@ -152,7 +171,7 @@ export default function ProductCategoryCard({ slug, initialPage = 1 }) {
             <span className="font-semibold">
               {categoryData?.name || "Category"}
             </span>
-            <span className="text-sm text-gray-100">
+            <span className="text-sm">
               ({productPagination?.total ?? filteredProducts.length} items)
             </span>
           </div>
