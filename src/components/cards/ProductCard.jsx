@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
@@ -6,6 +6,7 @@ import Link from "next/link";
 import React from "react";
 import InteractiveRatingStars from "../shared/InteractiveRatingStars";
 import { useCart } from "../../lib/useCart";
+import { getProductStockInfo } from "@/lib/productStock";
 
 const formatPrice = (value) => {
   const parsed = Number(value);
@@ -20,16 +21,21 @@ export default function ProductCard({ product }) {
   const productHref = `/product/${product.slug}`;
   const imageSrc = product.images?.[0] || "/images/no-image-available.png";
   const discountTag = product.discountLabel || product.discount;
+  const { inStock, availableStock } = getProductStockInfo(product);
+  const reachedStockLimit =
+    availableStock !== null && quantity >= availableStock;
 
   const handleAdd = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    if (!inStock) return;
     addToCart(product);
   };
 
   const handleIncrease = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    if (!inStock || reachedStockLimit) return;
     updateQuantity(product.id, quantity + 1);
   };
 
@@ -44,7 +50,7 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <div className="relative h-full flex-shrink-0 overflow-hidden rounded-lg border border-slate-200 bg-white transition-all hover:border-primary/20 hover:shadow-md">
+    <div className="group/card relative h-full flex-shrink-0 overflow-hidden rounded-lg border border-slate-200 bg-white transition-all hover:border-primary/20 hover:shadow-md">
       <Link href={productHref}>
         {discountTag ? (
           <span className="absolute top-0 left-2 z-10 bg-red-600 p-1.5 text-xs font-bold leading-tight text-white [clip-path:polygon(0%_0%,100%_0%,100%_100%,87.5%_90%,75%_100%,62.5%_90%,50%_100%,37.5%_90%,25%_100%,12.5%_90%,0%_100%)]">
@@ -60,9 +66,16 @@ export default function ProductCard({ product }) {
               alt={product.name}
               fill
               sizes="(max-width: 640px) 50vw, 25vw"
-              className="object-cover transform transition-transform duration-300 group-hover:scale-105"
+              className={`transform object-cover transition-all duration-300 group-hover/card:scale-105 ${!inStock ? "grayscale-[35%] opacity-60" : ""}`}
               unoptimized
             />
+            {!inStock ? (
+              <div className="absolute inset-0 flex items-center justify-center bg-white/25">
+                <span className="rounded-full bg-slate-800/80 px-3 py-1.5 text-xs font-semibold text-white shadow-sm">
+                  Out of stock
+                </span>
+              </div>
+            ) : null}
           </div>
 
           <div className="flex flex-1 flex-col p-3">
@@ -98,7 +111,15 @@ export default function ProductCard({ product }) {
           e.stopPropagation();
         }}
       >
-        {!inCart ? (
+        {!inStock ? (
+          <button
+            type="button"
+            disabled
+            className="flex h-10 cursor-not-allowed items-center justify-center rounded-lg bg-slate-100 px-3 text-xs font-semibold text-slate-500"
+          >
+            Out of stock
+          </button>
+        ) : !inCart ? (
           <button
             onClick={handleAdd}
             className="flex h-10 w-12 items-center justify-center rounded-lg border border-primary/20 bg-white text-primary transition-all hover:bg-primary hover:text-white"
@@ -125,7 +146,13 @@ export default function ProductCard({ product }) {
 
                 <button
                   onClick={handleIncrease}
-                  className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-lg leading-none text-primary shadow-sm transition-all duration-200 hover:bg-secondary hover:text-white sm:text-xl"
+                  disabled={reachedStockLimit}
+                  aria-label={
+                    reachedStockLimit
+                      ? "Maximum available stock reached"
+                      : "Increase quantity"
+                  }
+                  className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-lg leading-none text-primary shadow-sm transition-all duration-200 hover:bg-secondary hover:text-white disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400 sm:text-xl"
                 >
                   +
                 </button>

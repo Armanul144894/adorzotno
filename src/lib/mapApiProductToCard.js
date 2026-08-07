@@ -1,5 +1,6 @@
 import { getImageUrl } from "./imageHelpers";
 import { getProductRating } from "./getProductRating";
+import { getProductStockInfo } from "./productStock";
 
 const toNumber = (value) => {
   const parsed = Number(value);
@@ -32,6 +33,7 @@ export const mapApiProductToCard = (product) => {
   }
 
   const imagePath = product?.thumbnail_image;
+  const stockInfo = getProductStockInfo(product);
 
   return {
     id: product?.id,
@@ -51,12 +53,8 @@ export const mapApiProductToCard = (product) => {
     ],
     brand: product?.brand?.name || "",
     category: product?.category?.name || "",
-    inStock:
-      Boolean(product?.in_stock) ||
-      Boolean(primarySku?.in_stock) ||
-      Boolean(product?.stock?.in_stock) ||
-      Boolean(primarySku?.stock?.in_stock) ||
-      toNumber(product?.available_stock) > 0 ||
-      toNumber(primarySku?.available_stock) > 0,
+    inStock: stockInfo.inStock,
+    stockCount: stockInfo.availableStock,
+    availableStock: stockInfo.availableStock,
   };
 };

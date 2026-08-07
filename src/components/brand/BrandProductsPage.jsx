@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -20,7 +20,7 @@ import ProductCard from "../cards/ProductCard";
 import Pagination from "../shared/Pagination";
 import InteractiveRatingStars from "../shared/InteractiveRatingStars";
 import { getImageUrl } from "@/lib/imageHelpers";
-import { getProductRating } from "@/lib/getProductRating";
+import { mapApiProductToCard } from "@/lib/mapApiProductToCard";
 import {
   useGetBrandProductsQuery,
   useGetBrandsQuery,
@@ -92,47 +92,10 @@ export default function BrandProductsPage({
 
   const apiProducts = pagination?.data || [];
 
-  const mappedProducts = apiProducts
-    .map((product) => {
-      const primarySku = product?.sku?.[0] || {};
-      const skuSellingPrice = toNumber(primarySku?.selling_price);
-      const productSellingPrice = toNumber(product?.selling_price);
-      const basePrice = skuSellingPrice || productSellingPrice;
-      const discountType = product?.default_discount_type;
-      const discountValue = toNumber(product?.default_discount_value);
-
-      let originalPrice = basePrice > 0 ? basePrice : null;
-      let effectivePrice = basePrice;
-      let discountAmount = 0;
-      let discountLabel = null;
-
-      if (basePrice > 0 && discountValue > 0) {
-        if (discountType === "amount") {
-          discountAmount = Math.min(discountValue, basePrice);
-          effectivePrice = Math.max(basePrice - discountAmount, 0);
-          discountLabel = `\u09F3${discountAmount.toFixed(0)} off`;
-        } else if (discountType === "percent" && discountValue < 100) {
-          discountAmount = (basePrice * discountValue) / 100;
-          effectivePrice = Math.max(basePrice - discountAmount, 0);
-          discountLabel = `${Math.round(discountValue)}% off`;
-        }
-      }
-
-      return {
-        id: product.id,
-        slug: product.slug,
-        name: product.name,
-        rating: getProductRating(product),
-        price: effectivePrice,
-        originalPrice:
-          originalPrice && originalPrice > effectivePrice ? originalPrice : null,
-        discountAmount: discountAmount > 0 ? discountAmount : null,
-        discountLabel,
-        images: [getImageUrl(product?.thumbnail_image)],
-        category: product?.category?.name || "",
-        shortDescription: product?.short_description || "",
-      };
-    });
+  const mappedProducts = apiProducts.map((product) => ({
+    ...mapApiProductToCard(product),
+    shortDescription: product?.short_description || "",
+  }));
 
   const isLoading = isBrandsLoading || isProductsLoading || isProductsFetching;
 
@@ -447,8 +410,12 @@ export default function BrandProductsPage({
                                 </span>
                               ) : null}
                             </div>
-                            <span className="text-sm font-semibold text-green-600">
-                              In Stock
+                            <span
+                              className={`text-sm font-semibold ${
+                                product.inStock ? "text-green-600" : "text-red-600"
+                              }`}
+                            >
+                              {product.inStock ? "In stock" : "Out of stock"}
                             </span>
                           </div>
                         </div>

@@ -1,5 +1,6 @@
 'use client';
 import { useDispatch, useSelector } from "react-redux";
+import { getProductStockInfo } from "./productStock";
 import {
   clearCart as clearCartAction,
   setAppliedCoupon as setAppliedCouponAction,
@@ -7,32 +8,23 @@ import {
   setIsCartOpen as setIsCartOpenAction,
 } from "../redux/features/cart/cartSlice";
 
-const toNumber = (value) => {
-  const parsed = Number(value);
-  return Number.isFinite(parsed) ? parsed : 0;
-};
 
-const normalizeCartItem = (product, quantity = 1) => ({
-  id: product.id,
-  productId: product.productId || product.id,
-  name: product.name,
-  price: Number(product.price) || 0,
-  quantity,
-  image: product.image || product.images?.[0] || "",
-  category: product.category || "",
-  slug: product.slug || "",
-  stockCount:
-    toNumber(product.stockCount) ||
-    toNumber(product.availableStock) ||
-    toNumber(product.available_stock) ||
-    null,
-  inStock:
-    typeof product.inStock === "boolean"
-      ? product.inStock
-      : typeof product.in_stock === "boolean"
-        ? product.in_stock
-        : true,
-});
+const normalizeCartItem = (product, quantity = 1) => {
+  const stockInfo = getProductStockInfo(product);
+
+  return {
+    id: product.id,
+    productId: product.productId || product.id,
+    name: product.name,
+    price: Number(product.price) || 0,
+    quantity,
+    image: product.image || product.images?.[0] || "",
+    category: product.category || "",
+    slug: product.slug || "",
+    stockCount: stockInfo.availableStock,
+    inStock: stockInfo.inStock,
+  };
+};
 
 export function useCart() {
   const dispatch = useDispatch();
