@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo } from "react";
 import {
   CheckCircle2,
   ChevronRight,
@@ -10,7 +9,7 @@ import {
   Package,
   ShoppingBag,
 } from "lucide-react";
-import { getStoredCheckoutOrder } from "@/lib/checkoutOrderStorage";
+import { useGetOrderDetailsQuery } from "@/redux/features/order/orderApi";
 import { getImageUrl } from "@/lib/imageHelpers";
 
 const toNumber = (value) => {
@@ -18,19 +17,34 @@ const toNumber = (value) => {
   return Number.isFinite(parsed) ? parsed : 0;
 };
 
-export default function CheckoutConfirmationPage({ orderNumber }) {
-  const storedOrder = getStoredCheckoutOrder();
+export default function CheckoutConfirmationPage({ orderId, orderNumber }) {
+  const {
+    data: order,
+    isLoading,
+    isFetching,
+  } = useGetOrderDetailsQuery(orderId, {
+    skip: !orderId,
+    refetchOnMountOrArgChange: true,
+  });
 
-  const orderSummary = useMemo(() => {
-    if (!storedOrder) return null;
-    if (orderNumber && storedOrder?.order_number !== orderNumber) return null;
-    return storedOrder;
-  }, [orderNumber, storedOrder]);
-
-  const order = orderSummary?.order || null;
   const orderItems = order?.items || [];
+  const resolvedOrderNumber = order?.order_no || orderNumber;
 
-  if (!orderSummary || !order) {
+  if (isLoading || isFetching) {
+    return (
+      <div className="px-3 py-6 sm:px-4 sm:py-10">
+        <div className="mx-auto max-w-6xl space-y-5">
+          <div className="h-36 animate-pulse rounded-2xl bg-slate-100" />
+          <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px]">
+            <div className="h-72 animate-pulse rounded-2xl bg-slate-100" />
+            <div className="h-72 animate-pulse rounded-2xl bg-slate-100" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!order) {
     return (
       <div className="px-3 py-6 sm:px-4 sm:py-10">
         <div className="mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
@@ -85,7 +99,7 @@ export default function CheckoutConfirmationPage({ orderNumber }) {
                 Order Number
               </p>
               <p className="mt-1 text-sm font-bold text-slate-800 sm:text-base">
-                {orderSummary.order_number}
+                {resolvedOrderNumber}
               </p>
             </div>
           </div>
@@ -170,13 +184,13 @@ export default function CheckoutConfirmationPage({ orderNumber }) {
                 <div className="flex items-center justify-between text-xs text-slate-600 sm:text-sm">
                   <span>Subtotal</span>
                   <span className="font-semibold text-slate-800">
-                    Tk {toNumber(orderSummary.sub_total).toFixed(2)}
+                    Tk {toNumber(order.sub_total).toFixed(2)}
                   </span>
                 </div>
                 <div className="flex items-center justify-between text-xs text-slate-600 sm:text-sm">
                   <span>Delivery Charge</span>
                   <span className="font-semibold text-slate-800">
-                    Tk {toNumber(orderSummary.shipping_fee).toFixed(2)}
+                    Tk {toNumber(order.shipping_fee).toFixed(2)}
                   </span>
                 </div>
                 <div className="rounded-xl bg-slate-50 px-3 py-3 sm:px-4 sm:py-4">
@@ -185,7 +199,7 @@ export default function CheckoutConfirmationPage({ orderNumber }) {
                       Total Amount
                     </span>
                     <span className="text-xl font-bold text-primary sm:text-2xl">
-                      Tk {toNumber(orderSummary.total_amount).toFixed(2)}
+                      Tk {toNumber(order.grand_total).toFixed(2)}
                     </span>
                   </div>
                 </div>

@@ -15,6 +15,8 @@ import Link from "next/link";
 import { toast } from "sonner";
 import { useCart } from "../../lib/useCart";
 import { useApplyCouponMutation } from "@/redux/features/cart/cartApi";
+import { useSelectedShipmentZone } from "@/lib/shipmentZoneStorage";
+import { useGetShipmentZonesQuery } from "@/redux/features/settings/settingsApi";
 
 const formatMoney = (value) => `\u09F3${Number(value || 0).toFixed(2)}`;
 
@@ -30,6 +32,8 @@ const CartOffcanvas = () => {
   } = useCart();
   const [couponCode, setCouponCode] = useState("");
   const [applyCoupon, { isLoading: isApplyingCoupon }] = useApplyCouponMutation();
+  const { data: shipmentZones = [] } = useGetShipmentZonesQuery();
+  const { selectedShipmentZone } = useSelectedShipmentZone(shipmentZones);
 
   const subtotal = useMemo(
     () =>
@@ -45,7 +49,9 @@ const CartOffcanvas = () => {
   const effectiveCoupon = isCouponStale ? null : appliedCoupon;
 
   const discountAmount = Number(effectiveCoupon?.discountAmount || 0);
-  const shippingCost = subtotal > 50 ? 0 : 5.99;
+  const shippingCost = cartItems.length > 0
+    ? Number(selectedShipmentZone?.charge) || 0
+    : 0;
   const total = subtotal - discountAmount + shippingCost;
 
   const removeCoupon = () => setAppliedCoupon(null);
@@ -270,22 +276,20 @@ const CartOffcanvas = () => {
                   </div>
                 ) : null}
 
-                <div className="flex justify-between text-sm text-gray-600">
-                  <span>Shipping:</span>
+                <div className="flex justify-between gap-4 text-sm text-gray-600">
                   <span>
-                    {shippingCost === 0 ? (
-                      <span className="font-semibold text-primary">FREE</span>
-                    ) : (
-                      formatMoney(shippingCost)
-                    )}
+                    Shipping
+                    {selectedShipmentZone?.name
+                      ? ` (${selectedShipmentZone.name})`
+                      : ""}
+                    :
+                  </span>
+                  <span className="text-right">
+                    {selectedShipmentZone
+                      ? formatMoney(shippingCost)
+                      : "Calculated at checkout"}
                   </span>
                 </div>
-
-                {subtotal < 50 ? (
-                  <p className="text-xs text-orange-600">
-                    Add {formatMoney(50 - subtotal)} more for free shipping!
-                  </p>
-                ) : null}
               </div>
 
               <div className="mb-4 flex justify-between border-t pt-4 text-lg font-bold text-gray-800">

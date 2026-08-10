@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { toast } from "sonner";
 import { useCart } from "@/lib/useCart";
-import { storeCheckoutOrder } from "@/lib/checkoutOrderStorage";
 import { useSelectedShipmentZone } from "@/lib/shipmentZoneStorage";
 import { useCheckoutOrderMutation } from "@/redux/features/order/orderApi";
 import { useGetShipmentZonesQuery } from "@/redux/features/settings/settingsApi";
@@ -127,12 +126,15 @@ export default function Checkout({ user: initialUser }) {
     try {
       const response = await checkoutOrder(payload).unwrap();
       toast.success(response?.message || "Order placed successfully.");
-      storeCheckoutOrder(response?.data || null);
       clearCart();
+      const orderId = response?.data?.order?.id;
+      const orderNumber =
+        response?.data?.order_number || response?.data?.order?.order_no || "";
+
       router.push(
-        `/checkout/confirmation?order=${encodeURIComponent(
-          response?.data?.order_number || "",
-        )}`,
+        `/checkout/confirmation?id=${encodeURIComponent(
+          orderId || "",
+        )}&order=${encodeURIComponent(orderNumber)}`,
       );
     } catch (error) {
       toast.error(error?.data?.message || "Unable to place the order right now.");
