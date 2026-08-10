@@ -7,22 +7,40 @@ import { useSelectedShipmentZone } from "@/lib/shipmentZoneStorage";
 
 export default function DeliveryLocation() {
     const [isOpen, setIsOpen] = useState(false);
-    const { data: locations = [], isLoading } = useGetShipmentZonesQuery();
+    const [pendingLocationId, setPendingLocationId] = useState(null);
+    const {
+        data: locations = [],
+        isLoading,
+        isError,
+        refetch,
+    } = useGetShipmentZonesQuery();
     const {
         selectedShipmentZone: selectedLocation,
         setSelectedShipmentZoneId,
     } = useSelectedShipmentZone(locations);
 
-    const handleLocationSelect = (locationId) => {
-        setSelectedShipmentZoneId(locationId);
+    const openSelector = () => {
+        setPendingLocationId(selectedLocation?.id || null);
+        setIsOpen(true);
+    };
+
+    const closeSelector = () => {
         setIsOpen(false);
+    };
+
+    const confirmLocation = () => {
+        if (pendingLocationId) {
+            setSelectedShipmentZoneId(pendingLocationId);
+        }
+        closeSelector();
     };
 
     return (
         <div className="relative">
             {/* Desktop trigger: fixed-width compact selector for the main header row */}
             <button
-                onClick={() => setIsOpen(!isOpen)}
+                type="button"
+                onClick={isOpen ? closeSelector : openSelector}
                 className="group relative hidden h-[58px] w-[220px] shrink-0 overflow-hidden rounded-xl border border-primary/15 bg-white shadow-sm sm:flex"
             >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/8 via-transparent to-secondary/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -47,7 +65,8 @@ export default function DeliveryLocation() {
 
             {/* Mobile trigger: full-width version that sits comfortably above mobile search */}
             <button
-                onClick={() => setIsOpen(!isOpen)}
+                type="button"
+                onClick={isOpen ? closeSelector : openSelector}
                 className="flex h-8 w-full items-center gap-2 rounded-md px-2 transition-all duration-200 hover:border-primary/30 hover:bg-blue-50/70 sm:hidden"
             >
                 <div className="flex gap-2 justify-center items-center">
@@ -83,12 +102,26 @@ export default function DeliveryLocation() {
                             <div className="px-4 py-6 text-sm text-slate-500">
                                 Loading delivery areas...
                             </div>
+                        ) : isError ? (
+                            <div className="px-4 py-6 text-center">
+                                <p className="text-sm text-slate-500">
+                                    Delivery areas could not be loaded.
+                                </p>
+                                <button
+                                    type="button"
+                                    onClick={refetch}
+                                    className="mt-3 rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-white"
+                                >
+                                    Try again
+                                </button>
+                            </div>
                         ) : locations.length > 0 ? (
                             locations.map((location) => (
                                 <button
+                                    type="button"
                                     key={location.id}
-                                    onClick={() => handleLocationSelect(location.id)}
-                                    className={`flex w-full items-center justify-between px-4 py-3 text-left transition-colors duration-150 ${selectedLocation?.id === location.id
+                                    onClick={() => setPendingLocationId(location.id)}
+                                    className={`flex w-full items-center justify-between px-4 py-3 text-left transition-colors duration-150 ${Number(pendingLocationId) === Number(location.id)
                                         ? "bg-primary/20"
                                         : "hover:bg-slate-100"
                                         }`}
@@ -99,7 +132,7 @@ export default function DeliveryLocation() {
                                             Delivery charge: Tk {location.charge}
                                         </p> */}
                                     </div>
-                                    {selectedLocation?.id === location.id && (
+                                    {Number(pendingLocationId) === Number(location.id) && (
                                         <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-white">
                                             <Check className="h-3.5 w-3.5" />
                                         </div>
@@ -115,14 +148,17 @@ export default function DeliveryLocation() {
 
                     <div className="flex gap-2 border-t border-blue-100 bg-slate-50 px-4 py-3">
                         <button
-                            onClick={() => setIsOpen(false)}
+                            type="button"
+                            onClick={closeSelector}
                             className="flex-1 rounded-xl px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-200"
                         >
                             Cancel
                         </button>
                         <button
-                            onClick={() => setIsOpen(false)}
-                            className="flex-1 rounded-xl bg-primary px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-secondary"
+                            type="button"
+                            onClick={confirmLocation}
+                            disabled={!pendingLocationId || isLoading || isError}
+                            className="flex-1 rounded-xl bg-primary px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-secondary disabled:cursor-not-allowed disabled:opacity-50"
                         >
                             Confirm
                         </button>
@@ -133,7 +169,7 @@ export default function DeliveryLocation() {
             {isOpen && (
                 <div
                     className="fixed inset-0 z-40"
-                    onClick={() => setIsOpen(false)}
+                    onClick={closeSelector}
                 />
             )}
         </div>

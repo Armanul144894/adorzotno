@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useSyncExternalStore } from "react";
 
 export const SHIPMENT_ZONE_STORAGE_KEY = "adorzotno_shipment_zone_id";
 const SHIPMENT_ZONE_EVENT = "adorzotno:shipment-zone-change";
@@ -12,82 +12,76 @@ export const getStoredShipmentZoneId = () => {
   const windowObject = getWindowObject();
   if (!windowObject) return null;
 
-  const storedValue = windowObject.localStorage.getItem(
-    SHIPMENT_ZONE_STORAGE_KEY,
-  );
-  const parsedValue = Number(storedValue);
+  try {
+    const storedValue = windowObject.localStorage.getItem(
+      SHIPMENT_ZONE_STORAGE_KEY,
+    );
+    if (!storedValue) return null;
 
-  return Number.isFinite(parsedValue) ? parsedValue : null;
+    const parsedValue = Number(storedValue);
+    return Number.isFinite(parsedValue) ? parsedValue : null;
+  } catch {
+    return null;
+  }
 };
 
 export const setStoredShipmentZoneId = (shipmentZoneId) => {
   const windowObject = getWindowObject();
   if (!windowObject) return;
 
-  windowObject.localStorage.setItem(
-    SHIPMENT_ZONE_STORAGE_KEY,
-    String(shipmentZoneId),
-  );
+  const normalizedId = Number(shipmentZoneId);
+  if (!Number.isFinite(normalizedId)) return;
+
+  try {
+    windowObject.localStorage.setItem(
+      SHIPMENT_ZONE_STORAGE_KEY,
+      String(normalizedId),
+    );
+  } catch {
+    return;
+  }
+
   windowObject.dispatchEvent(
     new CustomEvent(SHIPMENT_ZONE_EVENT, {
-      detail: { shipmentZoneId },
+      detail: { shipmentZoneId: normalizedId },
     }),
   );
 };
 
-export const useSelectedShipmentZone = (locations = []) => {
-  const [selectedShipmentZoneId, setSelectedShipmentZoneIdState] = useState(
-    () => getStoredShipmentZoneId(),
-  );
+const subscribeToShipmentZone = (onStoreChange) => {
+  const windowObject = getWindowObject();
+  if (!windowObject) return () => {};
 
-  useEffect(() => {
-    const windowObject = getWindowObject();
-    if (!windowObject) return undefined;
+  const handleShipmentZoneChange = () => onStoreChange();
+  const handleStorage = (event) => {
+    if (event.key === SHIPMENT_ZONE_STORAGE_KEY) onStoreChange();
+  };
 
-    const handleShipmentZoneChange = (event) => {
-      const nextId = Number(event?.detail?.shipmentZoneId);
-      setSelectedShipmentZoneIdState(Number.isFinite(nextId) ? nextId : null);
-    };
+  windowObject.addEventListener(SHIPMENT_ZONE_EVENT, handleShipmentZoneChange);
+  windowObject.addEventListener("storage", handleStorage);
 
-    const handleStorage = (event) => {
-      if (event.key !== SHIPMENT_ZONE_STORAGE_KEY) return;
-      setSelectedShipmentZoneIdState(getStoredShipmentZoneId());
-    };
-
-    windowObject.addEventListener(SHIPMENT_ZONE_EVENT, handleShipmentZoneChange);
-    windowObject.addEventListener("storage", handleStorage);
-
-    return () => {
-      windowObject.removeEventListener(
-        SHIPMENT_ZONE_EVENT,
-        handleShipmentZoneChange,
-      );
-      windowObject.removeEventListener("storage", handleStorage);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!locations.length) return;
-
-    const hasStoredSelection = locations.some(
-      (location) => Number(location.id) === Number(selectedShipmentZoneId),
+  return () => {
+    windowObject.removeEventListener(
+      SHIPMENT_ZONE_EVENT,
+      handleShipmentZoneChange,
     );
+    windowObject.removeEventListener("storage", handleStorage);
+  };
+};
 
-    if (!hasStoredSelection) {
-      const fallbackZoneId = locations[0]?.id;
-
-      if (fallbackZoneId) {
-        setStoredShipmentZoneId(fallbackZoneId);
-      }
-    }
-  }, [locations, selectedShipmentZoneId]);
+export const useSelectedShipmentZone = (locations = []) => {
+  const storedShipmentZoneId = useSyncExternalStore(
+    subscribeToShipmentZone,
+    getStoredShipmentZoneId,
+    () => null,
+  );
 
   const selectedShipmentZone = useMemo(
     () =>
       locations.find(
-        (location) => Number(location.id) === Number(selectedShipmentZoneId),
+        (location) => Number(location.id) === Number(storedShipmentZoneId),
       ) || locations[0] || null,
-    [locations, selectedShipmentZoneId],
+    [locations, storedShipmentZoneId],
   );
 
   return {
