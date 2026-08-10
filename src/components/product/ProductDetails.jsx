@@ -19,14 +19,15 @@ import flashDeals from "../../../public/data/flashDeals";
 import ProductCarouselSection from "./ProductCarouselSection";
 import ProductDetailsTab from "./ProductDetailsTab";
 import ProductGrid from "./ProductGrid";
+import PreviouslyBrowsedItems from "./PreviouslyBrowsedItems";
 
 const toNumber = (value) => {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : 0;
 };
 
-const stripHtml = (value = "") =>
-  value
+const stripHtml = (value) =>
+  String(value ?? "")
     .replace(/<[^>]*>/g, " ")
     .replace(/&nbsp;/g, " ")
     .replace(/\s+/g, " ")
@@ -339,10 +340,6 @@ export default function ProductDetails() {
     [genericProductsResponse?.data, selectedProduct?.id],
   );
 
-  const previouslyBrowsedProducts = useMemo(
-    () => [...productsExcludingSelected].reverse().slice(0, 12),
-    [productsExcludingSelected],
-  );
 
   const incrementQuantity = () => {
     if (quantity < (selectedProduct?.stockCount || 0)) {
@@ -457,11 +454,7 @@ export default function ProductDetails() {
         />
       </div>
 
-      <ProductCarouselSection
-        relatedProducts={previouslyBrowsedProducts}
-        title="Previously Browsed Items"
-        navKey="previously-browsed-items"
-      />
+      <PreviouslyBrowsedItems currentProductSlug={selectedProduct?.slug} />
     </div>
   );
 }
