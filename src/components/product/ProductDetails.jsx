@@ -14,8 +14,6 @@ import {
   useGetRelatedProductsQuery,
   useGetTrendingProductsQuery,
 } from "@/redux/features/product/productApi";
-import products from "../../../public/data/data";
-import flashDeals from "../../../public/data/flashDeals";
 import ProductCarouselSection from "./ProductCarouselSection";
 import ProductDetailsTab from "./ProductDetailsTab";
 import ProductGrid from "./ProductGrid";
@@ -148,8 +146,6 @@ const getStockInfo = (product) => {
   };
 };
 
-const allProducts = [...products, ...flashDeals];
-
 export default function ProductDetails() {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
@@ -240,6 +236,8 @@ export default function ProductDetails() {
   }, [product]);
 
   const genericName = selectedProduct?.generic?.trim() || "";
+  const manufacturerName =
+    product?.manufacturer_name?.trim() || product?.brand?.name?.trim() || "";
 
   const { data: genericProductsResponse = {} } = useGetProductsByGenericNameQuery(
     {
@@ -249,21 +247,6 @@ export default function ProductDetails() {
     {
       skip: !genericName,
     },
-  );
-
-  const productsExcludingSelected = useMemo(
-    () =>
-      allProducts.filter((item) => {
-        const selectedSlug = selectedProduct?.slug?.toLowerCase();
-        const itemSlug = item?.slug?.toLowerCase();
-
-        if (selectedSlug && itemSlug) {
-          return itemSlug !== selectedSlug;
-        }
-
-        return item?.name !== selectedProduct?.name;
-      }),
-    [selectedProduct?.name, selectedProduct?.slug],
   );
 
   const youMayAlsoLikeProducts = useMemo(
@@ -298,14 +281,6 @@ export default function ProductDetails() {
       })
       .slice(0, 12)),
     [sameBrandProductsResponse?.products?.data, selectedProduct?.id],
-  );
-
-  const fallbackManufacturerProducts = useMemo(
-    () =>
-      productsExcludingSelected
-        .filter((product) => product?.rating >= 4.5)
-        .slice(4, 15),
-    [productsExcludingSelected],
   );
 
   const frequentlyBoughtTogetherProducts = useMemo(
@@ -433,18 +408,14 @@ export default function ProductDetails() {
         />
       </div>
 
-      <ProductCarouselSection
-        relatedProducts={
-          manufacturerProducts.length > 0
-            ? manufacturerProducts
-            : fallbackManufacturerProducts
-        }
-        title={`More from ${selectedProduct?.manufacturer || "Incepta Pharmaceuticals Ltd."}`}
-        navKey="more-from-manufacturer"
-        viewAllHref={
-          selectedProduct?.brand?.slug ? `/brand/${selectedProduct.brand.slug}` : "#"
-        }
-      />
+      {manufacturerName && manufacturerProducts.length > 0 ? (
+        <ProductCarouselSection
+          relatedProducts={manufacturerProducts}
+          title={`More from ${manufacturerName}`}
+          navKey="more-from-manufacturer"
+          viewAllHref={`/brand/${selectedProduct.brand.slug}`}
+        />
+      ) : null}
 
       <div className="bg-sky-50">
         <ProductCarouselSection
