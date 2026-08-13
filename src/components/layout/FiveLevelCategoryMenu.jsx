@@ -99,16 +99,8 @@ function CategoryLevel({ items, level, activePath, setActivePath, onClose }) {
               </span>
 
               {hasChildren ? (
-                <span
-                  className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full transition-all duration-200 ${isActive
-                    ? "bg-white/15 text-white"
-                    : "text-slate-500 group-hover/item:bg-white group-hover/item:text-primary"
-                    }`}
-                >
-                  <ChevronRight
-                    size={14}
-                    className="transition-transform duration-200 group-hover/item:translate-x-0.5"
-                  />
+                <span className={`${isActive ? "text-white" : "text-slate-500"}`}>
+                  <ChevronRight size={14} />
                 </span>
               ) : null}
             </Link>
