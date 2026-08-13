@@ -96,7 +96,7 @@ export default function ProductCard({ product }) {
                 <InteractiveRatingStars
                   value={product.rating}
                   readonly
-                  size={16}
+                  size={15}
                 />
               </div>
             </div>
