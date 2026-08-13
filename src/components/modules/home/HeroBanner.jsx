@@ -88,9 +88,10 @@ export default function HeroBanner() {
           <div
             key={slide.id}
             className={`transition-opacity duration-1000 ${index === activeSlideIndex
-              ? "relative opacity-100"
-              : "absolute inset-0 opacity-0"
+              ? "relative z-10 opacity-100"
+              : "pointer-events-none absolute inset-0 z-0 opacity-0"
               }`}
+            aria-hidden={index !== activeSlideIndex}
           >
             {slide.href ? (
               <Link href={slide.href} className="block">
