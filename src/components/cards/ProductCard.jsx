@@ -112,13 +112,7 @@ export default function ProductCard({ product }) {
         }}
       >
         {!inStock ? (
-          <button
-            type="button"
-            disabled
-            className="flex h-10 cursor-not-allowed items-center justify-center rounded-lg bg-slate-100 px-3 text-xs font-semibold text-slate-500"
-          >
-            Out of stock
-          </button>
+          <div></div>
         ) : !inCart ? (
           <button
             onClick={handleAdd}
