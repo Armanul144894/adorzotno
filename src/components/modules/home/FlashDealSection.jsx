@@ -21,19 +21,22 @@ export default function FlashDealSection() {
   return (
     <div className="mb-8">
       <div className="mb-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <h2 className="text-lg font-semibold sm:text-xl md:text-2xl">
-            Flash Deals
+
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">
+            Flash Deals{" "}
+            <Zap className="inline-block text-red-500 size-5 md:size-6 align-middle" />
           </h2>
-          <Zap className="text-red-500" size={24} />
         </div>
 
-        <Link
-          href="/flash-deals"
-          className="flex items-center gap-1 rounded-full border border-primary/30 px-3 py-1.5 text-sm font-semibold text-primary transition-all hover:gap-2 hover:bg-primary/5"
-        >
-          View All <ChevronRight size={16} />
-        </Link>
+        <div>
+          <Link
+            href="/flash-deals"
+            className="flex items-center gap-1 rounded-full border border-primary/30 px-3 py-1.5 text-sm font-semibold text-primary transition-all hover:gap-2 hover:bg-primary/5"
+          >
+            View All <ChevronRight size={16} />
+          </Link>
+        </div>
       </div>
 
       {isLoading || isFetching ? (

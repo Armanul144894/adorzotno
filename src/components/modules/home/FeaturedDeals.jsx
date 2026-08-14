@@ -23,19 +23,22 @@ export default function FeaturedDeals() {
     <div>
       <div className="mb-10 rounded">
         <div className="mb-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <h2 className="text-lg font-semibold sm:text-xl md:text-2xl">
-              Featured Deals
+
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">
+              Featured Deals{" "}
+              <Zap className="inline-block text-orange-500 size-5 md:size-6 align-middle" />
             </h2>
-            <Zap className="text-orange-500" size={24} />
           </div>
 
-          <Link
-            href="/featured-deals"
-            className="flex items-center gap-1 rounded-full border border-primary/30 px-3 py-1.5 text-sm font-semibold text-primary transition-all hover:gap-2 hover:bg-primary/5"
-          >
-            View all <ChevronRight size={16} />
-          </Link>
+          <div>
+            <Link
+              href="/featured-deals"
+              className="flex items-center gap-1 rounded-full border border-primary/30 px-3 py-1.5 text-sm font-semibold text-primary transition-all hover:gap-2 hover:bg-primary/5"
+            >
+              View all <ChevronRight size={16} />
+            </Link>
+          </div>
         </div>
 
         {isLoading || isFetching ? (

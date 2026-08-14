@@ -24,21 +24,24 @@ export default function HomePopularCategories() {
     return (
         <section className="mb-10 bg-white p-4 sm:p-5 border border-slate-200 rounded-lg">
             <div className="mb-5 flex justify-between gap-4 lg:items-end lg:justify-between">
-                <div className="flex items-center gap-2">
+
+                <div className="flex items-center gap-1.5 sm:gap-2">
                     <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">
-                        Popular Categories
+                        Popular Categories{" "}
+                        <Flame className="inline-block text-orange-500 size-5 md:size-6 align-middle" />
                     </h2>
-                    <Flame className="text-orange-500" size={24} />
                 </div>
 
-                <Link
-                    href="/category"
-                    className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-white px-4 py-2.5 text-sm font-semibold text-primary transition-all duration-300 hover:border-primary hover:bg-primary hover:text-white"
-                >
-                    <span className="sm:hidden whitespace-nowrap">View all</span>
-                    <span className="hidden sm:inline">Explore all categories</span>
-                    <ChevronRight size={16} />
-                </Link>
+                <div>
+                    <Link
+                        href="/category"
+                        className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-white px-4 py-2.5 text-sm font-semibold text-primary transition-all duration-300 hover:border-primary hover:bg-primary hover:text-white"
+                    >
+                        <span className="sm:hidden whitespace-nowrap">View all</span>
+                        <span className="hidden sm:inline">Explore all categories</span>
+                        <ChevronRight size={16} />
+                    </Link>
+                </div>
             </div>
 
             <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8">
