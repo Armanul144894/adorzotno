@@ -78,7 +78,8 @@ export default function HeroBanner() {
             width={1500}
             height={500}
             sizes="100vw"
-            className="h-auto max-h-[500px] min-h-36 w-full object-cover"
+            className="h-auto max-h-[500px] w-full object-cover"
+            // className="h-auto max-h-[500px] min-h-36 w-full object-cover"
             priority={index === 0}
             unoptimized
           />

@@ -93,11 +93,21 @@ export default function ProductCard({ product }) {
                     {"\u09F3"}{formatPrice(product.originalPrice)}
                   </span>
                 ) : null}
-                <InteractiveRatingStars
-                  value={product.rating}
-                  readonly
-                  size={15}
-                />
+                <div className="sm:hidden">
+                  <InteractiveRatingStars
+                    value={product.rating}
+                    readonly
+                    size={15}
+                    showValue={false}
+                  />
+                </div>
+                <div className="max-sm:hidden">
+                  <InteractiveRatingStars
+                    value={product.rating}
+                    readonly
+                    size={15}
+                  />
+                </div>
               </div>
             </div>
           </div>
