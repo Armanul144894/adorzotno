@@ -40,14 +40,10 @@ export default function Header() {
   const showCartCount = hasMounted && isCartHydrated && cartCount > 0;
   const shouldOpenSignIn = searchParams.get("signin") === "1";
   const redirectPath = searchParams.get("redirect");
-  const signInRequestKey = shouldOpenSignIn
-    ? `${pathname}?${searchParams.toString()}`
-    : "";
   const showAuthenticatedAccount = hasMounted && isHydrated && isAuthenticated;
   const firstName = user?.name?.trim()?.split(" ")[0] || "Sign In";
 
   const [manualSignInOpen, setManualSignInOpen] = useState(false);
-  const [dismissedSignInKey, setDismissedSignInKey] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [categoryMenuOpen, setCategoryMenuOpen] = useState(false);
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
@@ -104,16 +100,26 @@ export default function Header() {
   const autoOpenSignIn =
     shouldOpenSignIn &&
     isHydrated &&
-    !isAuthenticated &&
-    dismissedSignInKey !== signInRequestKey;
+    !isAuthenticated;
 
   const isSignInOpen = manualSignInOpen || autoOpenSignIn;
+
+  const clearSignInSearchParams = () => {
+    const nextSearchParams = new URLSearchParams(searchParams.toString());
+    nextSearchParams.delete("signin");
+    nextSearchParams.delete("redirect");
+
+    const nextQuery = nextSearchParams.toString();
+    router.replace(nextQuery ? `${pathname}?${nextQuery}` : pathname, {
+      scroll: false,
+    });
+  };
 
   const handleSetSignInOpen = (nextOpen) => {
     setManualSignInOpen(nextOpen);
 
-    if (!nextOpen && autoOpenSignIn) {
-      setDismissedSignInKey(signInRequestKey);
+    if (!nextOpen && shouldOpenSignIn) {
+      clearSignInSearchParams();
     }
   };
 
