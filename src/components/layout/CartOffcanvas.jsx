@@ -297,7 +297,11 @@ const CartOffcanvas = () => {
                 <span className="text-primary">{formatMoney(total)}</span>
               </div>
 
-              <Link href="/checkout" onClick={() => setIsCartOpen(false)}>
+              <Link
+                href="/checkout"
+                prefetch={false}
+                onClick={() => setIsCartOpen(false)}
+              >
                 <button className="mb-2 flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-3 font-semibold text-white transition hover:bg-secondary">
                   Proceed to Checkout <ArrowRight size={18} />
                 </button>

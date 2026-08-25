@@ -23,6 +23,7 @@ import HeaderSearch from "./HeaderSearch";
 import { useCart } from "../../lib/useCart";
 import DeliveryLocation from "../DeliveryLocation";
 import { useLogoutMutation } from "@/redux/features/auth/authApi";
+import { persistAuthSession } from "@/lib/authSession";
 
 export default function Header() {
   const hasMounted = useSyncExternalStore(
@@ -40,6 +41,10 @@ export default function Header() {
   const showCartCount = hasMounted && isCartHydrated && cartCount > 0;
   const shouldOpenSignIn = searchParams.get("signin") === "1";
   const redirectPath = searchParams.get("redirect");
+  const safeRedirectPath =
+    redirectPath?.startsWith("/") && !redirectPath.startsWith("//")
+      ? redirectPath
+      : null;
   const showAuthenticatedAccount = hasMounted && isHydrated && isAuthenticated;
   const firstName = user?.name?.trim()?.split(" ")[0] || "Sign In";
 
@@ -146,16 +151,24 @@ export default function Header() {
     }
   };
 
-  const handleLoginSuccess = () => {
+  const handleLoginSuccess = (authData) => {
     setManualSignInOpen(false);
 
-    if (redirectPath) {
-      router.push(redirectPath);
+    if (authData?.token) {
+      persistAuthSession({
+        token: authData.token,
+        user: authData?.user || null,
+      });
+    }
+
+    if (safeRedirectPath) {
+      // Request the protected route again after the auth cookie is available.
+      window.location.replace(safeRedirectPath);
       return;
     }
 
-    if (pathname === "/" && shouldOpenSignIn) {
-      router.replace("/");
+    if (shouldOpenSignIn) {
+      clearSignInSearchParams();
     }
   };
 

@@ -30,8 +30,12 @@ export default function SignInModal({
     });
     setOtpSent(false);
     setIsSignUp(false);
-    setSignInOpen(false);
-    onLoginSuccess?.();
+
+    if (onLoginSuccess) {
+      onLoginSuccess(responseData);
+    } else {
+      setSignInOpen(false);
+    }
   };
 
   const handleRegisterSubmit = (responseData) => {
